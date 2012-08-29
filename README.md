@@ -1,1 +1,1 @@
-This is set up to be a project management tool, but specifiying in connections and database of things.
+This is set up to be a project management tool.
