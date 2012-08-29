@@ -1,0 +1,10 @@
+CREATE TABLE `countries` (
+	`Country_ID` INT(11) NOT NULL AUTO_INCREMENT,
+	`Country` VARCHAR(64) NOT NULL DEFAULT '',
+	`ISO_Code` CHAR(3) NOT NULL DEFAULT '',
+	`Allow_Sales` ENUM('Y','N') NOT NULL DEFAULT 'N',
+	PRIMARY KEY (`Country_ID`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=240;

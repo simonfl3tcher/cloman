@@ -1,0 +1,1 @@
+<p>Hello and welcome to the about us page, I am a passionate web developer with a weird passion for javascript</p>

@@ -1,0 +1,19 @@
+CREATE TABLE `members` (
+	`ID` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Name_Title` VARCHAR(5) NULL DEFAULT '',
+	`Name_First` VARCHAR(60) NOT NULL DEFAULT '',
+	`Name_Initial` CHAR(1) NULL DEFAULT '',
+	`Name_Last` VARCHAR(60) NOT NULL DEFAULT '',
+	`Address_ID` INT(11) UNSIGNED NULL DEFAULT '0',
+	`member_phone` VARCHAR(40) NULL DEFAULT '',
+	`member_email` VARCHAR(100) NOT NULL DEFAULT '',
+	`member_password` VARCHAR(64) NOT NULL DEFAULT '',
+	`member_url` VARCHAR(100) NOT NULL DEFAULT '',
+	`member_registered` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`member_status` INT(11) NOT NULL DEFAULT '0',
+	`display_name` VARCHAR(250) NOT NULL DEFAULT '',
+	PRIMARY KEY (`ID`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=3;
