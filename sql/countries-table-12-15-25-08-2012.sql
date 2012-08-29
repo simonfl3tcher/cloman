@@ -7,4 +7,4 @@ CREATE TABLE `countries` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=MyISAM
-AUTO_INCREMENT=240;
+AUTO_INCREMENT=1;

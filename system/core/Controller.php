@@ -58,6 +58,9 @@ class CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('helpers/request_model', 'request');
+		if(!$this->session->userdata('Logged_In') && uri_string() != 'login'){
+			redirect('/login');
+		}
 	}
 
 	public static function &get_instance()

@@ -37,15 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['howie'] = 'howie';
-$route['blog'] = 'blog';
-$route['blog/comments'] = 'blog/comments';
-$route['news/(:any)'] = 'news/$1';
-$route['news'] = 'news';
-$route['member/(:any)'] = 'member/$1';
-$route['member'] = 'member';
 $route['default_controller'] = "pages/view";
-$route['(:any)'] = 'pages/view/$1';
 
 
 /* End of file routes.php */

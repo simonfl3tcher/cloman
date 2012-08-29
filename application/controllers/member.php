@@ -23,7 +23,7 @@
 		public function login() {
 			$direct = isset($_REQUEST['direct']) && !empty($_REQUEST['direct']) ? $_REQUEST['direct'] : $this->request->uriForDirect();
 
-			if($this->request->isPost() && $this->form_validation->run()){
+			if($this->request->isPost()){
 				$results = $this->member_model->login();
 				if($results->num_rows == 1){
 					$this->session->set_userdata('Logged_In', true);
