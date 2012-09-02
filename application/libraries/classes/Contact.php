@@ -1,8 +1,7 @@
 <?php 	
 	
-	class Member_Class extends DataboundObject {
+	class Contact_Class extends DataboundObject {
 
-		protected $Title;
 		protected $FirstName;
 		protected $LastName;
 		protected $AddressId;
@@ -14,7 +13,7 @@
 		protected $DisplayName;
 
 		protected function DefineTableName(){
-			return("members"); //Name of the table you want to use.
+			return("contacts"); //Name of the table you want to use.
 		}
 
 		protected function DefineTableID(){
@@ -26,15 +25,14 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"ID" => "ID", 
-				"Name_Title" => "Title",
 				"Name_First" => "FirstName", 
 				"Name_Last" => "LastName",
 				"Address_ID" => "AddressId", 
-				"Member_Email" => "EmailAddress",
-				"Member_Password" => "Password",
-				"Member_Url" => "Url",
-				"Member_Registered" => "DateAccountCreated",
-				"Member_Status" => "Status",
+				"Contact_Email" => "EmailAddress",
+				"Contact_Password" => "Password",
+				"Contact_Url" => "Url",
+				"Contact_Registered" => "DateAccountCreated",
+				"Contact_Status" => "Status",
 				"Display_Name" => "DisplayName");
 		}
 	}

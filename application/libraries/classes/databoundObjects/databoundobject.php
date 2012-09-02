@@ -20,7 +20,7 @@
 			* have just set it up like this for now 
 			*/
 			$hostname = 'localhost';
-			$database = 'vetinary-site';
+			$database = 'my.company';
 			$username = 'root';
 			$password = '';
 

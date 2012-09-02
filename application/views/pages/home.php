@@ -1,1 +1,2 @@
-<p>This is the home page if you want you can check out the about us page <a href="<?php echo BASEPATH . 'about'; ?>">here</a>
+<a href="/contacts">Contacts</a>
+<br />
