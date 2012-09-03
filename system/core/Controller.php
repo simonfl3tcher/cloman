@@ -36,7 +36,7 @@ class CI_Controller {
 
 	/**
 	 * Constructor
-	 */
+	*/
 	public function __construct()
 	{
 		self::$instance =& $this;

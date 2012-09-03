@@ -5,6 +5,10 @@
 	
 	class Contact_Model extends CI_Model {
 
+		public function __construct(){
+			parent::__construct();
+		}
+
 		public function get($id=null){
 			if($id){
 				$this->db->where('ID', $id);
@@ -40,6 +44,11 @@
 			$member->setDateAccountCreated(date("Y-m-d"));
 			$member->save();
 			return true;
+		}
+
+		public function deleteContact($id){
+			$contact = new Contact_Class($id);
+			$contact->MarkForDeletion();
 		}
 	}
 ?>

@@ -37,6 +37,18 @@
 			$this->load->view('templates/footer');
 		}
 
+		public function edit($id){
+			$data['title'] = 'Edit a contact';
+			$this->load->view('templates/header', $data);
+			$this->load->view('contacts/add', $data);
+			$this->load->view('templates/footer');
+		}
+
+		public function delete($id){
+			$member = $this->contact_model->deleteContact($id);
+			redirect('/contacts', 'refresh');
+		}
+
 		public function password_check($str){
 			if ($str === $_POST['confirmpass']){
 				return TRUE;
