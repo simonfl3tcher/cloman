@@ -5,7 +5,7 @@
 		<td><?php echo $contact['ID']; ?></td>
 		<td><?php echo $contact['Name_First'] . ' ' . $contact['Name_Last']; ?></td>
 		<td><?php echo $contact['Contact_Email']; ?></td>
-		<td><a href="./edit/<?php echo $contact['ID']; ?>">Edit</a></td>
+		<td><a href="edit/<?php echo $contact['ID']; ?>">Edit</a></td>
 		<td><a href="./delete/<?php echo $contact['ID']; ?>">Delete</a></td>
 	</tr>
 	<?php } ?>
@@ -13,5 +13,5 @@
 
 <br />
 <br />
-<a href="add">Add a contact</a>
+<a href="./add">Add a contact</a>
 <br />

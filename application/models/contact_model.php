@@ -50,5 +50,10 @@
 			$contact = new Contact_Class($id);
 			$contact->MarkForDeletion();
 		}
+
+		public function editContact($id){
+			$contact = new Contact_Class($id);
+			$address = new Address_Class($contact->getAddressID());
+		}
 	}
 ?>
