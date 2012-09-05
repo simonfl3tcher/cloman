@@ -11,7 +11,7 @@ CREATE TABLE `users` (
 	`User_url` VARCHAR(100) NOT NULL DEFAULT '',
 	`User_registered` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 	`User_status` INT(11) NOT NULL DEFAULT '0',
-	'User_level'  INT(2) NOT NULL DEFAULT '0',
+	`User_level`  INT(2) NOT NULL DEFAULT '0',
 	`display_name` VARCHAR(250) NOT NULL DEFAULT '',
 	PRIMARY KEY (`ID`)
 )
