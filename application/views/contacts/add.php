@@ -92,7 +92,7 @@
 		<div class="float-left">
 			<label for="admin">Notes ?<label>
 			<textarea rows="2" cols="20" name="contact[Notes]">
-			</textarea> 
+			</textarea>
 		</div>
 		<div class="clear"></div>
 	</div>
