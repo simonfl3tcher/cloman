@@ -39,7 +39,7 @@
 				$this->load->view('contacts/add', $data);
 				$this->load->view('templates/footer');
 			} else {
-				// Do the ajax work here if you would like.
+				// Do the ajax work here...
 				if($this->request->isPost()){
 					if($this->contact_model->insert_contact()){
 						return true;
