@@ -1,6 +1,4 @@
 $(document).ready(function(){
-	console.log('Included');
-
 	$.ajaxSetup({
 		type: 'POST',
 		timeout: 5000,

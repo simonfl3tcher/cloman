@@ -52,11 +52,11 @@
 			}
 		}
 
-		public function edit($id){
+		public function edit($id = null){
 			$data['title'] = 'Edit a contact';
 			$data['contact'] = new Contact_CLass($id);
 			$this->load->view('templates/header', $data);
-			$this->load->view('contacts/add', $data);
+			$this->load->view('contacts/edit', $data);
 			$this->load->view('templates/footer');
 		}
 

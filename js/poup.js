@@ -91,7 +91,6 @@ $(document).ready(function(){
 	// Box one popup
 	$("#one.boxes").click(function(){
 		//centering with css
-		alert('This is clicked');
 		var content = $('#sliderContent.one');
 		var background = $('#backgroundPopup.one');
 		var conveyor = $('#one.content-conveyor');
@@ -120,12 +119,59 @@ $(document).ready(function(){
 	$('#sliderContent.one').hover(function(){
 		$('#slider.one').fadeToggle('slow');
 	});
-
-	$(document).keypress(function(e){  
-		if(e.keyCode==27 &amp;amp;amp;amp;amp;amp;&amp;amp;amp;amp;amp;amp; popupStatus==1){  
-	disablePopup();  
-	}  
-});  
 	// End of box one popup 
+});
+
+
+/* Slide show part of the popups */
+
+$(document).ready(function(){
+  var currentPosition = 0;
+  var slideWidth = 724; // highly important number
+  var slides = $('.slide');
+  var numberOfSlides = slides.length;
+
+  $('#slidesContainer').css('overflow', 'hidden');
+
+  slides
+    .wrapAll('<div id="slideInner"></div>')
+	.css({
+      'float' : 'left',
+      'width' : slideWidth
+    });
+
+  $('#slideInner').css('width', slideWidth * numberOfSlides);
+  $('#sliderContent').hover()
+    .prepend('<span class="control" id="leftControl">Clicking moves left</span>')
+    .append('<span class="control" id="rightControl">Clicking moves right</span>');
+  manageControls(currentPosition);
+  $('.control')
+    .bind('click', function(){
+	currentPosition = ($(this).attr('id')=='rightControl') ? currentPosition+1 : currentPosition-1;
+    manageControls(currentPosition);
+    // Move slideInner using margin-left
+    $('#slideInner').animate({
+      'marginLeft' : slideWidth*(-currentPosition)
+    });
+  });
+
+  function manageControls(position){
+	if(position==0){ $('#leftControl').hide() } else{ $('#leftControl').show() }
+    if(position==numberOfSlides-1){ $('#rightControl').hide() } else{ $('#rightControl').show() }
+  }	
+});
+
+
+$(document).ready(function(){
+
+    $('#slideshow').bind('load', function() {
+        manageControls();
+    });
+
+    $('#slideshow').trigger('load');
+
+   function manageControls(){
+        $('#slideshow').fadeToggle('slow');
+    }
 
 });

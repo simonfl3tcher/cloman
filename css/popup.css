@@ -1,88 +1,169 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,  
-font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,  
-tfoot, thead, tr, th, td {  
-border:0pt none;  
-font-family:inherit;  
-font-size:100%;  
-font-style:inherit;  
-font-weight:inherit;  
-margin:0pt;  
-padding:0pt;  
-vertical-align:baseline;  
-}  
-body{  
-background:#fff none repeat scroll 0%;  
-line-height:1;  
-font-size: 12px;  
-font-family:arial,sans-serif;  
-margin:0pt;  
-height:100%;  
-}  
-table {  
-border-collapse:separate;  
-border-spacing:0pt;  
-}  
-caption, th, td {  
-font-weight:normal;  
-text-align:left;  
-}  
-blockquote:before, blockquote:after, q:before, q:after {  
-content:"";  
-}  
-blockquote, q {  
-quotes:"" "";  
-}  
-a{  
-cursor: pointer;  
-text-decoration:none;  
-}  
-br.both{  
-clear:both;  
-}  
-#backgroundPopup{  
-display:none;  
-position:fixed;  
-_position:absolute; /* hack for internet explorer 6*/  
-height:100%;  
-width:100%;  
-top:0;  
-left:0;  
-background:#000000;  
-border:1px solid #cecece;  
-z-index:1;  
-}  
-#popupContact{  
-display:none;  
-position:fixed;  
-_position:absolute; /* hack for internet explorer 6*/  
-height:384px;  
-width:408px;  
-background:#FFFFFF;  
-border:2px solid #cecece;  
-z-index:2;  
-padding:12px;  
-font-size:13px;  
-}  
-#popupContact h1{  
-text-align:left;  
-color:#6FA5FD;  
-font-size:22px;  
-font-weight:700;  
-border-bottom:1px dotted #D3D3D3;  
-padding-bottom:2px;  
-margin-bottom:20px;  
-}  
-#popupContactClose{  
-font-size:14px;  
-line-height:14px;  
-right:6px;  
-top:4px;  
-position:absolute;  
-color:#6fa5fd;  
-font-weight:700;  
-display:block;  
-}  
-#button{  
-text-align:center;  
-margin:100px;  
-} 
+#backgroundPopup{
+	display:none;
+	position:fixed;
+	_position:absolute; /* hack for internet explorer 6*/
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	background:#000000;
+	border:1px solid #cecece;
+	z-index:3;
+}
+#popupContact{
+	display:none;
+	position:fixed;
+	_position:absolute; /* hack for internet explorer 6*/
+	height:600px;
+	width:700px;
+	background:#FFFFFF;
+	border:2px solid #cecece;
+	z-index:2;
+	padding:12px;
+	font-size:13px;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	-webkit-box-shadow: 1px 6px 6px 0px #000000;
+	-moz-box-shadow: 1px 6px 6px 0px #000000;
+	box-shadow: 1px 6px 6px 0px #000000; 
+}
+#popupContact h1{
+	text-align:left;
+	color:#6FA5FD;
+	font-size:22px;
+	font-weight:700;
+	border-bottom:1px dotted #D3D3D3;
+	padding-bottom:2px;
+	margin-bottom:20px;
+}
+#popupContactClose{
+	font-size:14px;
+	line-height:14px;
+    right: 17px;
+    top: 4px;
+    z-index: 100;
+	position:absolute;
+	color:#000000;
+	font-weight:900;
+	display:block;
+	opacity:0.5;
+	transition: color 1s;
+	-moz-transition: color 1s; /* Firefox 4 */
+	-webkit-transition: color 1s; /* Safari and Chrome */
+	-o-transition: color 1s; /* Opera */
+}
+#button{
+	text-align:center;
+	margin:100px;
+	z-index:0;
+	position:relative;
+}
+#popupContactClose:hover {
+	cursor: pointer;
+	color:#00a6a3;
+}
+#sliderContent { 
+	width:724px;
+	margin:auto;
+	background-color:#ffffff; 
+	height:500px; 
+	padding:10px; 
+	display:none;
+	display:none;
+	position:fixed;
+	_position:absolute; /* hack for internet explorer 6*/
+	z-index:4;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+.viewer { width:800px; height:90%; margin:13px auto 13px; padding:1px; overflow:hidden; position:relative; }
+.content-conveyor { height:335px; position:relative;}
+.item { width:304px; float:left; font-family:Tahoma; background-color:#ffffff; padding:25px; }
+.item img {    margin-left: 45px; margin-top: 19px;}
+.item h2 { margin:10px 0; }
+.item dl { margin:10px 0; }
+.item dt, .item dd { float:left; width:149px; text-align:right; margin:0; font-size:70%; }
+.item dt { font-weight:bold; margin-right:5px; }
+.item dd { text-align:left; }
+
+#slideshow #slidesContainer {
+     height: inherit;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 17px;
+    position: relative;
+    width:700px;
+}
+
+#slideshow {
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:500px;
+    width:758px;
+    background:#FFFFFF;
+    z-index:4;
+    padding:12px;
+    font-size:13px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 8px 6px -6px #000000;
+    -moz-box-shadow: 0 8px 6px -6px #000000;
+    box-shadow: 0 8px 6px -6px #000000;
+    left: 63%;
+    margin: 0 auto 0 -480px;
+    position: absolute;
+    right: 13%;
+    top: 0;
+    width: 724px;
+    z-index: 5;
+    border:1px solid #E3E2E2;
+    padding:10px;
+    display: none;
+  }
+
+#slideshow #slidesContainer .slide {
+    margin: 0 auto;
+    width:300px; /* Reduced by 20px to avoid horizontal scroll */
+    height:100%;
+}
+
+.control {
+    display:block;
+    width:24px;
+    height:24px;
+    text-indent:-10000px;
+    position:absolute;
+    cursor:pointer;
+}
+
+#leftControl {
+    display:none;
+    left: -24px;
+    top: 271px;
+    z-index: 1000;
+    background-color:#000000;
+    background: url(../img/arrows.png);
+    background-repeat:no-repeat;
+    background-position: 0 -28px;
+    /* These need to be images but for now blocks of color will do */
+}
+
+#rightControl {
+    display: none;
+    top: 271px;
+    right: -7px;
+    z-index: 1000;
+    background-color:#000000;
+    background: url(../img/arrows.png);
+    background-repeat:no-repeat;
+    background-position: 0 -1px;
+    /* These need to be images but for now blocks of color will do */
+}
+
+#popupContactClose:hover {
+    cursor: pointer;
+    color:#00a6a3;
+}
