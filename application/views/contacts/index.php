@@ -13,5 +13,5 @@
 
 <br />
 <br />
-<a href="./add">Add a contact</a>
+<a href="/contacts/add">Add a contact</a>
 <br />

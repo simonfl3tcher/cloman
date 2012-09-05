@@ -89,6 +89,11 @@
 			<a href="#"></a><input type="checkbox" value="Y" id="agree" name="admin">
 			<label for="admin">Is Admin ?</label>
 		</div>
+		<div class="float-left">
+			<label for="admin">Notes ?<label>
+			<textarea rows="2" cols="20" name="contact[Notes]">
+			</textarea> 
+		</div>
 		<div class="clear"></div>
 	</div>
 

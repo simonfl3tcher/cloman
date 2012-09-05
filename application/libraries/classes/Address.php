@@ -2,6 +2,7 @@
 	
 	class Address_Class extends DataboundObject {
 		
+		protected $ID;
 		protected $AddressLine1;
 		protected $AddressLine2;
 		protected $AddressLine3;

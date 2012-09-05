@@ -19,8 +19,8 @@
 
 		public function insert_contact() {
 			$member = new Contact_Class();
-			$address = new Address_Class();
 			if(!empty($_POST['address']['Address_Line_1'])){
+				$address = new Address_Class();
 				$address->setAddressLine1($_POST['address']['Address_Line_1']);
 				$address->setAddressLine2($_POST['address']['Address_Line_2']);
 				$address->setAddressLine3($_POST['address']['Address_Line_3']);
@@ -28,10 +28,11 @@
 				$address->setRegion($_POST['address']['County']);
 				$address->setCountryID($_POST['address']['Country']);
 				$address->setPostcode($_POST['address']['Postcode']);
+				$address->save();
 			}
 			$member->setFirstName($_POST['contact']['Name_First']);
 			$member->setLastName($_POST['contact']['Name_Last']);
-			if($address->getID()){
+			if(isset($address)){
 				$aid = $address->getID();
 			} else {
 				$aid = 0;
@@ -40,8 +41,12 @@
 			$member->setEmailAddress($_POST['contact']['Email']);
 			$member->setUrl($_POST['contact']['Url']);
 			$member->setDisplayName($_POST['contact']['Display_Name']);
+			$member->setNotes($_POST['contact']['Notes']);
 			$member->setPassword(encryption_hard($_POST['password']));
 			$member->setDateAccountCreated(date("Y-m-d"));
+			if(isset($_POST['admin'])){
+				$member->setLevel(1);
+			} 
 			$member->save();
 			return true;
 		}

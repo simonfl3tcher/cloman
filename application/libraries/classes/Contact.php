@@ -10,7 +10,9 @@
 		protected $Url;
 		protected $DateAccountCreated;
 		protected $Status;
+		protected $Level;
 		protected $DisplayName;
+		protected $Notes;
 
 		protected function DefineTableName(){
 			return("contacts"); //Name of the table you want to use.
@@ -33,7 +35,9 @@
 				"Contact_Url" => "Url",
 				"Contact_Registered" => "DateAccountCreated",
 				"Contact_Status" => "Status",
-				"Display_Name" => "DisplayName");
+				"Contact_Level" => "Level",
+				"Display_Name" => "DisplayName",
+				"Notes" => "Notes");
 		}
 	}
 ?>
