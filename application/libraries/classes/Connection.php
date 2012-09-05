@@ -9,7 +9,7 @@
 		protected $Password;
 
 		protected function DefineTableName(){
-			return("connection"); //Name of the table you want to use.
+			return("connections"); //Name of the table you want to use.
 		}
 
 		protected function DefineTableID(){
