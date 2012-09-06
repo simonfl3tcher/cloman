@@ -119,7 +119,7 @@
 	
 	<div class="stdpad">
 		<div class="float-right">
-			<span><span class="icon add"></span><input type="submit" value="Create Account" class="label hasIcon"></span>
+			<span><span class="icon add"></span><input id="accountCreator" type="submit" value="Create Account" class="label hasIcon"></span>
 		</div>
 		<div class="clear"></div>
 	</div>

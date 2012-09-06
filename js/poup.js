@@ -119,6 +119,12 @@ $(document).ready(function(){
 	$('#sliderContent.one').hover(function(){
 		$('#slider.one').fadeToggle('slow');
 	});
+
+	$(document).keypress(function(e){  
+		if(e.keyCode==27 && popupStatus==1){  
+		disablePopup();  
+		}  
+	});  
 	// End of box one popup 
 });
 

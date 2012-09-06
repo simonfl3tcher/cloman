@@ -39,6 +39,9 @@
 				$this->load->view('contacts/add', $data);
 				$this->load->view('templates/footer');
 			} else {
+				var_dump('You are in the right place');
+				var_dump($_POST);
+				exit;
 				// Do the ajax work here...
 				if($this->request->isPost()){
 					if($this->contact_model->insert_contact()){
@@ -71,6 +74,15 @@
 			} else {
 				$this->form_validation->set_message('password_check', 'The Password fields do not match');
 				return FALSE;
+			}
+		}
+
+		public function ajax() {
+			var_dump($_POST);
+			if($this->request->isPost()){
+				var_dump('true');
+			} else {
+				var_dump('false');
 			}
 		}
 	}

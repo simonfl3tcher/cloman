@@ -16,7 +16,6 @@
 <a href="./add">Add a contact</a>
 
 <br />
-
 <div id="one" class="boxes websitedesign">Popup</div>
 
 <div class="one ui-corner-all" id="sliderContent">  
@@ -73,3 +72,6 @@
             </div>
           </div>
     <div class="one" id="backgroundPopup"></div>
+<br />
+
+<div id="ajaxRequest">Click this to make an ajax request</div>
