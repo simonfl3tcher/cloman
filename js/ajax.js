@@ -15,14 +15,16 @@ $(document).ready(function(){
 
 	$('#accountCreator').click(function(e){
 		e.preventDefault();
-		var url = 'contacts/ajax';
+		var url = 'ajax';
 		ajaxRequest(url);
 	})
-
+	
+	var data = ['simon', '07800976537'];
 	function ajaxRequest(url){
 		$.ajax({
 			url: url,
-			dataType: 'html',
+			type: 'POST',
+			data: data,
 			success: function(data){
 				console.log('Success');
 			}

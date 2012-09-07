@@ -1,13 +1,3 @@
-/***************************/
-//@Author: Adrian "yEnS" Mato Gondelle
-//@website: www.yensdesign.com
-//@email: yensamg@gmail.com
-//@license: Feel free to use it, but keep this credits please!					
-/***************************/
-
-//SETTING UP OUR POPUP
-//0 means disabled; 1 means enabled;
-
 
 var popupStatus = 0;
 
@@ -57,79 +47,42 @@ function centerPopup(content, background){
 	
 }
 
-function sliderOption(conveyor, content, sliding){
-      //vars
-  var conveyor = $(conveyor, content),
-  item = $(".item", content);
-
-  //set length of conveyor
-  conveyor.css("width", item.length * parseInt(item.css("width")));
-  var inner = conveyor.width();
-  var wrapper = $('.viewer').width();
-
-  //config
-  var sliderOpts = {
-  max: (item.length * parseInt(item.css("width"))) - parseInt($(".viewer", content).css("width")),
-    slide: function(e, ui) { 
-      conveyor.css("left", "-" + ui.value + "px");
-    }
-  };
-  if(inner > wrapper){
-  //create slider
-   sliding.slider(sliderOpts);
-  }
-}
-
-
-//CONTROLLING EVENTS IN jQuery
 $(document).ready(function(){
 
-	//LOADING POPUP
-	//Click the button event!
+	var popupFunction = function(){
 
+		var obj = {
+			content: '',
+			background: $('#backgroundPopup')
+		}
 
-	// Box one popup
-	$("#one.boxes").click(function(){
-		//centering with css
-		var content = $('#sliderContent.one');
-		var background = $('#backgroundPopup.one');
-		var conveyor = $('#one.content-conveyor');
-		var sliding = $('#slider.one');
-		centerPopup(content, background);
-		//load popup
-		loadPopup(content, background);
+		$(".boxes").click(function(){
+			obj.content = $(this).next('div#sliderContent');
+			centerPopup(obj.content, obj.background);
+			loadPopup(obj.content, obj.background);
+		});
 
-		sliderOption(conveyor, content, sliding);
-	});
-	//CLOSING POPUP
-	//Click the x event!
-	$("#popupContactClose").click(function(){
-		var content = $('#sliderContent.one');
-		var background = $('#backgroundPopup.one');
-		disablePopup(content, background);
-	});
-	//Click out event!
-	$("#backgroundPopup").click(function(){
-		var content = $('#sliderContent.one');
-		var background = $('#backgroundPopup.one');
-		disablePopup(content, background);
-	});
-	$('#slider.one').hide();
-	
-	$('#sliderContent.one').hover(function(){
-		$('#slider.one').fadeToggle('slow');
-	});
-
-	$(document).keypress(function(e){  
-		if(e.keyCode==27 && popupStatus==1){  
-		disablePopup();  
-		}  
-	});  
-	// End of box one popup 
+		$("#popupContactClose").click(function(){
+			disablePopup(obj.content, obj.background);
+		});
+		
+		$("#backgroundPopup").click(function(){
+			disablePopup(obj.content, obj.background);
+		});
+		
+		$(document).keypress(function(e){  
+			if(e.keyCode==27 && popupStatus==1){ 
+			disablePopup(obj.content, obj.background);  
+			}  
+		});  
+	}(); 
 });
 
 
-/* Slide show part of the popups */
+/* Slide show part of the popups 
+	this needs to be integrated with the above system because it doesnt work with multiple 
+	slideshows on one page.
+*/
 
 $(document).ready(function(){
   var currentPosition = 0;
@@ -147,23 +100,48 @@ $(document).ready(function(){
     });
 
   $('#slideInner').css('width', slideWidth * numberOfSlides);
-  $('#sliderContent').hover()
-    .prepend('<span class="control" id="leftControl">Clicking moves left</span>')
-    .append('<span class="control" id="rightControl">Clicking moves right</span>');
+  $('.contentSlider').each(function(){
+  	console.log(this);
+  	$(this).prepend('<span class="control leftControl">Clicking moves left</span>');
+  	$(this).append('<span class="control rightControl">Clicking moves right</span>');
+  });	
+   
   manageControls(currentPosition);
-  $('.control')
-    .bind('click', function(){
-	currentPosition = ($(this).attr('id')=='rightControl') ? currentPosition+1 : currentPosition-1;
+  $('.control').bind('click', function(){
+  	doMovement(this, null);
+  });
+
+  $(document).keypress(function(e){  
+		if(e.keyCode==37 || e.keyCode==39){ 
+			doMovement(null, e);
+		}  
+	}); 
+
+  function doMovement(that, e){
+  	if(that !== null && e == null){
+  		console.log($(that).attr('class'));
+	  	currentPosition = ($(that).attr('class')=='control rightControl') ? currentPosition+1 : currentPosition-1;
+	} else {
+		if(e.keyCode == 39){
+			if(currentPosition != numberOfSlides-1){
+				currentPosition = currentPosition+1;
+			}
+		} else if(e.keyCode == 37){
+			if(currentPosition != 0){
+				currentPosition = currentPosition-1;
+			}
+		}
+	}
     manageControls(currentPosition);
     // Move slideInner using margin-left
     $('#slideInner').animate({
       'marginLeft' : slideWidth*(-currentPosition)
     });
-  });
+  }
 
   function manageControls(position){
-	if(position==0){ $('#leftControl').hide() } else{ $('#leftControl').show() }
-    if(position==numberOfSlides-1){ $('#rightControl').hide() } else{ $('#rightControl').show() }
+	if(position==0){ $('.leftControl').hide() } else{ $('.leftControl').show() }
+    if(position==numberOfSlides-1){ $('.rightControl').hide() } else{ $('.rightControl').show() }
   }	
 });
 
