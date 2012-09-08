@@ -44,7 +44,75 @@ function centerPopup(content, background){
 	background.css({
 		"height": windowHeight
 	});
+}
+
+function slideshow(slideObject, width){
 	
+	var currentPosition = 0;
+	if(width){
+		var slideWidth = width;
+	} else {
+		var slideWidth = 724; // highly important number
+	}
+	var slides = $('.slide', slideObject);
+	var numberOfSlides = slides.length;
+
+	$('.slidesContainer', slideObject).css('overflow', 'hidden');
+
+	if(!$('.slideInner', slideObject).length){
+		slides
+		.wrapAll('<div class="slideInner"></div>')
+		.css({
+		  'float' : 'left',
+		  'width' : slideWidth
+		});
+	}
+	
+	$('.slideInner', slideObject).css('width', slideWidth * numberOfSlides);
+	if(!$('.control', slideObject).length){
+		$(slideObject).prepend('<span class="control leftControl">Clicking moves left</span>');
+		$(slideObject).append('<span class="control rightControl">Clicking moves right</span>');
+	}
+
+	manageControls(currentPosition);
+	$('.control').bind('click', function(){
+		console.log(this);
+		$(this).stop(true, true);
+		doMovement(this, null);
+	});
+
+	$(document).keypress(function(e){  
+		if(e.keyCode==37 || e.keyCode==39){ 
+			doMovement(null, e);
+		}  
+	}); 
+
+	function doMovement(that, e){
+		if(that !== null && e == null){
+	  		currentPosition = ($(that).attr('class')=='control rightControl') ? currentPosition+1 : currentPosition-1;
+		} else {
+			if(e.keyCode == 39){
+				if(currentPosition != numberOfSlides-1){
+					currentPosition = currentPosition+1;
+				}
+			} else if(e.keyCode == 37){
+				if(currentPosition != 0){
+					currentPosition = currentPosition-1;
+				}
+			}
+		}
+		manageControls(currentPosition);
+		// Move slideInner using margin-left
+		$('.slideInner', slideObject).animate({
+		  'marginLeft' : slideWidth*(-currentPosition)
+		});
+	}
+
+	function manageControls(position){
+		console.log(position);
+	if(position==0){ $('.leftControl', slideObject).hide() } else{ $('.leftControl', slideObject).show() }
+	if(position==numberOfSlides-1){ $('.rightControl', slideObject).hide() } else{ $('.rightControl', slideObject).show() }
+	}	
 }
 
 $(document).ready(function(){
@@ -57,16 +125,20 @@ $(document).ready(function(){
 		}
 
 		$(".boxes").click(function(){
-			obj.content = $(this).next('div#sliderContent');
+			$(this).stop(true, true);
+			obj.content = $(this).next('div.sliderContent');
 			centerPopup(obj.content, obj.background);
 			loadPopup(obj.content, obj.background);
+			if(slide == undefined){
+				var slide = slideshow(obj.content, $(obj.content).attr('data-slidesWidth'));
+			}
 		});
 
-		$("#popupContactClose").click(function(){
+		$(".popupContactClose").click(function(){
 			disablePopup(obj.content, obj.background);
 		});
 		
-		$("#backgroundPopup").click(function(){
+		$(obj.background).click(function(){
 			disablePopup(obj.content, obj.background);
 		});
 		
@@ -76,86 +148,4 @@ $(document).ready(function(){
 			}  
 		});  
 	}(); 
-});
-
-
-/* Slide show part of the popups 
-	this needs to be integrated with the above system because it doesnt work with multiple 
-	slideshows on one page.
-*/
-
-$(document).ready(function(){
-  var currentPosition = 0;
-  var slideWidth = 724; // highly important number
-  var slides = $('.slide');
-  var numberOfSlides = slides.length;
-
-  $('#slidesContainer').css('overflow', 'hidden');
-
-  slides
-    .wrapAll('<div id="slideInner"></div>')
-	.css({
-      'float' : 'left',
-      'width' : slideWidth
-    });
-
-  $('#slideInner').css('width', slideWidth * numberOfSlides);
-  $('.contentSlider').each(function(){
-  	console.log(this);
-  	$(this).prepend('<span class="control leftControl">Clicking moves left</span>');
-  	$(this).append('<span class="control rightControl">Clicking moves right</span>');
-  });	
-   
-  manageControls(currentPosition);
-  $('.control').bind('click', function(){
-  	doMovement(this, null);
-  });
-
-  $(document).keypress(function(e){  
-		if(e.keyCode==37 || e.keyCode==39){ 
-			doMovement(null, e);
-		}  
-	}); 
-
-  function doMovement(that, e){
-  	if(that !== null && e == null){
-  		console.log($(that).attr('class'));
-	  	currentPosition = ($(that).attr('class')=='control rightControl') ? currentPosition+1 : currentPosition-1;
-	} else {
-		if(e.keyCode == 39){
-			if(currentPosition != numberOfSlides-1){
-				currentPosition = currentPosition+1;
-			}
-		} else if(e.keyCode == 37){
-			if(currentPosition != 0){
-				currentPosition = currentPosition-1;
-			}
-		}
-	}
-    manageControls(currentPosition);
-    // Move slideInner using margin-left
-    $('#slideInner').animate({
-      'marginLeft' : slideWidth*(-currentPosition)
-    });
-  }
-
-  function manageControls(position){
-	if(position==0){ $('.leftControl').hide() } else{ $('.leftControl').show() }
-    if(position==numberOfSlides-1){ $('.rightControl').hide() } else{ $('.rightControl').show() }
-  }	
-});
-
-
-$(document).ready(function(){
-
-    $('#slideshow').bind('load', function() {
-        manageControls();
-    });
-
-    $('#slideshow').trigger('load');
-
-   function manageControls(){
-        $('#slideshow').fadeToggle('slow');
-    }
-
 });
