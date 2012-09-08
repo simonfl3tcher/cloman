@@ -1,6 +1,4 @@
 $(document).ready(function(){
-	console.log('This is using the ajax file');
-
 	$.ajaxSetup({
 		type: 'POST',
 		timeout: 5000,
@@ -18,13 +16,15 @@ $(document).ready(function(){
 		var url = 'ajax';
 		ajaxRequest(url);
 	})
-	
-	var data = ['simon', '07800976537'];
 	function ajaxRequest(url){
+	    var name = $("input#contact_Name_First").val();  
+	    var name_last = $("input#contact_Name_Last").val();  
+	    var phone = $("input#phone").val();  
+	    var dataString = 'contact[Name_First]='+ name + '&contact[Name_Last]=' + name_last;
 		$.ajax({
 			url: url,
 			type: 'POST',
-			data: data,
+			data: dataString,
 			success: function(data){
 				console.log('Success');
 			}

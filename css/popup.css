@@ -122,8 +122,8 @@
 
 .control {
     display:block;
-    width:24px;
-    height:24px;
+    width:28px;
+    height:47px;
     text-indent:-10000px;
     position:absolute;
     cursor:pointer;
@@ -131,25 +131,25 @@
 
 .leftControl {
     display:none;
-    left: -12px;
+    left: -35px;
     top: 238px;
     z-index: 1000;
     background-color:#000000;
-    background: url(../img/arrows.png);
+    background: url(../img/facebook.png);
     background-repeat:no-repeat;
-    background-position: 0 -28px;
+    background-position: -56px -102px;
     /* These need to be images but for now blocks of color will do */
 }
 
 .rightControl {
     display: none;
     top: 238px;
-    right: -14px;
+    right: -35px;
     z-index: 1000;
     background-color:#000000;
-    background: url(../img/arrows.png);
+    background: url(../img/facebook.png);
     background-repeat:no-repeat;
-    background-position: 0 -1px;
+    background-position: 0 -102px;
     /* These need to be images but for now blocks of color will do */
 }
 
