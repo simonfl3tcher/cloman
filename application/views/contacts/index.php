@@ -13,7 +13,5 @@
 
 <br />
 <br />
-<a href="./add">Add a contact</a>
-<?php render_partial('hello', 'contacts'); ?>
+<?php render_partial('add', 'contacts'); ?>
 <br />
-<div id="ajaxRequest">Click this to make an ajax request</div>

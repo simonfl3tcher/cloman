@@ -13,6 +13,7 @@
 
 		public function index() {
 			$data['title'] = 'Contacts Page';
+			$data['countries'] = $this->helper_model->get_countries();
 			$data['contact_list'] = $this->contact_model->get();
 			$this->load->view('templates/header', $data);
 			$this->load->view('contacts/index', $data);
@@ -23,7 +24,6 @@
 			if(!$this->request->isAjax()){
 				$data['title'] = 'Add Contact';
 				$data['countries'] = $this->helper_model->get_countries();
-				$data['businesses'] = 'TM Groundworks';
 
 				$this->form_validation->set_rules('contact[Name_First]', 'First Name', 'trim|required');
 				$this->form_validation->set_rules('contact[Name_Last]', 'Last Name', 'trim|required');
@@ -39,19 +39,7 @@
 				$this->load->view('contacts/add', $data);
 				$this->load->view('templates/footer');
 			} else {
-				var_dump('You are in the right place');
-				var_dump($_POST);
-				exit;
-				// Do the ajax work here...
-				if($this->request->isPost()){
-					if($this->contact_model->insert_contact()){
-						return true;
-					} else {
-						return false;
-					}
-				} else {
-					return false;
-				}
+				$this->contact_model->insert_contact();
 			}
 		}
 

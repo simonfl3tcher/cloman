@@ -157,3 +157,25 @@
     cursor: pointer;
     color:#00a6a3;
 }
+
+.ajaxLoader {
+    background-image: url("../img/small_ajax.gif");
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+    z-index: 10;
+   	-webkit-transition: background 1s ease-in-out;
+	-moz-transition: background 1s ease-in-out;
+	-o-transition: background 1s ease-in-out;
+	transition: background 1s ease-in-out;
+}
+
+.ajaxLoader.completion {
+	background-image: url("../img/green_tick.png");
+}
+
+.ajaxLoader.uncomplete {
+	background-image: url("../img/warning.png");
+    height: 128px;
+    width: 128px;
+}

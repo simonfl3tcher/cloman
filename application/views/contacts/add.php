@@ -6,7 +6,7 @@
 </div>
 <p>Add a contact to the system</p>
 <br />
-<form action="" method="post">	
+<form action="" method="post" id="addContactForm" data-ajaxurl='add' data-useAjax='true'>	
 	<table class="std">
 		<tbody>
 			<tr class="largeField">
@@ -86,13 +86,12 @@
 
 	<div class="stdpad">
 		<div class="float-left">
-			<a href="#"></a><input type="checkbox" value="Y" id="agree" name="admin">
+			<a href="#"></a><input type="checkbox" value="N" id="agree" name="admin">
 			<label for="admin">Is Admin ?</label>
 		</div>
 		<div class="float-left">
 			<label for="admin">Notes ?<label>
-			<textarea rows="2" cols="20" name="contact[Notes]">
-			</textarea>
+			<textarea rows="2" cols="20" name="contact[Notes]"></textarea>
 		</div>
 		<div class="clear"></div>
 	</div>

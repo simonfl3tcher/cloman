@@ -15,7 +15,6 @@ slideshowFunctions.prototype.loadPopup = function(content, background, obj){
 		content.fadeIn("slow");
 		this.popupStatus = 1;
 		if(!this.slideStatus){
-			console.log('In here');
 			slideshow(content, $(content).attr('data-slidesWidth'));
 			this.slideStatus = true;
 		}
@@ -133,7 +132,6 @@ $(document).ready(function(){
 
 
 		$(".boxes").click(function(){
-			console.log(obj.slideshow);
 			$(this).stop(true, true);
 			if(!$(this).hasClass('clicked')){
 				obj.slideshow = new slideshowFunctions();
@@ -149,6 +147,10 @@ $(document).ready(function(){
 		});
 		
 		$(obj.background).click(function(){
+			obj.slideshow.disablePopup(obj.content, obj.background);
+		});
+
+		$(obj.content).bind('closeBox', function(){
 			obj.slideshow.disablePopup(obj.content, obj.background);
 		});
 		

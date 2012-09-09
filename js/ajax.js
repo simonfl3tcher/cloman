@@ -5,29 +5,80 @@ $(document).ready(function(){
 		dataType: 'html',
 		async: true
 	});
-	$('#ajaxRequest').click(function(e){
-		e.preventDefault();
-		var url = 'contacts/ajax';
-		ajaxRequest(url);
-	});
 
-	$('#accountCreator').click(function(e){
-		e.preventDefault();
-		var url = 'ajax';
-		ajaxRequest(url);
+	$(':submit').click(function(e){
+		var formId = $(this).closest('form');
+		if($(formId).attr('data-useAjax') == 'true'){
+			e.preventDefault();
+			addAjaxloader();
+			var url = '';
+			if($(formId).attr("data-ajaxurl")){
+				url = $(formId).attr("data-ajaxurl");
+			} else {
+				alert('Dont worry if its not working, you just need to add in a data-ajaxurl attribute');
+			}
+			ajaxSubmitForm(url, formId, success);
+		}
 	})
-	function ajaxRequest(url){
-	    var name = $("input#contact_Name_First").val();  
-	    var name_last = $("input#contact_Name_Last").val();  
-	    var phone = $("input#phone").val();  
-	    var dataString = 'contact[Name_First]='+ name + '&contact[Name_Last]=' + name_last;
+
+	function ajaxSubmitForm(url, formId, successFunction){
+	    var data = '';
+	    var inputs = $(':input:not(:submit)', formId); 
+
+	    inputs.each(function(){;
+	    	if(!data.length){
+	    		data = this.name + '=' + $(this).val();
+	    	} else {
+	    		data += '&' + this.name + '=' + $(this).val();
+	    	}
+	    });
+
 		$.ajax({
 			url: url,
 			type: 'POST',
-			data: dataString,
+			data: data,
 			success: function(data){
-				console.log('Success');
+				success();
+			},
+			error: function(data){
+				unsuccessful();
 			}
+		});
+	}
+
+	function success(){
+		setTimeout(function(){
+			$('.ajaxLoader').addClass('completion');
+			operationCleanup();
+		}, 1000);
+	}
+
+	function unsuccessful(){
+		setTimeout(function(){
+			$('.ajaxLoader').addClass('uncomplete');
+		}, 1000);
+		setTimeout(function(){
+			$('.ajaxLoader').fadeOut();
+			$('.ajaxLoader').remove();
+		}, 2000);
+	}
+
+	function operationCleanup(){
+		$('#backgroundPopup').trigger('click');
+		/* Things to do in this function are:-
+		- Clear the form object
+		- update the data that is being displayed.
+		*/
+	}
+
+	function addAjaxloader(){
+		var div = $('.slideshow'); // This should not really be done, but most form submissions are going to be done through ajax and others aren't, If you find yourself using ajax from submisisons without the popup you will have to address this.
+		div.prepend('<div class="ajaxLoader"></div>');
+		var ajaxLoader = $('.ajaxLoader')
+		ajaxLoader.css({
+			"position": "absolute",
+			"top": div.height()/2-$('.ajaxLoader').height()/2,
+			"left": div.width()/2-$('.ajaxLoader').width()/2
 		});
 	}
 }); 
