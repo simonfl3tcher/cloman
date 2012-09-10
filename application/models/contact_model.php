@@ -1,8 +1,9 @@
 <?php 
 
 	require_once('application/libraries/classes/Address.php');
-	require_once('application/libraries/classes/Contact.php');
-	
+	require_once('application/libraries/classes/People.php');
+	require_once('application/libraries/classes/Businesses.php');
+
 	class Contact_Model extends CI_Model {
 
 		public function __construct(){
@@ -19,6 +20,7 @@
 
 		public function insert_contact() {
 			$member = new Contact_Class();
+			$business = new Business_Class();
 			if(!empty($_POST['address']['Address_Line_1'])){
 				$address = new Address_Class();
 				$address->setAddressLine1($_POST['address']['Address_Line_1']);
@@ -26,27 +28,27 @@
 				$address->setAddressLine3($_POST['address']['Address_Line_3']);
 				$address->setCity($_POST['address']['City']);
 				$address->setRegion($_POST['address']['County']);
-				$address->setCountryID($_POST['address']['Country']);
 				$address->setPostcode($_POST['address']['Postcode']);
 				$address->save();
 			}
-			$member->setFirstName($_POST['contact']['Name_First']);
-			$member->setLastName($_POST['contact']['Name_Last']);
+
 			if(isset($address)){
 				$aid = $address->getID();
 			} else {
 				$aid = 0;
 			}
-			$member->setAddressId($aid);
-			$member->setEmailAddress($_POST['contact']['Email']);
-			$member->setUrl($_POST['contact']['Url']);
-			$member->setDisplayName($_POST['contact']['Display_Name']);
-			$member->setNotes($_POST['contact']['Notes']);
-			$member->setPassword(encryption_hard($_POST['password']));
-			$member->setDateAccountCreated(date("Y-m-d"));
-			if(isset($_POST['admin'])){
-				$member->setLevel(1);
-			} 
+
+			$business->setAddressID($aid);
+			$business->setName($_POST['business']['Name']);
+			$business->setPhone($_POST['business']['Phone']);
+			$business->setEmail($_POST['business']['Email']);
+			$business->save();
+
+			$member->setName($_POST['contact']['Name']);
+			$member->setRole($_POST['contact']['Role']);
+			$member->setEmail($_POST['contact']['Email']);
+			$member->setPhone($_POST['contact']['Phone']);
+			$member->setBusinessID($business->getID());
 			$member->save();
 			return true;
 		}
@@ -57,8 +59,8 @@
 		}
 
 		public function editContact($id){
-			$contact = new Contact_Class($id);
-			$address = new Address_Class($contact->getAddressID());
+			// $contact = new Contact_Class($id);
+			// $address = new Address_Class($contact->getAddressID());
 		}
 	}
 ?>

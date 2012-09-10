@@ -53,72 +53,72 @@ slideshowFunctions.prototype.centerPopup = function(content, background){
 }
 
 
-	function slideshow(slideObject, width){
-		
-		var currentPosition = 0;
-		if(width){
-			var slideWidth = width;
-		} else {
-			var slideWidth = 724; // highly important number
-		}
-		var slides = $('.slide', slideObject);
-		var numberOfSlides = slides.length;
+function slideshow(slideObject, width){
+	
+	var currentPosition = 0;
+	if(width){
+		var slideWidth = width;
+	} else {
+		var slideWidth = 724; // highly important number
+	}
+	var slides = $('.slide', slideObject);
+	var numberOfSlides = slides.length;
 
-		$('.slidesContainer', slideObject).css('overflow', 'hidden');
+	$('.slidesContainer', slideObject).css('overflow', 'hidden');
 
-		if(!$('.slideInner', slideObject).length){
-			slides
-			.wrapAll('<div class="slideInner"></div>')
-			.css({
-			  'float' : 'left',
-			  'width' : slideWidth
-			});
-		}
-		
-		$('.slideInner', slideObject).css('width', slideWidth * numberOfSlides);
-		if(!$('.control', slideObject).length){
-			$(slideObject).prepend('<span class="control leftControl">Clicking moves left</span>');
-			$(slideObject).append('<span class="control rightControl">Clicking moves right</span>');
-		}
-
-		manageControls(currentPosition);
-		$('.control').bind('click',function(){
-			$(this).stop(true, true);
-			doMovement(this, null);
+	if(!$('.slideInner', slideObject).length){
+		slides
+		.wrapAll('<div class="slideInner"></div>')
+		.css({
+		  'float' : 'left',
+		  'width' : slideWidth
 		});
+	}
+	
+	$('.slideInner', slideObject).css('width', slideWidth * numberOfSlides);
+	if(!$('.control', slideObject).length){
+		$(slideObject).prepend('<span class="control leftControl">Clicking moves left</span>');
+		$(slideObject).append('<span class="control rightControl">Clicking moves right</span>');
+	}
 
-		$(document).keypress(function(e){  
-			if(e.keyCode==37 || e.keyCode==39){ 
-				doMovement(null, e);
-			}  
-		}); 
+	manageControls(currentPosition);
+	$('.control').bind('click',function(){
+		$(this).stop(true, true);
+		doMovement(this, null);
+	});
 
-		function doMovement(that, e){
-			if(that !== null && e == null){
-		  		currentPosition = ($(that).attr('class')=='control rightControl') ? currentPosition+1 : currentPosition-1;
-			} else {
-				if(e.keyCode == 39){
-					if(currentPosition != numberOfSlides-1){
-						currentPosition = currentPosition+1;
-					}
-				} else if(e.keyCode == 37){
-					if(currentPosition != 0){
-						currentPosition = currentPosition-1;
-					}
+	$(document).keypress(function(e){  
+		if(e.keyCode==37 || e.keyCode==39){ 
+			doMovement(null, e);
+		}  
+	}); 
+
+	function doMovement(that, e){
+		if(that !== null && e == null){
+	  		currentPosition = ($(that).attr('class')=='control rightControl') ? currentPosition+1 : currentPosition-1;
+		} else {
+			if(e.keyCode == 39){
+				if(currentPosition != numberOfSlides-1){
+					currentPosition = currentPosition+1;
+				}
+			} else if(e.keyCode == 37){
+				if(currentPosition != 0){
+					currentPosition = currentPosition-1;
 				}
 			}
-			manageControls(currentPosition);
-			// Move slideInner using margin-left
-			$('.slideInner', slideObject).animate({
-			  'marginLeft' : slideWidth*(-currentPosition)
-			});
 		}
-
-		function manageControls(position){
-			if(position==0){ $('.leftControl', slideObject).hide() } else{ $('.leftControl', slideObject).show() }
-			if(position==numberOfSlides-1){ $('.rightControl', slideObject).hide() } else{ $('.rightControl', slideObject).show() }
-		}	
+		manageControls(currentPosition);
+		// Move slideInner using margin-left
+		$('.slideInner', slideObject).animate({
+		  'marginLeft' : slideWidth*(-currentPosition)
+		});
 	}
+
+	function manageControls(position){
+		if(position==0){ $('.leftControl', slideObject).hide() } else{ $('.leftControl', slideObject).show() }
+		if(position==numberOfSlides-1){ $('.rightControl', slideObject).hide() } else{ $('.rightControl', slideObject).show() }
+	}	
+}
 
 $(document).ready(function(){
 

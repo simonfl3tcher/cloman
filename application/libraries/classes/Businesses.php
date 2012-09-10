@@ -1,6 +1,6 @@
 <?php 	
 	
-	class Businesses_Class extends DataboundObject {
+	class Business_Class extends DataboundObject {
 
 		protected $Name;
 		protected $AddressID;

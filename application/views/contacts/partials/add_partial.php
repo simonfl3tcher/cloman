@@ -9,39 +9,53 @@
 						<tbody>
 							<tr class="largeField">
 								<td>
-									<label for="contact_Name_First" class="above">First Name*</label><br>
-									<span><input type="text" value="" id="contact_Name_First" name="contact[Name_First]"></span>
+									<label for="contact_Name_First" class="above">Name</label><br>
+									<span><input type="text" value="" id="contact_Name_First" name="contact[Name]"></span>
 								</td>
 								<td>
-									<label for="contact_Name_Last" class="above">Last Name*</label><br>
-									<span><input type="text" value="" id="contact_Name_Last" name="contact[Name_Last]"></span>
+									<label for="contact_Name_Last" class="above">Role</label><br>
+									<span><input type="text" value="" id="contact_Role" name="contact[Role]"></span>
 								</td>
 							</tr>
 							<tr class="largeField">
 								<td>
-									<label for="contact_Email" class="above">Email Address*</label><br>
+									<label for="contact_Email" class="above">Email Address</label><br>
 									<span><input type="text" id="contact_Email" name="contact[Email]"></span>
 								</td>
 							</tr>
 							<tr class="largeField">
 								<td>
-									<label for="contact_Url" class="above">Url</label><br>
-									<span><input type="text" id="contact_Url" name="contact[Url]"></span>
+									<label for="contact_Url" class="above">Phone</label><br>
+									<span><input type="text" id="contact_Phone" name="contact[Phone]"></span>
 								</td>
 								<td>
-									<label for="contact_Display_Name" class="above">Display Name*</label><br>
-									<span><input type="text" value="" id="contact_Display_Name" name="contact[Display_Name]"></span>
+									<label for="contact_Display_Name" class="above">Business</label><br>
+									<span><input type="text" value="" id="contact_Business" name="contact[Business]"></span>
 								</td>
 							</tr>
 						</tbody>
 					</table>
+					<!-- This needs to be hidden until they say to add a business. -->
 					<div class="stdpadh stdpadt">
-						<h3>Your Address</h3>
-						<p>For securirty this must be the same are your credit card billing address.</p>
+						<h3>Business</h3>
+						<p>Please add the information bellow to asign a business to the person.</p>
 					</div>
 					
 					<table class="std">
-						<tbody><tr class="largeField">
+						<tbody>
+						<tr class="largeField">
+							<td><label for="business_name">Business Name</label></td>
+							<td><span><input type="text" value="" id="business_name" name="business[Name]"></span></td>
+						</tr>
+						<tr class="largeField">
+							<td><label for="business_name">Email</label></td>
+							<td><span><input type="text" value="" id="business_name" name="business[Email]"></span></td>
+						</tr>
+						<tr class="largeField">
+							<td><label for="business_name">Phone</label></td>
+							<td><span><input type="text" value="" id="business_name" name="business[Phone]"></span></td>
+						</tr>
+						<tr class="largeField">
 							<td><label for="address_Address_Line_1">Property Name / Number*</label></td>
 							<td><span><input type="text" value="" id="address_Address_Line_1" name="address[Address_Line_1]"></span></td>
 						</tr>
@@ -63,47 +77,12 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<div class="slide">
-					<div class="stdpad">
-						<div class="float-left">
-							<a href="#"></a><input type="checkbox" value="N" id="agree" name="admin">
-							<label for="admin">Is Admin ?</label>
-						</div>
-						<div class="float-left">
-							<label for="admin">Notes ?<label>
-							<textarea rows="2" cols="20" name="contact[Notes]"></textarea>
-						</div>
-						<div class="clear"></div>
+				<div class="stdpad">
+					<div class="float-right">
+						<span><span class="icon add"></span><input id="accountCreator" type="submit" value="Create Account" class="label hasIcon"></span>
 					</div>
-
-					<div class="stdpadh stdpadt">
-						<h3>Your Password</h3>
-						<p>Please set a password between 6 and 12 characters, which are either numbers or alphabetical.</p>
-					</div>
-					
-					<table class="std">
-						<tbody>
-							<tr class="largeField">
-								<td>
-									<label for="password" class="above">Password*</label><br>
-									<span><input type="password" value="" id="password" name="password"></span>
-								</td>
-								<td>
-									<label for="confirmpass" class="above">Confirm Password*</label><br>
-									<span><input type="password" value="" id="confirmpass" name="confirmpass"></span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					
-					<div class="stdpad">
-						<div class="float-right">
-							<span><span class="icon add"></span><input id="accountCreator" type="submit" value="Create Account" class="label hasIcon"></span>
-						</div>
-						<div class="clear"></div>
-					</div>
-
+					<div class="clear"></div>
+				</div>
 			</div>
 			</form>
 		</div>
