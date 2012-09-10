@@ -8,7 +8,6 @@
 		protected $AddressLine3;
 		protected $City;
 		protected $Region;
-		protected $CountryID;
 		protected $Postcode;
 
 		protected function DefineTableName(){
@@ -29,7 +28,6 @@
 				"Address_Line_3" => "AddressLine3", 
 				"City" => "City",
 				"Region_Name" => "Region",
-				"Country_ID" => "CountryID",
 				"Postcode" => "Postcode");
 		}
 	}

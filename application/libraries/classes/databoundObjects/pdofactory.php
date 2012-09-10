@@ -1,5 +1,4 @@
 <?php 
-
 	class PDOFactory {
 		
 		public static function GetPDO($strDSN, $strUser, $strPass, $arParms){
