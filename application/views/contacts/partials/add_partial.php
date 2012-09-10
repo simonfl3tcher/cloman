@@ -3,7 +3,7 @@
     <a class="popupContactClose">x</a>
 	<div class="slideshow">
 		<div class="slidesContainer">
-			<form action="" method="post" id="addContactForm" data-ajaxurl='contacts/ajax' data-useAjax='true'>	
+			<form action="" method="post" id="addContactForm" data-ajaxurl='contacts/add' data-useAjax='true' class="form-horizontal">	
 			<div class="slide">
 					<table class="std">
 						<tbody>
@@ -35,6 +35,8 @@
 							</tr>
 						</tbody>
 					</table>
+			</div>
+			<div class="slide">
 					<!-- This needs to be hidden until they say to add a business. -->
 					<div class="stdpadh stdpadt">
 						<h3>Business</h3>
@@ -79,7 +81,7 @@
 				</table>
 				<div class="stdpad">
 					<div class="float-right">
-						<span><span class="icon add"></span><input id="accountCreator" type="submit" value="Create Account" class="label hasIcon"></span>
+						<span><span class="icon add"></span><input id="accountCreator" type="submit" value="Create Account" class="btn"></span>
 					</div>
 					<div class="clear"></div>
 				</div>

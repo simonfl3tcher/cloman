@@ -38,7 +38,7 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				success();
+				success(formId);
 			},
 			error: function(data){
 				unsuccessful();
@@ -46,10 +46,10 @@ $(document).ready(function(){
 		});
 	}
 
-	function success(){
+	function success(formId){
 		setTimeout(function(){
 			$('.ajaxLoader').addClass('completion');
-			operationCleanup();
+			operationCleanup(formId);
 		}, 1000);
 	}
 
@@ -63,8 +63,12 @@ $(document).ready(function(){
 		}, 2000);
 	}
 
-	function operationCleanup(){
-		$('#backgroundPopup').trigger('click');
+	function operationCleanup(formId){
+		setTimeout(function(){
+			$('#backgroundPopup').trigger('click');
+			$(formId)[0].reset();
+			$('.ajaxLoader').remove();
+		}, 1000);
 		/* Things to do in this function are:-
 		- Clear the form object
 		- update the data that is being displayed.
