@@ -1,10 +1,14 @@
 $(document).ready(function(){
+
+
 	$.ajaxSetup({
 		type: 'POST',
 		timeout: 5000,
 		dataType: 'html',
 		async: true
 	});
+
+	$('form')[0].reset();
 
 	$(':submit').click(function(e){
 		var formId = $(this).closest('form');
@@ -17,9 +21,44 @@ $(document).ready(function(){
 			} else {
 				alert('Dont worry if its not working, you just need to add in a data-ajaxurl attribute');
 			}
-			ajaxSubmitForm(url, formId, success);
+			ajaxSubmitForm(url, formId, successForm);
 		}
 	})
+
+	$('.delete').click(function(e){
+		e.preventDefault();
+		console.log('prevented');
+		$.ajax({
+			url: $(this).attr('href'),
+			type: 'POST',
+			data: '',
+			success: function(data){
+				window.location.reload();
+			},
+			error: function(data){
+				unsuccessfulDelete();
+			}
+		});
+	});
+
+	$('#search').keyup(function(){
+		var data = 'data=' + $(this).val();
+		$.ajax({
+			url: $(this).attr('data-searchurl'),
+			type: 'POST',
+			data: data,
+			success: function(data){
+				console.log('success');
+			},
+			error: function(data){
+				alert('There is an error in the system');
+			}
+		});
+	});
+
+
+
+	/* Functions that you may want to use are bellow */
 
 	function ajaxSubmitForm(url, formId, successFunction){
 	    var data = '';
@@ -38,7 +77,7 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				success(formId);
+				successFunction(formId);
 			},
 			error: function(data){
 				unsuccessful();
@@ -46,14 +85,14 @@ $(document).ready(function(){
 		});
 	}
 
-	function success(formId){
+	function successForm(formId){
 		setTimeout(function(){
 			$('.ajaxLoader').addClass('completion');
 			operationCleanup(formId);
 		}, 1000);
 	}
 
-	function unsuccessful(){
+	function unsuccessfulForm(){
 		setTimeout(function(){
 			$('.ajaxLoader').addClass('uncomplete');
 		}, 1000);
@@ -66,8 +105,9 @@ $(document).ready(function(){
 	function operationCleanup(formId){
 		setTimeout(function(){
 			$('#backgroundPopup').trigger('click');
-			$(formId)[0].reset();
 			$('.ajaxLoader').remove();
+			window.location.reload();
+
 		}, 1000);
 		/* Things to do in this function are:-
 		- Clear the form object

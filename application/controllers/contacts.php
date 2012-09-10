@@ -13,7 +13,6 @@
 
 		public function index() {
 			$data['title'] = 'Contacts Page';
-			$data['countries'] = $this->helper_model->get_countries();
 			$data['contact_list'] = $this->contact_model->get();
 			$this->load->view('templates/header', $data);
 			$this->load->view('contacts/index', $data);
@@ -52,7 +51,7 @@
 		}
 
 		public function delete($id){
-			$member = $this->contact_model->deleteContact($id);
+			$member = $this->contact_model->delete_contact($id);
 			redirect('/contacts', 'refresh');
 		}
 
@@ -71,6 +70,15 @@
 				var_dump('true');
 			} else {
 				var_dump('false');
+			}
+		}
+
+		public function search(){
+			$data = $_POST['data'];
+			if($this->request->isPost()){
+				$this->contact_model->search_contact($data);
+			} else {
+				return false;
 			}
 		}
 	}

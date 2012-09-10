@@ -1,4 +1,4 @@
-<div class="boxes websitedesign">Add a contact</div>
+<button class="boxes btn  btn-mini btn-success">Add a contact</button>
 <div class="contentSlider sliderContent">  
     <a class="popupContactClose">x</a>
 	<div class="slideshow">

@@ -3,9 +3,8 @@
 	require_once('application/libraries/classes/Address.php');
 	require_once('application/libraries/classes/People.php');
 	require_once('application/libraries/classes/Businesses.php');
-	require_once('application/libraries/classes/People_To_Businesses.php');
 
-	class Contact_Model extends CI_Model {
+	class People_Model extends CI_Model {
 
 		public function __construct(){
 			parent::__construct();
@@ -19,8 +18,8 @@
 			return $query->result_array();
 		}
 
-		public function insert_contact() {
-			$member = new People_Class();
+		public function insert_person() {
+			$member = new People_CLass();
 			$business = new Business_Class();
 			if(!empty($_POST['address']['Address_Line_1'])){
 				$address = new Address_Class();
@@ -28,6 +27,7 @@
 				$address->setAddressLine2($_POST['address']['Address_Line_2']);
 				$address->setAddressLine3($_POST['address']['Address_Line_3']);
 				$address->setCity($_POST['address']['City']);
+				$address->setRegion($_POST['address']['County']);
 				$address->setPostcode($_POST['address']['Postcode']);
 				$address->save();
 			}
@@ -53,19 +53,14 @@
 			return true;
 		}
 
-		public function delete_contact($id){
+		public function delete_person($id){
 			$contact = new People_Class($id);
 			$contact->MarkForDeletion();
 		}
 
-		public function edit_contact($id){
+		public function edit_person($id){
 			// $contact = new Contact_Class($id);
 			// $address = new Address_Class($contact->getAddressID());
-		}
-
-		public function search_contact($data){
-			// Do a sql statement here to search the contacts.
-			var_dump($data);exit;
 		}
 	}
 ?>

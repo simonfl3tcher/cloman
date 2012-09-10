@@ -2,10 +2,12 @@
 	class People_Class extends DataboundObject {
 
 		protected $Name;
+		protected $BusinessID;
 		protected $Role;
 		protected $Email;
 		protected $Phone;
 		protected $Notes;
+		protected $IsPrimaryContact;
 
 		protected function DefineTableName(){
 			return("people"); //Name of the table you want to use.
@@ -20,11 +22,13 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"people_id" => "ID", 
+				"business_id" => "BusinessID",
 				"name" => "Name", 
 				"role" => "Role",
 				"email" => "Email", 
 				"phone" => "Phone",
-				"notes" => "Notes");
+				"notes" => "Notes",
+				"is_primary_contact" => "IsPrimaryContact");
 		}
 	}
 ?>
