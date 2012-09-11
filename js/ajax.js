@@ -41,7 +41,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#search').keyup(function(){
+	$('#search').keypress(function(){
 		var data = 'data=' + $(this).val();
 		$.ajax({
 			url: $(this).attr('data-searchurl'),
@@ -51,10 +51,16 @@ $(document).ready(function(){
 				console.log('success');
 			},
 			error: function(data){
-				alert('There is an error in the system');
+				console.log('There is an error in the system');
 			}
 		});
+		changeSearchdata(this);
 	});
+
+
+	function changeSearchdata(form){
+		return true;
+	}
 
 
 

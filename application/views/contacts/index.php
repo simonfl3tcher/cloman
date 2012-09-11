@@ -1,6 +1,14 @@
 <p>This is the contact home page check it out y'alll</p>
 <input type="text" name="search" id="search" data-searchurl="/contacts/search" />
 <table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Phone No.</th>
+		</tr>
+	</thead>	
 	<?php foreach($contact_list as $contact){ ?>
 	<tr>
 		<td><?php echo $contact['people_id']; ?></td>

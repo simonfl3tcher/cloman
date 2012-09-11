@@ -65,7 +65,16 @@
 
 		public function search_contact($data){
 			// Do a sql statement here to search the contacts.
-			var_dump($data);exit;
+			$sql = "SELECT people_id, name, email, phone 
+FROM people
+where name like '%{$data}%'
+or email like '%{$data}%'
+or phone like '%{$data}%'
+or people_id like '%{$data}%'";
+
+			$query = $this->db->query($sql); 
+			var_dump($query->result_array());
+			exit;
 		}
 	}
 ?>
