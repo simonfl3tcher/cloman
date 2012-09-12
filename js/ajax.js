@@ -5,7 +5,7 @@ $(document).ready(function(){
 		type: 'POST',
 		timeout: 5000,
 		dataType: 'html',
-		async: true
+		async: false
 	});
 
 	$('form')[0].reset();
@@ -41,25 +41,39 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#search').keypress(function(){
+	$('#search').keyup(function(){
 		var data = 'data=' + $(this).val();
 		$.ajax({
 			url: $(this).attr('data-searchurl'),
 			type: 'POST',
+			dataType: 'json',
 			data: data,
 			success: function(data){
-				console.log('success');
+				searchResults(data);
 			},
 			error: function(data){
 				console.log('There is an error in the system');
 			}
 		});
-		changeSearchdata(this);
 	});
 
 
 	function changeSearchdata(form){
 		return true;
+	}
+
+	function searchResults(data){
+		var surrounder = $('#search').closest('div.control-group');
+		if(data.length){
+			$('#search tbody tr').remove();
+			$(surrounder).removeClass('error');
+		} else {
+			$(surrounder).addClass('error');
+		}
+		for(var i = 0; i < data.length; i++){
+			var html = '<tr><td>' + data[0].people_id + '</td><td>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a href="/contacts/edit/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-info">Edit</button></a></td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
+			$('#search tbody').append(html);
+		}
 	}
 
 

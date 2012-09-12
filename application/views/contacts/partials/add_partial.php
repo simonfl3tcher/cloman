@@ -25,7 +25,7 @@
 							</tr>
 							<tr class="largeField">
 								<td>
-									<label for="contact_Url" class="above">Phone</label><br>
+									<label for="contact_Url" class="above">Phone (With appropriate spaces)</label><br>
 									<span><input type="text" id="contact_Phone" name="contact[Phone]"></span>
 								</td>
 								<td>
