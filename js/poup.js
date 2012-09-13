@@ -131,7 +131,7 @@ $(document).ready(function(){
 		}
 
 
-		$(".boxes").click(function(){
+		$("boxes").click(function(){
 			$(this).stop(true, true);
 			if(!$(this).hasClass('clicked')){
 				obj.slideshow = new slideshowFunctions();

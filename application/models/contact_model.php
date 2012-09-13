@@ -71,7 +71,6 @@ where name like '%{$data}%'
 or email like '%{$data}%'
 or phone like '%{$data}%'
 or people_id like '%{$data}%'";
-
 			$query = $this->db->query($sql);
 			echo json_encode($query->result_array());
 		}

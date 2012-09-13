@@ -1,0 +1,16 @@
+.sidebarSlider {
+	position: absolute;
+	background-color:#000;
+	height:100%;
+	width: 400px;
+	top: 0;
+	right:0;
+	-moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-left: 1px solid #E0E0E0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    overflow: auto;
+    position: fixed;
+    z-index: 1000;
+    display: none;
+}

@@ -19,7 +19,7 @@ $(document).ready(function(){
 			if($(formId).attr("data-ajaxurl")){
 				url = $(formId).attr("data-ajaxurl");
 			} else {
-				alert('Dont worry if its not working, you just need to add in a data-ajaxurl attribute');
+				alert('Dont worry if its not working, you just need to add in a data-ajaxurl attribute, failing that i dont know what you have done. Good luck!!');
 			}
 			ajaxSubmitForm(url, formId, successForm);
 		}
@@ -97,7 +97,8 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				successFunction(formId);
+				$('form')[0].reset();
+				window.location.reload();
 			},
 			error: function(data){
 				unsuccessful();
