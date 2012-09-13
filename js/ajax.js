@@ -27,7 +27,6 @@ $(document).ready(function(){
 
 	$('.delete').click(function(e){
 		e.preventDefault();
-		console.log('prevented');
 		$.ajax({
 			url: $(this).attr('href'),
 			type: 'POST',
@@ -59,6 +58,9 @@ $(document).ready(function(){
 
 	$('.closeSide').bind('click', function(){
 		$('.sidebarSlider').slideRightHide();
+		setTimeout(function(){
+			$('.sidebarSlider').html('');
+		}, 900);
 	});
 
 	$('.open').bind('click', function(){
@@ -92,7 +94,6 @@ $(document).ready(function(){
 			data: '',
 			success: function(data){
 				$('.sidebarSlider').append(data);
-				console.log('success for once');
 			},
 			error: function(data){
 				unsuccessfulDelete();
