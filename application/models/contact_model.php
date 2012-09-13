@@ -15,7 +15,13 @@
 			if($id){
 				$this->db->where('ID', $id);
 			}
-			$query = $this->db->get('people');
+
+			$this->db->select('*');
+			$this->db->from('people');
+			$this->db->order_by('name', 'asc');
+
+			$query = $this->db->get();
+
 			return $query->result_array();
 		}
 
@@ -70,9 +76,18 @@ FROM people
 where name like '%{$data}%'
 or email like '%{$data}%'
 or phone like '%{$data}%'
-or people_id like '%{$data}%'";
+or people_id like '%{$data}%'
+order by name asc";
 			$query = $this->db->query($sql);
-			echo json_encode($query->result_array());
+			return json_encode($query->result_array());
+		}
+
+		public function contact_deatils($id){
+			$sql = "select p.*, b.name as business_name from people as p
+left join businesses as b on b.business_id = p.business_id
+where people_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return $query->row();
 		}
 	}
 ?>

@@ -56,16 +56,28 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.closeSide').bind('click', function(){
-		$('.sidebarSlider').slideRightHide();
-		setTimeout(function(){
-			$('.sidebarSlider').html('');
-		}, 900);
+	$('table tr td a, .sidebarSlider').bind('click', function(e){
+		e.stopPropagation();
 	});
 
-	$('.open').bind('click', function(){
-		fetchContactInfo();
-		$('.sidebarSlider').slideRightShow();
+
+	$(document).bind('click', function(){
+		var container = $('.sidebarSlider');
+		if(container.hasClass('open')){
+			container.slideRightHide();
+			setTimeout(function(){
+				$('.sidebarSlider').html('');
+			}, 900);
+		}
+	});
+
+	$('table tr td:nth-child(2) a').bind('click', function(e){
+		e.preventDefault();
+		var container = $('.sidebarSlider');
+		if(!container.hasClass('open')){
+			fetchContactInfo($(this).attr('href'));
+			container.slideRightShow();
+		}
 	});
 
 
@@ -82,14 +94,14 @@ $(document).ready(function(){
 			$(surrounder).addClass('error');
 		}
 		for(var i = 0; i < data.length; i++){
-			var html = '<tr><td>' + data[0].people_id + '</td><td>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a href="/contacts/edit/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-info">Edit</button></a></td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
+			var html = '<tr><td>' + data[i].people_id + '</td><td>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a href="/contacts/edit/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-info">Edit</button></a></td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
 			$('#search tbody').append(html);
 		}
 	}
 
-	function fetchContactInfo(){
+	function fetchContactInfo(url){
 		$.ajax({
-			url: 'contacts/details/2',
+			url: url,
 			type: 'POST',
 			data: '',
 			success: function(data){

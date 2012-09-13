@@ -13,4 +13,5 @@
     position: fixed;
     z-index: 1000;
     display: none;
+    padding:20px;
 }

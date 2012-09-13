@@ -76,15 +76,16 @@
 		public function search(){
 			$data = $_POST['data'];
 			if($this->request->isPost()){
-				$this->contact_model->search_contact($data);
+				echo $this->contact_model->search_contact($data);
 			} else {
 				return false;
 			}
 		}
 
 		public function details($contactId){
-			var_dump($contactId);
-			render_partial('details', 'contacts');
+			$data['contact_details'] = $this->contact_model->contact_deatils($contactId);
+			$data['title'] = 'Contact Details';
+			$this->load->view('contacts/partials/details_partial', $data);
 		}
 	}
 ?>

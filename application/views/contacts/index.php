@@ -2,7 +2,7 @@
 <div class="control-group">
 	<input type="text" name="search" id="search" data-searchurl="/contacts/search" />
 </div>
-<table id="search" class="table table-striped">
+<table id="search" class="table table-hover" data-useAjax='true'>
 	<thead>
 		<tr>
 			<th>#</th>
@@ -15,7 +15,7 @@
 		<?php foreach($contact_list as $contact){ ?>
 		<tr>
 			<td><?php echo $contact['people_id']; ?></td>
-			<td><?php echo $contact['name']?></td>
+			<td><a href="/contacts/details/<?php echo $contact['people_id']; ?>"><?php echo $contact['name']?></a></td>
 			<td><?php echo $contact['email']; ?></td>
 			<td><?php echo $contact['phone']; ?></td>
 			<td><a href="/contacts/edit/<?php echo $contact['people_id']; ?>"><button class="btn  btn-mini btn-info">Edit</button></a></td>
@@ -25,17 +25,12 @@
 	</tbody>
 </table>
 
-<p class="closeSide">Close</p>
-
 <br />
 <br />
 <?php render_partial('add', 'contacts'); ?>
 <br />
 
-<p class="open">Open</p>
-
 <div class="sidebarSlider">
-	<p>This is the sidebar slider :)</p>
 </div>
 
 <form action="" method="post" id="addContactForm" data-ajaxurl='contacts/add' data-useAjax='true' class="form-horizontal">	
@@ -119,7 +114,7 @@
 				</table>
 		</div>
             <div class="modal-footer">
-              <button data-dismiss="modal" class="btn">Close</button>
+              <button data-dismiss="modal" type="reset" class="btn">Close</button>
               <button data-dismiss="modal" type="submit" class="btn btn-primary">Save Contact</button>
             </div>
           </div>
