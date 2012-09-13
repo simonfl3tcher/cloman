@@ -57,6 +57,15 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.closeSide').bind('click', function(){
+		$('.sidebarSlider').slideRightHide();
+	});
+
+	$('.open').bind('click', function(){
+		fetchContactInfo();
+		$('.sidebarSlider').slideRightShow();
+	});
+
 
 	function changeSearchdata(form){
 		return true;
@@ -74,6 +83,21 @@ $(document).ready(function(){
 			var html = '<tr><td>' + data[0].people_id + '</td><td>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a href="/contacts/edit/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-info">Edit</button></a></td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
 			$('#search tbody').append(html);
 		}
+	}
+
+	function fetchContactInfo(){
+		$.ajax({
+			url: 'contacts/details/2',
+			type: 'POST',
+			data: '',
+			success: function(data){
+				$('.sidebarSlider').append(data);
+				console.log('success for once');
+			},
+			error: function(data){
+				unsuccessfulDelete();
+			}
+		});
 	}
 
 

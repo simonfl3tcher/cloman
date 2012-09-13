@@ -81,5 +81,10 @@
 				return false;
 			}
 		}
+
+		public function details($contactId){
+			var_dump($contactId);
+			render_partial('details', 'contacts');
+		}
 	}
 ?>

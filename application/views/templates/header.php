@@ -5,9 +5,9 @@
 	<script src="<?php echo base_url(); ?>/js/jQuery.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>/js/jQuery-ui.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>/js/functions.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>/js/ajax.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>/js/site.js" type="text/javascript"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/poup.js"></script>
-	<script src="<?php echo base_url(); ?>/js/ajax.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/popup.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css" />

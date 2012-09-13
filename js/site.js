@@ -15,12 +15,4 @@ $(document).ready(function(){
 			keyboard: true
 		});
 	});
-
-	$('.closeSide').bind('click', function(){
-		$('.sidebarSlider').slideRightHide();
-	});
-
-	$('.open').bind('click', function(){
-		$('.sidebarSlider').slideRightShow();
-	});
 });
