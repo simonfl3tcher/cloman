@@ -1,6 +1,6 @@
 <?php 
 
-	require_once('application/libraries/classes/Contact.php');
+	require_once('application/libraries/classes/People.php');
 	
 	class Contacts extends CI_Controller {
 
@@ -46,7 +46,7 @@
 
 		public function edit($id = null){
 			$data['title'] = 'Edit a contact';
-			$data['contact'] = new Contact_CLass($id);
+			$data['contact'] = new People_CLass($id);
 			$this->load->view('templates/header', $data);
 			$this->load->view('contacts/edit', $data);
 			$this->load->view('templates/footer');

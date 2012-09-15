@@ -1,54 +1,55 @@
-		<div id="header">
-	</div>
-		<div class="container">
-						<div id="slideshow">
-						<div id="slidesContainer">
-							<div class="slide">
-								<div class="title">
-									<h1>PlayArea</h1>
-									<p>As you probably know by now I love interactive design. This area has a few things that make me love the evolution of the web. Granted there isn't many options at the moment but I will be sure to add more in time.</p>
-								</div>
-							</div>
-							<div class="slide">
-								<h2>Sort Me</h2>
-								<p>Go ahead and sort them into order, or even more out of order if you want to.</p>
-								<br />
-								<br />
-								<ul id="sortable">
-									<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>List Item No.2</li>
-									<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>List Item No.5</li>
-									<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>List Item No.1</li>
-									<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>List Item No.3</li>
-									<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>List Item No.7</li>
-									<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>List Item No.4</li>
-									<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>List Item No.6</li>
-								</ul>
-							</div>
-							<div class="slide">
-								<h2>Drag over me</h2>
-								<p>You can drag over the items that you want, alternativly you can<br />
-									hold Ctrl and select the ones that you want with a simple click</p>
-									<br />
-									<br />
-								<ol id="selectable">
-									<li class="ui-widget-content">Item 1</li>
-									<li class="ui-widget-content">Item 2</li>
-									<li class="ui-widget-content">Item 3</li>
-									<li class="ui-widget-content">Item 4</li>
-									<li class="ui-widget-content">Item 5</li>
-									<li class="ui-widget-content">Item 6</li>
-									<li class="ui-widget-content">Item 7</li>
-								</ol>
-							</div>
-							<div class="slide">
-								<h2>Simply Click</h2>
-								<p>Actions speak louder than words</p>
-								<div class="column1of2">
-									<div class="shuffle"><p>Bounce</p></div>
-								</div>
-								<div class="column1of2">
-									<div class="bounce"><p>Shuffle</p></div>
-								</div>
-							</div>
-						</div>
+<form action="" method="post" id="addContactForm" data-ajaxurl='contacts/add' data-useAjax='true' class="form-horizontal">	
+              <h3 id="myModalLabel">Add A Contact</h3>
+					<table class="std">
+						<tbody>
+							<tr class="largeField">
+								<td>
+									<label for="contact_Name_First" class="above">Name</label><br>
+									<span><input type="text" value="<?php echo $contact->getName(); ?>" id="contact_Name_First" name="contact[Name]"></span>
+								</td>
+								<td>
+									<label for="contact_Name_Last" class="above">Role</label><br>
+									<span><input type="text" value="<?php echo $contact->getRole(); ?>" id="contact_Role" name="contact[Role]"></span>
+								</td>
+							</tr>
+							<tr class="largeField">
+								<td>
+									<label for="contact_Email" class="above">Email Address</label><br>
+									<span><input type="text" id="contact_Email" name="contact[Email]" value="<?php echo $contact->getEmail(); ?>"></span>
+								</td>
+								<td>
+									<label for="contact_Url" class="above">Phone</label><br>
+									<span><input type="text" id="contact_Phone" name="contact[Phone]" value="<?php echo $contact->getPhone(); ?>"></span>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<label for="contact_Url" class="above">Notes</label><br>
+									<textarea id="contact_Phone" name="contact[Notes]" rows="4" cols="20"><?php echo $contact->getNotes(); ?></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- This needs to be hidden until they say to add a business. -->
+					<div class="stdpadh stdpadt">
+						<h3>Business</h3>
+						<p>Please add the information bellow to asign a business to the person.</p>
 					</div>
+					
+					<table class="std">
+						<tbody>
+						<tr  class="largeField">
+							<td>
+								<select class="selectBusiness" name="business[Current]">
+								<option value="">- Please select a business -</option>
+								<?php foreach($business as $bus){ ?>
+									<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
+								<?php } ?>
+								</select>
+							</td>
+							<td>
+								<p class="addBusiness">Add a new business</p>
+							</td>
+						</tr>
+					</table>
+        </form>

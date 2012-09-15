@@ -25,7 +25,7 @@ $(document).ready(function(){
 		}
 	})
 
-	$('.delete').click(function(e){
+	$('#search .delete').click(function(e){
 		e.preventDefault();
 		$.ajax({
 			url: $(this).attr('href'),
@@ -51,17 +51,16 @@ $(document).ready(function(){
 				searchResults(data);
 			},
 			error: function(data){
-				console.log('There is an error in the system');
+				alert('There is an error in the system');
 			}
 		});
 	});
 
-	$('table tr td a, .sidebarSlider').bind('click', function(e){
+	$('table tr td a').bind('click', function(e){
 		e.stopPropagation();
 	});
 
-
-	$(document).bind('click', function(){
+	$('div:not(.sidebarSlider ):not(.sidebarSlider div)').bind('click', function(){
 		var container = $('.sidebarSlider');
 		if(container.hasClass('open')){
 			container.slideRightHide();
@@ -79,14 +78,12 @@ $(document).ready(function(){
 		var container = $('.sidebarSlider');
 		if(!container.hasClass('open')){
 			fetchContactInfo($(this).attr('href'));
+			addAjaxloader($('.sidebarSlider'));
 			container.slideRightShow();
+			removeAjaxloader($('.sidebarSlider'), 1000);
 		}
 	});
 
-
-	function changeSearchdata(form){
-		return true;
-	}
 
 	function searchResults(data){
 		var surrounder = $('#search').closest('div.control-group');
@@ -141,43 +138,13 @@ $(document).ready(function(){
 				window.location.reload();
 			},
 			error: function(data){
-				unsuccessful();
+				alert('Something went wrong...');
 			}
 		});
 	}
 
-	function successForm(formId){
-		setTimeout(function(){
-			$('.ajaxLoader').addClass('completion');
-			operationCleanup(formId);
-		}, 1000);
-	}
-
-	function unsuccessfulForm(){
-		setTimeout(function(){
-			$('.ajaxLoader').addClass('uncomplete');
-		}, 1000);
-		setTimeout(function(){
-			$('.ajaxLoader').fadeOut();
-			$('.ajaxLoader').remove();
-		}, 2000);
-	}
-
-	function operationCleanup(formId){
-		setTimeout(function(){
-			$('#backgroundPopup').trigger('click');
-			$('.ajaxLoader').remove();
-			window.location.reload();
-
-		}, 1000);
-		/* Things to do in this function are:-
-		- Clear the form object
-		- update the data that is being displayed.
-		*/
-	}
-
-	function addAjaxloader(){
-		var div = $('.slideshow'); // This should not really be done, but most form submissions are going to be done through ajax and others aren't, If you find yourself using ajax from submisisons without the popup you will have to address this.
+	function addAjaxloader(container){
+		var div = container; // This should not really be done, but most form submissions are going to be done through ajax and others aren't, If you find yourself using ajax from submisisons without the popup you will have to address this.
 		div.prepend('<div class="ajaxLoader"></div>');
 		var ajaxLoader = $('.ajaxLoader')
 		ajaxLoader.css({
@@ -185,5 +152,9 @@ $(document).ready(function(){
 			"top": div.height()/2-$('.ajaxLoader').height()/2,
 			"left": div.width()/2-$('.ajaxLoader').width()/2
 		});
+	}
+
+	function removeAjaxloader(container, delay){
+		$('.ajaxLoader', container).delay(delay).fadeOut();
 	}
 }); 

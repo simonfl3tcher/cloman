@@ -26,3 +26,5 @@
 		echo 'You dont have any custom notes';
 	} ?>
 </p>
+
+<a href="/contacts/edit/<?php echo $contact_details->people_id; ?>"><span class="icon edit-icon">edit</span></a>
