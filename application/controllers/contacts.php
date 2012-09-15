@@ -7,6 +7,7 @@
 		public function __construct(){
 			parent::__construct();
 			$this->load->model('contact_model');
+			$this->load->model('business_model');
 			$this->load->helper(array('form', 'url'));
 			$this->load->library('form_validation');
 		}
@@ -14,6 +15,7 @@
 		public function index() {
 			$data['title'] = 'Contacts Page';
 			$data['contact_list'] = $this->contact_model->get();
+			$data['business'] = $this->business_model->get();
 			$this->load->view('templates/header', $data);
 			$this->load->view('contacts/index', $data);
 			$this->load->view('templates/footer');
@@ -85,7 +87,7 @@
 		public function details($contactId){
 			$data['contact_details'] = $this->contact_model->contact_deatils($contactId);
 			$data['title'] = 'Contact Details';
-			$this->load->view('contacts/partials/details_partial', $data);
+			$this->load->partial('contacts/partials/details_partial', $data);
 		}
 	}
 ?>

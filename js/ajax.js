@@ -73,6 +73,9 @@ $(document).ready(function(){
 
 	$('table tr td:nth-child(2) a').bind('click', function(e){
 		e.preventDefault();
+		if(!$('.sidebarSlider').length){
+			$(document.body).append('<div class="sidebarSlider"></div>');
+		}
 		var container = $('.sidebarSlider');
 		if(!container.hasClass('open')){
 			fetchContactInfo($(this).attr('href'));
@@ -94,7 +97,7 @@ $(document).ready(function(){
 			$(surrounder).addClass('error');
 		}
 		for(var i = 0; i < data.length; i++){
-			var html = '<tr><td>' + data[i].people_id + '</td><td>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a href="/contacts/edit/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-info">Edit</button></a></td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
+			var html = '<tr><td>' + data[i].people_id + '</td><td><a href="/contacts/details/"' + data[i].people_id + '>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a href="/contacts/edit/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-info">Edit</button></a></td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
 			$('#search tbody').append(html);
 		}
 	}

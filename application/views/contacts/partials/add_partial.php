@@ -1,10 +1,10 @@
-<button class="boxes btn  btn-mini btn-success">Add a contact</button>
-<div class="contentSlider sliderContent">  
-    <a class="popupContactClose">x</a>
-	<div class="slideshow">
-		<div class="slidesContainer">
-			<form action="" method="post" id="addContactForm" data-ajaxurl='contacts/add' data-useAjax='true' class="form-horizontal">	
-			<div class="slide">
+<form action="" method="post" id="addContactForm" data-ajaxurl='contacts/add' data-useAjax='true' class="form-horizontal">	
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="myModal" style="display: none;">
+            <div class="modal-header">
+              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
+              <h3 id="myModalLabel">Add A Contact</h3>
+            </div>
+            <div class="modal-body">
 					<table class="std">
 						<tbody>
 							<tr class="largeField">
@@ -25,7 +25,7 @@
 							</tr>
 							<tr class="largeField">
 								<td>
-									<label for="contact_Url" class="above">Phone (With appropriate spaces)</label><br>
+									<label for="contact_Url" class="above">Phone</label><br>
 									<span><input type="text" id="contact_Phone" name="contact[Phone]"></span>
 								</td>
 								<td>
@@ -33,10 +33,16 @@
 									<span><input type="text" value="" id="contact_Business" name="contact[Business]"></span>
 								</td>
 							</tr>
+							<tr  class="largeField">
+								<select>
+								<option value="">- Please select a business -</option>
+								<?php foreach($business as $bus){ ?>
+									<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
+								<?php } ?>
+								</select>
+							</tr>
 						</tbody>
 					</table>
-			</div>
-			<div class="slide">
 					<!-- This needs to be hidden until they say to add a business. -->
 					<div class="stdpadh stdpadt">
 						<h3>Business</h3>
@@ -79,15 +85,10 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="stdpad">
-					<div class="float-right">
-						<span><span class="icon add"></span><input id="accountCreator" type="submit" value="Create Account" class="btn"></span>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			</form>
 		</div>
-	</div>
-</div>
-<div id="backgroundPopup"></div>
+            <div class="modal-footer">
+              <button data-dismiss="modal" type="reset" class="btn">Close</button>
+              <button data-dismiss="modal" type="submit" class="btn btn-primary">Save Contact</button>
+            </div>
+          </div>
+        </form>
