@@ -15,4 +15,11 @@ $(document).ready(function(){
 			keyboard: true
 		});
 	});
+
+
+	$('.addBusiness').bind('click', function(){
+		var dropdown = $('.selectBusiness');
+		$('.businessForm').slideDown(2000);
+		dropdown.addClass('open');
+	});	
 });

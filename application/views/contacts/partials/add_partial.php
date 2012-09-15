@@ -33,14 +33,6 @@
 									<span><input type="text" value="" id="contact_Business" name="contact[Business]"></span>
 								</td>
 							</tr>
-							<tr  class="largeField">
-								<select>
-								<option value="">- Please select a business -</option>
-								<?php foreach($business as $bus){ ?>
-									<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
-								<?php } ?>
-								</select>
-							</tr>
 						</tbody>
 					</table>
 					<!-- This needs to be hidden until they say to add a business. -->
@@ -51,6 +43,21 @@
 					
 					<table class="std">
 						<tbody>
+						<tr  class="largeField">
+							<td>
+								<select class="selectBusiness">
+								<option value="">- Please select a business -</option>
+								<?php foreach($business as $bus){ ?>
+									<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
+								<?php } ?>
+								</select>
+							</td>
+							<td>
+								<p class="addBusiness">Add a new business</p>
+							</td>
+						</tr>
+					</table>
+					<table class="std businessForm">
 						<tr class="largeField">
 							<td><label for="business_name">Business Name</label></td>
 							<td><span><input type="text" value="" id="business_name" name="business[Name]"></span></td>
