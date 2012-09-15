@@ -22,15 +22,15 @@
 									<label for="contact_Email" class="above">Email Address</label><br>
 									<span><input type="text" id="contact_Email" name="contact[Email]"></span>
 								</td>
-							</tr>
-							<tr class="largeField">
 								<td>
 									<label for="contact_Url" class="above">Phone</label><br>
 									<span><input type="text" id="contact_Phone" name="contact[Phone]"></span>
 								</td>
-								<td>
-									<label for="contact_Display_Name" class="above">Business</label><br>
-									<span><input type="text" value="" id="contact_Business" name="contact[Business]"></span>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<label for="contact_Url" class="above">Notes</label><br>
+									<textarea id="contact_Phone" name="contact[Notes]" rows="4" cols="20"></textarea>
 								</td>
 							</tr>
 						</tbody>
@@ -45,7 +45,7 @@
 						<tbody>
 						<tr  class="largeField">
 							<td>
-								<select class="selectBusiness">
+								<select class="selectBusiness" name="business[Current]">
 								<option value="">- Please select a business -</option>
 								<?php foreach($business as $bus){ ?>
 									<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
@@ -57,41 +57,43 @@
 							</td>
 						</tr>
 					</table>
-					<table class="std businessForm">
-						<tr class="largeField">
-							<td><label for="business_name">Business Name</label></td>
-							<td><span><input type="text" value="" id="business_name" name="business[Name]"></span></td>
-						</tr>
-						<tr class="largeField">
-							<td><label for="business_name">Email</label></td>
-							<td><span><input type="text" value="" id="business_name" name="business[Email]"></span></td>
-						</tr>
-						<tr class="largeField">
-							<td><label for="business_name">Phone</label></td>
-							<td><span><input type="text" value="" id="business_name" name="business[Phone]"></span></td>
-						</tr>
-						<tr class="largeField">
-							<td><label for="address_Address_Line_1">Property Name / Number*</label></td>
-							<td><span><input type="text" value="" id="address_Address_Line_1" name="address[Address_Line_1]"></span></td>
-						</tr>
-						<tr class="largeField">
-							<td><label for="address_Address_Line_2">Street</label></td>
-							<td><span><input type="text" value="" id="address_Address_Line_2" name="address[Address_Line_2]"></span></td>
-						</tr>
-						<tr class="largeField">
-							<td><label for="address_Address_Line_3">Area</label></td>
-							<td><span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span></td>
-						</tr>
-						<tr class="largeField">
-							<td><label for="address_City">Town / City*</label></td>
-							<td><span><input type="text" value="" id="address_City" name="address[City]"></span></td>
-						</tr>
-						<tr>
-							<td><label for="address_Postcode">Postcode*</label></td>
-							<td><span><input type="text" value="" id="address_Postcode" name="address[Postcode]"></span></td>
-						</tr>
-					</tbody>
-				</table>
+					<div class="businessForm">
+						<table class="std ">
+							<tr class="largeField">
+								<td><label for="business_name">Business Name</label></td>
+								<td><span><input type="text" value="" id="business_name" name="business[Name]"></span></td>
+							</tr>
+							<tr class="largeField">
+								<td><label for="business_name">Email</label></td>
+								<td><span><input type="text" value="" id="business_name" name="business[Email]"></span></td>
+							</tr>
+							<tr class="largeField">
+								<td><label for="business_name">Phone</label></td>
+								<td><span><input type="text" value="" id="business_name" name="business[Phone]"></span></td>
+							</tr>
+							<tr class="largeField">
+								<td><label for="address_Address_Line_1">Property Name / Number*</label></td>
+								<td><span><input type="text" value="" id="address_Address_Line_1" name="address[Address_Line_1]"></span></td>
+							</tr>
+							<tr class="largeField">
+								<td><label for="address_Address_Line_2">Street</label></td>
+								<td><span><input type="text" value="" id="address_Address_Line_2" name="address[Address_Line_2]"></span></td>
+							</tr>
+							<tr class="largeField">
+								<td><label for="address_Address_Line_3">Area</label></td>
+								<td><span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span></td>
+							</tr>
+							<tr class="largeField">
+								<td><label for="address_City">Town / City*</label></td>
+								<td><span><input type="text" value="" id="address_City" name="address[City]"></span></td>
+							</tr>
+							<tr>
+								<td><label for="address_Postcode">Postcode*</label></td>
+								<td><span><input type="text" value="" id="address_Postcode" name="address[Postcode]"></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 		</div>
             <div class="modal-footer">
               <button data-dismiss="modal" type="reset" class="btn">Close</button>

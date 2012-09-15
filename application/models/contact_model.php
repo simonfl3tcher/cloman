@@ -38,23 +38,28 @@
 				$address->save();
 			}
 
-			if(isset($address)){
-				$aid = $address->getID();
-			} else {
-				$aid = 0;
-			}
+			$bid = $_POST['business']['Current'];
 
-			$business->setAddressID($aid);
-			$business->setName($_POST['business']['Name']);
-			$business->setPhone($_POST['business']['Phone']);
-			$business->setEmail($_POST['business']['Email']);
-			$business->save();
+			if($bid == ''){
+				if(isset($address)){
+					$aid = $address->getID();
+				} else {
+					$aid = 0;
+				}
+				$business->setAddressID($aid);
+				$business->setName($_POST['business']['Name']);
+				$business->setPhone($_POST['business']['Phone']);
+				$business->setEmail($_POST['business']['Email']);
+				$business->save();
+				$bid = $business->getID();
+			}
 
 			$member->setName($_POST['contact']['Name']);
 			$member->setRole($_POST['contact']['Role']);
 			$member->setEmail($_POST['contact']['Email']);
 			$member->setPhone($_POST['contact']['Phone']);
-			$member->setBusinessID($business->getID());
+			$member->setNotes($_POST['contact']['Notes']);
+			$member->setBusinessID($bid);
 			$member->save();
 			return true;
 		}

@@ -19,3 +19,7 @@
 .businessForm {
     display:none;
 }
+
+textarea {
+    width: 100%;
+}
