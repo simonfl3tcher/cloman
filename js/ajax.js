@@ -14,28 +14,37 @@ $(document).ready(function(){
 		var formId = $(this).closest('form');
 		if($(formId).attr('data-useAjax') == 'true'){
 			e.preventDefault();
-			addAjaxloader();
+			addAjaxloader($(document.window));
 			var url = '';
 			if($(formId).attr("data-ajaxurl")){
 				url = $(formId).attr("data-ajaxurl");
 			} else {
 				alert('Dont worry if its not working, you just need to add in a data-ajaxurl attribute, failing that i dont know what you have done. Good luck!!');
 			}
-			ajaxSubmitForm(url, formId, successForm);
+			ajaxSubmitForm(url, formId);
 		}
 	})
 
 	$('#search .delete').click(function(e){
 		e.preventDefault();
+		var containingTr = $(this).parent().parent();
+		containingTr.animate({ opacity: 0.0 }, 500);
+
+		containingTr.find('td').wrapInner('<div style="display: block;" />').parent().find('td > div').delay(500)
+		.slideUp(500, function(){
+			$(this).parent().parent().remove();
+
+		});
+
 		$.ajax({
 			url: $(this).attr('href'),
 			type: 'POST',
 			data: '',
 			success: function(data){
-				window.location.reload();
+				//console.log('well done');
 			},
 			error: function(data){
-				unsuccessfulDelete();
+				alert('There was an error when trying to delete');
 			}
 		});
 	});
@@ -94,7 +103,7 @@ $(document).ready(function(){
 			$(surrounder).addClass('error');
 		}
 		for(var i = 0; i < data.length; i++){
-			var html = '<tr><td>' + data[i].people_id + '</td><td><a href="/contacts/details/"' + data[i].people_id + '>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a href="/contacts/edit/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-info">Edit</button></a></td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
+			var html = '<tr><td>' + data[i].people_id + '</td><td><a href="/contacts/details/"' + data[i].people_id + '>' + data[i].name + '</td><td>' + data[i].email + '</td><td>' + data[i].phone + '</td><td><a class="delete" href="/contacts/delete/"'  + data[0].people_id + '"><button class="btn  btn-mini btn-danger">Delete</button></a></td></tr>';
 			$('#search tbody').append(html);
 		}
 	}
@@ -108,7 +117,7 @@ $(document).ready(function(){
 				$('.sidebarSlider').append(data);
 			},
 			error: function(data){
-				unsuccessfulDelete();
+				alert('Sorry I cannot get the data that you require');
 			}
 		});
 	}
@@ -117,7 +126,7 @@ $(document).ready(function(){
 
 	/* Functions that you may want to use are bellow */
 
-	function ajaxSubmitForm(url, formId, successFunction){
+	function ajaxSubmitForm(url, formId){
 	    var data = '';
 	    var inputs = $(':input:not(:submit)', formId); 
 
@@ -144,7 +153,7 @@ $(document).ready(function(){
 	}
 
 	function addAjaxloader(container){
-		var div = container; // This should not really be done, but most form submissions are going to be done through ajax and others aren't, If you find yourself using ajax from submisisons without the popup you will have to address this.
+		var div = container;
 		div.prepend('<div class="ajaxLoader"></div>');
 		var ajaxLoader = $('.ajaxLoader')
 		ajaxLoader.css({

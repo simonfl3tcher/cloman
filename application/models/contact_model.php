@@ -64,6 +64,17 @@
 			return true;
 		}
 
+		public function update_contact($id){
+			$member = new People_Class($id);
+			$member->setName($_POST['contact']['Name']);
+			$member->setRole($_POST['contact']['Role']);
+			$member->setEmail($_POST['contact']['Email']);
+			$member->setPhone($_POST['contact']['Phone']);
+			$member->setNotes($_POST['contact']['Notes']);
+			$member->save();
+			return true;
+		}
+
 		public function delete_contact($id){
 			$contact = new People_Class($id);
 			$contact->MarkForDeletion();

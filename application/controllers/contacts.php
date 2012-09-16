@@ -45,8 +45,16 @@
 		}
 
 		public function edit($id = null){
+			$people = new People_CLass($id);
+			
+			if($this->request->isPost()){
+				if($this->contact_model->update_contact($people->getID())){
+					redirect('/contacts', 'refresh');
+				}
+			}
 			$data['title'] = 'Edit a contact';
-			$data['contact'] = new People_CLass($id);
+			$data['contact'] = $people;
+
 			$this->load->view('templates/header', $data);
 			$this->load->view('contacts/edit', $data);
 			$this->load->view('templates/footer');

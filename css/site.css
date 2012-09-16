@@ -23,3 +23,7 @@
 textarea {
     width: 100%;
 }
+
+.deleteRow {
+    opacity: 0.5;
+}
