@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-11 18:46:58
+-- Date/time:                    2012-09-16 11:40:36
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,13 +21,17 @@ CREATE TABLE IF NOT EXISTS `address` (
   `Region_Name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
   `Postcode` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`Address_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.address: 1 rows
+-- Dumping data for table my.company.address: 5 rows
 DELETE FROM `address`;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
 INSERT INTO `address` (`Address_ID`, `Address_Line_1`, `Address_Line_2`, `Address_Line_3`, `City`, `Region_Name`, `Postcode`) VALUES
-	(1, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Stowmarket', '', 'IP29 1LD');
+	(1, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Stowmarket', '', 'IP29 1LD'),
+	(13, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Stowmarket', '', 'IP30 9TY'),
+	(12, '29 Wrights Way', 'Woolpit', 'Rattlesden', 'Stowmarket', '', 'IP30 9TY'),
+	(11, '29 Wrights Way', 'Woolpit', '', 'Bury St Edmunds', '', 'ip30 9ty'),
+	(10, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Bury St Edmunds', '', 'IP30 9TY');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 
 
@@ -41,15 +45,21 @@ CREATE TABLE IF NOT EXISTS `businesses` (
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`business_id`),
   KEY `business_id` (`business_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.businesses: ~3 rows (approximately)
+-- Dumping data for table my.company.businesses: ~11 rows (approximately)
 DELETE FROM `businesses`;
 /*!40000 ALTER TABLE `businesses` DISABLE KEYS */;
 INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`) VALUES
 	(1, NULL, 'Logic Design', '01284706842', 'hello@logicdesign.co.uk'),
 	(2, NULL, 'Big Earth', '0207 657 2727', 'office@bigearth.co.uk'),
-	(3, NULL, 'Nicola Sexton', '01284 760011', 'info@nicolasexton.co.uk');
+	(3, NULL, 'Nicola Sexton', '01284 760011', 'info@nicolasexton.co.uk'),
+	(6, '10', 'Display World', '01284 345345', 'hello@displayworld.co.uk'),
+	(9, '0', 'Reason Marketing', '01284 456 456', 'howie@reason.co.uk'),
+	(10, '11', 'Apestpro', '84', 'paul@apestpro.co.uk'),
+	(11, '0', 'Finns Freelancer', '01284 345345', 'finn@finn.co.uk'),
+	(12, '12', 'Kats Designs', '01284 345 345', 'kat@logicdesign.co.uk'),
+	(15, '13', 'Waitrose', '10', 'finn@finn.co.uk');
 /*!40000 ALTER TABLE `businesses` ENABLE KEYS */;
 
 
@@ -98,15 +108,19 @@ CREATE TABLE IF NOT EXISTS `people` (
   `is_primary_contact` enum('Y','N') DEFAULT 'N',
   `notes` text,
   PRIMARY KEY (`people_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.people: ~3 rows (approximately)
+-- Dumping data for table my.company.people: ~7 rows (approximately)
 DELETE FROM `people`;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
 INSERT INTO `people` (`people_id`, `business_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`) VALUES
-	(18, 16, 'Shaun Palfrey', 'Medical Records Manager', 'shaun@medrecs.co.uk', '120165578', 'N', NULL),
-	(19, 17, 'Simon Fletcher', 'Website Developer', 'simon@logicdesign.co.uk', '7', 'N', NULL),
-	(21, 19, 'Paul Fletcher', 'Managing Director', 'paul@apestpro.co.uk', '10', 'N', NULL);
+	(19, 17, 'Simon Fletcher', 'Website Developer', 'simon@logicdesign.co.uk', '01284 789 789', 'N', 'Web Developer'),
+	(27, 1, 'Keith Bradley', 'Managing Director', 'keith.bradley@logicdesign.co.uk', '01248 789 789', 'N', 'Web Developer'),
+	(28, 9, 'Howie', 'Managing Director', 'howie@logicdesign.co.uk', '01284 345 345', 'N', 'Media Consultant'),
+	(31, 9, 'Adam Howson', 'Web Designer', 'adam@logicdesign.co.uk', '01284 345345', 'N', 'Graphic Designer'),
+	(37, 1, 'Sam Hunt', 'Account Manager', 'sam@logicdesign.co.uk', '01284 345 345', 'N', 'Account Manager'),
+	(40, 1, 'Darren Smith', 'Media Consultant', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'Media consultant'),
+	(41, 1, 'Finn Johnson', 'Graphic Designer', 'finn@logicdesign.co.uk', '01284 345 345 ', 'N', 'Graphic designer');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
 
