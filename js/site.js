@@ -27,4 +27,6 @@ $(document).ready(function(){
 	$('form').keypress(function(e){
 		if ( e.which == 13 ) e.preventDefault();
 	});
+
+	$("#my-text-input").tokenInput("/url/to/your/script/");
 });
