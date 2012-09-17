@@ -14,6 +14,11 @@
 			$this->load->view('templates/footer');
 		}
 
+		public function view($id){
+			var_dump('You are here to view the business with the id of : ' . $id);
+			exit;
+		}
+
 		public function add(){
 			$data['title'] = 'Add a business';
 			$this->load->view('templates/header', $data);

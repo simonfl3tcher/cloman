@@ -5,7 +5,19 @@
 
 <div id="tableContainer">
 	<!-- Put the table in here -->
-	<?php $this->load->partial('contacts/partials/table_partial.php'); ?>
+	<table id="search" class="table table-hover" data-useAjax='true'>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Phone No.</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php $this->load->partial('contacts/partials/table_partial.php'); ?>
+		</tbody>
+	</table>
 </div>
 
 <br />
@@ -13,3 +25,6 @@
 <button class="boxes btn  btn-mini btn-success">Add a contact</button>
 <?php $this->load->partial('contacts/partials/add_partial.php');  ?>
 <br />
+<form>
+</form>
+						

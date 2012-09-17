@@ -22,8 +22,6 @@
 		}
 
 		public function add() {
-			var_dump($_POST);
-			exit;
 			if(!$this->request->isAjax()){
 				$data['title'] = 'Add Contact';
 				$data['countries'] = $this->helper_model->get_countries();
@@ -46,7 +44,7 @@
 			}
 		}
 
-		public function edit($id = null){
+		public function view($id = null){
 			$people = new People_CLass($id);
 			
 			if($this->request->isPost()){
@@ -58,7 +56,7 @@
 			$data['contact'] = $people;
 
 			$this->load->view('templates/header', $data);
-			$this->load->view('contacts/edit', $data);
+			$this->load->view('contacts/view', $data);
 			$this->load->view('templates/footer');
 		}
 
@@ -86,9 +84,15 @@
 		}
 
 		public function search(){
-			$data = $_POST['data'];
+			$d = $_POST['data'];
 			if($this->request->isPost()){
-				echo $this->contact_model->search_contact($data);
+				$data['contact_list'] = $this->contact_model->search_contact($d);
+				if(!empty($data['contact_list'])){
+					$this->load->partial('contacts/partials/table_partial', $data);
+				} else {
+					return false;
+				}
+				// var_dump($q);
 			} else {
 				return false;
 			}
@@ -96,6 +100,7 @@
 
 		public function details($contactId){
 			$data['contact_details'] = $this->contact_model->contact_deatils($contactId);
+			$data['business_details'] = $this->contact_model->contact_businesses($contactId);
 			$data['title'] = 'Contact Details';
 			$this->load->partial('contacts/partials/details_partial', $data);
 		}

@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-16 11:40:36
+-- Date/time:                    2012-09-17 22:49:58
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `businesses` (
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`business_id`),
   KEY `business_id` (`business_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table my.company.businesses: ~11 rows (approximately)
 DELETE FROM `businesses`;
@@ -59,8 +59,43 @@ INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`)
 	(10, '11', 'Apestpro', '84', 'paul@apestpro.co.uk'),
 	(11, '0', 'Finns Freelancer', '01284 345345', 'finn@finn.co.uk'),
 	(12, '12', 'Kats Designs', '01284 345 345', 'kat@logicdesign.co.uk'),
-	(15, '13', 'Waitrose', '10', 'finn@finn.co.uk');
+	(15, '13', 'Waitrose', '10', 'finn@finn.co.uk'),
+	(16, '0', '', '', ''),
+	(17, '0', '', '', ''),
+	(18, '0', 'Logic Two', '01284 345 345', 'finn@finn.co.uk'),
+	(19, '0', 'Logic Two', '10', 'finn@finn.co.uk'),
+	(20, '0', 'fdgfdgsd', 'fsdfdsf', 'fddsf');
 /*!40000 ALTER TABLE `businesses` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.business_to_people
+DROP TABLE IF EXISTS `business_to_people`;
+CREATE TABLE IF NOT EXISTS `business_to_people` (
+  `b2p_id` int(10) NOT NULL AUTO_INCREMENT,
+  `business_id` int(10) DEFAULT '0',
+  `people_id` int(10) DEFAULT '0',
+  PRIMARY KEY (`b2p_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.business_to_people: ~3 rows (approximately)
+DELETE FROM `business_to_people`;
+/*!40000 ALTER TABLE `business_to_people` DISABLE KEYS */;
+INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
+	(4, 1, 43),
+	(5, 2, 43),
+	(6, 6, 43),
+	(7, 0, 44),
+	(8, 19, 49),
+	(9, 0, 50),
+	(10, 0, 51),
+	(11, 0, 52),
+	(12, 1, 53),
+	(13, 6, 53),
+	(14, 20, 54),
+	(15, 1, 55),
+	(16, 6, 55),
+	(17, 0, 56);
+/*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.connections
@@ -100,7 +135,6 @@ DELETE FROM `connection_options`;
 DROP TABLE IF EXISTS `people`;
 CREATE TABLE IF NOT EXISTS `people` (
   `people_id` int(10) NOT NULL AUTO_INCREMENT,
-  `business_id` int(10) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `role` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -108,19 +142,23 @@ CREATE TABLE IF NOT EXISTS `people` (
   `is_primary_contact` enum('Y','N') DEFAULT 'N',
   `notes` text,
   PRIMARY KEY (`people_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.people: ~7 rows (approximately)
+-- Dumping data for table my.company.people: ~8 rows (approximately)
 DELETE FROM `people`;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` (`people_id`, `business_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`) VALUES
-	(19, 17, 'Simon Fletcher', 'Website Developer', 'simon@logicdesign.co.uk', '01284 789 789', 'N', 'Web Developer'),
-	(27, 1, 'Keith Bradley', 'Managing Director', 'keith.bradley@logicdesign.co.uk', '01248 789 789', 'N', 'Web Developer'),
-	(28, 9, 'Howie', 'Managing Director', 'howie@logicdesign.co.uk', '01284 345 345', 'N', 'Media Consultant'),
-	(31, 9, 'Adam Howson', 'Web Designer', 'adam@logicdesign.co.uk', '01284 345345', 'N', 'Graphic Designer'),
-	(37, 1, 'Sam Hunt', 'Account Manager', 'sam@logicdesign.co.uk', '01284 345 345', 'N', 'Account Manager'),
-	(40, 1, 'Darren Smith', 'Media Consultant', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'Media consultant'),
-	(41, 1, 'Finn Johnson', 'Graphic Designer', 'finn@logicdesign.co.uk', '01284 345 345 ', 'N', 'Graphic designer');
+INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`) VALUES
+	(40, 'Darren Smith', 'Media Consultant', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'Media consultant'),
+	(42, 'David Williams', 'Media Consultant', 'simon@logicdesign.co.uk', '01284 345345', 'N', 'dfsfdf'),
+	(43, 'Charlie Robinson', 'MD', 'simon@logicdesign.co.uk', '10', 'N', 'This system is really starting to take place'),
+	(44, 'Charlie Robinson', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg'),
+	(45, 'Paul Fletcher', 'MD', 'paul@apestpro.co.uk', '7', 'N', ''),
+	(46, 'Darren Smith', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', ''),
+	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', ''),
+	(49, 'Finn Johnson', 'Website Developer', 'charlie@robinson.co.uk', '120165578', 'N', ''),
+	(51, 'dgssfdd', 'sdgdsfsd', 'sdgdsgf', 'sdgsfdf', 'N', ''),
+	(52, 'dsfdsgfd', 'fdgdfgfd', 'sdfdsf', 'sdfsdf', 'N', ''),
+	(55, 'asadasd', 'asd', 'asdasd', 'asdsad', 'N', 'asdsadsafasdsad');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
 

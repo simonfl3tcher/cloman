@@ -10,9 +10,11 @@
 <p>
 	<?php echo $contact_details->phone; ?>
 </p>
+<?php foreach($business_details as $bd){ ?>
 <h5>
-	<?php echo $contact_details->business_name; ?>
+	<a href="/businesses/view/<?php echo $bd['business_id']; ?>"><?php echo $bd['name'] ?></a>
 </h5>
+<?php } ?>
 <h6>
 	<?php echo $contact_details->role; ?>
 </h6>
@@ -27,4 +29,5 @@
 	} ?>
 </p>
 
-<a href="/contacts/edit/<?php echo $contact_details->people_id; ?>"><span class="icon edit-icon">edit</span></a>
+
+<a href="/contacts/view/<?php echo $contact_details->people_id; ?>"><span class="icon edit-icon">edit</span></a>

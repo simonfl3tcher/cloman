@@ -4,7 +4,7 @@
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
               <h3 id="myModalLabel">Add A Contact</h3>
             </div>
-            <div class="modal-body">
+            <div class="modal-body">				
 					<table class="std">
 						<tbody>
 							<tr class="largeField">
@@ -42,23 +42,8 @@
 					</div>
 					
 					<table class="std">
-						<tbody>
-						<tr  class="largeField">
-							<label>Businesses</label>
-							<td>
-								<input id="my-text-input" type="text" name="business[Current_2]" class="selectBusiness" />
-							</td>
-						</tr>
-					</table>
-					<!-- 	<tr>
-							<td>
-								<select name="business[Current]" class="selectBusiness">
-								<option value="">- Please select a business -</option>
-								<?php foreach($business as $bus){ ?>
-									<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
-								<?php } ?>
-								</select>
-							</td>
+						<tr>
+							<td><input id="my-text-input" type="text" name="business[Current_2]" class="selectBusiness" /></td>
 							<td>
 								<p class="addBusiness">Add a new business</p>
 							</td>
@@ -100,9 +85,10 @@
 							</tr>
 						</tbody>
 					</table>
-				</div> -->
+				</div>
 		</div>
             <div class="modal-footer">
+            	<button type="reset" class="resetForm btn">Reset</button>
               <button data-dismiss="modal" type="reset" class="btn">Close</button>
               <button data-dismiss="modal" type="submit" class="btn btn-primary">Save Contact</button>
             </div>

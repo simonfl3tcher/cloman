@@ -11,7 +11,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
     overflow: auto;
     position: fixed;
-    z-index: 1000;
+    z-index: 900;
     display: none;
     padding:20px;
 }

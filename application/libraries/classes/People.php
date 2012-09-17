@@ -22,7 +22,6 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"people_id" => "ID", 
-				"business_id" => "BusinessID",
 				"name" => "Name", 
 				"role" => "Role",
 				"email" => "Email", 

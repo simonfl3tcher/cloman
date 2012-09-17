@@ -38,9 +38,16 @@
 				$address->save();
 			}
 
-			$bid = $_POST['business']['Current'];
+			$member->setName($_POST['contact']['Name']);
+			$member->setRole($_POST['contact']['Role']);
+			$member->setEmail($_POST['contact']['Email']);
+			$member->setPhone($_POST['contact']['Phone']);
+			$member->setNotes($_POST['contact']['Notes']);
+			$member->save();
 
-			if($bid == ''){
+
+			$bus = explode(',', $_POST['business']['Current_2']);
+			if(empty($_POST['business']['Current_2']) && $_POST['business']['Name'] !== ''){
 				if(isset($address)){
 					$aid = $address->getID();
 				} else {
@@ -52,15 +59,15 @@
 				$business->setEmail($_POST['business']['Email']);
 				$business->save();
 				$bid = $business->getID();
+
+				$bus = array($business->getID());
 			}
 
-			$member->setName($_POST['contact']['Name']);
-			$member->setRole($_POST['contact']['Role']);
-			$member->setEmail($_POST['contact']['Email']);
-			$member->setPhone($_POST['contact']['Phone']);
-			$member->setNotes($_POST['contact']['Notes']);
-			$member->setBusinessID($bid);
-			$member->save();
+			foreach($bus as $b){
+				$sql = "INSERT INTO business_to_people (business_id, people_id)
+VALUES (?, ?)";
+				$query = $this->db->query($sql, array($b, $member->getID()));
+			}
 			return true;
 		}
 
@@ -95,15 +102,20 @@ or phone like '%{$data}%'
 or people_id like '%{$data}%'
 order by name asc";
 			$query = $this->db->query($sql);
-			return json_encode($query->result_array());
+			return $query->result_array();
 		}
 
 		public function contact_deatils($id){
-			$sql = "select p.*, b.name as business_name from people as p
-left join businesses as b on b.business_id = p.business_id
-where people_id = ?";
-			$query = $this->db->query($sql, array($id));
+			$query = $this->db->get_where('people', array('people_id'=>$id));
 			return $query->row();
+		}
+
+		public function contact_businesses($id){
+			$sql = "select * from businesses as b
+left join business_to_people as bp on bp.business_id = b.business_id
+where bp.people_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return $query->result_array();
 		}
 	}
 ?>
