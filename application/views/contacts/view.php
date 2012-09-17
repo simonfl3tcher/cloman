@@ -41,18 +41,27 @@
 		<tbody>
 		<tr  class="largeField">
 			<td>
-				<select class="selectBusiness" name="business[Current]">
-				<option value="">- Please select a business -</option>
-				<?php foreach($business as $bus){ ?>
-					<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
-				<?php } ?>
-				</select>
-			</td>
-			<td>
-				<p class="addBusiness">Add a new business</p>
+				<input class="my-text-input" type="text" name="business[Current_2]" class="selectBusiness" />
 			</td>
 		</tr>
 	</table>
 	<br />
 	<input type="submit" class="btn btn-mini btn-success" value="Update Contact" />
 </form>
+
+<script>
+	var c = window.location.pathname;
+	var x = c.substr(c.lastIndexOf('/')+1);
+	$.ajax({
+		url: '/contacts/get_businesses/' + x,
+		type: 'GET',
+		data: 'json',
+		success: function(data){
+			$(".my-text-input").tokenInput("/businesses/search", {
+				theme: "facebook",
+				prePopulate: data,
+				preventDuplicates: true
+			});
+		},
+	});
+</script>

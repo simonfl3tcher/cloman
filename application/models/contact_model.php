@@ -45,8 +45,8 @@
 			$member->setNotes($_POST['contact']['Notes']);
 			$member->save();
 
-
 			$bus = explode(',', $_POST['business']['Current_2']);
+
 			if(empty($_POST['business']['Current_2']) && $_POST['business']['Name'] !== ''){
 				if(isset($address)){
 					$aid = $address->getID();
@@ -63,11 +63,8 @@
 				$bus = array($business->getID());
 			}
 
-			foreach($bus as $b){
-				$sql = "INSERT INTO business_to_people (business_id, people_id)
-VALUES (?, ?)";
-				$query = $this->db->query($sql, array($b, $member->getID()));
-			}
+			self::insert_relational($bus, $member->getID());
+
 			return true;
 		}
 
@@ -79,6 +76,19 @@ VALUES (?, ?)";
 			$member->setPhone($_POST['contact']['Phone']);
 			$member->setNotes($_POST['contact']['Notes']);
 			$member->save();
+
+			$bus = explode(',', $_POST['business']['Current_2']);
+			self::insert_relational($bus, $member->getID());
+			return true;
+		}
+
+		public function insert_relational($bus=array(), $memId = null){
+			$this->db->delete('business_to_people', array('people_id' => $memId)); 
+			foreach($bus as $b){
+				$sql = "INSERT INTO business_to_people (business_id, people_id)
+VALUES (?, ?)";
+				$query = $this->db->query($sql, array($b, $memId));
+			}
 			return true;
 		}
 
@@ -110,12 +120,21 @@ order by name asc";
 			return $query->row();
 		}
 
-		public function contact_businesses($id){
-			$sql = "select * from businesses as b
+		public function contact_businesses($id, $json = false){
+			if($json){
+				$select = "SELECT b.business_id as id, b.name";
+			} else {
+				$select = "SELECT *";
+			}
+			$sql = $select . " from businesses as b
 left join business_to_people as bp on bp.business_id = b.business_id
 where bp.people_id = ?";
 			$query = $this->db->query($sql, array($id));
-			return $query->result_array();
+			if(!$json){
+				return $query->result_array();
+			} else {
+				return json_encode($query->result_array());
+			}
 		}
 	}
 ?>

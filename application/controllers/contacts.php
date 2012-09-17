@@ -104,5 +104,10 @@
 			$data['title'] = 'Contact Details';
 			$this->load->partial('contacts/partials/details_partial', $data);
 		}
+
+		public function get_businesses($id){
+			$q = $this->contact_model->contact_businesses($id, true);
+			echo $q;
+		}
 	}
 ?>
