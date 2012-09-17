@@ -44,8 +44,15 @@
 					<table class="std">
 						<tbody>
 						<tr  class="largeField">
+							<label>Businesses</label>
 							<td>
-								<select class="selectBusiness" name="business[Current]">
+								<input id="my-text-input" type="text" name="business[Current_2]" class="selectBusiness" />
+							</td>
+						</tr>
+					</table>
+					<!-- 	<tr>
+							<td>
+								<select name="business[Current]" class="selectBusiness">
 								<option value="">- Please select a business -</option>
 								<?php foreach($business as $bus){ ?>
 									<option value="<?php echo $bus['business_id']; ?>"><?php echo $bus['name']; ?></option>
@@ -93,7 +100,7 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
+				</div> -->
 		</div>
             <div class="modal-footer">
               <button data-dismiss="modal" type="reset" class="btn">Close</button>

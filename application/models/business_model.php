@@ -21,5 +21,12 @@
 
 			return $query->result_array();
 		}
+
+		public function search_businesses($data) {
+			$sql = "SELECT business_id as id, name from businesses where name like '%{$data}%'
+order by name asc";
+			$query = $this->db->query($sql);
+			return json_encode($query->result_array());
+		}
 	}
 ?>

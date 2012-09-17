@@ -143,8 +143,8 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				$('form')[0].reset();
-				window.location.reload();
+				// $('form')[0].reset();
+				// window.location.reload();
 			},
 			error: function(data){
 				alert('Something went wrong...');

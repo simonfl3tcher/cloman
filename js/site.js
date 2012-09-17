@@ -28,5 +28,7 @@ $(document).ready(function(){
 		if ( e.which == 13 ) e.preventDefault();
 	});
 
-	$("#my-text-input").tokenInput("/url/to/your/script/");
+	$("#my-text-input").tokenInput("/businesses/search", {
+		theme: "facebook"
+	});
 });

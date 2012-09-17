@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/poup.js"></script>
 	<script src="<?php echo base_url(); ?>/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/popup.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/token.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-responsive.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/site.css" />

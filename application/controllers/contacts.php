@@ -22,6 +22,8 @@
 		}
 
 		public function add() {
+			var_dump($_POST);
+			exit;
 			if(!$this->request->isAjax()){
 				$data['title'] = 'Add Contact';
 				$data['countries'] = $this->helper_model->get_countries();

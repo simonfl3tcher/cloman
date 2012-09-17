@@ -13,6 +13,3 @@
 <button class="boxes btn  btn-mini btn-success">Add a contact</button>
 <?php $this->load->partial('contacts/partials/add_partial.php');  ?>
 <br />
-
-<label>Search database</label>
-<input id="my-text-input" type="text" />
