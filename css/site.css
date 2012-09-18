@@ -27,3 +27,16 @@ textarea {
 .deleteRow {
     opacity: 0.5;
 }
+
+.resetForm {
+    background-image: url("../bootstrap/img/glyphicons-halflings.png");
+    background-position: -239px -174px;
+    display: inline-block;
+    float: left;
+    height: 20px;
+    margin-right: 10px;
+    margin-top: 0;
+    padding-top: 10px;
+    vertical-align: middle;
+    width: 20px;
+}

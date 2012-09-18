@@ -88,7 +88,7 @@
 				</div>
 		</div>
             <div class="modal-footer">
-            	<button type="reset" class="resetForm btn">Reset</button>
+            	<div class="resetForm"></div>
               <button data-dismiss="modal" type="reset" class="btn">Close</button>
               <button data-dismiss="modal" type="submit" class="btn btn-primary">Save Contact</button>
             </div>

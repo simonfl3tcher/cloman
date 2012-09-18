@@ -18,6 +18,7 @@
 
 			$this->db->select('*');
 			$this->db->from('people');
+			$this->db->where('disabled', 'N');
 			$this->db->order_by('name', 'asc');
 
 			$query = $this->db->get();
@@ -92,9 +93,10 @@ VALUES (?, ?)";
 			return true;
 		}
 
-		public function delete_contact($id){
+		public function disable_contact($id){
 			$contact = new People_Class($id);
-			$contact->MarkForDeletion();
+			$contact->setDisabled('Y');
+			$contact->save();
 		}
 
 		public function edit_contact($id){
@@ -106,10 +108,10 @@ VALUES (?, ?)";
 			// Do a sql statement here to search the contacts.
 			$sql = "SELECT people_id, name, email, phone 
 FROM people
-where name like '%{$data}%'
+where disabled = 'N' and (name like '%{$data}%'
 or email like '%{$data}%'
 or phone like '%{$data}%'
-or people_id like '%{$data}%'
+or people_id like '%{$data}%')
 order by name asc";
 			$query = $this->db->query($sql);
 			return $query->result_array();

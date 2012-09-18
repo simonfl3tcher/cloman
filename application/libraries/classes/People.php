@@ -8,6 +8,7 @@
 		protected $Phone;
 		protected $Notes;
 		protected $IsPrimaryContact;
+		protected $Disabled;
 
 		protected function DefineTableName(){
 			return("people"); //Name of the table you want to use.
@@ -27,7 +28,8 @@
 				"email" => "Email", 
 				"phone" => "Phone",
 				"notes" => "Notes",
-				"is_primary_contact" => "IsPrimaryContact");
+				"is_primary_contact" => "IsPrimaryContact",
+				"disabled" => "Disabled");
 		}
 	}
 ?>

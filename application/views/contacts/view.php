@@ -59,7 +59,7 @@
 		success: function(data){
 			$(".my-text-input").tokenInput("/businesses/search", {
 				theme: "facebook",
-				prePopulate: data,
+				prePopulate: eval('(' + data + ')'),
 				preventDuplicates: true
 			});
 		},

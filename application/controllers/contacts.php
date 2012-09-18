@@ -60,8 +60,8 @@
 			$this->load->view('templates/footer');
 		}
 
-		public function delete($id){
-			$member = $this->contact_model->delete_contact($id);
+		public function disable($id){
+			$member = $this->contact_model->disable_contact($id);
 			redirect('/contacts', 'refresh');
 		}
 
