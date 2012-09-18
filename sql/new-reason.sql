@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-17 22:49:58
+-- Date/time:                    2012-09-18 21:58:07
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `businesses` (
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`business_id`),
   KEY `business_id` (`business_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.businesses: ~11 rows (approximately)
+-- Dumping data for table my.company.businesses: ~14 rows (approximately)
 DELETE FROM `businesses`;
 /*!40000 ALTER TABLE `businesses` DISABLE KEYS */;
 INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`) VALUES
@@ -75,15 +75,12 @@ CREATE TABLE IF NOT EXISTS `business_to_people` (
   `business_id` int(10) DEFAULT '0',
   `people_id` int(10) DEFAULT '0',
   PRIMARY KEY (`b2p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.business_to_people: ~3 rows (approximately)
+-- Dumping data for table my.company.business_to_people: ~16 rows (approximately)
 DELETE FROM `business_to_people`;
 /*!40000 ALTER TABLE `business_to_people` DISABLE KEYS */;
 INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
-	(4, 1, 43),
-	(5, 2, 43),
-	(6, 6, 43),
 	(7, 0, 44),
 	(8, 19, 49),
 	(9, 0, 50),
@@ -94,7 +91,12 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(14, 20, 54),
 	(15, 1, 55),
 	(16, 6, 55),
-	(17, 0, 56);
+	(17, 0, 56),
+	(18, 6, 43),
+	(19, 1, 43),
+	(20, 18, 43),
+	(23, 10, 57),
+	(29, 0, 58);
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
 
 
@@ -141,24 +143,16 @@ CREATE TABLE IF NOT EXISTS `people` (
   `phone` varchar(255) DEFAULT NULL,
   `is_primary_contact` enum('Y','N') DEFAULT 'N',
   `notes` text,
+  `disabled` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`people_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.people: ~8 rows (approximately)
+-- Dumping data for table my.company.people: ~2 rows (approximately)
 DELETE FROM `people`;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`) VALUES
-	(40, 'Darren Smith', 'Media Consultant', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'Media consultant'),
-	(42, 'David Williams', 'Media Consultant', 'simon@logicdesign.co.uk', '01284 345345', 'N', 'dfsfdf'),
-	(43, 'Charlie Robinson', 'MD', 'simon@logicdesign.co.uk', '10', 'N', 'This system is really starting to take place'),
-	(44, 'Charlie Robinson', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg'),
-	(45, 'Paul Fletcher', 'MD', 'paul@apestpro.co.uk', '7', 'N', ''),
-	(46, 'Darren Smith', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', ''),
-	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', ''),
-	(49, 'Finn Johnson', 'Website Developer', 'charlie@robinson.co.uk', '120165578', 'N', ''),
-	(51, 'dgssfdd', 'sdgdsfsd', 'sdgdsgf', 'sdgsfdf', 'N', ''),
-	(52, 'dsfdsgfd', 'fdgdfgfd', 'sdfdsf', 'sdfsdf', 'N', ''),
-	(55, 'asadasd', 'asd', 'asdasd', 'asdsad', 'N', 'asdsadsafasdsad');
+INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`, `disabled`) VALUES
+	(44, 'Charlie Robinson', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'N'),
+	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', '', 'N');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
 
