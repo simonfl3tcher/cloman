@@ -1,6 +1,6 @@
 <p>This is the contact home page check it out y'alll</p>
 <div class="control-group">
-	<input type="text" name="search" id="search" data-searchurl="/contacts/search" />
+	<input type="text" name="search" id="search" data-searchurl="/contacts/search" placeholder="Search Contact"/>
 </div>
 
 <div id="tableContainer">
