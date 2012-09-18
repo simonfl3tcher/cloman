@@ -40,3 +40,22 @@ textarea {
     vertical-align: middle;
     width: 20px;
 }
+
+.util-button-new {
+    background: -moz-linear-gradient(center top , #F6F6F6, #EAEAEA) no-repeat scroll 0 0 #EAEAEA;
+    border: 1px solid #DCDCDC;
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    padding: 5px;
+    width: 16px;
+}
+
+.util-button-new .edit {
+    background-image: url("../img/mastersprite16_aug302012-2.png?1347364552");
+    background-position: 0 -6464px;
+    display: block;
+    height: 16px;
+    width: 16px;
+}

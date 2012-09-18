@@ -29,5 +29,4 @@
 	} ?>
 </p>
 
-
-<a href="/contacts/view/<?php echo $contact_details->people_id; ?>"><span class="icon edit-icon">edit</span></a>
+<a href="/contacts/view/<?php echo $contact_details->people_id; ?>"><span class="util-button-new first"><span class="edit"></span></span></a>
