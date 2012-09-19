@@ -1,3 +1,6 @@
+h1, h2, h3, h4, h5, h6 {
+    color:#a5a5a5;
+}
 .sidebarSlider {
 	position: absolute;
 	background-color:#000;
@@ -29,16 +32,13 @@ textarea {
 }
 
 .resetForm {
-    background-image: url("../bootstrap/img/glyphicons-halflings.png");
-    background-position: -239px -174px;
     display: inline-block;
     float: left;
-    height: 20px;
     margin-right: 10px;
     margin-top: 0;
     padding-top: 10px;
     vertical-align: middle;
-    width: 20px;
+    cursor:pointer;
 }
 
 .util-button-new {
@@ -59,3 +59,89 @@ textarea {
     height: 16px;
     width: 16px;
 }
+
+/* General Classes */
+
+.paddingTop {
+    padding-top:10px;
+}
+
+.paddingBottom {
+    padding-bottom:10px;
+}
+
+/* Modal setting specific to this project */
+
+.modal {
+    width:600px;
+}
+
+.modal-body {
+    max-height:460px;
+}
+
+.addWrapper {
+    margin: 0 auto;
+    width: 470px;
+}
+
+.addWrapper textarea {
+    width: 97%;
+}
+
+.addWrapper ul.token-input-list-facebook {
+    width:404px;
+}
+
+.addWrapper td {
+    padding-right:10px;
+}
+
+/* End of modal settings */
+
+/* Icon */
+
+.icon {
+    background-image: url("../img/mastersprite16_aug302012-2.png?1347364552");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 16px;
+}
+
+.icon.contactIcon {
+    background-position: 0 -2079px;
+}
+
+.icon.plusIcon {
+     background-position: 0 -5728px;
+}
+
+.icon.resetIcon {
+    background-position: 0 -1589px;
+}
+
+.icon.busniessIcon {
+    background-position: 0 -9123px;
+}
+.addBusiness {
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+/* Page Layout */
+
+
+
+/* End of Page layout */
+
+
+/* Misc Classes */
+
+.addBusinessTitle h6{
+    margin-top:0px;
+}
+/* End of Misc classes */
