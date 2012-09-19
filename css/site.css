@@ -70,6 +70,10 @@ textarea {
     padding-bottom:10px;
 }
 
+.paddingTop-20 {
+    padding-top:20px;
+}
+
 /* Modal setting specific to this project */
 
 .modal {
@@ -83,6 +87,7 @@ textarea {
 .addWrapper {
     margin: 0 auto;
     width: 470px;
+    padding-bottom: 20px;
 }
 
 .addWrapper textarea {
@@ -125,7 +130,7 @@ textarea {
 }
 
 .icon.busniessIcon {
-    background-position: 0 -9123px;
+    background-position: 0 -9121px;
 }
 .addBusiness {
     cursor: pointer;
@@ -143,5 +148,6 @@ textarea {
 
 .addBusinessTitle h6{
     margin-top:0px;
+    display:inline-block;
 }
 /* End of Misc classes */

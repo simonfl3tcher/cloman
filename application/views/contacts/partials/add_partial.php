@@ -51,7 +51,7 @@
 						</table>
 
 						<div class="businessForm">
-							<div class="paddingTop paddingBottom">
+							<div class="paddingTop-20 paddingBottom">
 								<span class="icon busniessIcon"></span>
 								<span class="addBusinessTitle"><h6>Add a new business</h6></span>
 							</div>
@@ -78,21 +78,25 @@
 										<span><input type="text" value="" id="address_Address_Line_1" name="address[Address_Line_1]"></span>
 									</td>
 									<td>
-										<label for="address_Address_Line_2">Street</label>
+										<label for="address_Address_Line_2">Address Line 1</label>
 										<span><input type="text" value="" id="address_Address_Line_2" name="address[Address_Line_2]"></span>
 									</td>
 								</tr>
 								<tr class="largeField">
 									<td>
-										<label for="address_Address_Line_3">Area</label>
+										<label for="address_Address_Line_3">Address Line 2</label>
 										<span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span>
 									</td>
+									<td>
+										<label for="address_Address_Line_3">Region</label>
+										<span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span>
+									</td>
+								</tr>
+								<tr>
 									<td>
 										<label for="address_City">Town / City*</label>
 										<span><input type="text" value="" id="address_City" name="address[City]"></span>
 									</td>
-								</tr>
-								<tr>
 									<td>
 										<label for="address_Postcode">Postcode*</label>
 										<span><input type="text" value="" id="address_Postcode" name="address[Postcode]"></span>
