@@ -69,7 +69,8 @@ $(document).ready(function(){
 		e.stopPropagation();
 	});
 
-	$('div:not(.sidebarSlider ):not(.sidebarSlider div)').bind('click', function(){
+	$('div:not(.sidebarSlider)').bind('click', function(){
+		console.log('helo');
 		var container = $('.sidebarSlider');
 		if(container.hasClass('open')){
 			container.slideRightHide();

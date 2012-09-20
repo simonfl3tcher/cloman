@@ -1,6 +1,12 @@
-h1, h2, h3, h4, h5, h6 {
-    color:#a5a5a5;
+body {
+    font-family: arial,sans-serif
 }
+
+h1, h2, h3, h4, h5, h6 {
+    color:#525252;
+}
+
+/* Side Slidebar Styling */
 .sidebarSlider {
 	position: absolute;
 	background-color:#000;
@@ -16,9 +22,88 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     z-index: 900;
     display: none;
-    padding:20px;
 }
 
+.sidebarSlider .content {
+    height:100%;
+    padding:0px 20px 20px;
+}
+
+.sidebarSlider .preview-header {
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-top: 32px;
+}
+
+.sidebarSlider h1 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.sidebarSlider .img-actions {
+    float:left;
+}
+
+.sidebarSlider .img-ext {
+    float:right;
+}
+
+.sidebarSlider .bd {
+    float: left;
+    margin-top: -15px;
+    padding-left: 47px;
+}
+
+.sidebarSlider .img-actions,
+.sidebarSlider .bd,
+.sidebarSlider .img-ext {
+    display:inline-block;
+}
+
+.sidebarSlider .content .fields .label {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: right;
+    vertical-align: top;
+    width: 100px;
+    word-wrap: break-word;
+    padding-left:5px;
+    text-shadow:none;
+    background-color:#fff;
+    color: #525252;
+}
+
+.sidebarSlider .content .fields .value {
+    font-size: 12px;
+    vertical-align: top;
+    float:left;
+    color: #a5a5a5;
+    padding-left:20px;
+    margin-top:-2px;
+
+}
+
+.sidebarSlider .content .fields {
+    -moz-transition-duration: 0.25s;
+    -moz-transition-property: background-color;
+    -moz-transition-timing-function: ease-in-out;
+    margin-bottom: 0;
+    padding:15px 0;
+}
+
+.sidebarSlider .content .fields:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+}
+
+/* End of side slidebar styling */
 .businessForm {
     display:none;
 }
