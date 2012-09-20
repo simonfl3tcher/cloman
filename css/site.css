@@ -5,7 +5,7 @@ h1, h2, h3, h4, h5, h6 {
 	position: absolute;
 	background-color:#000;
 	height:100%;
-	width: 400px;
+	width: 502px;
 	top: 0;
 	right:0;
 	-moz-box-sizing: border-box;
@@ -50,15 +50,35 @@ textarea {
     line-height: 16px;
     padding: 5px;
     width: 16px;
+    cursor:pointer;
 }
 
-.util-button-new .edit {
+/* Icon buttons */
+
+.util-button-new span {
     background-image: url("../img/mastersprite16_aug302012-2.png?1347364552");
-    background-position: 0 -6464px;
     display: block;
     height: 16px;
     width: 16px;
 }
+
+.util-button-new .edit {
+    background-position: 0 -6464px;
+}
+
+.util-button-new .disable {
+    background-position: 0 -1664px;
+}
+
+.util-button-new .addPerson {
+    background-position: 0 -2079px;
+}
+
+.util-button-new .closeSlider {
+    background-position: 0 -3584px;
+}
+
+/* End of icon buttons */
 
 /* General Classes */
 
@@ -131,6 +151,21 @@ textarea {
 
 .icon.busniessIcon {
     background-position: 0 -9121px;
+}
+
+.icon.hashIcon {
+    background-position: 0 -1854px;
+}
+
+.icon.personIcon {
+    background-position: 0 -2751px;
+}
+
+.icon.emailIcon {
+    background-position: 0 -1375px;
+}
+.icon.phoneIcon {
+    background-position: 0 -3295px;
 }
 .addBusiness {
     cursor: pointer;

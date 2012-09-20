@@ -1,3 +1,4 @@
+<span class="util-button-new first"><span class="closeSlider"></span></span>
 <h1><?php echo $title; ?></h1>
 
 <h3>

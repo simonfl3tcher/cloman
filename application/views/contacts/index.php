@@ -1,4 +1,3 @@
-<p>This is the contact home page check it out y'alll</p>
 <div class="control-group">
 	<input type="text" name="search" id="search" data-searchurl="/contacts/search" placeholder="Search Contact"/>
 </div>
@@ -8,10 +7,10 @@
 	<table id="search" class="table table-hover" data-useAjax='true'>
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Phone No.</th>
+				<th><span class="icon hashIcon"></th>
+				<th><span class="icon personIcon"></span></th>
+				<th><span class="icon emailIcon"></span></th>
+				<th><span class="icon phoneIcon"></span></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,7 +21,7 @@
 
 <br />
 <br />
-<button class="boxes btn  btn-mini btn-success">Add a contact</button>
+<span class="boxes-add util-button-new first"><span class="addPerson"></span></span>
 <?php $this->load->partial('contacts/partials/add_partial.php');  ?>
 <br />
 <form>

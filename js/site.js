@@ -8,7 +8,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.boxes').bind('click', function(e){
+	$('.boxes-add').bind('click', function(e){
 		e.preventDefault();
 		$('#myModal').modal({
 			backdrop:true,
