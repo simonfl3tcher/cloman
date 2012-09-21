@@ -8,6 +8,8 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#search').trigger('keyup');
+
 	$('.boxes-add').bind('click', function(e){
 		e.preventDefault();
 		$('#myModal').modal({
@@ -17,12 +19,17 @@ $(document).ready(function(){
 	});
 
 
-	$('.addBusiness').bind('click', function(){
-		var dropdown = $('.selectBusiness');
+	$('.addBusiness').toggle(
+		function(){
+		$(this).addClass('open');
 		$('.businessForm').slideDown(1000);
 		$('.modal-body').delay(500).animate({ scrollTop: $('.modal-body').height() - $('.businessForm').height()}, 1000);
-		dropdown.addClass('open');
-	});	
+	},
+	function() {
+		$(this).removeClass('open');
+		$('.businessForm').slideUp(1000);
+	}
+	);	
 
 	$('form').keypress(function(e){
 		if ( e.which == 13 ) e.preventDefault();

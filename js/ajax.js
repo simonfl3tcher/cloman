@@ -8,8 +8,6 @@ $(document).ready(function(){
 		async: false
 	});
 
-	$('form')[0].reset();
-
 	$(':submit').click(function(e){
 		var formId = $(this).closest('form');
 		if($(formId).attr('data-useAjax') == 'true'){
@@ -25,7 +23,7 @@ $(document).ready(function(){
 		}
 	})
 
-	$('#search .delete').click(function(e){
+	$('#search .delete').live('click', function(e){
 		e.preventDefault();
 		var containingTr = $(this).parent().parent();
 		containingTr.animate({ opacity: 0.0 }, 500);
@@ -44,43 +42,13 @@ $(document).ready(function(){
 				//console.log('well done');
 			},
 			error: function(data){
-				conosole.loh('There was an error when trying to delete');
+				alert('There was an error when trying to delete');
 			}
 		});
 	});
 
-	$('#search').keyup(function(){
-		var data = 'data=' + $(this).val();
-		$.ajax({
-			url: $(this).attr('data-searchurl'),
-			type: 'POST',
-			dataType: 'html',
-			data: data,
-			success: function(data){
-				searchResults(data);
-			},
-			error: function(data){
-				// alert('There is an error in the system');
-			}
-		});
-	});
-
-	$('table tr td a').bind('click', function(e){
-		e.stopPropagation();
-	});
-
-	$('div:not(.sidebarSlider)').bind('click', function(){
-		console.log('helo');
-		var container = $('.sidebarSlider');
-		if(container.hasClass('open')){
-			container.slideRightHide();
-			setTimeout(function(){
-				$('.sidebarSlider').html('');
-			}, 900);
-		}
-	});
-
-	$('table tr td:nth-child(2) a').bind('click', function(e){
+	$('table tr td:nth-child(2) a').live('click', function(e){
+		console.log('hello');
 		e.preventDefault();
 		if(!$('.sidebarSlider').length){
 			$(document.body).append('<div class="sidebarSlider"></div>');
@@ -91,6 +59,32 @@ $(document).ready(function(){
 			addAjaxloader($('.sidebarSlider'));
 			container.slideRightShow();
 			removeAjaxloader($('.sidebarSlider'), 1000);
+		}
+	});
+
+	$('#search').keyup(function(){
+		var data = 'data=' + $(this).val();
+		$.ajax({
+			url: $(this).attr('data-searchurl'),
+			type: 'POST',
+			dataType: 'html',
+			data: data
+		}).done(function(data){
+			searchResults(data);
+		});
+	});
+
+	$('table tr td a').bind('click', function(e){
+		e.stopPropagation();
+	});
+
+	$('div').not('.sidebarSlider').bind('click', function(){
+		var container = $('.sidebarSlider');
+		if(container.hasClass('open')){
+			container.slideRightHide();
+			setTimeout(function(){
+				$('.sidebarSlider').html('');
+			}, 900);
 		}
 	});
 

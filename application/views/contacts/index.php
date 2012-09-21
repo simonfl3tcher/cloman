@@ -7,7 +7,7 @@
 	<table id="search" class="table table-hover" data-useAjax='true'>
 		<thead>
 			<tr>
-				<th><span class="icon hashIcon"></th>
+				<th><span class="icon hashIcon"></span></th>
 				<th><span class="icon personIcon"></span></th>
 				<th><span class="icon emailIcon"></span></th>
 				<th><span class="icon phoneIcon"></span></th>

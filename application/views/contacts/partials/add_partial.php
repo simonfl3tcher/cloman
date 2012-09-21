@@ -45,7 +45,7 @@
 							<tr>
 								<td><input id="my-text-input" type="text" name="business[Current_2]" class="selectBusiness" /></td>
 								<td>
-									<div class="addBusiness icon plusIcon"></div>
+									<div class="addBusiness icon downArrow"></div>
 								</td>
 							</tr>
 						</table>

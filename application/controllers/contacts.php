@@ -74,15 +74,6 @@
 			}
 		}
 
-		public function ajax() {
-			var_dump($_POST);
-			if($this->request->isPost()){
-				var_dump('true');
-			} else {
-				var_dump('false');
-			}
-		}
-
 		public function search(){
 			$d = $_POST['data'];
 			if($this->request->isPost()){
@@ -102,7 +93,12 @@
 			$data['contact_details'] = $this->contact_model->contact_deatils($contactId);
 			$data['business_details'] = $this->contact_model->contact_businesses($contactId);
 			$data['title'] = 'Contact Details';
-			$this->load->partial('contacts/partials/details_partial', $data);
+
+			// Bellow is needed for the side bar partial to work.
+			$data['icon'] = 'personIcon';
+			$data['bannerTitle'] = $data['contact_details']->name;
+			$data['sidebarUrl'] = 'sidebar-views/people_view';
+			$this->load->partial('sidebar-views/details_partial', $data);
 		}
 
 		public function get_businesses($id){

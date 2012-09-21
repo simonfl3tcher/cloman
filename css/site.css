@@ -25,12 +25,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebarSlider .content {
-    height:100%;
+    height:96%;
     padding:0px 20px 20px;
 }
 
 .sidebarSlider .preview-header {
-    border-bottom: 1px solid #DDDDDD;
     margin-bottom: 20px;
     overflow: hidden;
     padding-top: 32px;
@@ -43,6 +42,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebarSlider .img-actions {
     float:left;
+    margin-top:5px;
+    margin-left: 8px;
 }
 
 .sidebarSlider .img-ext {
@@ -51,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebarSlider .bd {
     float: left;
-    margin-top: -15px;
+    margin-top: -13px;
     padding-left: 47px;
 }
 
@@ -82,6 +83,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #a5a5a5;
     padding-left:20px;
     margin-top:-2px;
+    width: 60%;
 
 }
 
@@ -101,6 +103,13 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     visibility: hidden;
     width: 0;
+}
+
+.sidebarSlider .action-bar {
+    background: none repeat scroll 0 0 #F3F3F3;
+    border-top: 1px solid #DBDBDB;
+    height: 30px;
+    padding-left: 10px;
 }
 
 /* End of side slidebar styling */
@@ -163,6 +172,13 @@ textarea {
     background-position: 0 -3584px;
 }
 
+.util-button-new .downArrow {
+    background-position:0 -2048px;
+}
+
+.util-button-new .downArrow.open {
+    background-position:0 -2048px;
+}
 /* End of icon buttons */
 
 /* General Classes */
@@ -230,6 +246,18 @@ textarea {
      background-position: 0 -5728px;
 }
 
+.icon.plusIcon.open {
+     background-position: 0 -1589px;
+}
+
+.icon.downArrow {
+    background-position:0 -2048px;
+}
+
+.icon.downArrow.open {
+    background-position:0 -2015px; 
+}
+
 .icon.resetIcon {
     background-position: 0 -1589px;
 }
@@ -251,6 +279,13 @@ textarea {
 }
 .icon.phoneIcon {
     background-position: 0 -3295px;
+}
+.icon.rightarrowIcon {
+    background-position: 0 -3584px;
+}
+
+.icon.taskIcon {
+    background-position: 0 -959px;
 }
 .addBusiness {
     cursor: pointer;

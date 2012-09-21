@@ -118,7 +118,8 @@ order by name asc";
 		}
 
 		public function contact_deatils($id){
-			$query = $this->db->get_where('people', array('people_id'=>$id));
+			$sql = "SELECT * FROM people WHERE people_id = ?";
+			$query = $this->db->query($sql, array($id));
 			return $query->row();
 		}
 
