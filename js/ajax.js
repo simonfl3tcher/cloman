@@ -8,6 +8,8 @@ $(document).ready(function(){
 		async: false
 	});
 
+	$('form')[0].reset();
+
 	$(':submit').click(function(e){
 		var formId = $(this).closest('form');
 		if($(formId).attr('data-useAjax') == 'true'){
@@ -21,7 +23,18 @@ $(document).ready(function(){
 			}
 			ajaxSubmitForm(url, formId);
 		}
-	})
+	});
+
+	$('div').not('.sidebarSlider').bind('click', function(){
+		console.log('1');
+		var container = $('.sidebarSlider');
+		if(container.hasClass('open')){
+			container.slideRightHide();
+			setTimeout(function(){
+				$('.sidebarSlider').html('');
+			}, 900);
+		}
+	});
 
 	$('#search .delete').live('click', function(e){
 		e.preventDefault();
@@ -48,18 +61,15 @@ $(document).ready(function(){
 	});
 
 	$('table tr td:nth-child(2) a').live('click', function(e){
-		console.log('hello');
 		e.preventDefault();
 		if(!$('.sidebarSlider').length){
-			$(document.body).append('<div class="sidebarSlider"></div>');
+			$(document.body).append('<div class="sidebarSlider"><div class="slidebarCon"></div></div>');
 		}
 		var container = $('.sidebarSlider');
-		if(!container.hasClass('open')){
-			fetchContactInfo($(this).attr('href'));
-			addAjaxloader($('.sidebarSlider'));
-			container.slideRightShow();
-			removeAjaxloader($('.sidebarSlider'), 1000);
-		}
+		fetchContactInfo($(this).attr('href'));
+		addAjaxloader($('.sidebarSlider'));
+		container.slideRightShow();
+		removeAjaxloader($('.sidebarSlider'), 1000);
 	});
 
 	$('#search').keyup(function(){
@@ -78,15 +88,6 @@ $(document).ready(function(){
 		e.stopPropagation();
 	});
 
-	$('div').not('.sidebarSlider').bind('click', function(){
-		var container = $('.sidebarSlider');
-		if(container.hasClass('open')){
-			container.slideRightHide();
-			setTimeout(function(){
-				$('.sidebarSlider').html('');
-			}, 900);
-		}
-	});
 
 
 	function searchResults(data){
@@ -106,7 +107,9 @@ $(document).ready(function(){
 			type: 'POST',
 			data: '',
 			success: function(data){
-				$('.sidebarSlider').append(data);
+				setTimeout(function(e){
+					$('.sidebarSlider').append(data);
+				}, 900);
 			},
 			error: function(data){
 				alert('Sorry I cannot get the data that you require');

@@ -5,9 +5,7 @@
 		<div class="img-ext">	<a href="/contacts/view/<?php echo $contact_details->people_id; ?>"><span class="util-button-new first"><span class="edit"></span></span></a></div>
 	</div>
 
-	<div class="action-bar">
-		<a href="task"><span class="icon taskIcon"></span></a>
-	</div>
+	<div class="action-bar"></div>
 
 	<?php $this->load->partial($sidebarUrl); ?>
 </div>
