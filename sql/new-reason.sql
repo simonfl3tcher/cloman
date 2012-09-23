@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-18 21:58:07
+-- Date/time:                    2012-09-23 23:18:06
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,17 +21,23 @@ CREATE TABLE IF NOT EXISTS `address` (
   `Region_Name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
   `Postcode` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`Address_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.address: 5 rows
 DELETE FROM `address`;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
 INSERT INTO `address` (`Address_ID`, `Address_Line_1`, `Address_Line_2`, `Address_Line_3`, `City`, `Region_Name`, `Postcode`) VALUES
 	(1, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Stowmarket', '', 'IP29 1LD'),
+	(15, '29 Wrights Way', 'Woolpit', 'Suffolk', 'Bury St Edmunds', '', 'ip30 9ty'),
+	(14, '29 Wrights Way', 'Woolpit', 'Suffolk', 'Bury St Edmunds', '', 'IP30 9TY'),
 	(13, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Stowmarket', '', 'IP30 9TY'),
 	(12, '29 Wrights Way', 'Woolpit', 'Rattlesden', 'Stowmarket', '', 'IP30 9TY'),
-	(11, '29 Wrights Way', 'Woolpit', '', 'Bury St Edmunds', '', 'ip30 9ty'),
-	(10, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Bury St Edmunds', '', 'IP30 9TY');
+	(11, '29 Wrights Way', 'Woolpit', 'Suffolk', 'Bury St Edmunds', '', 'ip30 9ty'),
+	(10, '2 Gelbe House', 'Woolpit', 'Suffolk', 'Bury St Edmunds', '', 'IP30 9TY'),
+	(16, '2 Gelbe House', 'Woolpit', 'Rattlesden', 'Bury St Edmunds', '', 'ip30 9ty'),
+	(17, '2 Gelbe House', 'Woolpit', 'England', 'Stowmarket', '', 'IP29 1LD'),
+	(18, 'Hello Roadyu', 'Walsham', 'Suffolk', 'Bury St Edmunds', 'England', 'IP30 9ty'),
+	(19, '2 Gelbe House', 'Woolpit', 'Suffolk', 'Stowmarket', 'England', 'IP30 9TY');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 
 
@@ -43,28 +49,34 @@ CREATE TABLE IF NOT EXISTS `businesses` (
   `name` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `disabled` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`business_id`),
   KEY `business_id` (`business_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table my.company.businesses: ~14 rows (approximately)
 DELETE FROM `businesses`;
 /*!40000 ALTER TABLE `businesses` DISABLE KEYS */;
-INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`) VALUES
-	(1, NULL, 'Logic Design', '01284706842', 'hello@logicdesign.co.uk'),
-	(2, NULL, 'Big Earth', '0207 657 2727', 'office@bigearth.co.uk'),
-	(3, NULL, 'Nicola Sexton', '01284 760011', 'info@nicolasexton.co.uk'),
-	(6, '10', 'Display World', '01284 345345', 'hello@displayworld.co.uk'),
-	(9, '0', 'Reason Marketing', '01284 456 456', 'howie@reason.co.uk'),
-	(10, '11', 'Apestpro', '84', 'paul@apestpro.co.uk'),
-	(11, '0', 'Finns Freelancer', '01284 345345', 'finn@finn.co.uk'),
-	(12, '12', 'Kats Designs', '01284 345 345', 'kat@logicdesign.co.uk'),
-	(15, '13', 'Waitrose', '10', 'finn@finn.co.uk'),
-	(16, '0', '', '', ''),
-	(17, '0', '', '', ''),
-	(18, '0', 'Logic Two', '01284 345 345', 'finn@finn.co.uk'),
-	(19, '0', 'Logic Two', '10', 'finn@finn.co.uk'),
-	(20, '0', 'fdgfdgsd', 'fsdfdsf', 'fddsf');
+INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`, `disabled`) VALUES
+	(1, NULL, 'Logic Design', '01284706842', 'hello@logicdesign.co.uk', 'N'),
+	(2, '18', 'Big Earth', '0207 657 2727', 'office@bigearth.co.uk', 'N'),
+	(3, NULL, 'Nicola Sexton', '01284 760011', 'info@nicolasexton.co.uk', 'N'),
+	(6, '10', 'Display World', '01284 345345', 'hello@displayworld.co.uk', 'N'),
+	(9, '0', 'Reason Marketing', '01284 456 456', 'howie@reason.co.uk', 'N'),
+	(10, '11', '', '', '', 'Y'),
+	(11, '0', 'Finns Freelancer', '01284 345345', 'finn@finn.co.uk', 'N'),
+	(12, '12', 'Kats Designs', '01284 345 345', 'kat@logicdesign.co.uk', 'N'),
+	(15, '13', 'Waitrose', '10', 'finn@finn.co.uk', 'N'),
+	(16, '0', '', '', '', 'Y'),
+	(17, '0', '', '', '', 'Y'),
+	(18, '19', 'Logic Two', '01284 345 345', 'finn@finn.co.uk', 'N'),
+	(19, '0', 'Logic Two', '10', 'finn@finn.co.uk', 'Y'),
+	(20, '0', 'fdgfdgsd', 'fsdfdsf', 'fddsf', 'N'),
+	(21, '14', 'John Lewis', '0184 706842', 'john@lewis.com', 'Y'),
+	(22, '15', 'John Lewis', '0184 706842', 'john@lewis.com', 'Y'),
+	(23, '16', 'Simon Fletcher Designs', '10', 'hello@logicdesign.co.uk', 'N'),
+	(24, '0', 'David Fulcher', '01284 345778', 'david@logicdesign.co.uk', 'Y'),
+	(25, '17', 'David Fulcher - 2', '01284 345 345', 'david@logicdesign.co.uk', 'N');
 /*!40000 ALTER TABLE `businesses` ENABLE KEYS */;
 
 
@@ -75,28 +87,38 @@ CREATE TABLE IF NOT EXISTS `business_to_people` (
   `business_id` int(10) DEFAULT '0',
   `people_id` int(10) DEFAULT '0',
   PRIMARY KEY (`b2p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.business_to_people: ~16 rows (approximately)
 DELETE FROM `business_to_people`;
 /*!40000 ALTER TABLE `business_to_people` DISABLE KEYS */;
 INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(7, 0, 44),
-	(8, 19, 49),
-	(9, 0, 50),
-	(10, 0, 51),
 	(11, 0, 52),
-	(12, 1, 53),
-	(13, 6, 53),
 	(14, 20, 54),
 	(15, 1, 55),
-	(16, 6, 55),
 	(17, 0, 56),
-	(18, 6, 43),
 	(19, 1, 43),
-	(20, 18, 43),
 	(23, 10, 57),
-	(29, 0, 58);
+	(29, 0, 58),
+	(31, 0, 50),
+	(32, 1, 51),
+	(33, 23, 51),
+	(34, 24, 0),
+	(36, 1, 53),
+	(38, 1, 49),
+	(39, 3, 49),
+	(42, NULL, 51),
+	(44, 6, 53),
+	(45, 6, 44),
+	(46, 6, 50),
+	(51, 25, 51),
+	(52, 25, 50),
+	(56, 2, 51),
+	(57, 2, 50),
+	(58, 2, 49),
+	(59, 18, 51),
+	(60, 18, 50);
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
 
 
@@ -145,14 +167,19 @@ CREATE TABLE IF NOT EXISTS `people` (
   `notes` text,
   `disabled` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`people_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.people: ~2 rows (approximately)
+-- Dumping data for table my.company.people: ~5 rows (approximately)
 DELETE FROM `people`;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
 INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`, `disabled`) VALUES
-	(44, 'Charlie Robinson', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'N'),
-	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', '', 'N');
+	(44, 'Charlie Robinson', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'Y'),
+	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', '', 'Y'),
+	(49, 'Finn Johnson', 'Website Designer / Studio Manager', 'finn@logicdesign.co.uk', '', 'N', 'Finn is the senior designer and studio manager', 'N'),
+	(50, 'Keith Bradley', 'Website Developer', 'keith@logicdesign.co.uk', '', 'N', 'Keith is the senior web developer and Managing Director at logic design', 'Y'),
+	(51, 'Howie', 'Media Consultant', 'howie@logicdesign.co.uk', '01284 706842', 'N', 'Media Consultant here at logic design', 'N'),
+	(52, 'Howie', 'Managing DIrector', 'howie@logicdesign.co.uk', '01284 706842', 'N', 'He is a hardd working individual', 'N'),
+	(53, 'Simon Fletcher', 'Managing Director', 'simon@logicdesign.co.uk', '01284 345 345 ', 'N', 'This is the same as any other contact being added into the system.', 'N');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
 
