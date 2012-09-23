@@ -98,11 +98,17 @@
 			$data['icon'] = 'personIcon';
 			$data['bannerTitle'] = $data['contact_details']->name;
 			$data['sidebarUrl'] = 'sidebar-views/people_view';
+			$data['editLink'] = '/contacts/view/' .  $data['contact_details']->people_id;
 			$this->load->partial('sidebar-views/details_partial', $data);
 		}
 
 		public function get_businesses($id){
 			$q = $this->contact_model->contact_businesses($id, true);
+			echo $q;
+		}
+
+		public function token(){
+			$q = $this->contact_model->search_contacts_token($_GET['q']);
 			echo $q;
 		}
 	}

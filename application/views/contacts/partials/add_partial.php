@@ -1,4 +1,4 @@
-	<form action="" method="post" id="addContactForm" data-ajaxurl='contacts/add' data-useAjax='true' class="form-horizontal">	
+<form action="" method="post" id="addContactForm" data-ajaxurl='contacts/add' data-useAjax='true' class="form-horizontal">	
 	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="myModal" style="display: none;">
 	            <div class="modal-header">
 	              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
@@ -88,14 +88,14 @@
 										<span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span>
 									</td>
 									<td>
-										<label for="address_Address_Line_3">Region</label>
-										<span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span>
+										<label for="address_City">Town / City*</label>
+										<span><input type="text" value="" id="address_City" name="address[City]"></span>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<label for="address_City">Town / City*</label>
-										<span><input type="text" value="" id="address_City" name="address[City]"></span>
+										<label for="address_Address_Line_3">Region</label>
+										<span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span>
 									</td>
 									<td>
 										<label for="address_Postcode">Postcode*</label>
@@ -113,5 +113,5 @@
 		      <button data-dismiss="modal" type="submit" class="btn btn-primary">Save Contact</button>
 		    </div>
   		</div>
-	</form>
-	<div class="clear"></div>
+</form>
+<div class="clear"></div>

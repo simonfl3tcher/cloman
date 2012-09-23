@@ -164,6 +164,10 @@ textarea {
     background-position: 0 -1664px;
 }
 
+.util-button-new .business {
+    background-position: 0 -9121px;
+}
+
 .util-button-new .addPerson {
     background-position: 0 -2079px;
 }
@@ -244,6 +248,10 @@ textarea {
 
 .icon.plusIcon {
      background-position: 0 -5728px;
+}
+
+.icon.businessIcon {
+    background-position: 0 -9121px;
 }
 
 .icon.plusIcon.open {

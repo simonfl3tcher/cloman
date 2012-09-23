@@ -26,7 +26,6 @@ $(document).ready(function(){
 	});
 
 	$('div').not('.sidebarSlider').bind('click', function(){
-		console.log('1');
 		var container = $('.sidebarSlider');
 		if(container.hasClass('open')){
 			container.slideRightHide();
@@ -36,7 +35,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#search .delete').live('click', function(e){
+	$('#searchTable .delete').live('click', function(e){
 		e.preventDefault();
 		var containingTr = $(this).parent().parent();
 		containingTr.animate({ opacity: 0.0 }, 500);
@@ -52,7 +51,7 @@ $(document).ready(function(){
 			type: 'POST',
 			data: '',
 			success: function(data){
-				//console.log('well done');
+				
 			},
 			error: function(data){
 				alert('There was an error when trying to delete');
@@ -80,6 +79,7 @@ $(document).ready(function(){
 			dataType: 'html',
 			data: data
 		}).done(function(data){
+			console.log('in here');
 			searchResults(data);
 		});
 	});
@@ -93,9 +93,9 @@ $(document).ready(function(){
 	function searchResults(data){
 		var surrounder = $('#search').closest('div.control-group');
 		if(data){
-			$('#search tbody tr').remove();
+			$('#searchTable tbody tr').remove();
 			$(surrounder).removeClass('error');
-			$('#search tbody').html(data);
+			$('#searchTable tbody').html(data);
 		} else {
 			$(surrounder).addClass('error');
 		}
@@ -138,7 +138,8 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				window.location.reload();
+				console.log('put reload back in');
+				//window.location.reload();
 			},
 			error: function(data){
 				alert('Something went wrong...');

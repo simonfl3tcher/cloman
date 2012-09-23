@@ -4,7 +4,7 @@
 
 <div id="tableContainer">
 	<!-- Put the table in here -->
-	<table id="search" class="table table-hover" data-useAjax='true'>
+	<table id="searchTable" class="table table-hover" data-useAjax='true'>
 		<thead>
 			<tr>
 				<th><span class="icon hashIcon"></span></th>
@@ -24,6 +24,4 @@
 <span class="boxes-add util-button-new first"><span class="addPerson"></span></span>
 <?php $this->load->partial('contacts/partials/add_partial.php');  ?>
 <br />
-<form>
-</form>
 						

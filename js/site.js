@@ -35,10 +35,14 @@ $(document).ready(function(){
 		if ( e.which == 13 ) e.preventDefault();
 	});
 
-	$("#my-text-input").tokenInput("/businesses/search", {
+	$("#my-text-input.selectBusiness").tokenInput("/businesses/token", {
 		theme: "facebook",
 		preventDuplicates: true
-		// prePopulate: [{id: 3, name: "test"}, {id: 5, name: "awesome"}]
+	});
+
+	$("#my-text-input.selectContacts").tokenInput("/contacts/token", {
+		theme: "facebook",
+		preventDuplicates: true
 	});
 
 	$('.resetForm').bind('click', function(){

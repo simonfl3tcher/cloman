@@ -6,6 +6,7 @@
 		protected $AddressID;
 		protected $Phone;
 		protected $Email;
+		protected $Disabled;
 
 		protected function DefineTableName(){
 			return("businesses"); //Name of the table you want to use.
@@ -23,7 +24,8 @@
 				"address_id" => "AddressID", 
 				"name" => "Name",
 				"phone" => "Phone",
-				"email" => "Email");
+				"email" => "Email",
+				"disabled" => "Disabled");
 		}
 	}
 ?>

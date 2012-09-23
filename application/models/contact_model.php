@@ -83,8 +83,10 @@
 			return true;
 		}
 
-		public function insert_relational($bus=array(), $memId = null){
-			$this->db->delete('business_to_people', array('people_id' => $memId)); 
+		public function insert_relational($bus=array(), $memId = null, $delete = true){
+			if($delete){
+				$this->db->delete('business_to_people', array('people_id' => $memId)); 
+			}
 			foreach($bus as $b){
 				$sql = "INSERT INTO business_to_people (business_id, people_id)
 VALUES (?, ?)";
@@ -138,6 +140,12 @@ where bp.people_id = ?";
 			} else {
 				return json_encode($query->result_array());
 			}
+		}
+
+		public function search_contacts_token($data){
+			$sql = "SELECT people_id as id, name from people where name like '%{$data}%'";
+			$query = $this->db->query($sql);
+			return json_encode($query->result_array());
 		}
 	}
 ?>
