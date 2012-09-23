@@ -63,10 +63,10 @@
 		    	<?php 
 					if($business_details->Address_Line_1 !== null){ ?>
 						<address>
-							<?php echo $business_details->Address_Line_1; ?><br />
-							<?php echo $business_details->Address_Line_2; ?><br />
-							<?php echo $business_details->Address_Line_3; ?><br />
-							<?php echo $business_details->City; ?><?php echo $business_details->Region_Name; ?><br />
+							<?php echo ucwords($business_details->Address_Line_1); ?><br />
+							<?php echo ucwords($business_details->Address_Line_2); ?><br />
+							<?php if(!empty($business_details->Address_Line_3)){ echo ucwords($business_details->Address_Line_3) . '<br />'; } ?>
+							<?php echo ucwords($business_details->City); ?>, <?php echo ucwords($business_details->Region_Name); ?><br />
 							<?php echo strtoupper($business_details->Postcode); ?>
 						</address>
 				<?php } else {
