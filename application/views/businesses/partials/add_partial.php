@@ -1,4 +1,4 @@
-<form action="" method="post" id="addContactForm" data-ajaxurl='add' data-useAjax='true' class="form-horizontal">	
+<form action="" method="post" id="addContactForm" data-ajaxurl='businesses/add' data-useAjax='true' class="form-horizontal">	
 	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="myModal" style="display: none;">
 	            <div class="modal-header">
 	              <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>
@@ -46,7 +46,7 @@
 								<tr>
 									<td>
 										<label for="address_Address_Line_3">Region</label>
-										<span><input type="text" value="" id="address_Address_Line_3" name="address[Address_Line_3]"></span>
+										<span><input type="text" value="" id="address_Region" name="address[Region]"></span>
 									</td>
 									<td>
 										<label for="address_Postcode">Postcode*</label>

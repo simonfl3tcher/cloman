@@ -57,7 +57,7 @@
 		type: 'GET',
 		data: 'json',
 		success: function(data){
-			$(".my-text-input").tokenInput("/businesses/search", {
+			$(".my-text-input").tokenInput("/businesses/token", {
 				theme: "facebook",
 				prePopulate: eval('(' + data + ')'),
 				preventDuplicates: true

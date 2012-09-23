@@ -16,9 +16,7 @@
 			$data['title'] = 'Contacts Page';
 			$data['contact_list'] = $this->contact_model->get();
 			$data['business'] = $this->business_model->get();
-			$this->load->view('templates/header', $data);
-			$this->load->view('contacts/index', $data);
-			$this->load->view('templates/footer');
+			$this->render_view('contacts/index', $data);
 		}
 
 		public function add() {
@@ -36,9 +34,7 @@
 					}
 				}
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('contacts/add', $data);
-				$this->load->view('templates/footer');
+				$this->render_view('contacts/add', $data);
 			} else {
 				$this->contact_model->insert_contact();
 			}
@@ -55,9 +51,7 @@
 			$data['title'] = 'Edit a contact';
 			$data['contact'] = $people;
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('contacts/view', $data);
-			$this->load->view('templates/footer');
+			$this->render_view('contacts/view', $data);
 		}
 
 		public function disable($id){

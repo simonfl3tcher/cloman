@@ -50,6 +50,7 @@ order by name asc";
 				$address->setAddressLine2($_POST['address']['Address_Line_2']);
 				$address->setAddressLine3($_POST['address']['Address_Line_3']);
 				$address->setCity($_POST['address']['City']);
+				$address->setRegion($_POST['address']['Region']);
 				$address->setPostcode($_POST['address']['Postcode']);
 				$address->save();
 			}
@@ -82,10 +83,36 @@ order by name asc";
 				$mem = array($member->getID());
 			}
 
-			var_dump($member->getID());
-			exit;
 			self::insert_relational($bid, $mem);
 
+			return true;
+		}
+
+		public function update_business($id) {
+			$business= new Business_Class($id);
+			if($business->getAddressID() != 0){
+				$address = new Address_Class($business->getAddressID());
+			} else {
+				$address = new Address_Class();
+			}
+
+			$address->setAddressLine1($_POST['address']['Address_Line_1']);
+			$address->setAddressLine2($_POST['address']['Address_Line_2']);
+			$address->setAddressLine3($_POST['address']['Address_Line_3']);
+			$address->setRegion($_POST['address']['Region']);
+			$address->setCity($_POST['address']['City']);
+			$address->setPostcode($_POST['address']['Postcode']);
+			$address->save();
+
+			$business->setAddressID($address->getID());
+			$business->setName($_POST['business']['Name']);
+			$business->setEmail($_POST['business']['Email']);
+			$business->setPhone($_POST['business']['Phone']);
+			$business->save();
+			$bid = $business->getID();
+
+			$mem = explode(',', $_POST['contact']['Current']);
+			self::insert_relational($bid, $mem);
 			return true;
 		}
 
@@ -113,6 +140,14 @@ left join address as a on a.Address_ID = b.address_id
 WHERE b.business_id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->row();
+		}
+
+		public function businesses_contact($id){
+			$sql = "SELECT p.people_id as id, p.name from people as p
+left join business_to_people as bp on bp.people_id = p.people_id
+where bp.business_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return json_encode($query->result_array());
 		}
 
 		public function contact_details($id){

@@ -1,4 +1,6 @@
 <?php 
+	require_once('application/libraries/classes/Businesses.php');
+	require_once('application/libraries/classes/Address.php');
 	
 	class Businesses extends CI_Controller {
 
@@ -12,22 +14,32 @@
 			$data['title'] = 'Businesses Page';
 			$data['business_list'] = $this->business_model->get();
 			$data['contacts'] = $this->contact_model->get();
-			$this->load->view('templates/header', $data);
-			$this->load->view('businesses/index', $data);
-			$this->load->view('templates/footer');
+			$this->render_view('businesses/index', $data);
 		}
 
 		public function view($id){
-			var_dump('You are here to view the business with the id of : ' . $id);
-			exit;
+			$business = new Business_CLass($id);
+			if($business->getAddressID() !== 0){
+				$address = new Address_CLass($business->getAddressID());
+			} else {
+				$address = new Address_CLass();
+			}
+			
+			if($this->request->isPost()){
+				if($this->business_model->update_business($business->getID())){
+					redirect('/businesses', 'refresh');
+				}
+			}
+			$data['title'] = 'Edit "' . $business->getName() . '" ';
+			$data['business'] = $business;
+			$data['address'] = $address;
+			$this->render_view('businesses/view', $data);
 		}
 
 		public function add(){
 			if(!$this->request->isAjax()){
 				$data['title'] = 'Add a business';
-				$this->load->view('templates/header', $data);
-				$this->load->view('businesses/add', $data);
-				$this->load->view('templates/footer');
+				$this->render_view('businesses/add', $data);
 			} else {
 				$this->business_model->insert_business();
 			}
@@ -50,6 +62,12 @@
 		public function token(){
 			// this is used for the search on people add. do not remove or change
 			$q = $this->business_model->search_business_token($_GET['q']);
+			echo $q;
+		}
+
+
+		public function get_contacts($id){
+			$q = $this->business_model->businesses_contact($id, true);
 			echo $q;
 		}
 

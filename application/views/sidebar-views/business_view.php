@@ -42,10 +42,13 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	
-		    	<?php foreach($contact_details as $bd){ ?>
-					<a href="/contacts/view/<?php echo $bd['people_id']; ?>"><?php echo $bd['name'] ?></a><br />
-				<?php } ?>
+		    	<?php if(!empty($contact_details)){ ?>
+			    	<?php foreach($contact_details as $bd){ ?>
+						<a href="/contacts/view/<?php echo $bd['people_id']; ?>"><?php echo $bd['name'] ?></a><br />
+					<?php } ?>
+				<?php } else { 
+					echo 'No Contacts';
+				} ?>
 		    </div>
 		</div>
 	</div>

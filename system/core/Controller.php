@@ -68,6 +68,16 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
+
+	public function render_view($path, $data=null, $noInclude=false){
+		if($noInclude == true){
+			$this->load->view($path, $data);
+		} else {
+			$this->load->view('templates/header', $data);
+			$this->load->view($path, $data);
+			$this->load->view('templates/footer');
+		}
+	}
 }
 // END Controller class
 
