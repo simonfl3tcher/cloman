@@ -326,6 +326,15 @@ select.connectionSelection {
     cursor:pointer;
 }
 
+.modal-body .slide .addConnectionInput {
+    display: none;
+    vertical-align: bottom;
+}
+
+td.slide {
+    vertical-align: bottom;
+}
+
 
 /* End of Page layout */
 

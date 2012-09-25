@@ -26,7 +26,10 @@
 									<?php $js = 'class="connectionSelection"'; ?>
 									<?php echo form_dropdown('connection[Type_of_connection]', $type_options, '', $js); ?>
 								</span>
-								<span class="addConnection icon plusIcon"></span>
+								<span id="addTextbox" class="addConnection icon plusIcon change_me"></span>
+							</td>
+							<td class="slide">
+								<input class="addConnectionInput" type="text" name="connection[Add_type_of_connection]" placeholder="Add new connection type" />
 							</td>
 						</tr>
 						<tr class="largeField">

@@ -52,6 +52,13 @@ $(document).ready(function(){
 
 	$('.resetForm').bind('click', function(){
 		clear_form_elements($(this).closest('form'));
+	});
+
+	$('#addTextbox.addConnection').bind('click', function(){
+		console.log('you are clicked here');
+		$('.addConnectionInput').slideRightShow('slow');
+		$(this).removeClass('change_me');
+		$(this).addClass('newClass');
 	});	
 
 	function clear_form_elements(ele) {
