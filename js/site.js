@@ -39,6 +39,11 @@ $(document).ready(function(){
 		theme: "facebook",
 		preventDuplicates: true
 	});
+	$("#my-text-input.selectBusinesses-connections").tokenInput("/businesses/token", {
+		theme: "facebook",
+		preventDuplicates: true,
+		tokenLimit: 1
+	});
 
 	$("#my-text-input.selectContacts").tokenInput("/contacts/token", {
 		theme: "facebook",
