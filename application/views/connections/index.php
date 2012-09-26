@@ -1,5 +1,16 @@
 <div class="control-group">
 	<input type="text" name="search" id="search" data-searchurl="/connections/search" placeholder="Search Connections"/>
+	<span id="advancedSearch" class="util-button-new first"><span class="filter"></span></span>
+</div>
+<div class="advancedSearchBox">
+	<div class="header">
+		<span class="icon"></span>
+		<span>Advanced Search</span>
+	</div>
+	<div class="content">
+		This is the advanced sarch box.
+	<div class="clear"></div>
+	</div>
 </div>
 
 <div id="tableContainer">

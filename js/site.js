@@ -69,6 +69,11 @@ $(document).ready(function(){
 		$(this).addClass('plusIconGrey');
 	});	
 
+	$('#advancedSearch').bind('click', function(){
+		$('.advancedSearchBox').slideToggle('slow');
+		console.log('this is clicked');
+	});
+
 	function clear_form_elements(ele) {
 	 
 	    $(ele).find(':input').each(function() {

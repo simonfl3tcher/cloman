@@ -180,6 +180,13 @@ textarea {
     background-position: 0 -8832px;
 }
 
+.util-button-new .filter {
+    background-position: 0 -17px;
+}
+.util-button-new .addPerson {
+    background-position: 0 -2079px;
+}
+
 .util-button-new .closeSlider {
     background-position: 0 -3584px;
 }
@@ -353,6 +360,45 @@ td.slide {
 
 
 /* End of Page layout */
+
+#search {
+    vertical-align: top;
+}
+
+.advancedSearchBox {
+    width:100%;
+    height:200px;
+    background-color:#a5a5a5;
+    display: none;
+    background:none repeat scroll 0 0 #FBFBFB;
+    border: 1px solid #E1E1E1;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size:11px;
+}
+
+.advancedSearchBox .icon {
+    background-image: url("../img/mastersprite16_aug302012-2.png?1347364552");
+    background-position: 0 -17px;
+    background-repeat: no-repeat;
+}
+
+.advancedSearchBox .header {
+    background: none repeat scroll 0 0 #F6F6F6;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    padding: 5px 10px;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.advancedSearchBox .content {
+    height: 123px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-top: 20px;
+}
 
 
 /* Misc Classes */

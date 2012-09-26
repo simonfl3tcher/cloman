@@ -17,7 +17,6 @@
 			foreach($data['connection_types'] as $con){
 				$data['type_options'][$con['connection_options_id']] = $con['name'];
 			}
-
 			$this->render_view('connections/index', $data);
 		}
 
