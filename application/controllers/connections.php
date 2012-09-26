@@ -13,7 +13,6 @@
 			$data['business_list'] = $this->business_model->get();
 			$data['connection_types'] = $this->connections_model->get_connection_types();
 			$data['type_options'] = array();
-			$data['type_options'][0] = '';
 			foreach($data['connection_types'] as $con){
 				$data['type_options'][$con['connection_options_id']] = $con['name'];
 			}
