@@ -21,6 +21,6 @@
 
 <br />
 <br />
-<span class="boxes-add util-button-new first"><span class="connection"></span></span>
+<span class="boxes-add util-button-new first"><span class="business"></span></span>
 <?php $this->load->partial('businesses/partials/add_partial.php');  ?>
 <br />

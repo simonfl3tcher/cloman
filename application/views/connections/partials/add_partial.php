@@ -13,7 +13,7 @@
 					<table class="std">
 						<tr>
 							<td>
-								<input id="my-text-input" type="text" name="contact[Current]" class="selectBusinesses-connections" />
+								<input id="my-text-input" type="text" name="connection[Business]" class="selectBusinesses-connections" />
 							</td>
 						</tr>
 					</table>
@@ -26,7 +26,7 @@
 									<?php $js = 'class="connectionSelection"'; ?>
 									<?php echo form_dropdown('connection[Type_of_connection]', $type_options, '', $js); ?>
 								</span>
-								<span id="addTextbox" class="addConnection icon plusIcon change_me"></span>
+								<span id="addTextbox" class="addConnection icon plusIconGrey"></span>
 							</td>
 							<td class="slide">
 								<input class="addConnectionInput" type="text" name="connection[Add_type_of_connection]" placeholder="Add new connection type" />

@@ -2,11 +2,12 @@
 	
 	class Connections_Class extends DataboundObject {
 
-		protected $WebsiteID;
-		protected $connectionOptionsID;
+		protected $BusinessID;
+		protected $ConnectionOptionsID;
 		protected $Username;
+		protected $UsernameTwo;
 		protected $Password;
-		protected $IP;
+		protected $Url;
 		protected $Notes;
 
 		protected function DefineTableName(){
@@ -22,11 +23,12 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"connection_id" => "ID",
-				"website_id" => "WebsiteID", 
-				"connection_options_id" => "connectionOptionsID", 
+				"business_id" => "BusinessID", 
+				"connection_options_id" => "ConnectionOptionsID", 
 				"username" => "Username",
+				"username_two" => "UsernameTwo",
 				"password" => "Password",
-				"ip" => "IP",
+				"url" => "Url",
 				"notes" => "Notes");
 		}
 	}

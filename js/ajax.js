@@ -79,7 +79,6 @@ $(document).ready(function(){
 			dataType: 'html',
 			data: data
 		}).done(function(data){
-			console.log('in here');
 			searchResults(data);
 		});
 	});
@@ -138,8 +137,8 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				console.log('put reload back in');
-				//window.location.reload();
+				//console.log('put reload back in');
+				window.location.reload();
 			},
 			error: function(data){
 				alert('Something went wrong...');

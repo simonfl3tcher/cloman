@@ -160,6 +160,10 @@ textarea {
     background-position: 0 -6464px;
 }
 
+.util-button-new .addPerson {
+    background-position: 0 -2079px;
+}
+
 .util-button-new .disable {
     background-position: 0 -1664px;
 }
@@ -260,6 +264,18 @@ textarea {
 
 .icon.plusIcon {
      background-position: 0 -4736px;
+}
+
+.icon.plusIconGrey {
+    background-position:0 -2241px;
+}
+
+.icon.minusIconGrey {
+     background-position: 0 -2079px;
+}
+
+.icon.crossIconGrey {
+    background-position: 0 -2145px;
 }
 
 .icon.businessIcon {

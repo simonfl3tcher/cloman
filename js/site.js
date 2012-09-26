@@ -54,11 +54,19 @@ $(document).ready(function(){
 		clear_form_elements($(this).closest('form'));
 	});
 
-	$('#addTextbox.addConnection').bind('click', function(){
-		console.log('you are clicked here');
+	$('#addTextbox.plusIconGrey').live('click', function(){
 		$('.addConnectionInput').slideRightShow('slow');
-		$(this).removeClass('change_me');
-		$(this).addClass('newClass');
+		$(this).removeClass('plusIconGrey');
+		$(this).addClass('crossIconGrey');
+	});	
+
+	$('#addTextbox.crossIconGrey').live('click', function(){
+		$('.addConnectionInput').slideRightHide('slow');
+		setTimeout(function(){
+			$('.addConnectionInput').fadeOut('slow').val('');
+		}, 1000);
+		$(this).removeClass('crossIconGrey');
+		$(this).addClass('plusIconGrey');
 	});	
 
 	function clear_form_elements(ele) {
