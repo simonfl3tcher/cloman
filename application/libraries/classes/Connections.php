@@ -9,6 +9,7 @@
 		protected $Password;
 		protected $Url;
 		protected $Notes;
+		protected $Disabled;
 
 		protected function DefineTableName(){
 			return("connections"); //Name of the table you want to use.
@@ -29,7 +30,8 @@
 				"username_two" => "UsernameTwo",
 				"password" => "Password",
 				"url" => "Url",
-				"notes" => "Notes");
+				"notes" => "Notes",
+				"disabled" => "Disabled");
 		}
 	}
 ?>

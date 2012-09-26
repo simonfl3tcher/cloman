@@ -117,7 +117,7 @@ order by name asc";
 		}
 
 		public function search_business_token($data){
-			$sql = "SELECT business_id as id, name from businesses where name like '%{$data}%'";
+			$sql = "SELECT business_id as id, name from businesses where name like '%{$data}%' and disabled = 'N'";
 			$query = $this->db->query($sql);
 			return json_encode($query->result_array());
 		}

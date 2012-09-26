@@ -39,7 +39,7 @@ $(document).ready(function(){
 		theme: "facebook",
 		preventDuplicates: true
 	});
-	$("#my-text-input.selectBusinesses-connections").tokenInput("/businesses/token", {
+	$(".selectBusinesses-connections").tokenInput("/businesses/token", {
 		theme: "facebook",
 		preventDuplicates: true,
 		tokenLimit: 1
@@ -71,7 +71,6 @@ $(document).ready(function(){
 
 	$('#advancedSearch').bind('click', function(){
 		$('.advancedSearchBox').slideToggle('slow');
-		console.log('this is clicked');
 	});
 
 	function clear_form_elements(ele) {

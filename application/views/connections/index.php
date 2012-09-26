@@ -8,7 +8,25 @@
 		<span>Advanced Search</span>
 	</div>
 	<div class="content">
-		This is the advanced sarch box.
+		<form id="advancedSearchForm" data-ajaxurl='<?php echo base_url("connections/advanced_search"); ?>' data-useAjax='true'>
+			<div class="advanceBox first">
+				<span>Business</span>
+				<input id="my-text-input" type="text" name="search[Business]" class="selectBusinesses-connections" />
+			</div>
+			<div class="advanceBox">
+				<span>Type of Connection</span><br />
+				<span>
+					<?php $js = 'class="connectionSelection"'; ?>
+					<?php echo form_dropdown('search[Type_of_connection]', $type_options, '', $js); ?>
+				</span>
+			</div>
+			<div class="advanceBox">
+				<span>Containing</span><br />
+				<input type="text" name="search[containing]" />
+			</div>
+			<div class="clear"></div>
+			<input id="advancedSearchSubmit" type="submit" class="btn" value="Search" />
+		</form>
 	<div class="clear"></div>
 	</div>
 </div>
@@ -18,14 +36,15 @@
 	<table id="searchTable" class="table table-hover" data-useAjax='true'>
 		<thead>
 			<tr>
-				<th><span class="icon hashIcon"></span></th>
 				<th><span class="icon businessIcon"></span></th>
-				<th><span class="icon emailIcon"></span></th>
-				<th><span class="icon phoneIcon"></span></th>
+				<th><span class="icon linkIcon"></span></th>
+				<th><span class="icon identificationIcon"></span></th>
+				<th><span class="icon identificationIcon"></span></th>
+				<th><span class="icon keyIcon"></span></th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php $this->load->partial('businesses/partials/table_partial.php'); ?>
+			<?php $this->load->partial('connections/partials/table_partial.php'); ?>
 		</tbody>
 	</table>
 </div>

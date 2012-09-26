@@ -10,7 +10,24 @@ $(document).ready(function(){
 
 	$('form')[0].reset();
 
-	$(':submit').click(function(e){
+	$('#advancedSearchSubmit').bind('click', function(e){
+		e.preventDefault();
+		var wrapper = $('.pageWrapper');
+		var data = formatInputData($('#advancedSearchForm'));
+		addAjaxloader(wrapper);
+		$.ajax({
+			url: $(this).closest('form').attr('data-ajaxurl'),
+			type: 'POST',
+			dataType: 'html',
+			data: data
+		}).done(function(data){
+			searchResults(data);
+			removeAjaxloader(wrapper, 500);
+		});
+		console.log('you have clicked this');
+	});
+
+	$(':submit.add').click(function(e){
 		var formId = $(this).closest('form');
 		if($(formId).attr('data-useAjax') == 'true'){
 			e.preventDefault();
@@ -24,6 +41,7 @@ $(document).ready(function(){
 			ajaxSubmitForm(url, formId);
 		}
 	});
+
 
 	$('div').not('.sidebarSlider').bind('click', function(){
 		var container = $('.sidebarSlider');
@@ -50,9 +68,6 @@ $(document).ready(function(){
 			url: $(this).attr('href'),
 			type: 'POST',
 			data: '',
-			success: function(data){
-				
-			},
 			error: function(data){
 				alert('There was an error when trying to delete');
 			}
@@ -88,7 +103,6 @@ $(document).ready(function(){
 	});
 
 
-
 	function searchResults(data){
 		var surrounder = $('#search').closest('div.control-group');
 		if(data){
@@ -120,8 +134,8 @@ $(document).ready(function(){
 
 	/* Functions that you may want to use are bellow */
 
-	function ajaxSubmitForm(url, formId){
-	    var data = '';
+	function formatInputData(formId){
+		var data = '';
 	    var inputs = $(':input:not(:submit)', formId); 
 
 	    inputs.each(function(){;
@@ -131,6 +145,13 @@ $(document).ready(function(){
 	    		data += '&' + this.name + '=' + $(this).val();
 	    	}
 	    });
+
+	    return data;
+	}
+
+	function ajaxSubmitForm(url, formId){
+
+		var data = formatInputData(formId);
 
 		$.ajax({
 			url: url,

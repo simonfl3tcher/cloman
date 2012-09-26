@@ -35,5 +35,43 @@
 			$con->setUrl($_POST['connection']['Link']);
 			$con->save();
 		}
+
+		public function get(){
+			$sql = "SELECT c.*, b.name from connections as c
+left join businesses as b on b.business_id = c.connection_id
+where b.disabled = 'N' and c.disabled = 'N'
+order by b.name, c.url asc";
+			$query = $this->db->query($sql);
+
+			return $query->result_array();
+		}
+
+		public function search_connections($data){
+			$sql = "SELECT c.*, b.name from connections as c
+left join businesses as b on b.business_id = c.connection_id
+where b.disabled = 'N' and (url like '%{$data}%' or name like '%{$data}%') and c.disabled = 'N'
+order by b.name, c.url asc";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+
+		}
+
+		public function disable_connection($id){
+			$contact = new Connections_Class($id);
+			$contact->setDisabled('Y');
+			$contact->save();
+		}
+
+		public function advanced_search(){
+			$con = $_POST["search"]['containing'];
+			$sql = "SELECT c.*, b.name from connections as c
+left join businesses as b on b.business_id = c.connection_id
+where (c.business_id = ? and c.connection_options_id = ?) 
+and c.disabled = 'N'
+and (username like '%{$con}%' or username_two like '%{$con}%' or url like '%{$con}%')
+order by b.name, c.url asc";
+			$query = $this->db->query($sql, array($_POST["search"]['Business'], $_POST["search"]['Type_of_connection']));
+			return $query->result_array();
+		}
 	}
 ?>

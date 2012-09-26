@@ -273,6 +273,22 @@ textarea {
      background-position: 0 -4736px;
 }
 
+.icon.twoPeopleIcon {
+     background-position: 0 -480px;
+}
+
+.icon.linkIcon {
+    background-position: 0 -1920px;
+}
+
+.icon.identificationIcon {
+    background-position: 0 -4032px;
+}
+
+.icon.keyIcon {
+    background-position: 0px -8608px;
+}
+
 .icon.plusIconGrey {
     background-position:0 -2241px;
 }
@@ -400,11 +416,30 @@ td.slide {
     padding-top: 20px;
 }
 
+.advanceBox {
+    float: left;
+    padding: 0 30px;
+    position: relative;
+    vertical-align: bottom;
+}
+
+.advanceBox.first {
+    padding-left:0;
+    padding-right:30px;
+}
 
 /* Misc Classes */
 
 .addBusinessTitle h6{
     margin-top:0px;
     display:inline-block;
+}
+
+.clear {
+    clear:both;
+}
+
+.margin-sides-30 {
+    padding:0 30px;
 }
 /* End of Misc classes */

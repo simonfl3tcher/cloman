@@ -143,7 +143,7 @@ where bp.people_id = ?";
 		}
 
 		public function search_contacts_token($data){
-			$sql = "SELECT people_id as id, name from people where name like '%{$data}%'";
+			$sql = "SELECT people_id as id, name from people where name like '%{$data}%' and disabled = 'N'";
 			$query = $this->db->query($sql);
 			return json_encode($query->result_array());
 		}
