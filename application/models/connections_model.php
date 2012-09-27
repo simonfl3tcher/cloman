@@ -48,9 +48,10 @@ order by b.name, c.url asc";
 
 		public function search_connections($data){
 			$sql = "SELECT c.*, b.name from connections as c
-left join businesses as b on b.business_id = c.connection_id
-where b.disabled = 'N' and (url like '%{$data}%' or name like '%{$data}%') and c.disabled = 'N'
-order by b.name, c.url asc";
+inner join businesses as b on b.business_id = c.business_id
+where b.disabled = 'N' and c.disabled = 'N'
+and (url like '%{$data}%' or name like '%{$data}%')
+order by b.name, c.url";
 			$query = $this->db->query($sql);
 			return $query->result_array();
 
