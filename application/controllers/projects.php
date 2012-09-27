@@ -11,5 +11,10 @@
 			$this->render_view('projects/index', $data);
 		}
 
+		public function add(){
+			$data['title'] = 'Add a project';
+			$this->render_view('projects/add', $data);
+		}
+
 	}
 ?>
