@@ -66,10 +66,10 @@ order by b.name, c.url";
 		public function advanced_search(){
 			$con = $_POST["search"]['containing'];
 			$sql = "SELECT c.*, b.name from connections as c
-left join businesses as b on b.business_id = c.connection_id
-where (c.business_id = ? and c.connection_options_id = ?) 
-and c.disabled = 'N'
-and (username like '%{$con}%' or username_two like '%{$con}%' or url like '%{$con}%')
+left join businesses as b on b.business_id = c.business_id
+where (c.business_id = ? and c.connection_options_id = ?)
+and b.disabled = 'N' and c.disabled = 'N'
+and(c.username like '%{$con}%' or c.username_two like '%{$con}%' or url like '%{$con}%')
 order by b.name, c.url asc";
 			$query = $this->db->query($sql, array($_POST["search"]['Business'], $_POST["search"]['Type_of_connection']));
 			return $query->result_array();
