@@ -109,7 +109,7 @@
 		    <div class="modal-footer">
 		    	<div class="resetForm icon resetIcon"></div>
 		      <button data-dismiss="modal" type="reset" class="btn">Close</button>
-		      <button data-dismiss="modal" type="submit" class="btn btn-primary add">Save Contact</button>
+		      <button data-dismiss="modal" type="submit" class="btn btn-primary add">Save Business</button>
 		    </div>
   		</div>
 </form>

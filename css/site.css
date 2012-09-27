@@ -442,4 +442,9 @@ td.slide {
 .margin-sides-30 {
     padding:0 30px;
 }
+
+.ajaxLoader.error {
+    background-image: url("../img/warning.png");
+    background-position: 0 0;
+}
 /* End of Misc classes */

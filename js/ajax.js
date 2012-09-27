@@ -111,6 +111,7 @@ $(document).ready(function(){
 			$('#searchTable tbody').html(data);
 		} else {
 			$(surrounder).addClass('error');
+			$('.ajaxLoader').addClass('error');
 		}
 	}
 
@@ -158,8 +159,8 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				console.log('put reload back in');
-				// window.location.reload();
+				// console.log('put reload back in');
+				window.location.reload();
 			},
 			error: function(data){
 				alert('Something went wrong...');
