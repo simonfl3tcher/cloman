@@ -1,14 +1,18 @@
 <?php 	
 	
-	class Projects_Class extends DataboundObject {
+	class Project_Class extends DataboundObject {
 
 		protected $BusinessID;
-		protected $ProjectManager;
-		protected $Status;
-		protected $ProjectType;
-		protected $ProjectPeople;
-		protected $ProjectUsers;
+		protected $SalesID;
+		protected $ProjectName;
+		protected $ManagerID;
+		protected $ProjectTypeID;
+		protected $StatusID;
+		protected $StartDate;
+		protected $InternalDeadline;
 		protected $ClientDeadline;
+		protected $Notes;
+		protected $TaskTemplateID;
 		protected $Budget;
 
 		protected function DefineTableName(){
@@ -24,13 +28,17 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"project_id" => "ID",
-				"business_id" => "BusinessID", 
-				"project_manager" => "ProjectManager", 
-				"status" => "Status",
-				"project_type" => "ProjectType",
-				"project_people" => "ProjectPeople",
-				"project_users" => "ProjectUsers",
+				"business_id" => "BusinessID",
+				"sales_id" => "SalesID", 
+				"project_name" => "ProjectName",
+				"manager_id" => "ManagerID",
+				"project_type_id" => "ProjectTypeID", 
+				"status_id" => "StatusID",
+				"start_date" => "StartDate",
+				"internal_deadline" => "InternalDeadline",
 				"client_deadline" => "ClientDeadline",
+				"notes" => "Notes",
+				"task_template_id" => "TaskTemplateID",
 				"budget" => "Budget");
 		}
 	}

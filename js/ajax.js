@@ -86,6 +86,18 @@ $(document).ready(function(){
 		removeAjaxloader($('.sidebarSlider'), 1000);
 	});
 
+	$('.items-list.badge .header a').live('click', function(e){
+		e.preventDefault();
+		if(!$('.sidebarSlider').length){
+			$(document.body).append('<div class="sidebarSlider"><div class="slidebarCon"></div></div>');
+		}
+		var container = $('.sidebarSlider');
+		fetchContactInfo($(this).attr('href'));
+		addAjaxloader($('.sidebarSlider'));
+		container.slideRightShow();
+		removeAjaxloader($('.sidebarSlider'), 1000);
+	});
+
 	$('#search').keyup(function(){
 		var data = 'data=' + $(this).val();
 		$.ajax({
@@ -159,8 +171,8 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				// console.log('put reload back in');
-				window.location.reload();
+				console.log('put reload back in');
+				//window.location.reload();
 			},
 			error: function(data){
 				alert('Something went wrong...');

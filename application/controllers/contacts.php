@@ -41,7 +41,7 @@
 		}
 
 		public function view($id = null){
-			$people = new People_CLass($id);
+			$people = new People_Class($id);
 			
 			if($this->request->isPost()){
 				if($this->contact_model->update_contact($people->getID())){

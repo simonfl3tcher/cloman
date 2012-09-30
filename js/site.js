@@ -39,10 +39,32 @@ $(document).ready(function(){
 		theme: "facebook",
 		preventDuplicates: true
 	});
-	$(".selectBusinesses-connections").tokenInput("/businesses/token", {
+
+	$("#my-text-input.selectBusinesses-connections").tokenInput("/businesses/token", {
 		theme: "facebook",
 		preventDuplicates: true,
 		tokenLimit: 1
+	});
+
+	$("#my-text-input.selectBusinesses").tokenInput("/businesses/token", {
+		theme: "facebook",
+		preventDuplicates: true,
+		tokenLimit: 1
+	});
+
+	$("#my-text-input.selectManagers").tokenInput("/projects/token_managers", {
+		theme: "facebook",
+		preventDuplicates: true
+	});
+
+	$("#my-text-input.selectSalesman").tokenInput("/projects/token_salesman", {
+		theme: "facebook",
+		preventDuplicates: true
+	});
+
+	$("#my-text-input.selectWorkers").tokenInput("/projects/token_workers", {
+		theme: "facebook",
+		preventDuplicates: true
 	});
 
 	$("#my-text-input.selectContacts").tokenInput("/contacts/token", {
@@ -72,6 +94,8 @@ $(document).ready(function(){
 	$('#advancedSearch').bind('click', function(){
 		$('.advancedSearchBox').slideToggle('slow');
 	});
+
+	$('.datepicker').datepicker({ dateFormat: "dd-mm-yy" });
 
 	function clear_form_elements(ele) {
 	 

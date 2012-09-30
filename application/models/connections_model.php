@@ -5,8 +5,8 @@
 	
 	class Connections_Model extends CI_Model {
 
-		public function __constructor(){
-			parent::__constructor();
+		public function __construct(){
+			parent::__construct();
 		}
 
 		public function get_connection_types() {
@@ -34,6 +34,18 @@
 			$con->setPassword($_POST['connection']['Password']);
 			$con->setUrl($_POST['connection']['Link']);
 			$con->save();
+		}
+
+		public function update_connection($id){
+			$con = new Connections_Class($id);
+			$con->setConnectionOptionsID($_POST['connection']['Type_of_connection']);
+			$con->setBusinessID($_POST['connection']['Business']);
+			$con->setUsername($_POST['connection']['Username']);
+			$con->setUsernameTwo($_POST['connection']['Username_2']);
+			$con->setPassword($_POST['connection']['Password']);
+			$con->setUrl($_POST['connection']['Link']);
+			$con->save();
+			return true;
 		}
 
 		public function get(){
@@ -73,6 +85,23 @@ and(c.username like '%{$con}%' or c.username_two like '%{$con}%' or url like '%{
 order by b.name, c.url asc";
 			$query = $this->db->query($sql, array($_POST["search"]['Business'], $_POST["search"]['Type_of_connection']));
 			return $query->result_array();
+		}
+
+		public function connections_businesses($id, $json = false){
+			if($json){
+				$select = "SELECT b.business_id as id, b.name";
+			} else {
+				$select = "SELECT *";
+			}
+			$sql = $select . " from businesses as b
+inner join connections as c on c.business_id = b.business_id
+where c.connection_id = ?";
+			$query = $this->db->query($sql, array($id));
+			if(!$json){
+				return $query->result_array();
+			} else {
+				return json_encode($query->result_array());
+			}
 		}
 	}
 ?>

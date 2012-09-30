@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6 {
     color:#525252;
 }
 
+li {
+    list-style: none outside none;
+}
+
 /* Side Slidebar Styling */
 .sidebarSlider {
 	position: absolute;
@@ -108,8 +112,8 @@ h1, h2, h3, h4, h5, h6 {
 .sidebarSlider .action-bar {
     background: none repeat scroll 0 0 #F3F3F3;
     border-top: 1px solid #DBDBDB;
-    height: 30px;
-    padding-left: 10px;
+    min-height: 20px;
+    padding: 5px;
 }
 
 /* End of side slidebar styling */
@@ -175,7 +179,9 @@ textarea {
 .util-button-new .business {
     background-position: 0 -9121px;
 }
-
+.util-button-new .project {
+    background-position: 0 -6624px;
+}
 .util-button-new .connections {
     background-position: 0 -8832px;
 }
@@ -305,6 +311,9 @@ textarea {
     background-position: 0 -9121px;
 }
 
+.icon.projectIcon {
+    background-position: 0 -6624px;
+}
 .icon.plusIcon.open {
      background-position: 0 -1589px;
 }
@@ -372,6 +381,23 @@ select.connectionSelection {
 
 td.slide {
     vertical-align: bottom;
+}
+
+.datepicker {
+    width:115px;
+}
+
+.sidebar-divider {
+    height:2px;
+    border-bottom:1px solid #d4d4d4;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.action-bar span {
+    font-size: 10px;
+    padding-left: 15px;
+    padding-right:15px;
 }
 
 
@@ -448,3 +474,147 @@ td.slide {
     background-position: 0 0;
 }
 /* End of Misc classes */
+
+/* Projects Grid Layout CSS - This was stolen from podio so dont worry if it looks mental */
+
+
+.items-list {
+    min-height: 500px;
+    position: relative;
+}
+
+.items-list.badge {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.items-list.badge .item {
+    -moz-box-sizing: border-box;
+    font-size: 10px;
+    padding: 0 20px 18px 0;
+}
+.g33 {
+    width: 33.33%;
+    display: inline;
+    float: left;
+}
+.g50 {
+    width: 50%;
+}
+.g20, .g25, .g33, .g50, .g66, .g75, .g80, .g100 {
+    display: inline;
+    float: left;
+}
+
+.items-list.badge .item .inner {
+    -moz-transition-duration: 0.1s;
+    -moz-transition-property: background;
+    -moz-transition-timing-function: ease-in;
+    border-bottom: 1px solid #D8D8D8;
+    border-radius: 5px 5px 5px 5px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    padding-right: 0;
+    box-shadow: 1px 1px 3px #8C8C8C;
+}
+
+.items-list.badge .item .inner .header {
+    -moz-transition-duration: 0.1s;
+    -moz-transition-property: background;
+    -moz-transition-timing-function: ease-in;
+    background: none repeat scroll 0 0 #EFEFEF;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    line-height: 30px;
+    padding: 0 10px;
+}
+
+
+.items-list.badge .item .inner .content {
+    border-top: 1px solid #D8D8D8;
+    height: 118px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+}
+
+.items-list.badge .item .inner .content .bottom {
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+}
+
+.items-list.badge .item .inner .footer:before {
+    border-top: 1px solid #FFFFFF;
+    content: "";
+    height: 1px;
+    margin-left: -10px;
+    position: absolute;
+    width: 100%;
+}
+
+.items-list.badge .item .inner .footer {
+    border-top: 1px solid #EEEEEE;
+    bottom: 0;
+    color: #999999;
+    font-size: 10px;
+    height: 30px;
+    left: 0;
+    line-height: 30px;
+    padding: 0 10px;
+    position: absolute;
+    right: 0;
+}
+
+
+.items-list.badge .item .inner .header h2 {
+    display: block;
+    font-size: 10px;
+    height: 100%;
+    margin: 0 15px 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.items-list.badge .item .inner a:link, .items-list.badge .item .inner a:visited {
+    color: #525252;
+}
+
+.items-list.badge .item .inner .header .comment-count {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    z-index: 2;
+}
+.items-list.badge .item .inner .header .badge {
+    background: none repeat scroll 0 0 #CCCCCC;
+    border-radius: 20px 20px 20px 20px;
+    color: #FFFFFF;
+    font-size: 10px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    width: 15px;
+}
+
+.label, .badge {
+    background-color: inherit;
+    color:inherit;
+    font-weight:normal;
+    text-shadow:none;
+}
+
+.footer .date {
+    float:left;
+}
+
+.footer .author {
+    float:right;
+}
+
+/* End of grid layout styling */

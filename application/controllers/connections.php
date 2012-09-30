@@ -1,5 +1,7 @@
 <?php 
 
+	require_once('application/libraries/classes/Connections.php');
+
 	class Connections extends CI_Controller {
 
 		public function __construct(){
@@ -25,6 +27,25 @@
 			} else {
 				$this->connections_model->insert_connection();
 			}
+		}
+
+		public function view($id = null){
+			$connection = new Connections_Class($id);
+			
+			if($this->request->isPost()){
+				if($this->connections_model->update_connection($connection->getID())){
+					redirect('/connections', 'refresh');
+				}
+			}
+			$data['connection_types'] = $this->connections_model->get_connection_types();
+			$data['type_options'] = array();
+			foreach($data['connection_types'] as $con){
+				$data['type_options'][$con['connection_options_id']] = $con['name'];
+			}
+			$data['title'] = 'Edit a connection';
+			$data['connection'] = $connection;
+
+			$this->render_view('connections/view', $data);
 		}
 
 		public function delete(){
@@ -56,6 +77,11 @@
 			} else {
 				redirect('/connections', 'refresh');
 			}
+		}		
+
+		public function get_businesses($id){
+			$q = $this->connections_model->connections_businesses($id, true);
+			echo $q;
 		}
 
 		public function disable($id){

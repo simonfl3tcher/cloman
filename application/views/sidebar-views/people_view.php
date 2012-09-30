@@ -1,3 +1,4 @@
+	<div class="action-bar"></div>
 	<div class="fields">
 		<div class="field text box-error-wrapper is-inline-editable">
             <div class="label">

@@ -5,7 +5,5 @@
 		<div class="img-ext"><a href="<?php echo $editLink; ?>"><span class="util-button-new first"><span class="edit"></span></span></a></div>
 	</div>
 
-	<div class="action-bar"></div>
-
 	<?php $this->load->partial($sidebarUrl); ?>
 </div>
