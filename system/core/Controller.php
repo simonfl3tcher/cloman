@@ -59,6 +59,9 @@ class CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('helpers/request_model', 'request');
 		$this->load->model('helper_model');
+		// THis is where is set the session vairables for the jquery chat this needs to be sorted out properly.
+		session_start();
+		$_SESSION['username'] = 'Simon Fletcher';
 		// if(!$this->session->userdata('Logged_In') && uri_string() != 'login'){
 		// 	redirect('/login');
 		// }

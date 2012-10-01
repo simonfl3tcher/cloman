@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-30 23:46:12
+-- Date/time:                    2012-10-01 22:01:00
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -66,7 +66,7 @@ DELETE FROM `businesses`;
 INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`, `disabled`) VALUES
 	(1, '0', 'Logic Design', '01284706842', 'hello@logicdesign.co.uk', 'N'),
 	(2, '18', 'Big Earth', '0207 657 2727', 'office@bigearth.co.uk', 'N'),
-	(3, '0', 'Nicola Sexton', '01284 760011', 'info@nicolasexton.co.uk', 'N'),
+	(3, '0', 'Nicola Sexton', '01284 760011', 'info@nicolasexton.co.uk', 'Y'),
 	(6, '10', 'Display World', '01284 345345', 'hello@displayworld.co.uk', 'N'),
 	(9, '0', 'Reason Marketing', '01284 456 456', 'howie@reason.co.uk', 'N'),
 	(11, '0', 'Finns Freelancer', '01284 345345', 'finn@finn.co.uk', 'N'),
@@ -137,6 +137,24 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(85, 32, 51),
 	(86, 1, 58);
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.chat
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE IF NOT EXISTS `chat` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `from` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `to` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
+  `sent` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `recd` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.chat: ~0 rows (approximately)
+DELETE FROM `chat`;
+/*!40000 ALTER TABLE `chat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chat` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.connections
@@ -262,18 +280,19 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `task_template_id` varchar(255) DEFAULT NULL,
   `complete` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.projects: ~6 rows (approximately)
+-- Dumping data for table my.company.projects: ~7 rows (approximately)
 DELETE FROM `projects`;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
 INSERT INTO `projects` (`project_id`, `business_id`, `sales_id`, `project_name`, `manager_id`, `project_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `budget`, `notes`, `task_template_id`, `complete`) VALUES
 	(5, '1', '5', 'Reason Marketing', 4, '3', 0, '2012-09-30 00:00:00', '2012-10-31 00:00:00', '2012-10-29 00:00:00', '3500', 'This is the notes section ', NULL, 'N'),
-	(6, '1', '5', 'Reason Marketing', 4, '3', 4, '2012-09-30 00:00:00', '2012-11-21 00:00:00', '2012-11-29 00:00:00', '3000', 'Project notes go in here', NULL, 'N'),
+	(6, '1', '5', 'Reason Marketing', 4, '3', 4, '2012-09-30 00:00:00', '2012-10-02 00:00:00', '2012-10-02 00:00:00', '4000', 'Project notes go in here', NULL, 'N'),
 	(7, '12', '3', 'Animal DNA Diagnostics', 4, '5', 2, '2012-10-30 00:00:00', '2012-11-29 00:00:00', '2012-11-27 00:00:00', '12000', 'This is a bespoke development project make sure you spend time testing.', NULL, 'N'),
 	(8, '', '', 'hello', 0, '1', 1, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '', '', NULL, 'N'),
 	(9, '1', '5', 'Hello Project', 4, '2', 3, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '4000', 'dsfdsfds', NULL, 'N'),
-	(10, '2', '5', 'Ta Shain', 4, '5', 1, '2012-09-26 00:00:00', '2012-11-30 00:00:00', '2012-09-28 00:00:00', '6800', 'This is a shop like ebay for uni student books', NULL, 'N');
+	(10, '2', '5', 'Ta Shain (ebay like site)', 4, '5', 1, '2012-09-26 00:00:00', '2013-01-29 00:00:00', '2013-01-31 00:00:00', '10000', 'This is a shop like ebay for uni student books check this out it really is working', NULL, 'N'),
+	(11, '1', '5', 'Animal DNA Diagnostics', 4, '3', 1, '2012-10-03 00:00:00', '2012-10-18 00:00:00', '2012-10-18 00:00:00', '4000', 'These are the project notes check them out here y\'all', NULL, 'N');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 
 
@@ -284,9 +303,9 @@ CREATE TABLE IF NOT EXISTS `project_to_users` (
   `user_id` int(10) DEFAULT NULL,
   `project_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`users_to_project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.project_to_users: ~20 rows (approximately)
+-- Dumping data for table my.company.project_to_users: ~24 rows (approximately)
 DELETE FROM `project_to_users`;
 /*!40000 ALTER TABLE `project_to_users` DISABLE KEYS */;
 INSERT INTO `project_to_users` (`users_to_project_id`, `user_id`, `project_id`) VALUES
@@ -297,9 +316,6 @@ INSERT INTO `project_to_users` (`users_to_project_id`, `user_id`, `project_id`) 
 	(5, 2, 5),
 	(6, 2, 5),
 	(7, 7, 5),
-	(8, 1, 6),
-	(9, 2, 6),
-	(10, 7, 6),
 	(11, 1, 7),
 	(12, 2, 7),
 	(13, 6, 7),
@@ -307,9 +323,16 @@ INSERT INTO `project_to_users` (`users_to_project_id`, `user_id`, `project_id`) 
 	(15, 1, 9),
 	(16, 6, 9),
 	(17, 2, 9),
-	(18, 1, 10),
-	(19, 2, 10),
-	(20, 7, 10);
+	(36, 2, 10),
+	(37, 7, 10),
+	(38, 1, 10),
+	(39, 6, 10),
+	(46, 1, 6),
+	(47, 2, 6),
+	(48, 7, 6),
+	(49, 1, 11),
+	(50, 6, 11),
+	(51, 0, 0);
 /*!40000 ALTER TABLE `project_to_users` ENABLE KEYS */;
 
 

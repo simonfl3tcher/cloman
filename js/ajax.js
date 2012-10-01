@@ -110,9 +110,33 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#searchGrid').keyup(function(){
+		var data = 'data=' + $(this).val();
+		$.ajax({
+			url: $(this).attr('data-searchurl'),
+			type: 'POST',
+			dataType: 'html',
+			data: data
+		}).done(function(data){
+			searchResultsGrid(data);
+		});
+	});
+
 	$('table tr td a').bind('click', function(e){
 		e.stopPropagation();
 	});
+
+	function searchResultsGrid(data){
+		var surrounder = $('#searchGrid').closest('div.control-group');
+		if(data){
+			$('#gridContainer').html('');
+			$(surrounder).removeClass('error');
+			$('#gridContainer').html(data);
+		} else {
+			$(surrounder).addClass('error');
+			$('.ajaxLoader').addClass('error');
+		}
+	}
 
 
 	function searchResults(data){

@@ -26,7 +26,7 @@
 <table class="std">
 	<tr>
 		<td>
-			<input id="my-text-input" type="text" name="project[Business]" class="selectBusinesses" />
+			<input id="my-text-input" type="text" name="project[Business]" class="selectBus" />
 		</td>
 	</tr>
 </table>
@@ -37,7 +37,7 @@
 <table class="std">
 	<tr>
 		<td>
-			<input id="my-text-input" type="text" name="project[Manager]" class="selectManagers" />
+			<input id="my-text-input" type="text" name="project[Manager]" class="selectMan" />
 		</td>
 	</tr>
 </table>
@@ -54,7 +54,7 @@
 <table class="std">
 	<tr>
 		<td>
-			<input id="my-text-input" type="text" name="project[Salesman]" class="selectSalesman" />
+			<input id="my-text-input" type="text" name="project[Salesman]" class="selectSales" />
 		</td>
 	</tr>
 </table>
@@ -65,7 +65,7 @@
 <table class="std">
 	<tr>
 		<td>
-			<input id="my-text-input" type="text" name="project[Workers]" class="selectWorkers" />
+			<input id="my-text-input" type="text" name="project[Workers]" class="selectWork" />
 		</td>
 	</tr>
 </table>
@@ -107,9 +107,7 @@
 <table class="std">
 	<tr>
 		<td>
-			<textarea name="project[Notes]" style="width:100%">
-				<?php echo trim($project->getNotes()); ?>
-			</textarea>
+			<textarea name="project[Notes]" style="width:100%"><?php echo trim($project->getNotes()); ?></textarea>
 		</td>
 	</tr>
 </table>
@@ -119,3 +117,59 @@
 <input type="submit" class="btn btn-mini btn-success" value="Update Project" />
 </form>
 <div class="clear"></div>
+
+<script>
+	var c = window.location.pathname;
+	var x = c.substr(c.lastIndexOf('/')+1);
+	$.ajax({
+		url: '/projects/get_business/' + x,
+		type: 'GET',
+		data: 'json',
+		success: function(data){
+			$("#my-text-input.selectBus").tokenInput("/businesses/token", {
+				theme: "facebook",
+				prePopulate: eval('(' + data + ')'),
+				preventDuplicates: true,
+				tokenLimit: 1
+			});
+		},
+	});
+	$.ajax({
+		url: '/projects/get_manager/' + x,
+		type: 'GET',
+		data: 'json',
+		success: function(data){
+			$("#my-text-input.selectMan").tokenInput("/projects/token_managers", {
+				theme: "facebook",
+				prePopulate: eval('(' + data + ')'),
+				preventDuplicates: true,
+				tokenLimit: 1
+			});
+		},
+	});
+	$.ajax({
+		url: '/projects/get_salesman/' + x,
+		type: 'GET',
+		data: 'json',
+		success: function(data){
+			$("#my-text-input.selectSales").tokenInput("/projects/token_salesman", {
+				theme: "facebook",
+				prePopulate: eval('(' + data + ')'),
+				preventDuplicates: true,
+				tokenLimit: 1
+			});
+		},
+	});
+	$.ajax({
+		url: '/projects/get_workers/' + x,
+		type: 'GET',
+		data: 'json',
+		success: function(data){
+			$("#my-text-input.selectWork").tokenInput("/projects/token_workers", {
+				theme: "facebook",
+				prePopulate: eval('(' + data + ')'),
+				preventDuplicates: true
+			});
+		},
+	});
+</script>

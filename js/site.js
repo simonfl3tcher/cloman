@@ -9,7 +9,9 @@ $(document).ready(function(){
 	});
 
 	$('#search').trigger('keyup');
+	$('#searchGrid').trigger('keyup');
 
+	
 	$('.boxes-add').bind('click', function(e){
 		e.preventDefault();
 		$('#myModal').modal({

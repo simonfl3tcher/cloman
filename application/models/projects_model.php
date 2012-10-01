@@ -10,7 +10,7 @@
 			parent::__construct();
 		}
 
-		public function insert_project(){
+		public function insert_project($id){
 			$project = new Project_Class();
 			$project->setBusinessID($_POST['project']['Business']);
 			$project->setSalesID($_POST['project']['Salesman']);
@@ -33,6 +33,35 @@
 				$projectUsers->setUserID($w);
 				$projectUsers->save();
 			}
+		}
+
+		public function update_project($id){
+			$project = new Project_Class($id);
+			$project->setBusinessID($_POST['project']['Business']);
+			$project->setSalesID($_POST['project']['Salesman']);
+			$project->setProjectName($_POST['project']['Name']);
+			$project->setManagerID($_POST['project']['Manager']);
+			$project->setProjectTypeID($_POST['project']['Type']);
+			$project->setStatusID($_POST['project']['Status']);
+			$project->setStartDate(date('Y-m-d', strtotime($_POST['project']['Startdate'])));
+			$project->setInternalDeadline(date('Y-m-d', strtotime($_POST['project']['internal-end-date'])));
+			$project->setClientDeadline(date('Y-m-d', strtotime($_POST['project']['external-end-date'])));
+			$project->setNotes($_POST['project']['Notes']);
+			$project->setBudget($_POST['project']['Cost']);
+			$project->save();
+
+			$workers = explode(',', $_POST['project']['Workers']);
+			
+			$this->db->delete('project_to_users', array('project_id' => $project->getID())); 
+
+			foreach($workers as $w){
+				$projectUsers = new Project_To_Users_Class();
+				$projectUsers->setProjectID($project->getID());
+				$projectUsers->setUserID($w);
+				$projectUsers->save();
+			}
+
+			return true;
 		}
 
 		public function search_managers_token($data){
@@ -79,7 +108,19 @@
 			$this->db->join('users', 'projects.manager_id = users.user_id');
 			$this->db->join('businesses', 'businesses.business_id = projects.business_id');
 			$this->db->where('complete', 'N');
-			$this->db->order_by('status_id desc, internal_deadline desc'); 
+			$this->db->order_by('status_id asc, internal_deadline desc'); 
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function search_projects($data){
+			$this->db->select('*');
+			$this->db->from('projects');
+			$this->db->join('users', 'projects.manager_id = users.user_id');
+			$this->db->join('businesses', 'businesses.business_id = projects.business_id');
+			$this->db->like('project_name', $data); 
+			$this->db->where('complete', 'N');
+			$this->db->order_by('status_id asc, internal_deadline desc'); 
 			$query = $this->db->get();
 			return $query->result_array();
 		}
@@ -103,5 +144,65 @@
 			where p.project_id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->result_array();
+		}
+
+		public function project_business($id, $json = false){
+			if($json){
+				$select = "SELECT b.business_id as id, b.name";
+			} else {
+				$select = "SELECT *";
+			}
+			$sql = $select . " from businesses as b
+inner join projects as p on p.business_id = b.business_id
+where p.project_id = ?";
+			$query = $this->db->query($sql, array($id));
+			if(!$json){
+				return $query->result_array();
+			} else {
+				return json_encode($query->result_array());
+			}
+		}
+
+		public function project_manager($id, $json = false){
+			if($json){
+				$select = " SELECT u.user_id as id, name";
+			} else {
+				$select = "SELECT *";
+			}
+			$sql = $select . " from users as u
+inner join projects as p on p.manager_id = u.user_id
+where p.project_id = ?";
+			$query = $this->db->query($sql, array($id));
+			if(!$json){
+				return $query->result_array();
+			} else {
+				return json_encode($query->result_array());
+			}
+		}
+
+		public function project_salesman($id, $json = false){
+			if($json){
+				$select = " SELECT u.user_id as id, name";
+			} else {
+				$select = "SELECT *";
+			}
+			$sql = $select . " from users as u
+inner join projects as p on p.sales_id = u.user_id
+where p.project_id = ?";
+			$query = $this->db->query($sql, array($id));
+			if(!$json){
+				return $query->result_array();
+			} else {
+				return json_encode($query->result_array());
+			}
+		}
+
+		public function json_project_user($id){
+			$sql ="SELECT u.user_id as id, name
+			from users as u
+			inner join project_to_users as ptu on ptu.user_id = u.user_id
+			where ptu.project_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return json_encode($query->result_array());
 		}
 	}

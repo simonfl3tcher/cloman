@@ -41,6 +41,20 @@
 			}
 		}
 
+		public function search(){
+			$d = $_POST['data'];
+			if($this->request->isPost()){
+				$data['list_of_projects'] = $this->projects_model->search_projects($d);
+				if(!empty($data['list_of_projects'])){
+					$this->load->partial('projects/partials/grid_partial.php', $data);
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+
 		public function token_managers(){
 			$q = $this->projects_model->search_managers_token($_GET['q']);
 			echo $q;
@@ -73,8 +87,8 @@
 			$project = new Project_Class($id);
 			
 			if($this->request->isPost()){
-				if($this->connections_model->update_connection($connection->getID())){
-					redirect('/connections', 'refresh');
+				if($this->projects_model->update_project($project->getID())){
+					redirect('/projects', 'refresh');
 				}
 			}
 
@@ -100,5 +114,24 @@
 			$this->render_view('projects/view', $data);
 		}
 
+		public function get_business($id){
+			$q = $this->projects_model->project_business($id, true);
+			echo $q;
+		}
+
+		public function get_manager($id){
+			$q = $this->projects_model->project_manager($id, true);
+			echo $q;
+		}
+
+		public function get_salesman($id){
+			$q = $this->projects_model->project_salesman($id, true);
+			echo $q;
+		}
+
+		public function get_workers($id){
+			$q = $this->projects_model->json_project_user($id, true);
+			echo $q;
+		}
 	}
 ?>
