@@ -19,6 +19,7 @@
  *
  */
 	define('ENVIRONMENT', 'development');
+	session_start();
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

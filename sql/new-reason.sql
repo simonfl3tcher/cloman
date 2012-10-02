@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-01 22:01:00
+-- Date/time:                    2012-10-02 19:51:54
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -459,20 +459,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone` varchar(50) DEFAULT NULL,
   `bio` varchar(255) DEFAULT NULL,
   `twitter` varchar(50) DEFAULT NULL,
+  `is_logged_in` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table my.company.users: ~7 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`user_id`, `name`, `email`, `display_name`, `password`, `phone`, `bio`, `twitter`) VALUES
-	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'S.Fletcher', NULL, NULL, NULL, NULL),
-	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'K.Bradley', NULL, NULL, NULL, NULL),
-	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'H.Connelberry', NULL, NULL, NULL, NULL),
-	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'S.Hunt', NULL, NULL, NULL, NULL),
-	(5, 'Darren Smith', 'darren@logicdesign.co.uk', 'D.Smith', NULL, NULL, NULL, NULL),
-	(6, 'Finn Johnston', 'finn@logicdesign.co.uk', 'F.Johnston', NULL, NULL, NULL, NULL),
-	(7, 'Adam Howson', 'adam@logicdesign.co.uk', 'A.Howson', NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`user_id`, `name`, `email`, `display_name`, `password`, `phone`, `bio`, `twitter`, `is_logged_in`) VALUES
+	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'S.Fletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'N'),
+	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'K.Bradley', NULL, NULL, NULL, NULL, 'N'),
+	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'H.Connelberry', NULL, NULL, NULL, NULL, 'N'),
+	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'S.Hunt', NULL, NULL, NULL, NULL, 'N'),
+	(5, 'Darren Smith', 'darren@logicdesign.co.uk', 'D.Smith', NULL, NULL, NULL, NULL, 'N'),
+	(6, 'Finn Johnston', 'finn@logicdesign.co.uk', 'F.Johnston', NULL, NULL, NULL, NULL, 'N'),
+	(7, 'Adam Howson', 'adam@logicdesign.co.uk', 'A.Howson', NULL, NULL, NULL, NULL, 'N');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 

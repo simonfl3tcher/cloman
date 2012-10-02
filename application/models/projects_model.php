@@ -118,8 +118,8 @@
 			$this->db->from('projects');
 			$this->db->join('users', 'projects.manager_id = users.user_id');
 			$this->db->join('businesses', 'businesses.business_id = projects.business_id');
-			$this->db->like('project_name', $data); 
-			$this->db->where('complete', 'N');
+			$this->db->like('project_name', $data);
+			$this->db->or_like('businesses.name', $data);
 			$this->db->order_by('status_id asc, internal_deadline desc'); 
 			$query = $this->db->get();
 			return $query->result_array();

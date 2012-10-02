@@ -176,6 +176,18 @@ textarea {
     background-position: 0 -9121px;
 }
 
+.util-button-new .atoz {
+    background-position: 0 -49px;
+}
+
+.util-button-new .calander {
+    background-position: 0 -64px;
+}
+
+.util-button-new .star {
+    background-position: 0 -3233px;
+}
+
 .util-button-new .business {
     background-position: 0 -9121px;
 }
@@ -618,3 +630,7 @@ td.slide {
 }
 
 /* End of grid layout styling */
+
+input {
+    vertical-align: top;
+}

@@ -10,8 +10,11 @@
 		public function index(){
 			if($this->request->isPost()){
 				$results = $this->login_model->login();
-				if($results->num_rows == 1){
+				if(!empty($results)){
+					$this->login_model->set_login($results->user_id);
 					$this->session->set_userdata('Logged_In', true);
+					$this->session->set_userdata('user_id', $results->user_id);
+					$_SESSION['username'] = $results->display_name;
 					redirect('/', 'refresh');
 				} else {
 					$data['error'] = 'Your username / password do not match. please try again';
