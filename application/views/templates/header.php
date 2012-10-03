@@ -21,5 +21,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-responsive.css" />
 </head>
 <body>
+	<span class="tasks-add util-button-new first"><span class="task"></span></span>
 	<div class="pageWrapper">
 		<h1><?php echo $title; ?></h1>

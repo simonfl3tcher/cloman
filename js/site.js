@@ -20,6 +20,14 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.tasks-add').bind('click', function(e){
+		e.preventDefault();
+		$('#task-modal').modal({
+			backdrop:true,
+			keyboard: true
+		});
+	})
+
 
 	$('.addBusiness').toggle(
 		function(){

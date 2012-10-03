@@ -121,10 +121,6 @@ li {
     display:none;
 }
 
-textarea {
-    width: 100%;
-}
-
 .deleteRow {
     opacity: 0.5;
 }
@@ -174,6 +170,10 @@ textarea {
 
 .util-button-new .business {
     background-position: 0 -9121px;
+}
+
+.util-button-new .task {
+    background-position: 0 -608px;
 }
 
 .util-button-new .atoz {
@@ -253,7 +253,8 @@ textarea {
 }
 
 .addWrapper textarea {
-    width: 97%;
+      height: 90px;
+    width: 396px;
 }
 
 .addWrapper ul.token-input-list-facebook {
@@ -342,6 +343,10 @@ textarea {
     background-position: 0 -1589px;
 }
 
+.icon.taskIcon {
+    background-position: 0 -608px;
+}
+
 .icon.busniessIcon {
     background-position: 0 -9121px;
 }
@@ -365,7 +370,7 @@ textarea {
 }
 
 .icon.taskIcon {
-    background-position: 0 -959px;
+    background-position: 0 -608px;
 }
 
 .icon.connectionIcon {
