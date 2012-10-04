@@ -36,4 +36,9 @@
 
 	}
 
+	function get_types_of_tasks(){
+		$this->load->model('task_model');
+		return $task_types = $this->task_model->get_task_types();
+	}
+
 ?>

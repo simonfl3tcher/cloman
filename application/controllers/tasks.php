@@ -5,6 +5,7 @@
 
 		public function __construct(){
 			parent::__construct();
+			$this->load->model('task_model');
 		}
 
 		public function index(){
@@ -13,8 +14,11 @@
 		}
 
 		public function add($project_id = null){
-			var_dump('This needs to be added in properly');
-			exit;
+			if(!$this->request->isAjax()){
+				$this->redirect('/', 'refresh');
+			} else {
+				$this->task_model->insert_task();
+			}
 		}
 	}
 ?>
