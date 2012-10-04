@@ -126,6 +126,23 @@ $(document).ready(function(){
 		e.stopPropagation();
 	});
 
+	
+	$('.taskBusinessSelector').bind('change', function(e){
+		var data = 'data=' + $(this).val();
+		$.ajax({
+			url: 'tasks/get_projects_for_busines/' + $(this).val(),
+			type: 'POST',
+			dataType: 'html',
+			data: data
+		}).done(function(data){
+			$('.assigntoproject').append('<input type="checkbox" name="task[Project]" value="' + data.project_id + '" /><label>' + data.project_name + '</label>');
+		});
+		console.log('This has changed');
+		console.log($(this).val());
+		$('.assigntoproject').slideDown('slow');
+	});	
+
+	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){
 		var surrounder = $('#searchGrid').closest('div.control-group');
 		if(data){
@@ -169,7 +186,6 @@ $(document).ready(function(){
 
 
 
-	/* Functions that you may want to use are bellow */
 
 	function formatInputData(formId){
 		var data = '';

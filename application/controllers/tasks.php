@@ -20,5 +20,9 @@
 				$this->task_model->insert_task();
 			}
 		}
+
+		public function get_projects_for_busines($id = null){
+			echo $this->task_model->get_project_for_business($id); 
+		}
 	}
 ?>

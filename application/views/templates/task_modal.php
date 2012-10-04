@@ -9,22 +9,35 @@
             		<table>
             			<tr class="largeField">
 							<td>
-								<label for="business_name">Project Name</label>
-								<span><input type="text" value="" id="project_name" name="project[Name]"></span>
+								<label for="business_name">Task Name</label>
+								<span><input type="text" value="" id="project_name" name="task[Name]"></span>
 							</td>
 						</tr>
 					</table>
 					<div class="stdpadh stdpadt">
 						<span>Business</span>
 					</div>
-						
-					<table class="std">
-						<tr>
+					<table class="std ">
+						<tr class="largeField">
 							<td>
-								<input id="my-text-input" type="text" name="project[Business]" class="selectBusinesses" />
-							</td>
+								<span>
+									<?php 
+										$this->db->select('*');
+										$this->db->from('businesses');
+										$query = $this->db->get();
+										$query = $query->result_array();
+										$type_options = array();
+										foreach($query as $con){
+											$type_options[$con['business_id']] = $con['name'];
+										}
+										$js = 'class="taskBusinessSelector"'; ?>
+									<?php echo form_dropdown('task[Business]', $type_options, '', $js); ?>
+								</span>
+							</td>	
 						</tr>
 					</table>
+					<div class="assigntoproject">
+					</div>
 					<div class="stdpadh stdpadt">
 						<span>Assign Task To</span>
 					</div>
@@ -32,7 +45,7 @@
 					<table class="std">
 						<tr>
 							<td>
-								<input id="my-text-input" type="text" name="project[Workers]" class="selectWorkers" />
+								<input id="my-text-input" type="text" name="task[Workers]" class="selectWorkers" />
 							</td>
 						</tr>
 					</table>
@@ -43,13 +56,13 @@
 					<table class="std">
 						<tr>
 							<td>
-								<input type="text" name="project[Startdate]" class="datepicker" />
+								<input type="text" name="task[Startdate]" class="datepicker" />
 							</td>
 							<td>
-								<input type="text" name="project[internal-end-date]" class="datepicker" />
+								<input type="text" name="task[internal-end-date]" class="datepicker" />
 							</td>
 							<td>
-								<input type="text" name="project[external-end-date]" class="datepicker" />
+								<input type="text" name="task[external-end-date]" class="datepicker" />
 							</td>
 						</tr>
 					</table>
@@ -62,26 +75,56 @@
 							<td>
 								<span>
 									<?php 
+										$this->db->select('*');
+										$this->db->from('task_type');
+										$query = $this->db->get();
+										$query = $query->result_array();
+										$type_options = array();
+										foreach($query as $con){
+											$type_options[$con['task_type_id']] = $con['name'];
+										}
 										$js = 'class="connectionSelection"'; ?>
-									<?php echo form_dropdown('connection[Type_of_connection]', $type_options, '', $js); ?>
+									<?php echo form_dropdown('task[Type]', $type_options, '', $js); ?>
 								</span>
 								<span id="addTextbox" class="addConnection icon plusIconGrey"></span>
 							</td>
 							<td class="slide">
-								<input class="addConnectionInput" type="text" name="connection[Add_type_of_connection]" placeholder="Add new connection type" />
+								<input class="addConnectionInput" type="text" name="task[Add_type_of_task]" placeholder="Add new connection type" />
+							</td>
+						</tr>
+					</table>
+					<div class="stdpadh stdpadt">
+						<span>Task Status</span>
+					</div>
+					<table class="std ">
+						<tr class="largeField">
+							<td>
+								<span>
+									<?php 
+										$this->db->select('*');
+										$this->db->from('status_table');
+										$query = $this->db->get();
+										$query = $query->result_array();
+										$type_options = array();
+										foreach($query as $con){
+											$type_options[$con['status_id']] = $con['name'];
+										}
+										$js = 'class="connectionSelection"'; ?>
+									<?php echo form_dropdown('task[Status]', $type_options, '', $js); ?>
+								</span>
 							</td>
 						</tr>
 					</table>
 
 
 					<div class="stdpadh stdpadt">
-						<span>Project Notes</span>
+						<span>Task Notes</span>
 					</div>
 						
 					<table class="std">
 						<tr>
 							<td>
-								<textarea name="project[Notes]"></textarea>
+								<textarea name="task[Notes]"></textarea>
 							</td>
 						</tr>
 					</table>

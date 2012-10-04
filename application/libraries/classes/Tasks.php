@@ -2,14 +2,17 @@
 	
 	class Tasks_Class extends DataboundObject {
 
-		protected $AssignTo;
+		protected $ParentTaskID;
+		protected $BusinessID;
+		protected $ProjectID;
 		protected $TaskTypeID;
-		protected $Start;
-		protected $EstCompletion;
-		protected $Task;
+		protected $StatusID;
+		protected $StartDate;
+		protected $InternalDeadline;
+		protected $ClientDeadline;
+		protected $Name;
 		protected $Notes;
 		protected $Complete;
-		protected $ProjectID;
 
 		protected function DefineTableName(){
 			return("tasks"); //Name of the table you want to use.
@@ -24,15 +27,18 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"task_id" => "ID",
-				"assign_to" => "AssignTo", 
-				"task_type_id" => "TaskTypeID", 
-				"start" => "Start",
-				"est_completion" => "EstCompletion",
-				"task" => "Task", 
-				"notes" => "Notes", 
-				"complete" => "Complete",
+				"parent_task_id" => "ParentTaskID",
+				"business_id" => "BusinessID",
 				"project_id" => "ProjectID",
-				);
+				"task_type_id" => "TaskTypeID",
+				"status_id" => "StatusID",
+				"start_date" => "StartDate",
+				"internal_deadline" => "InternalDeadline",
+				"client_deadline" => "ClientDeadline",
+				"name" => "Name",
+				"notes" => "Notes",
+				"complete" => "Complete"
+			);
 		}
 	}
 ?>
