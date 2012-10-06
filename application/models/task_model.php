@@ -11,6 +11,30 @@
 			$this->load->database();
 		}
 
+		public function get($id = null){
+			$sql = "SELECT b.name as business_name, b.business_id as bid, tt.name as task_type, t.* from tasks as t
+inner join businesses as b on b.business_id = t.business_id
+inner join status_table as st on st.status_id = t.status_id
+inner join task_type as tt on tt.task_type_id = t.task_type_id
+where complete = 'N'";
+		if($id != null){
+			$sql .= " and t.task_id = {$id}";
+		}
+		$sql .= " order by t.status_id";
+			$query = $this->db->query($sql);
+			return $query->row();
+		}
+
+		public function search_tasks($data) {
+			$sql = "SELECT b.name as business_name, t.* from tasks as t
+inner join businesses as b on b.business_id = t.business_id
+inner join status_table as st on st.status_id = t.status_id
+where complete = 'N' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
+order by t.status_id";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
+
 		public function get_task_types(){
 			$this->db->select('*');
 			$this->db->from('task_type');
@@ -27,8 +51,6 @@
 			} else {
 				$type = $_POST['task']['Type'];
 			}
-			var_dump($type);
-			exit;
 			$task = new Tasks_Class();
 			$task->setName($_POST['task']['Name']);
 			$task->setBusinessID($_POST['task']['Business']);
@@ -37,6 +59,9 @@
 			$task->setClientDeadline(date('Y-m-d', strtotime($_POST['task']['external-end-date'])));
 			$task->setNotes($_POST['task']['Notes']);
 			$task->setTaskTypeID($type);
+			if(isset($_POST['task']['Project'])){
+				$task->setProjectID($_POST['task']['Project']);
+			}
 			$task->setStatusID($_POST['task']['Status']);
 			$task->save();
 
@@ -57,6 +82,21 @@
 			$this->db->where('business_id', $id);
 			$query = $this->db->get();
 			return json_encode($query->result_array());
+		}
+
+		public function worker_details($id){
+			$sql = "SELECT u.* from tasks_to_users as ttu
+inner join users as u on u.user_id = ttu.user_id
+where task_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return $query->result_array();
+		}
+
+		public function complete_task($id){
+			$data = array('complete' => 'Y');
+			$this->db->where('task_id', $id);
+			$this->db->update('tasks', $data);
+			return true;
 		}
 	}
 ?>

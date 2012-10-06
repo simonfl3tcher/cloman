@@ -12,6 +12,7 @@
 			// You need to update the user to logged out at this point as well.
 			$this->login_model->set_logout($this->session->userdata('user_id'));
 			$this->session->unset_userdata('Logged_In');
+			unset($_SESSION);
 			redirect('/', 'refresh');
 		}
 	}

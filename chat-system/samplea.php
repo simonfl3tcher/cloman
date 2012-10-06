@@ -35,7 +35,7 @@ body {
 
 </div>
 
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="../js/jQuery.js"></script>
 <script type="text/javascript" src="js/chat.js"></script>
 
 </body>

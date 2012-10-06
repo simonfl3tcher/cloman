@@ -17,6 +17,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-responsive.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/site.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>chat-system/css/chat.css" />
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-responsive.css" />
 </head>
@@ -24,3 +26,15 @@
 	<span class="tasks-add util-button-new first"><span class="task"></span></span>
 	<div class="pageWrapper">
 		<h1><?php echo $title; ?></h1>
+	<!-- <div class="container-hide">Hide Container</div>
+	<ul>
+			<?php foreach($this->session->userdata('all_users') as $u){ ?>
+				<?php if($u['is_logged_in'] == 'Y'){ ?>
+					<?php $name = $u['display_name']; ?>
+					<a href="javascript:void(0)" onclick="javascript:chatWith('<?php echo $name; ?>')">
+						<li><?php echo $u['name'] . '(' . $u['is_logged_in'] . ')'; ?></li>
+					</a>
+				<?php } ?>
+			<?php } ?>
+		</ul>
+ -->

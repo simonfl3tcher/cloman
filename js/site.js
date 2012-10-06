@@ -107,6 +107,10 @@ $(document).ready(function(){
 
 	$('.datepicker').datepicker({ dateFormat: "dd-mm-yy" });
 
+	$('.container-hide').click(function(){
+		$('.sidebar-container').slideLeftHide();
+	})
+
 	function clear_form_elements(ele) {
 	 
 	    $(ele).find(':input').each(function() {

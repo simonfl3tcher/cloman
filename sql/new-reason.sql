@@ -1,9 +1,9 @@
 -- --------------------------------------------------------
--- Host:                         
+-- Host:                         localhost
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-02 19:51:54
+-- Date/time:                    2012-10-06 16:19:22
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS `address` (
   `Region_Name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
   `Postcode` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`Address_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.address: 17 rows
+-- Dumping data for table my.company.address: 18 rows
 DELETE FROM `address`;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
 INSERT INTO `address` (`Address_ID`, `Address_Line_1`, `Address_Line_2`, `Address_Line_3`, `City`, `Region_Name`, `Postcode`) VALUES
@@ -43,7 +43,8 @@ INSERT INTO `address` (`Address_ID`, `Address_Line_1`, `Address_Line_2`, `Addres
 	(22, 'West Suffolk Hospital', 'Hardwick Lane', '', 'Bury St Edmunds', 'Suffolk', 'IP33 2QZ'),
 	(23, 'West Suffolk Hospital', 'Hardwick Lane', '', 'Bury St Edmunds', 'Suffolk', 'IP33 2QZ'),
 	(24, '29 Wirghts Way', 'Hardwick Lane', '', 'Bury St Edmunds', 'Suffolk', 'IP33 2QZ'),
-	(25, '2 Gelbe House', 'Woolpit', 'Suffolk', 'Stowmarket', 'England', 'IP30 9TY');
+	(25, '2 Gelbe House', 'Woolpit', 'Suffolk', 'Stowmarket', 'England', 'IP30 9TY'),
+	(26, '', '', '', '', '', '');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 
 
@@ -96,14 +97,12 @@ CREATE TABLE IF NOT EXISTS `business_to_people` (
   `business_id` int(10) DEFAULT '0',
   `people_id` int(10) DEFAULT '0',
   PRIMARY KEY (`b2p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.business_to_people: ~34 rows (approximately)
+-- Dumping data for table my.company.business_to_people: ~33 rows (approximately)
 DELETE FROM `business_to_people`;
 /*!40000 ALTER TABLE `business_to_people` DISABLE KEYS */;
 INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
-	(7, 0, 44),
-	(11, 0, 52),
 	(15, 1, 55),
 	(19, 1, 43),
 	(23, 10, 57),
@@ -135,7 +134,8 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(82, 1, 54),
 	(84, 32, 54),
 	(85, 32, 51),
-	(86, 1, 58);
+	(86, 1, 58),
+	(87, 0, 0);
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
 
 
@@ -179,7 +179,7 @@ INSERT INTO `connections` (`connection_id`, `business_id`, `connection_options_i
 	(1, NULL, 3, 'logicdesign', '0', 'logicdesign123', 'www.google.com', NULL, 'N'),
 	(2, 12, 3, 'logicdesign', '', 'logicdesign123', 'www.google.com', NULL, 'N'),
 	(3, 0, 5, '', '', '', '', NULL, 'Y'),
-	(4, 9, 6, 'example1', '', 'logicdesign123', 'www.google.com', NULL, 'N'),
+	(4, 9, 6, 'example1', '', 'logicdesign123', 'www.google.com', NULL, 'Y'),
 	(5, 9, 3, 'example1', '', 'logicdesign123', 'www.google.com', NULL, 'N'),
 	(6, 9, 7, 'logicdesign123', 'Logicdesign2', 'logicdesign12322', 'test.sagepay.co.uk/MySagePay', NULL, 'N'),
 	(7, 0, 1, '', '', '', '', NULL, 'N'),
@@ -248,14 +248,14 @@ DELETE FROM `people`;
 INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`, `disabled`) VALUES
 	(44, 'Charlie Robinson', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'Y'),
 	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', '', 'Y'),
-	(49, 'Finn Johnson', 'Website Designer / Studio Manager', 'finn@logicdesign.co.uk', '', 'N', 'Finn is the senior designer and studio manager', 'N'),
+	(49, 'Finn Johnson', 'Website Designer / Studio Manager', 'finn@logicdesign.co.uk', '', 'N', 'Finn is the senior designer and studio manager', 'Y'),
 	(50, 'Keith Bradley', 'Website Developer', 'keith@logicdesign.co.uk', '', 'N', 'Keith is the senior web developer and Managing Director at logic design you are looking here ', 'Y'),
 	(51, 'Howie', 'Media Consultant', 'howie@logicdesign.co.uk', '01284 706842', 'N', 'Media Consultant here at logic design', 'N'),
 	(52, 'Howie', 'Managing DIrector', 'howie@logicdesign.co.uk', '01284 706842', 'N', 'He is a hardd working individual', 'N'),
 	(53, 'Simon Fletcher', 'Managing Director', 'simon@logicdesign.co.uk', '01284 345 345 ', 'N', 'This is the same as any other contact being added into the system.', 'N'),
 	(54, 'Keith Bradley', 'Managing Director / Web Developer', 'keith@logicdesign.co.uk', '01284 706842', 'N', 'Great employer and good web developer grewat person', 'N'),
 	(55, 'Shaun Palfrey', 'Medrecs Officer', 'shaun@NHS.co.uk', '01284 345 345', 'N', 'this is the notes', 'N'),
-	(56, 'Darren Smith', 'Managing Director / Web Developer', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'this is the the best thing to do...', 'N'),
+	(56, 'Darren Smith', 'Managing Director / Web Developer', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'this is the the best thing to do...', 'Y'),
 	(57, 'David Fletcher', 'Web Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'this is a great person...', 'N'),
 	(58, 'Charlie Robinson', 'MD', 'charlie@displayworld.co.uk', '01284 345 345', 'N', 'fdgsfdgsfg', 'N'),
 	(59, 'David Williams', 'Website Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'Great guy', 'N');
@@ -280,9 +280,9 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `task_template_id` varchar(255) DEFAULT NULL,
   `complete` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.projects: ~7 rows (approximately)
+-- Dumping data for table my.company.projects: ~8 rows (approximately)
 DELETE FROM `projects`;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
 INSERT INTO `projects` (`project_id`, `business_id`, `sales_id`, `project_name`, `manager_id`, `project_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `budget`, `notes`, `task_template_id`, `complete`) VALUES
@@ -292,7 +292,8 @@ INSERT INTO `projects` (`project_id`, `business_id`, `sales_id`, `project_name`,
 	(8, '', '', 'hello', 0, '1', 1, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '', '', NULL, 'N'),
 	(9, '1', '5', 'Hello Project', 4, '2', 3, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '4000', 'dsfdsfds', NULL, 'N'),
 	(10, '2', '5', 'Ta Shain (ebay like site)', 4, '5', 1, '2012-09-26 00:00:00', '2013-01-29 00:00:00', '2013-01-31 00:00:00', '10000', 'This is a shop like ebay for uni student books check this out it really is working', NULL, 'N'),
-	(11, '1', '5', 'Animal DNA Diagnostics', 4, '3', 1, '2012-10-03 00:00:00', '2012-10-18 00:00:00', '2012-10-18 00:00:00', '4000', 'These are the project notes check them out here y\'all', NULL, 'N');
+	(11, '1', '5', 'Animal DNA Diagnostics', 4, '3', 1, '2012-10-03 00:00:00', '2012-10-18 00:00:00', '2012-10-18 00:00:00', '4000', 'These are the project notes check them out here y\'all', NULL, 'N'),
+	(12, '', '', '', 0, '', 0, '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '', '', NULL, 'N');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 
 
@@ -303,9 +304,9 @@ CREATE TABLE IF NOT EXISTS `project_to_users` (
   `user_id` int(10) DEFAULT NULL,
   `project_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`users_to_project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.project_to_users: ~24 rows (approximately)
+-- Dumping data for table my.company.project_to_users: ~25 rows (approximately)
 DELETE FROM `project_to_users`;
 /*!40000 ALTER TABLE `project_to_users` DISABLE KEYS */;
 INSERT INTO `project_to_users` (`users_to_project_id`, `user_id`, `project_id`) VALUES
@@ -332,7 +333,8 @@ INSERT INTO `project_to_users` (`users_to_project_id`, `user_id`, `project_id`) 
 	(48, 7, 6),
 	(49, 1, 11),
 	(50, 6, 11),
-	(51, 0, 0);
+	(52, 0, 0),
+	(53, 0, 0);
 /*!40000 ALTER TABLE `project_to_users` ENABLE KEYS */;
 
 
@@ -412,40 +414,77 @@ DELETE FROM `support_packs_to_businesses`;
 DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE IF NOT EXISTS `tasks` (
   `task_id` int(10) NOT NULL AUTO_INCREMENT,
-  `assign_to` varchar(255) DEFAULT NULL,
-  `task_type_id` varchar(255) DEFAULT NULL,
-  `start` datetime DEFAULT NULL,
-  `est_completion` varchar(255) DEFAULT NULL,
-  `task` varchar(255) DEFAULT NULL,
-  `notes` varchar(255) DEFAULT NULL,
-  `complete` enum('Y','N') DEFAULT NULL,
+  `parent_task_id` int(10) DEFAULT '0',
+  `business_id` int(10) NOT NULL,
   `project_id` int(11) DEFAULT NULL,
+  `task_type_id` varchar(255) DEFAULT NULL,
+  `status_id` varchar(255) DEFAULT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `internal_deadline` datetime DEFAULT NULL,
+  `client_deadline` datetime DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `complete` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`task_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.tasks: ~0 rows (approximately)
+-- Dumping data for table my.company.tasks: ~8 rows (approximately)
 DELETE FROM `tasks`;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
+INSERT INTO `tasks` (`task_id`, `parent_task_id`, `business_id`, `project_id`, `task_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `name`, `notes`, `complete`) VALUES
+	(5, 0, 0, NULL, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'these are the task notes....', 'N'),
+	(6, 0, 1, NULL, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the task check it out', 'N'),
+	(7, 0, 9, NULL, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'hello there how are you ?', 'N'),
+	(8, 0, 9, NULL, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'task notes', 'Y'),
+	(9, 0, 2, NULL, '2', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'Put your task notes here will you ', 'N'),
+	(10, 0, 9, NULL, '', '3', '2012-10-06 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the normal task option', 'N'),
+	(11, 0, 1, NULL, '', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is a great project team...', 'N'),
+	(12, 0, 2, 10, '7', '2', '2012-10-12 00:00:00', '2012-10-12 00:00:00', '2012-10-12 00:00:00', 'new task', 'task notes', 'N');
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 
 
--- Dumping structure for table my.company.tasks_to_customers
-DROP TABLE IF EXISTS `tasks_to_customers`;
-CREATE TABLE IF NOT EXISTS `tasks_to_customers` (
-  `people_task_id` int(10) NOT NULL AUTO_INCREMENT,
-  `person_id` int(11) DEFAULT NULL,
-  `assign_to` int(11) DEFAULT NULL,
-  `task_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `task_set_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `task_due_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `task_description` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`people_task_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- Dumping structure for table my.company.tasks_to_users
+DROP TABLE IF EXISTS `tasks_to_users`;
+CREATE TABLE IF NOT EXISTS `tasks_to_users` (
+  `task_to_user_id` int(10) NOT NULL AUTO_INCREMENT,
+  `task_id` int(10) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  UNIQUE KEY `task_to_user_id` (`task_to_user_id`),
+  KEY `task_to_user_id_2` (`task_to_user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.tasks_to_customers: ~0 rows (approximately)
-DELETE FROM `tasks_to_customers`;
-/*!40000 ALTER TABLE `tasks_to_customers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tasks_to_customers` ENABLE KEYS */;
+-- Dumping data for table my.company.tasks_to_users: ~6 rows (approximately)
+DELETE FROM `tasks_to_users`;
+/*!40000 ALTER TABLE `tasks_to_users` DISABLE KEYS */;
+INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`) VALUES
+	(6, 0, 1),
+	(7, 0, 1),
+	(8, 0, 6),
+	(9, 0, 1),
+	(10, 12, 1),
+	(11, 12, 6);
+/*!40000 ALTER TABLE `tasks_to_users` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.task_type
+DROP TABLE IF EXISTS `task_type`;
+CREATE TABLE IF NOT EXISTS `task_type` (
+  `task_type_id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`task_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.task_type: ~6 rows (approximately)
+DELETE FROM `task_type`;
+/*!40000 ALTER TABLE `task_type` DISABLE KEYS */;
+INSERT INTO `task_type` (`task_type_id`, `name`) VALUES
+	(2, 'development'),
+	(3, 'Wordpress Plugin Installation'),
+	(4, 'Wordpress Plugin Installation'),
+	(5, 'Wordpress Plugin Installation'),
+	(6, 'new task type'),
+	(7, 'new task type');
+/*!40000 ALTER TABLE `task_type` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.users
@@ -467,10 +506,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `name`, `email`, `display_name`, `password`, `phone`, `bio`, `twitter`, `is_logged_in`) VALUES
-	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'S.Fletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'N'),
-	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'K.Bradley', NULL, NULL, NULL, NULL, 'N'),
-	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'H.Connelberry', NULL, NULL, NULL, NULL, 'N'),
-	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'S.Hunt', NULL, NULL, NULL, NULL, 'N'),
+	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'SFletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'Y'),
+	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'KBradley', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'N'),
+	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'HConnelberry', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'Y'),
+	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'SHunt', 'b12a426afd2940f0b5020f2784a0a186de7e0069', NULL, NULL, NULL, 'N'),
 	(5, 'Darren Smith', 'darren@logicdesign.co.uk', 'D.Smith', NULL, NULL, NULL, NULL, 'N'),
 	(6, 'Finn Johnston', 'finn@logicdesign.co.uk', 'F.Johnston', NULL, NULL, NULL, NULL, 'N'),
 	(7, 'Adam Howson', 'adam@logicdesign.co.uk', 'A.Howson', NULL, NULL, NULL, NULL, 'N');

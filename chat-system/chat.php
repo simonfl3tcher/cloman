@@ -28,7 +28,7 @@ session_start();
 
 global $dbh;
 $dbh = mysql_connect(DBPATH,DBUSER,DBPASS);
-mysql_selectdb(DBNAME,$dbh);
+mysql_select_db(DBNAME,$dbh);
 
 if ($_GET['action'] == "chatheartbeat") { chatHeartbeat(); } 
 if ($_GET['action'] == "sendchat") { sendChat(); } 
@@ -196,8 +196,8 @@ EOD;
 
 
 	unset($_SESSION['tsChatBoxes'][$_POST['to']]);
-
 	$sql = "insert into chat (chat.from,chat.to,message,sent) values ('".mysql_real_escape_string($from)."', '".mysql_real_escape_string($to)."','".mysql_real_escape_string($message)."',NOW())";
+	$connection = mysql_connect(DBPATH,DBUSER,DBPASS);
 	$query = mysql_query($sql);
 	echo "1";
 	exit(0);

@@ -8,7 +8,7 @@ $(document).ready(function(){
 		async: false
 	});
 
-	$('form')[0].reset();
+	// $('form')[0].reset();
 
 	$('#advancedSearchSubmit').bind('click', function(e){
 		e.preventDefault();
@@ -128,19 +128,47 @@ $(document).ready(function(){
 
 	
 	$('.taskBusinessSelector').bind('change', function(e){
+
+		var container = $('.assigntoproject');
+		if(container.css('display') == 'block'){
+			// container.slideUp('slow');
+			$('.assigntoproject .content').html('');
+		}
+
 		var data = 'data=' + $(this).val();
 		$.ajax({
 			url: 'tasks/get_projects_for_busines/' + $(this).val(),
 			type: 'POST',
-			dataType: 'html',
-			data: data
+			dataType: 'json',
+			data: data,
+			timeout: 2000
 		}).done(function(data){
-			$('.assigntoproject').append('<input type="checkbox" name="task[Project]" value="' + data.project_id + '" /><label>' + data.project_name + '</label>');
+			if(!data.length){
+				container.slideUp('slow');
+			}
+			$('.assigntoproject .content').append('<input id="projectTickbox" type="checkbox" name="task[Project]" value="' + data[0].project_id + '" /><span style="height:20px">' + data[0].project_name + '</span>');
 		});
-		console.log('This has changed');
-		console.log($(this).val());
-		$('.assigntoproject').slideDown('slow');
+		//$('#projectTickbox').prop("checked", false);
+
+		container.slideDown('slow');
 	});	
+
+	$('#completeTask').live('click', function(){
+		if ($(this).is(':checked')){
+			$.ajax({
+			url: $(this).attr('data-url'),
+			type: 'POST',
+			dataType: 'html',
+			}).done(function(data){
+				var container = $('.sidebarSlider');
+				container.slideRightHide();
+				setTimeout(function(){
+					window.location.reload();
+				}, 1000);
+				// console.log('done');
+			});
+		}
+	});
 
 	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){

@@ -37,6 +37,8 @@
 						</tr>
 					</table>
 					<div class="assigntoproject">
+						<p>Assign to project ? </p>
+						<p class="content"></p>
 					</div>
 					<div class="stdpadh stdpadt">
 						<span>Assign Task To</span>
@@ -86,10 +88,11 @@
 										$js = 'class="connectionSelection"'; ?>
 									<?php echo form_dropdown('task[Type]', $type_options, '', $js); ?>
 								</span>
-								<span id="addTextbox" class="addConnection icon plusIconGrey"></span>
+								<span id="addTextbox" class="addConnection icon plusIconGrey">
+								</span>
 							</td>
 							<td class="slide">
-								<input class="addConnectionInput" type="text" name="task[Add_type_of_task]" placeholder="Add new connection type" />
+								<input class="addConnectionInput" type="text" name="task[Add_type_of_task]" placeholder="New Task Type" />
 							</td>
 						</tr>
 					</table>
