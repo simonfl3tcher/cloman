@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-06 16:19:22
+-- Date/time:                    2012-10-07 23:19:21
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `business_to_people` (
   `business_id` int(10) DEFAULT '0',
   `people_id` int(10) DEFAULT '0',
   PRIMARY KEY (`b2p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.business_to_people: ~33 rows (approximately)
 DELETE FROM `business_to_people`;
@@ -108,7 +108,6 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(23, 10, 57),
 	(32, 1, 51),
 	(33, 23, 51),
-	(34, 24, 0),
 	(36, 1, 53),
 	(42, NULL, 51),
 	(44, 6, 53),
@@ -123,7 +122,6 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(68, 3, 49),
 	(69, 2, 49),
 	(70, 28, 49),
-	(71, 31, 0),
 	(72, 1, 59),
 	(74, 6, 50),
 	(75, 25, 50),
@@ -135,7 +133,7 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(84, 32, 54),
 	(85, 32, 51),
 	(86, 1, 58),
-	(87, 0, 0);
+	(88, 0, 0);
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
 
 
@@ -425,21 +423,23 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `name` varchar(255) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
   `complete` enum('Y','N') DEFAULT 'N',
+  `task_created_by` int(10) DEFAULT NULL,
   PRIMARY KEY (`task_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table my.company.tasks: ~8 rows (approximately)
 DELETE FROM `tasks`;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` (`task_id`, `parent_task_id`, `business_id`, `project_id`, `task_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `name`, `notes`, `complete`) VALUES
-	(5, 0, 0, NULL, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'these are the task notes....', 'N'),
-	(6, 0, 1, NULL, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the task check it out', 'N'),
-	(7, 0, 9, NULL, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'hello there how are you ?', 'N'),
-	(8, 0, 9, NULL, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'task notes', 'Y'),
-	(9, 0, 2, NULL, '2', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'Put your task notes here will you ', 'N'),
-	(10, 0, 9, NULL, '', '3', '2012-10-06 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the normal task option', 'N'),
-	(11, 0, 1, NULL, '', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is a great project team...', 'N'),
-	(12, 0, 2, 10, '7', '2', '2012-10-12 00:00:00', '2012-10-12 00:00:00', '2012-10-12 00:00:00', 'new task', 'task notes', 'N');
+INSERT INTO `tasks` (`task_id`, `parent_task_id`, `business_id`, `project_id`, `task_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `name`, `notes`, `complete`, `task_created_by`) VALUES
+	(5, 0, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'these are the task notes....', 'N', 1),
+	(6, 0, 1, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the task check it out', 'N', 1),
+	(7, 0, 9, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'hello there how are you ?', 'N', 1),
+	(8, 0, 9, 7, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'task notes', 'N', 1),
+	(9, 0, 2, 7, '2', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'Put your task notes here will you ', 'N', 1),
+	(10, 0, 9, 7, '', '3', '2012-10-06 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the normal task option', 'N', 1),
+	(11, 0, 1, 7, '', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is a great project team...', 'N', 1),
+	(12, 0, 2, 10, '7', '2', '2012-10-12 00:00:00', '2012-10-12 00:00:00', '2012-10-12 00:00:00', 'new task', 'task notes', 'N', 1),
+	(14, 0, 0, NULL, '8', '1', '2012-10-25 00:00:00', '2012-10-25 00:00:00', '2012-10-25 00:00:00', 'new task', '', 'N', 2);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 
 
@@ -451,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `tasks_to_users` (
   `user_id` int(10) DEFAULT NULL,
   UNIQUE KEY `task_to_user_id` (`task_to_user_id`),
   KEY `task_to_user_id_2` (`task_to_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.tasks_to_users: ~6 rows (approximately)
 DELETE FROM `tasks_to_users`;
@@ -462,7 +462,11 @@ INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`) VALUES
 	(8, 0, 6),
 	(9, 0, 1),
 	(10, 12, 1),
-	(11, 12, 6);
+	(11, 12, 1),
+	(12, 13, 0),
+	(13, 5, 1),
+	(14, 6, 1),
+	(15, 14, 2);
 /*!40000 ALTER TABLE `tasks_to_users` ENABLE KEYS */;
 
 
@@ -472,7 +476,7 @@ CREATE TABLE IF NOT EXISTS `task_type` (
   `task_type_id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`task_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.task_type: ~6 rows (approximately)
 DELETE FROM `task_type`;
@@ -483,7 +487,8 @@ INSERT INTO `task_type` (`task_type_id`, `name`) VALUES
 	(4, 'Wordpress Plugin Installation'),
 	(5, 'Wordpress Plugin Installation'),
 	(6, 'new task type'),
-	(7, 'new task type');
+	(7, 'new task type'),
+	(8, 'new task type 2');
 /*!40000 ALTER TABLE `task_type` ENABLE KEYS */;
 
 
@@ -506,8 +511,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `name`, `email`, `display_name`, `password`, `phone`, `bio`, `twitter`, `is_logged_in`) VALUES
-	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'SFletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'Y'),
-	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'KBradley', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'N'),
+	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'SFletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'N'),
+	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'KBradley', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'Y'),
 	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'HConnelberry', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'Y'),
 	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'SHunt', 'b12a426afd2940f0b5020f2784a0a186de7e0069', NULL, NULL, NULL, 'N'),
 	(5, 'Darren Smith', 'darren@logicdesign.co.uk', 'D.Smith', NULL, NULL, NULL, NULL, 'N'),
