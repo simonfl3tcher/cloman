@@ -18,6 +18,18 @@
 	<div class="fields">
 		<div class="field text box-error-wrapper is-inline-editable">
             <div class="label">
+              Task Created By
+            </div>
+        </div>
+        <div data-field-type="text" class="value field-type-text">    
+		    <div class="display v2">
+		      <a href="/users/view/<?php echo $task_details->task_created_by; ?>"><?php echo $task_details->created_by; ?></a>
+		    </div>
+		</div>
+	</div>
+	<div class="fields">
+		<div class="field text box-error-wrapper is-inline-editable">
+            <div class="label">
               Business
             </div>
         </div>

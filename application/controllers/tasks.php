@@ -40,6 +40,12 @@
 			}
 		}
 
+		public function user_tasks($id){
+			$data['title'] = 'Tasks Page';
+			$data['task_list'] = $this->task_model->get_users_tasks($id);
+			$this->render_view('tasks/users_view', $data);
+		}
+
 		public function details($taskid){
 			$data['task_details'] = $this->task_model->get($taskid);
 			$data['worker_details'] = $this->task_model->worker_details($taskid);

@@ -27,6 +27,7 @@
 										$query = $this->db->get();
 										$query = $query->result_array();
 										$type_options = array();
+										$type_options[0] = '';
 										foreach($query as $con){
 											$type_options[$con['business_id']] = $con['name'];
 										}
@@ -82,6 +83,7 @@
 										$query = $this->db->get();
 										$query = $query->result_array();
 										$type_options = array();
+										$type_options[0] = '';
 										foreach($query as $con){
 											$type_options[$con['task_type_id']] = $con['name'];
 										}
@@ -109,6 +111,7 @@
 										$query = $this->db->get();
 										$query = $query->result_array();
 										$type_options = array();
+										$type_options[0] = '';
 										foreach($query as $con){
 											$type_options[$con['status_id']] = $con['name'];
 										}

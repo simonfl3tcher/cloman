@@ -12,10 +12,11 @@
 		}
 
 		public function get($id = null){
-			$sql = "SELECT b.name as business_name, b.business_id as bid, tt.name as task_type, t.* from tasks as t
+			$sql = "SELECT b.name as business_name, b.business_id as bid, tt.name as task_type, t.*, u.name as created_by from tasks as t
 inner join businesses as b on b.business_id = t.business_id
 inner join status_table as st on st.status_id = t.status_id
 inner join task_type as tt on tt.task_type_id = t.task_type_id
+inner join users as u on u.user_id = t.task_created_by
 where complete = 'N'";
 		if($id != null){
 			$sql .= " and t.task_id = {$id}";
@@ -29,7 +30,18 @@ where complete = 'N'";
 			$sql = "SELECT b.name as business_name, t.* from tasks as t
 inner join businesses as b on b.business_id = t.business_id
 inner join status_table as st on st.status_id = t.status_id
-where complete = 'N' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
+where t.complete = 'N' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
+order by t.status_id";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
+
+		public function get_users_tasks($id = null){
+			$sql = "SELECT b.name as business_name, t.* from tasks as t
+inner join businesses as b on b.business_id = t.business_id
+inner join status_table as st on st.status_id = t.status_id
+inner join tasks_to_users as ttu on ttu.task_id = t.task_id
+where t.complete = 'N' and ttu.user_id = {$id}
 order by t.status_id";
 			$query = $this->db->query($sql);
 			return $query->result_array();
@@ -63,6 +75,7 @@ order by t.status_id";
 				$task->setProjectID($_POST['task']['Project']);
 			}
 			$task->setStatusID($_POST['task']['Status']);
+			$task->setCreatedBy($this->session->userdata('user_id'));
 			$task->save();
 
 			$workers = explode(',', $_POST['task']['Workers']);

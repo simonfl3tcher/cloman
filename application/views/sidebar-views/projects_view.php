@@ -93,7 +93,9 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	 The tasks need to go in here
+		    	 <?php foreach($project_tasks as $tasks){ ?>
+		    	 		<span><?php echo $tasks['name']; ?></span><br />
+		    	 <?php } ?>
 		    </div>
 		</div>
 	</div>

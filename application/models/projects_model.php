@@ -125,6 +125,18 @@
 			return $query->result_array();
 		}
 
+		public function get_project_tasks($id){
+			$this->db->select('*');
+			$this->db->from('tasks');
+			$this->db->where('project_id', $id);
+			$this->db->where('complete', 'N');
+			$this->db->order_by("status_id", "desc");
+			$this->db->order_by("internal_deadline", "desc");
+			$this->db->limit(5);
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
 		public function project_deatils($id){
 			$sql = "SELECT p.*, pt.name as project_type, st.name as status_name, u.*, uu.name as sales_name, uu.display_name as sales_display_name, b.name as business_name from projects as p
 				inner join users as u on u.user_id = p.manager_id

@@ -1,11 +1,8 @@
-<div class="control-group">
-	<input type="text" name="search" id="search" data-searchurl="/tasks/search" placeholder="Search Contact"/>
-	<a href="/tasks/user_tasks/<?php echo $this->session->userdata('user_id'); ?>"><span style="display:inline-block">My Tasks</span></a>
-</div>
+<a href="/tasks/user_tasks/<?php echo $this->session->userdata('user_id'); ?>"><span style="display:inline-block">My Tasks</span></a>
 
 <div id="tableContainer">
 	<!-- Put the table in here -->
-	<table id="searchTable" class="table table-hover" data-useAjax='true'>
+	<table id="searchTable" class="table table-hover taskTableDraggable" data-useAjax='true'>
 		<thead>
 			<tr>
 				<th><span class="icon hashIcon"></span></th>

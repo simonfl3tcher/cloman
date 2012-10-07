@@ -109,7 +109,25 @@ $(document).ready(function(){
 
 	$('.container-hide').click(function(){
 		$('.sidebar-container').slideLeftHide();
-	})
+	});
+
+	$(".taskTableDraggable tbody").sortable({
+		helper: function(e, tr) {
+		    var $originals = tr.children();
+		    var $helper = tr.clone();
+		    $helper.children().each(function(index)
+		    {
+		      // Set helper cell sizes to match the original sizes
+		      $(this).width($originals.eq(index).width())
+		    });
+		    return $helper;
+		  },
+		stop: function(event, ui) {
+            var newOrder = $(this).sortable('toArray');
+            console.log(newOrder);
+        }
+	}).disableSelection();
+
 
 	function clear_form_elements(ele) {
 	 

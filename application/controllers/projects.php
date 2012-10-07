@@ -73,6 +73,7 @@
 		public function details($projectId){
 			$data['project_details'] = $this->projects_model->project_deatils($projectId);
 			$data['project_workers'] = $this->projects_model->project_workers($projectId);
+			$data['project_tasks'] = $this->projects_model->get_project_tasks($projectId);
 			$data['title'] = 'Project Details';
 
 			// Bellow is needed for the side bar partial to work.

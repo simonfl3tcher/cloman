@@ -13,6 +13,7 @@
 		protected $Name;
 		protected $Notes;
 		protected $Complete;
+		protected $CreatedBy;
 
 		protected function DefineTableName(){
 			return("tasks"); //Name of the table you want to use.
@@ -37,7 +38,8 @@
 				"client_deadline" => "ClientDeadline",
 				"name" => "Name",
 				"notes" => "Notes",
-				"complete" => "Complete"
+				"complete" => "Complete",
+				"task_created_by" => "CreatedBy"
 			);
 		}
 	}
