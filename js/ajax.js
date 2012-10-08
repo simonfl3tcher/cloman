@@ -8,8 +8,6 @@ $(document).ready(function(){
 		async: false
 	});
 
-	// $('form')[0].reset();
-
 	$('#advancedSearchSubmit').bind('click', function(e){
 		e.preventDefault();
 		var wrapper = $('.pageWrapper');
@@ -137,7 +135,7 @@ $(document).ready(function(){
 
 		var data = 'data=' + $(this).val();
 		$.ajax({
-			url: 'tasks/get_projects_for_busines/' + $(this).val(),
+			url: '/tasks/get_projects_for_busines/' + $(this).val(),
 			type: 'POST',
 			dataType: 'json',
 			data: data,
@@ -169,6 +167,29 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	$(".taskTableDraggable tbody").sortable({
+		helper: function(e, tr) {
+		    var $originals = tr.children();
+		    var $helper = tr.clone();
+		    $helper.children().each(function(index)
+		    {
+		      // Set helper cell sizes to match the original sizes
+		      $(this).width($originals.eq(index).width())
+		    });
+		    return $helper;
+		  },
+		stop: function(event, ui) {
+           	var newOrder = $(".taskTableDraggable tbody").sortable("serialize");
+            $.ajax({
+			url: '/tasks/users_task_sort/',
+			type: 'POST',
+			data: newOrder,
+			});
+        },
+        opacity: 0.9,
+        handle: 'td:first'
+	}).disableSelection();
 
 	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){

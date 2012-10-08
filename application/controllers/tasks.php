@@ -62,5 +62,11 @@
 			$this->task_model->complete_task($id);
 			return true;
 		}
+
+		public function users_task_sort(){
+			$this->task_model->update_users_task_order();
+			var_dump($_POST);
+			exit;
+		}
 	}
 ?>

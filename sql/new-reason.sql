@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-07 23:19:21
+-- Date/time:                    2012-10-08 22:07:41
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `business_to_people` (
   PRIMARY KEY (`b2p_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.business_to_people: ~33 rows (approximately)
+-- Dumping data for table my.company.business_to_people: ~31 rows (approximately)
 DELETE FROM `business_to_people`;
 /*!40000 ALTER TABLE `business_to_people` DISABLE KEYS */;
 INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
@@ -425,9 +425,9 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `complete` enum('Y','N') DEFAULT 'N',
   `task_created_by` int(10) DEFAULT NULL,
   PRIMARY KEY (`task_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.tasks: ~8 rows (approximately)
+-- Dumping data for table my.company.tasks: ~20 rows (approximately)
 DELETE FROM `tasks`;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
 INSERT INTO `tasks` (`task_id`, `parent_task_id`, `business_id`, `project_id`, `task_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `name`, `notes`, `complete`, `task_created_by`) VALUES
@@ -435,11 +435,22 @@ INSERT INTO `tasks` (`task_id`, `parent_task_id`, `business_id`, `project_id`, `
 	(6, 0, 1, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the task check it out', 'N', 1),
 	(7, 0, 9, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'hello there how are you ?', 'N', 1),
 	(8, 0, 9, 7, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'task notes', 'N', 1),
-	(9, 0, 2, 7, '2', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'Put your task notes here will you ', 'N', 1),
-	(10, 0, 9, 7, '', '3', '2012-10-06 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the normal task option', 'N', 1),
-	(11, 0, 1, 7, '', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is a great project team...', 'N', 1),
-	(12, 0, 2, 10, '7', '2', '2012-10-12 00:00:00', '2012-10-12 00:00:00', '2012-10-12 00:00:00', 'new task', 'task notes', 'N', 1),
-	(14, 0, 0, NULL, '8', '1', '2012-10-25 00:00:00', '2012-10-25 00:00:00', '2012-10-25 00:00:00', 'new task', '', 'N', 2);
+	(9, 0, 2, 7, '2', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'Put your task notes here will you ', 'Y', 1),
+	(10, 0, 9, 7, '', '3', '2012-10-06 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the normal task option', 'Y', 1),
+	(11, 0, 1, 7, '', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is a great project team...', 'Y', 1),
+	(12, 0, 2, 10, '7', '2', '2012-10-12 00:00:00', '2012-10-12 00:00:00', '2012-10-12 00:00:00', 'new task', 'task notes', 'Y', 1),
+	(14, 0, 0, NULL, '8', '1', '2012-10-25 00:00:00', '2012-10-25 00:00:00', '2012-10-25 00:00:00', 'new task', '', 'N', 2),
+	(15, 0, 0, NULL, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'N', 1),
+	(16, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task1', '', 'N', 1),
+	(17, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task2', '', 'N', 1),
+	(18, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task3', '', 'N', 1),
+	(19, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task4', '', 'N', 1),
+	(20, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task5', '', 'N', 1),
+	(21, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task6', '', 'N', 1),
+	(22, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task7', '', 'N', 1),
+	(23, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task8', '', 'N', 1),
+	(24, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task9', '', 'N', 1),
+	(25, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task10', '', 'Y', 1);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 
 
@@ -449,24 +460,47 @@ CREATE TABLE IF NOT EXISTS `tasks_to_users` (
   `task_to_user_id` int(10) NOT NULL AUTO_INCREMENT,
   `task_id` int(10) DEFAULT NULL,
   `user_id` int(10) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
+  `complete` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
   UNIQUE KEY `task_to_user_id` (`task_to_user_id`),
   KEY `task_to_user_id_2` (`task_to_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.tasks_to_users: ~6 rows (approximately)
+-- Dumping data for table my.company.tasks_to_users: ~31 rows (approximately)
 DELETE FROM `tasks_to_users`;
 /*!40000 ALTER TABLE `tasks_to_users` DISABLE KEYS */;
-INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`) VALUES
-	(6, 0, 1),
-	(7, 0, 1),
-	(8, 0, 6),
-	(9, 0, 1),
-	(10, 12, 1),
-	(11, 12, 1),
-	(12, 13, 0),
-	(13, 5, 1),
-	(14, 6, 1),
-	(15, 14, 2);
+INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`, `sort`, `complete`) VALUES
+	(6, 0, 1, NULL, 'N'),
+	(7, 0, 1, NULL, 'N'),
+	(8, 0, 6, NULL, 'N'),
+	(9, 0, 1, NULL, 'N'),
+	(10, 12, 1, 8, 'N'),
+	(11, 12, 1, 8, 'N'),
+	(12, 13, 0, NULL, 'N'),
+	(13, 5, 1, 3, 'N'),
+	(14, 6, 1, 8, 'N'),
+	(15, 14, 2, NULL, 'N'),
+	(16, 15, 0, NULL, 'N'),
+	(17, 16, 1, 9, 'N'),
+	(18, 16, 2, NULL, 'N'),
+	(19, 17, 1, 6, 'N'),
+	(20, 17, 2, NULL, 'N'),
+	(21, 18, 1, 10, 'N'),
+	(22, 18, 2, NULL, 'N'),
+	(23, 19, 1, 7, 'N'),
+	(24, 19, 2, NULL, 'N'),
+	(25, 20, 1, 5, 'N'),
+	(26, 20, 2, NULL, 'N'),
+	(27, 21, 1, 4, 'N'),
+	(28, 21, 2, NULL, 'N'),
+	(29, 22, 1, 2, 'N'),
+	(30, 22, 2, NULL, 'N'),
+	(31, 23, 1, 1, 'N'),
+	(32, 23, 2, NULL, 'N'),
+	(33, 24, 1, 0, 'N'),
+	(34, 24, 2, NULL, 'N'),
+	(35, 25, 1, 3, 'N'),
+	(36, 25, 2, NULL, 'N');
 /*!40000 ALTER TABLE `tasks_to_users` ENABLE KEYS */;
 
 
@@ -478,7 +512,7 @@ CREATE TABLE IF NOT EXISTS `task_type` (
   PRIMARY KEY (`task_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.task_type: ~6 rows (approximately)
+-- Dumping data for table my.company.task_type: ~7 rows (approximately)
 DELETE FROM `task_type`;
 /*!40000 ALTER TABLE `task_type` DISABLE KEYS */;
 INSERT INTO `task_type` (`task_type_id`, `name`) VALUES
@@ -511,7 +545,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `name`, `email`, `display_name`, `password`, `phone`, `bio`, `twitter`, `is_logged_in`) VALUES
-	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'SFletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'N'),
+	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'SFletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'Y'),
 	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'KBradley', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'Y'),
 	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'HConnelberry', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'Y'),
 	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'SHunt', 'b12a426afd2940f0b5020f2784a0a186de7e0069', NULL, NULL, NULL, 'N'),

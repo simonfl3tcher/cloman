@@ -480,6 +480,10 @@ td.slide {
     padding-right:30px;
 }
 
+.taskTableDraggable tr td:nth-child(1){
+    cursor:move;
+}
+
 /* Misc Classes */
 
 .addBusinessTitle h6{
