@@ -6,4 +6,5 @@
 		<td><?php echo $tasks['status_id']; ?></td>
 		<td><a class="delete" href="/tasks/complete/<?php echo $tasks['task_id']; ?>"><span class="util-button-new first"><span class="complete"></span></span></a></td>
 	</tr>
+
 <?php } ?>

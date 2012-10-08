@@ -116,6 +116,33 @@ $(document).ready(function(){
 		$('.sidebar-container').slideLeftHide();
 	});
 
+	$(".taskTableDraggable tbody").sortable({
+		helper: function(e, tr) {
+		    var originals = tr.children();
+		    var helper = tr.clone();
+		    helper.children().each(function(index) {
+		      // Set helper cell sizes to match the original sizes
+		      $(this).width(originals.eq(index).width())
+		    });
+		    return helper;
+		  },
+		update: function(event, ui) {
+            serial = $(this).sortable('serialize');
+            console.log(serial);
+            $.ajax({
+			url: '/tasks/sort_users_tasks/',
+			type: 'POST',
+			data: serial,
+			success: function(data){
+				console.log('put reload back in');
+				//window.location.reload();
+			},
+			error: function(data){
+				alert('Something went wrong...');
+			}
+		});
+        }
+	}).disableSelection();
 
 	function clear_form_elements(ele) {
 	    $(ele).find(':input').each(function() {
