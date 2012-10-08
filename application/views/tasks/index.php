@@ -1,5 +1,5 @@
 <div class="control-group">
-	<input type="text" name="search" id="search" data-searchurl="/tasks/search" placeholder="Search Contact"/>
+	<input type="text" name="search" id="search" data-searchurl="/tasks/search" placeholder="Search Tasks"/>
 	<a href="/tasks/user_tasks/<?php echo $this->session->userdata('user_id'); ?>"><span style="display:inline-block">My Tasks</span></a>
 </div>
 

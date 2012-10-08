@@ -104,11 +104,7 @@
 			foreach($data['project_status'] as $stat_opts){
 				$data['status_options'][$stat_opts['status_id']] = $stat_opts['name'];
 			}
-			//$data['connection_types'] = $this->connections_model->get_connection_types();
-			// $data['type_options'] = array();
-			// foreach($data['connection_types'] as $con){
-			// 	$data['type_options'][$con['connection_options_id']] = $con['name'];
-			// }
+
 			$data['title'] = 'Edit the project';
 			$data['project'] = $project;
 

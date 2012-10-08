@@ -116,8 +116,47 @@ where task_id = ?";
 			foreach($_POST['item'] as $key => $value){
 				$sql = "UPDATE tasks_to_users set sort = ? where task_id = ? and user_id = ?";
 				$this->db->query($sql, array($key, $value, $this->session->userdata('user_id')));
-			}
-			var_dump($this->db->last_query());		
+			}	
+		}
+
+		public function get_business(){
+			$this->db->select('*');
+			$this->db->from('businesses');
+			$query = $this->db->get();
+			$query = $query->result_array();
+
+			return $query;
+		}
+
+		public function get_typeoptions(){
+			$this->db->select('*');
+			$this->db->from('task_type');
+			$query = $this->db->get();
+			$query = $query->result_array();
+
+			return $query;
+		}
+
+		public function get_all_status(){
+			$this->db->select('*');
+			$this->db->from('status_table');
+			$query = $this->db->get();
+			$query = $query->result_array();
+			return $query;
+		}
+
+		public function json_project_user($id){
+			$sql ="SELECT u.user_id as id, name
+			from users as u
+			inner join tasks_to_users as ttu on ttu.user_id = u.user_id
+			where ttu.task_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return json_encode($query->result_array());
+		}
+
+		public function update_task(){
+			var_dump($_POST);
+			exit;
 		}
 	}
 ?>

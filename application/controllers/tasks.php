@@ -1,5 +1,6 @@
-<?php 	
+<?php 
 
+	require_once('application/libraries/classes/Tasks.php');
 
 	class Tasks extends CI_Controller {
 
@@ -12,6 +13,39 @@
 			$data['title'] = 'Tasks Page';
 			$data['task_list'] = $this->task_model->get();
 			$this->render_view('tasks/index', $data);
+		}
+
+		public function view($id = null){
+			$task = new Tasks_Class($id);
+			if($this->request->isPost()){
+				if($this->task_model->update_task($task->getID())){
+					redirect('/tasks', 'refresh');
+				}
+			}
+
+			$query = $this->task_model->get_business();
+			$data['business'] = array();
+			foreach($query as $con){
+				$data['businesses'][$con['business_id']] = $con['name'];
+			}
+
+			$query = $this->task_model->get_all_status();
+			$data['type_status'] = array();
+			foreach($query as $con){
+				$data['type_status'][$con['status_id']] = $con['name'];
+			}
+
+			$query = $this->task_model->get_typeoptions();
+			$data['type_options'] = array();
+			foreach($query as $con){
+				$data['type_options'][$con['task_type_id']] = $con['name'];
+			}
+
+			$data['title'] = 'Edit the task';
+			$data['task'] = $task;
+
+			$this->render_view('tasks/view', $data);
+
 		}
 
 		public function add($project_id = null){
@@ -67,6 +101,11 @@
 			$this->task_model->update_users_task_order();
 			var_dump($_POST);
 			exit;
+		}
+
+		public function get_workers($id){
+			$q = $this->task_model->json_project_user($id, true);
+			echo $q;
 		}
 	}
 ?>
