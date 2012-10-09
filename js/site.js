@@ -116,6 +116,12 @@ $(document).ready(function(){
 		$('.sidebar-container').slideLeftHide();
 	});
 
+	$('table tr td:nth-child(2) a').live('click', function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		console.log('You are in here');
+	});
+
 
 	function clear_form_elements(ele) {
 	    $(ele).find(':input').each(function() {
