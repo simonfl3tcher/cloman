@@ -89,6 +89,50 @@ order by ttu.sort";
 			return true;
 		}
 
+		public function update_task($id) {
+			$task = new Tasks_Class($id);
+			$task->setName($_POST['task']['Name']);
+			$task->setBusinessID($_POST['task']['Business']);
+			$task->setStartDate(date('Y-m-d', strtotime($_POST['task']['Startdate'])));
+			$task->setInternalDeadline(date('Y-m-d', strtotime($_POST['task']['internal-end-date'])));
+			$task->setClientDeadline(date('Y-m-d', strtotime($_POST['task']['external-end-date'])));
+			$task->setNotes($_POST['task']['Notes']);
+			$task->setTaskTypeID($type = $_POST['task']['Type']);
+			if(isset($_POST['task']['Project'])){
+				$task->setProjectID($_POST['task']['Project']);
+			}
+			$task->setStatusID($_POST['task']['Status']);
+			$task->setLastUpDated(date('Y-m-d', strtotime('today')));
+			$task->setUpdatedBy($this->session->userdata('user_id'));
+			$task->save();
+
+			$workers = explode(',', $_POST['task']['Workers']);
+
+			foreach($workers as $key => $w){
+				$this->db->select('sort');
+				$this->db->from('tasks_to_users');
+				$this->db->where('task_id', $task->getID());
+				$this->db->where('user_id', $w);
+				$query = $this->db->get();
+				$query = $query->row_array();
+
+				$arr[] = array('userID' => $w, 'sortID' => $query['sort']);
+
+				
+			}
+
+			$this->db->delete('tasks_to_users', array('task_id' => $task->getID())); 
+
+			foreach($arr as $w){
+				$projectUsers = new Tasks_To_Users_Class();
+				$projectUsers->setTaskID($task->getID());
+				$projectUsers->setUserID($w['userID']);
+				$projectUsers->setSort($w['sortID']);
+				$projectUsers->save();
+			}
+			return true;
+		}
+
 		public function get_project_for_business($id){
 			$this->db->select('project_id, project_name');
 			$this->db->from('projects');
@@ -154,9 +198,5 @@ where task_id = ?";
 			return json_encode($query->result_array());
 		}
 
-		public function update_task(){
-			var_dump($_POST);
-			exit;
-		}
 	}
 ?>

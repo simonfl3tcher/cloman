@@ -4,6 +4,8 @@
 
 		protected $UserID;
 		protected $TaskID;
+		protected $Sort;
+		protected $Complete;
 
 		protected function DefineTableName(){
 			return("tasks_to_users"); //Name of the table you want to use.
@@ -19,7 +21,9 @@
 			return array(
 				"task_to_user_id" => "ID",
 				"task_id" => "TaskID",
-				"user_id" => "UserID");
+				"user_id" => "UserID",
+				"sort" => "Sort",
+				"complete" => "Complete");
 		}
 	}
 ?>

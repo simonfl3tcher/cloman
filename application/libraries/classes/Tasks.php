@@ -14,6 +14,8 @@
 		protected $Notes;
 		protected $Complete;
 		protected $CreatedBy;
+		protected $LastUpDated;
+		protected $UpdatedBy;
 
 		protected function DefineTableName(){
 			return("tasks"); //Name of the table you want to use.
@@ -39,7 +41,9 @@
 				"name" => "Name",
 				"notes" => "Notes",
 				"complete" => "Complete",
-				"task_created_by" => "CreatedBy"
+				"task_created_by" => "CreatedBy",
+				"last_updated" => "LastUpDated",
+				"updated_by" => "UpdatedBy"
 			);
 		}
 	}

@@ -1,4 +1,4 @@
-<form action="" post="post" class="form-horizontal">
+<form action="" method="post" class="form-horizontal">
 	<table>
 		<tr class="largeField">
 			<td>
