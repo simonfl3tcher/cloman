@@ -79,7 +79,10 @@
 			</td>
 		</tr>
 	</table>
-
+	<div class="stdpadh stdpadt">
+		<span>Complete Task</span>
+	</div>
+	<input type="checkbox" name="complete" value="Y" />
 
 	<div class="stdpadh stdpadt">
 		<span>Task Notes</span>

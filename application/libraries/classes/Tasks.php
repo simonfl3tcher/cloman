@@ -16,6 +16,7 @@
 		protected $CreatedBy;
 		protected $LastUpDated;
 		protected $UpdatedBy;
+		protected $Sort;
 
 		protected function DefineTableName(){
 			return("tasks"); //Name of the table you want to use.
@@ -43,7 +44,8 @@
 				"complete" => "Complete",
 				"task_created_by" => "CreatedBy",
 				"last_updated" => "LastUpDated",
-				"updated_by" => "UpdatedBy"
+				"updated_by" => "UpdatedBy",
+				"sort" => "Sort"
 			);
 		}
 	}

@@ -1,4 +1,5 @@
 	<div class="action-bar">
+		<div class="tasks-add" data-parentTask="<?php echo $task_details->task_id; ?>">SubClass</div>
 		<span>Start:- <?php echo date('d-M-Y', strtotime($task_details->start_date)); ?> </span>
 		<span>Internal:- <?php echo date('d-M-Y', strtotime($task_details->internal_deadline)); ?></span>
 		<span>Deadline:- <?php echo date('d-M-Y', strtotime($task_details->client_deadline)); ?></span>
@@ -90,7 +91,20 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	<input type="checkbox" name="completeTask" id="completeTask" data-url="/tasks/complete/<?php echo $task_details->task_id; ?>" />
+		    	<input type="checkbox" name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task_details->task_id; ?>" />
 		    </div>
 		</div>
+	</div>
+    <ul class="nav nav-tabs">
+    <li class="active"><a href="#home" data-toggle="tab">Subtasks</a></li>
+    <li><a href="#profile" data-toggle="tab">Comments</a></li>
+    </ul>
+ 
+	<div class="tab-content">
+		<div class="tab-pane active" id="home">
+			<?php foreach($sub_tasks as $task){ ?>
+				<input type="checkbox" name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br />
+			<?php } ?>
+		</div>
+		<div class="tab-pane" id="profile">...2</div>
 	</div>

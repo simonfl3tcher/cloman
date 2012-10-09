@@ -20,12 +20,23 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.tasks-add').bind('click', function(e){
+	$('.tasks-add').live('click', function(e){
 		e.preventDefault();
 		$('#task-modal').modal({
 			backdrop:true,
 			keyboard: true
 		});
+
+		if($(this).attr('data-parentTask')){
+			$('form#addTaskForm').prepend("<input type='hidden' class='parent-task' name='parent-task' value='" + $(this).attr('data-parentTask') + "' />");
+		} 
+
+	    $('#task-modal').on('hidden', function () {
+	    	// if the hidden field is inside here then remove it.
+	    	if($('.parent-task').length){
+	    		$('.parent-task').remove();
+	    	}
+	    })
 	})
 
 
@@ -116,6 +127,7 @@ $(document).ready(function(){
 		$('.sidebar-container').slideLeftHide();
 	});
 
+	$('#myTab a:first').tab('show');
 
 	// $('table tr td:nth-child(2) a').on('click', function(e){
 	// 	e.preventDefault();

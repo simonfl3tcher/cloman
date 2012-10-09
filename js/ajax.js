@@ -155,7 +155,7 @@ $(document).ready(function(){
 		container.slideDown('slow');
 	});	
 
-	$('#completeTask').live('click', function(){
+	$('.completeTask').live('click', function(){
 		if ($(this).is(':checked')){
 			$.ajax({
 			url: $(this).attr('data-url'),
@@ -172,8 +172,6 @@ $(document).ready(function(){
 		}
 	});
 
-
-	console.log($('.taskTableDraggable').attr('data-sorturl'));
 	$(".taskTableDraggable tbody").sortable({
 		helper: function(e, tr) {
 		    var $originals = tr.children();

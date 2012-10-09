@@ -5,7 +5,6 @@
 		protected $UserID;
 		protected $TaskID;
 		protected $Sort;
-		protected $Complete;
 
 		protected function DefineTableName(){
 			return("tasks_to_users"); //Name of the table you want to use.

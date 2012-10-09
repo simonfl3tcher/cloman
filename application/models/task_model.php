@@ -18,15 +18,24 @@ left join status_table as st on st.status_id = t.status_id
 left join task_type as tt on tt.task_type_id = t.task_type_id
 left join users as u on u.user_id = t.task_created_by
 where complete = 'N'";
-		if($id != null){
-			$sql .= " and t.task_id = {$id}";
-			$query = $this->db->query($sql);
-			return $query->row();
-		} else {
-			$sql .= " order by t.sort asc";
-			$query = $this->db->query($sql);
-			return $query->result_array();
+			if($id != null){
+				$sql .= " and t.task_id = {$id}";
+				$query = $this->db->query($sql);
+				return $query->row();
+			} else {
+				$sql .= " order by t.sort asc";
+				$query = $this->db->query($sql);
+				return $query->result_array();
+			}
 		}
+
+		public function get_subtasks($id){
+			$this->db->select('*');
+			$this->db->from('tasks');
+			$this->db->where('parent_task_id', $id);
+			$this->db->where('complete', 'N');
+			$query = $this->db->get();
+			return $query->result_array();
 		}
 
 		public function search_tasks($data) {
@@ -74,6 +83,9 @@ order by ttu.sort";
 			$task->setClientDeadline(date('Y-m-d', strtotime($_POST['task']['external-end-date'])));
 			$task->setNotes($_POST['task']['Notes']);
 			$task->setTaskTypeID($type);
+			if(isset($_POST['parent-task'])){
+				$task->setParentTaskID($_POST['parent-task']);
+			}
 			if(isset($_POST['task']['Project'])){
 				$task->setProjectID($_POST['task']['Project']);
 			}

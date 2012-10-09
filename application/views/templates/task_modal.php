@@ -1,4 +1,4 @@
-<form action="" method="post" id="addContactForm" data-ajaxurl='<?php echo site_url("tasks/add"); ?>' data-useAjax='true' class="form-horizontal">	
+<form action="" method="post" id="addTaskForm" data-ajaxurl='<?php echo site_url("tasks/add"); ?>' data-useAjax='true' class="form-horizontal">	
 	<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="task-modal" style="display: none;">
             <div class="modal-header">
               <button aria-hidden="true" data-dismiss="modal" class="close" type="button">X</button>

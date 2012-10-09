@@ -86,6 +86,7 @@
 		public function details($taskid){
 			$data['task_details'] = $this->task_model->get($taskid);
 			$data['worker_details'] = $this->task_model->worker_details($taskid);
+			$data['sub_tasks'] = $this->task_model->get_subtasks($taskid);
 			$data['title'] = 'Task Details';
 			// Bellow is needed for the side bar partial to work.
 			$data['icon'] = 'businessIcon';
