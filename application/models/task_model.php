@@ -20,10 +20,13 @@ left join users as u on u.user_id = t.task_created_by
 where complete = 'N'";
 		if($id != null){
 			$sql .= " and t.task_id = {$id}";
-		}
-		$sql .= " order by t.status_id";
 			$query = $this->db->query($sql);
 			return $query->row();
+		} else {
+			$sql .= " order by t.sort asc";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
 		}
 
 		public function search_tasks($data) {
@@ -31,7 +34,7 @@ where complete = 'N'";
 left join businesses as b on b.business_id = t.business_id
 left join status_table as st on st.status_id = t.status_id
 where t.complete = 'N' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
-order by t.status_id";
+order by t.sort asc";
 			$query = $this->db->query($sql);
 			return $query->result_array();
 		}
@@ -160,6 +163,13 @@ where task_id = ?";
 			foreach($_POST['item'] as $key => $value){
 				$sql = "UPDATE tasks_to_users set sort = ? where task_id = ? and user_id = ?";
 				$this->db->query($sql, array($key, $value, $this->session->userdata('user_id')));
+			}	
+		}
+
+		public function task_sort_order(){
+			foreach($_POST['item'] as $key => $value){
+				$sql = "UPDATE tasks set sort = ? where task_id = ?";
+				$this->db->query($sql, array($key, $value));
 			}	
 		}
 

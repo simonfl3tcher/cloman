@@ -8,8 +8,8 @@ $(document).ready(function(){
 		});
 	});
 
-	$('#search').trigger('keyup');
-	$('#searchGrid').trigger('keyup');
+	// $('#search').trigger('keyup');
+	// $('#searchGrid').trigger('keyup');
 
 	
 	$('.boxes-add').bind('click', function(e){
@@ -116,11 +116,12 @@ $(document).ready(function(){
 		$('.sidebar-container').slideLeftHide();
 	});
 
-	$('table tr td:nth-child(2) a').live('click', function(e){
-		e.preventDefault();
-		e.stopPropagation();
-		console.log('You are in here');
-	});
+
+	// $('table tr td:nth-child(2) a').on('click', function(e){
+	// 	e.preventDefault();
+	// 	e.stopPropagation();
+	// 	console.log('You are in here');
+	// });
 
 
 	function clear_form_elements(ele) {

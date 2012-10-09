@@ -5,7 +5,7 @@
 
 <div id="tableContainer">
 	<!-- Put the table in here -->
-	<table id="searchTable" class="table table-hover" data-useAjax='true'>
+	<table id="searchTable" class="table table-hover taskTableDraggable" data-sorturl="/tasks/task_sort/" data-useAjax='true'>
 		<thead>
 			<tr>
 				<th><span class="icon hashIcon"></span></th>

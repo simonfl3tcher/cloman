@@ -50,9 +50,9 @@
 
 		public function get(){
 			$sql = "SELECT c.*, b.name from connections as c
-left join businesses as b on b.business_id = c.connection_id
+inner join businesses as b on b.business_id = c.business_id
 where b.disabled = 'N' and c.disabled = 'N'
-order by b.name, c.url asc";
+order by b.name, c.url";
 			$query = $this->db->query($sql);
 
 			return $query->result_array();

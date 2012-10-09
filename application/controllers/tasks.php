@@ -24,19 +24,22 @@
 			}
 
 			$query = $this->task_model->get_business();
-			$data['business'] = array();
+			$data['businesses'] = array();
+			$data['businesses'][0] = '';
 			foreach($query as $con){
 				$data['businesses'][$con['business_id']] = $con['name'];
 			}
 
 			$query = $this->task_model->get_all_status();
 			$data['type_status'] = array();
+			$data['type_status'][0] = '';
 			foreach($query as $con){
 				$data['type_status'][$con['status_id']] = $con['name'];
 			}
 
 			$query = $this->task_model->get_typeoptions();
 			$data['type_options'] = array();
+			$data['type_options'][0] = '';
 			foreach($query as $con){
 				$data['type_options'][$con['task_type_id']] = $con['name'];
 			}
@@ -99,13 +102,17 @@
 
 		public function users_task_sort(){
 			$this->task_model->update_users_task_order();
-			var_dump($_POST);
-			exit;
+			return true;
 		}
 
 		public function get_workers($id){
 			$q = $this->task_model->json_project_user($id, true);
 			echo $q;
+		}
+
+		public function task_sort(){
+			$this->task_model->task_sort_order();
+			return true;
 		}
 	}
 ?>

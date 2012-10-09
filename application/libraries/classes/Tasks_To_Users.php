@@ -22,8 +22,7 @@
 				"task_to_user_id" => "ID",
 				"task_id" => "TaskID",
 				"user_id" => "UserID",
-				"sort" => "Sort",
-				"complete" => "Complete");
+				"sort" => "Sort");
 		}
 	}
 ?>

@@ -84,6 +84,7 @@ $(document).ready(function(){
 		removeAjaxloader($('.sidebarSlider'), 1000);
 	});
 
+
 	$('.items-list.badge .header a').live('click', function(e){
 		e.preventDefault();
 		if(!$('.sidebarSlider').length){
@@ -96,34 +97,37 @@ $(document).ready(function(){
 		removeAjaxloader($('.sidebarSlider'), 1000);
 	});
 
-	$('#search').keyup(function(){
-		var data = 'data=' + $(this).val();
-		$.ajax({
-			url: $(this).attr('data-searchurl'),
-			type: 'POST',
-			dataType: 'html',
-			data: data
-		}).done(function(data){
-			searchResults(data);
-		});
+	$('#search').keypress(function(e){
+		console.log(e.which);
+		console.log($('#search').val().length);
+		if (e.which == 13 || ($('#search').val().length == 1 && e.which == 8)) {
+			var data = 'data=' + $(this).val();
+			$.ajax({
+				url: $(this).attr('data-searchurl'),
+				type: 'POST',
+				dataType: 'html',
+				data: data
+			}).done(function(data){
+				searchResults(data);
+			});
+		}
 	});
 
-	$('#searchGrid').keyup(function(){
-		var data = 'data=' + $(this).val();
-		$.ajax({
-			url: $(this).attr('data-searchurl'),
-			type: 'POST',
-			dataType: 'html',
-			data: data
-		}).done(function(data){
-			searchResultsGrid(data);
-		});
+	$('#searchGrid').keypress(function(e){
+		console.log(e.which);
+		console.log($('#search').val().length);
+		if (e.which == 13 || ($('#search').val().length == 1 && e.which == 8)) {
+			var data = 'data=' + $(this).val();
+			$.ajax({
+				url: $(this).attr('data-searchurl'),
+				type: 'POST',
+				dataType: 'html',
+				data: data
+			}).done(function(data){
+				searchResults(data);
+			});
+		}
 	});
-
-	$('table tr td a').bind('click', function(e){
-		e.stopPropagation();
-	});
-
 	
 	$('.taskBusinessSelector').bind('change', function(e){
 
@@ -168,6 +172,8 @@ $(document).ready(function(){
 		}
 	});
 
+
+	console.log($('.taskTableDraggable').attr('data-sorturl'));
 	$(".taskTableDraggable tbody").sortable({
 		helper: function(e, tr) {
 		    var $originals = tr.children();
@@ -182,7 +188,7 @@ $(document).ready(function(){
 		stop: function(event, ui) {
            	var newOrder = $(".taskTableDraggable tbody").sortable("serialize");
             $.ajax({
-			url: '/tasks/users_task_sort/',
+			url: $('.taskTableDraggable').attr('data-sorturl'),
 			type: 'POST',
 			data: newOrder,
 			});
