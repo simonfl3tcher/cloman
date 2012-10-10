@@ -195,6 +195,12 @@ $(document).ready(function(){
         handle: 'td:first'
 	}).disableSelection();
 
+	$('#projectCommentArea').live('keypress', function(e){
+		if(e.which == 13 && $(this).val() != ''){
+			console.log('Enter was clicked');
+		}
+	});
+
 	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){
 		var surrounder = $('#searchGrid').closest('div.control-group');

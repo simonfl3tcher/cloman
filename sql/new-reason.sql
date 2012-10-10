@@ -3,7 +3,7 @@
 -- Server version:               5.5.24-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-09 18:07:46
+-- Date/time:                    2012-10-10 18:04:13
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -81,7 +81,7 @@ INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`,
 	(23, '16', 'Simon Fletcher Designs', '10', 'hello@logicdesign.co.uk', 'N'),
 	(24, '0', 'David Fulcher', '01284 345778', 'david@logicdesign.co.uk', 'N'),
 	(25, '17', 'David Fulcher - 2', '01284 345 345', 'david@logicdesign.co.uk', 'N'),
-	(26, '20', 'Sam Hunt Artistry', '01284 706842', 'sam@hunt.co.uk', 'N'),
+	(26, '20', 'Sam Hunt Artistry', '01284 706842', 'sam@hunt.co.uk', 'Y'),
 	(27, '21', 'NHS', '01284 706842', 'hello@nhs.co.uk', 'N'),
 	(28, '22', 'NHS 2 ', '01284 706842', 'hello@nhs.co.uk', 'N'),
 	(29, '23', 'Sam Hunt Artistry', '01284 706842', 'sam@hunt.co.uk', 'N'),
@@ -295,6 +295,24 @@ INSERT INTO `projects` (`project_id`, `business_id`, `sales_id`, `project_name`,
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 
 
+-- Dumping structure for table my.company.projects_comments
+DROP TABLE IF EXISTS `projects_comments`;
+CREATE TABLE IF NOT EXISTS `projects_comments` (
+  `project_comment_id` int(10) DEFAULT NULL,
+  `project_id` int(10) DEFAULT NULL,
+  `left` int(10) DEFAULT NULL,
+  `parent_project_id` int(10) DEFAULT NULL,
+  `right` int(10) DEFAULT NULL,
+  `comment` text COLLATE utf8_unicode_ci,
+  `user_id` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.projects_comments: ~0 rows (approximately)
+DELETE FROM `projects_comments`;
+/*!40000 ALTER TABLE `projects_comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `projects_comments` ENABLE KEYS */;
+
+
 -- Dumping structure for table my.company.project_to_users
 DROP TABLE IF EXISTS `project_to_users`;
 CREATE TABLE IF NOT EXISTS `project_to_users` (
@@ -412,7 +430,9 @@ DELETE FROM `support_packs_to_businesses`;
 DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE IF NOT EXISTS `tasks` (
   `task_id` int(10) NOT NULL AUTO_INCREMENT,
+  `left_extent` int(10) DEFAULT '0',
   `parent_task_id` int(10) DEFAULT '0',
+  `right_extent` int(10) DEFAULT '0',
   `business_id` int(10) NOT NULL,
   `project_id` int(11) DEFAULT NULL,
   `task_type_id` varchar(255) DEFAULT NULL,
@@ -426,34 +446,39 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `task_created_by` int(10) DEFAULT NULL,
   `last_updated` datetime DEFAULT NULL,
   `updated_by` int(10) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL,
   PRIMARY KEY (`task_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.tasks: ~21 rows (approximately)
+-- Dumping data for table my.company.tasks: ~25 rows (approximately)
 DELETE FROM `tasks`;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` (`task_id`, `parent_task_id`, `business_id`, `project_id`, `task_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `name`, `notes`, `complete`, `task_created_by`, `last_updated`, `updated_by`) VALUES
-	(5, 0, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'these are the task notes....', 'N', 1, NULL, NULL),
-	(6, 0, 1, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the task check it out', 'Y', 1, NULL, NULL),
-	(7, 0, 9, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'hello there how are you ?', 'N', 1, NULL, NULL),
-	(8, 0, 9, 7, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'task notes', 'N', 1, NULL, NULL),
-	(9, 0, 2, 7, '2', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'Put your task notes here will you ', 'Y', 1, NULL, NULL),
-	(10, 0, 9, 7, '', '3', '2012-10-06 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the normal task option', 'Y', 1, NULL, NULL),
-	(11, 0, 1, 7, '', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is a great project team...', 'Y', 1, NULL, NULL),
-	(12, 0, 2, 10, '7', '2', '2012-10-12 00:00:00', '2012-10-12 00:00:00', '2012-10-12 00:00:00', 'new task', 'task notes', 'Y', 1, NULL, NULL),
-	(14, 0, 0, NULL, '8', '1', '2012-10-25 00:00:00', '2012-10-25 00:00:00', '2012-10-25 00:00:00', 'new task', '', 'N', 2, NULL, NULL),
-	(15, 0, 0, NULL, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'N', 1, NULL, NULL),
-	(16, 0, 1, NULL, '', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task1', 'these are the notes ', 'N', 1, '1970-01-01 00:00:00', 1),
-	(17, 0, 1, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task2', 'these are the npotes', 'N', 1, '1970-01-01 00:00:00', 1),
-	(18, 0, 1, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task3', 'these are the task notes', 'N', 1, '1970-01-01 00:00:00', 1),
-	(19, 0, 2, 10, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task4', 'update this now....', 'N', 1, '1970-01-01 00:00:00', 1),
-	(20, 0, 1, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task5', 'These are the task notes', 'N', 1, '2012-10-09 00:00:00', 1),
-	(21, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task6', '', 'N', 1, NULL, NULL),
-	(22, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task7', '', 'N', 1, NULL, NULL),
-	(23, 0, 1, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task8', 'update these areas', 'N', 1, '1970-01-01 00:00:00', 1),
-	(24, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task9', '', 'N', 1, NULL, NULL),
-	(25, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task10', '', 'Y', 1, NULL, NULL),
-	(26, 0, 2, 5, '9', '1', '2012-10-10 00:00:00', '2012-10-10 00:00:00', '2012-10-11 00:00:00', 'task 28 (Check it out)', 'this is a massive task statement... check it out', 'N', 1, '2012-10-09 00:00:00', 1);
+INSERT INTO `tasks` (`task_id`, `left_extent`, `parent_task_id`, `right_extent`, `business_id`, `project_id`, `task_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `name`, `notes`, `complete`, `task_created_by`, `last_updated`, `updated_by`, `sort`) VALUES
+	(5, 0, 0, 0, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'these are the task notes....', 'Y', 1, NULL, NULL, NULL),
+	(6, 0, 0, 0, 1, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the task check it out', 'Y', 1, NULL, NULL, NULL),
+	(7, 0, 0, 0, 9, 10, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'hello there how are you ?', 'N', 1, NULL, NULL, 5),
+	(8, 0, 0, 0, 9, 7, '2', '4', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'task notes', 'N', 1, NULL, NULL, 6),
+	(9, 0, 0, 0, 2, 7, '2', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'Put your task notes here will you ', 'Y', 1, NULL, NULL, NULL),
+	(10, 0, 0, 0, 9, 7, '', '3', '2012-10-06 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is the normal task option', 'Y', 1, NULL, NULL, NULL),
+	(11, 0, 0, 0, 1, 7, '', '3', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Hosting Package', 'this is a great project team...', 'Y', 1, NULL, NULL, NULL),
+	(12, 0, 0, 0, 2, 10, '7', '2', '2012-10-12 00:00:00', '2012-10-12 00:00:00', '2012-10-12 00:00:00', 'new task', 'task notes', 'Y', 1, NULL, NULL, NULL),
+	(14, 0, 0, 0, 0, NULL, '8', '1', '2012-10-25 00:00:00', '2012-10-25 00:00:00', '2012-10-25 00:00:00', 'new task', '', 'N', 2, NULL, NULL, 1),
+	(15, 0, 0, 0, 0, NULL, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'Y', 1, NULL, NULL, NULL),
+	(16, 0, 0, 0, 1, NULL, '', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task1', 'these are the notes ', 'Y', 1, '1970-01-01 00:00:00', 1, 2),
+	(17, 0, 0, 0, 1, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task2', 'these are the npotes', 'Y', 1, '1970-01-01 00:00:00', 1, 3),
+	(18, 0, 0, 0, 1, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task3', 'these are the task notes', 'N', 1, '1970-01-01 00:00:00', 1, 3),
+	(19, 0, 0, 0, 2, 10, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task4', 'update this now....', 'N', 1, '1970-01-01 00:00:00', 1, 4),
+	(20, 0, 0, 0, 0, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task5', 'These are the task notes', 'Y', 1, '2012-10-09 00:00:00', 1, NULL),
+	(21, 0, 0, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task6', '', 'Y', 1, NULL, NULL, NULL),
+	(22, 0, 0, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task7', '', 'Y', 1, NULL, NULL, NULL),
+	(23, 0, 0, 0, 1, NULL, '2', '1', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task8', 'update these areas', 'Y', 1, '1970-01-01 00:00:00', 1, NULL),
+	(24, 0, 0, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task9', '', 'Y', 1, NULL, NULL, NULL),
+	(25, 0, 0, 0, 0, NULL, '0', '0', '2012-10-09 00:00:00', '2012-10-09 00:00:00', '2012-10-08 00:00:00', 'task10', '', 'Y', 1, NULL, NULL, NULL),
+	(26, 0, 0, 0, 2, 5, '9', '1', '2012-10-10 00:00:00', '2012-10-10 00:00:00', '2012-10-25 00:00:00', 'task 28 (Check it out)', 'this is a massive task statement... check it out', 'N', 1, '2012-10-09 00:00:00', 1, 0),
+	(27, 0, 26, 0, 2, 10, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'this is a sub task', '', 'N', 1, NULL, NULL, 2),
+	(28, 0, 27, 0, 0, NULL, '10', '1', '2012-10-18 00:00:00', '2012-10-18 00:00:00', '2012-10-18 00:00:00', 'second sub task', '', 'N', 1, NULL, NULL, NULL),
+	(29, 0, 0, 0, 1, 5, '2', '1', '2012-10-11 00:00:00', '2012-10-11 00:00:00', '2012-10-11 00:00:00', 'easy price pro', 'erewr', 'N', 1, NULL, NULL, NULL),
+	(30, 0, 28, 0, 1, 5, '11', '0', '2012-10-11 00:00:00', '2012-10-11 00:00:00', '2012-10-11 00:00:00', 'sagepay set up ', '', 'N', 1, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 
 
@@ -483,56 +508,69 @@ CREATE TABLE IF NOT EXISTS `tasks_to_users` (
   `task_id` int(10) DEFAULT NULL,
   `user_id` int(10) DEFAULT NULL,
   `sort` int(10) DEFAULT NULL,
-  `complete` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
   UNIQUE KEY `task_to_user_id` (`task_to_user_id`),
   KEY `task_to_user_id_2` (`task_to_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.tasks_to_users: ~41 rows (approximately)
+-- Dumping data for table my.company.tasks_to_users: ~36 rows (approximately)
 DELETE FROM `tasks_to_users`;
 /*!40000 ALTER TABLE `tasks_to_users` DISABLE KEYS */;
-INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`, `sort`, `complete`) VALUES
-	(6, 0, 1, NULL, 'N'),
-	(7, 0, 1, NULL, 'N'),
-	(8, 0, 6, NULL, 'N'),
-	(9, 0, 1, NULL, 'N'),
-	(10, 12, 1, 8, 'N'),
-	(11, 12, 1, 8, 'N'),
-	(12, 13, 0, NULL, 'N'),
-	(13, 5, 1, 4, 'N'),
-	(14, 6, 1, 8, 'N'),
-	(15, 14, 2, NULL, 'N'),
-	(16, 15, 0, NULL, 'N'),
-	(17, 16, 1, 13, 'N'),
-	(18, 16, 2, NULL, 'N'),
-	(19, 17, 1, 11, 'N'),
-	(20, 17, 2, NULL, 'N'),
-	(21, 18, 1, 15, 'N'),
-	(22, 18, 2, NULL, 'N'),
-	(23, 19, 1, 9, 'N'),
-	(24, 19, 2, NULL, 'N'),
-	(27, 21, 1, 6, 'N'),
-	(28, 21, 2, NULL, 'N'),
-	(29, 22, 1, 5, 'N'),
-	(30, 22, 2, NULL, 'N'),
-	(31, 23, 1, 3, 'N'),
-	(32, 23, 2, NULL, 'N'),
-	(33, 24, 1, 7, 'N'),
-	(34, 24, 2, NULL, 'N'),
-	(35, 25, 1, 3, 'N'),
-	(36, 25, 2, NULL, 'N'),
-	(38, 16, 1, 13, 'N'),
-	(39, 16, 2, NULL, 'N'),
-	(40, 17, 1, 11, 'N'),
-	(48, 18, 1, 15, 'N'),
-	(49, 18, 2, NULL, 'N'),
-	(51, 23, 1, 3, 'N'),
-	(52, 23, 2, NULL, 'N'),
-	(53, 19, 1, 9, 'N'),
-	(63, 20, 1, 1, 'N'),
-	(64, 20, 2, 0, 'N'),
-	(67, 26, 1, 0, 'N');
+INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`, `sort`) VALUES
+	(6, 0, 1, NULL),
+	(7, 0, 1, 1),
+	(8, 0, 6, NULL),
+	(9, 0, 1, NULL),
+	(10, 12, 1, 8),
+	(11, 12, 1, 8),
+	(12, 13, 0, NULL),
+	(13, 5, 1, 1),
+	(14, 6, 1, 8),
+	(15, 14, 2, NULL),
+	(16, 15, 0, NULL),
+	(17, 16, 1, 2),
+	(18, 16, 2, NULL),
+	(19, 17, 1, 1),
+	(20, 17, 2, NULL),
+	(21, 18, 1, 4),
+	(22, 18, 2, NULL),
+	(23, 19, 1, 5),
+	(24, 19, 2, NULL),
+	(27, 21, 1, 2),
+	(28, 21, 2, NULL),
+	(29, 22, 1, 3),
+	(30, 22, 2, NULL),
+	(31, 23, 1, 1),
+	(32, 23, 2, NULL),
+	(33, 24, 1, 5),
+	(34, 24, 2, NULL),
+	(35, 25, 1, 3),
+	(36, 25, 2, NULL),
+	(68, 20, 1, 0),
+	(69, 20, 2, 0),
+	(70, 26, 1, 0),
+	(71, 27, 1, 1),
+	(72, 28, 1, 3),
+	(73, 29, 1, 2),
+	(74, 30, 2, NULL);
 /*!40000 ALTER TABLE `tasks_to_users` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.task_comments
+DROP TABLE IF EXISTS `task_comments`;
+CREATE TABLE IF NOT EXISTS `task_comments` (
+  `task_comment_id` int(10) DEFAULT NULL,
+  `task_id` int(10) DEFAULT NULL,
+  `left` int(10) DEFAULT NULL,
+  `parent_task_id` int(10) DEFAULT NULL,
+  `right` int(10) DEFAULT NULL,
+  `comment` text COLLATE utf8_unicode_ci,
+  `user_id` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.task_comments: ~0 rows (approximately)
+DELETE FROM `task_comments`;
+/*!40000 ALTER TABLE `task_comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `task_comments` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.task_type
@@ -541,9 +579,9 @@ CREATE TABLE IF NOT EXISTS `task_type` (
   `task_type_id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`task_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.task_type: ~8 rows (approximately)
+-- Dumping data for table my.company.task_type: ~10 rows (approximately)
 DELETE FROM `task_type`;
 /*!40000 ALTER TABLE `task_type` DISABLE KEYS */;
 INSERT INTO `task_type` (`task_type_id`, `name`) VALUES
@@ -554,7 +592,9 @@ INSERT INTO `task_type` (`task_type_id`, `name`) VALUES
 	(6, 'new task type'),
 	(7, 'new task type'),
 	(8, 'new task type 2'),
-	(9, 'new task types');
+	(9, 'new task types'),
+	(10, 'new task type - simon'),
+	(11, 'sagepay');
 /*!40000 ALTER TABLE `task_type` ENABLE KEYS */;
 
 
