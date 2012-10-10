@@ -137,6 +137,14 @@
 			return $query->result_array();
 		}
 
+		public function get_project_comments($id){
+			$this->db->select('*');
+			$this->db->from('projects_comments');
+			$this->db->where('project_id', $id);
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
 		public function project_deatils($id){
 			$sql = "SELECT p.*, pt.name as project_type, st.name as status_name, u.*, uu.name as sales_name, uu.display_name as sales_display_name, b.name as business_name from projects as p
 				inner join users as u on u.user_id = p.manager_id
@@ -216,5 +224,15 @@ where p.project_id = ?";
 			where ptu.project_id = ?";
 			$query = $this->db->query($sql, array($id));
 			return json_encode($query->result_array());
+		}
+
+		public function add_project_comment($id){
+			$data = array(
+			   'project_id' => $id,
+			   'comment' => $_POST['data'],
+			   'user_id' => $this->session->userdata('user_id')
+			);
+
+			$this->db->insert('projects_comments', $data); 
 		}
 	}

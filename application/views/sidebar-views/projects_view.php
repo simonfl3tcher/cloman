@@ -1,3 +1,4 @@
+
 	<div class="action-bar">
 		<span>Start:- <?php echo date('d-M-Y', strtotime($project_details->start_date)); ?> </span>
 		<span>Internal:- <?php echo date('d-M-Y', strtotime($project_details->internal_deadline)); ?></span>
@@ -110,7 +111,15 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	 The comments need to go in here.
+		    	<?php if(count($project_comments)){ ?>
+			    	<ul>
+			    		<?php foreach($project_comments as $comments){ ?>
+			    			<li><?php echo $comments['comment']; ?> -  <span class="removeComment" data-commentId="<?php echo $comments['project_comment_id']; ?>">R</span></li>
+			    		<?php } ?>
+			    	</ul>
+		    	<?php } else { ?>
+		    		There are no comments against this project
+		    	<?php } ?>
 		    </div>
 		</div>
 	</div>
@@ -123,7 +132,7 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	 <textarea id="projectCommentArea"></textarea>
+		    	 <textarea id="projectCommentArea" data-proid="<?php echo $project_details->project_id; ?>"></textarea>
 		    </div>
 		</div>
 	</div>

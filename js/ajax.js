@@ -196,9 +196,24 @@ $(document).ready(function(){
 	}).disableSelection();
 
 	$('#projectCommentArea').live('keypress', function(e){
-		if(e.which == 13 && $(this).val() != ''){
-			console.log('Enter was clicked');
+		if(e.which == 13 && !e.shiftKey){
+			if(!$(this).val() == ''){
+				//console.log('shift enter not clicked');
+				var data = 'data=' + $(this).val();
+				$.ajax({
+					url: '/projects/add_comment/' + $('#projectCommentArea').attr('data-proid'),
+					type: 'POST',
+					dataType: 'html',
+					data: data
+				}).done(function(data){
+					console.log(data);
+				});
+			}
 		}
+	});
+
+	$('.removeComment').live('click', function(e){
+		console.log('remove has been clicked');
 	});
 
 	/* Functions that you may want to use are bellow */

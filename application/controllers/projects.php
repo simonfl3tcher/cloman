@@ -74,6 +74,7 @@
 			$data['project_details'] = $this->projects_model->project_deatils($projectId);
 			$data['project_workers'] = $this->projects_model->project_workers($projectId);
 			$data['project_tasks'] = $this->projects_model->get_project_tasks($projectId);
+			$data['project_comments'] = $this->projects_model->get_project_comments($projectId);
 			$data['title'] = 'Project Details';
 
 			// Bellow is needed for the side bar partial to work.
@@ -129,6 +130,13 @@
 		public function get_workers($id){
 			$q = $this->projects_model->json_project_user($id, true);
 			echo $q;
+		}
+
+		public function add_comment($id){
+			$this->projects_model->add_project_comment($id);
+			var_dump($_POST['data']);
+			echo $id;
+			echo 'hello you are getting in here now';
 		}
 	}
 ?>
