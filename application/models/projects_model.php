@@ -235,4 +235,17 @@ where p.project_id = ?";
 
 			$this->db->insert('projects_comments', $data); 
 		}
+
+		public function remove_project_comment($id){
+			$this->db->delete('projects_comments', array('project_comment_id' => $id));
+			return;		
+		}
+
+		public function get_project_of_comment($id){
+			$this->db->select('project_id');
+			$this->db->from('projects_comments');
+			$this->db->where('project_comment_id', $id);
+			$query = $this->db->get();
+			return $query->row();
+		}
 	}

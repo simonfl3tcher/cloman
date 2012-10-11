@@ -74,7 +74,7 @@
 			$data['project_details'] = $this->projects_model->project_deatils($projectId);
 			$data['project_workers'] = $this->projects_model->project_workers($projectId);
 			$data['project_tasks'] = $this->projects_model->get_project_tasks($projectId);
-			$data['project_comments'] = $this->projects_model->get_project_comments($projectId);
+			$data['comments'] = $this->projects_model->get_project_comments($projectId);
 			$data['title'] = 'Project Details';
 
 			// Bellow is needed for the side bar partial to work.
@@ -134,9 +134,15 @@
 
 		public function add_comment($id){
 			$this->projects_model->add_project_comment($id);
-			var_dump($_POST['data']);
-			echo $id;
-			echo 'hello you are getting in here now';
+			$data['comments'] = $this->projects_model->get_project_comments($id);
+			echo $this->load->partial('partials/comments_partial.php', $data);
+		}
+
+		public function remove_comment($commentId) {
+			$projectNumber = $this->projects_model->get_project_of_comment($commentId);
+			$this->projects_model->remove_project_comment($commentId);
+			$data['comments'] = $this->projects_model->get_project_comments($projectNumber->project_id);
+			echo $this->load->partial('partials/comments_partial.php', $data);
 		}
 	}
 ?>

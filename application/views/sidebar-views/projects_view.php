@@ -109,19 +109,9 @@
               Comments 
             </div>
         </div>
-        <div data-field-type="text" class="value field-type-text">    
-		    <div class="display v2">
-		    	<?php if(count($project_comments)){ ?>
-			    	<ul>
-			    		<?php foreach($project_comments as $comments){ ?>
-			    			<li><?php echo $comments['comment']; ?> -  <span class="removeComment" data-commentId="<?php echo $comments['project_comment_id']; ?>">R</span></li>
-			    		<?php } ?>
-			    	</ul>
-		    	<?php } else { ?>
-		    		There are no comments against this project
-		    	<?php } ?>
-		    </div>
-		</div>
+        <div class="commentsAreaId">
+        	<?php $this->load->partial('partials/comments_partial.php'); ?>
+        </div>
 	</div>
 
 	<div class="fields">

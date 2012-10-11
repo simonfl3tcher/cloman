@@ -3,7 +3,7 @@
 -- Server version:               5.5.24-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-10 18:04:13
+-- Date/time:                    2012-10-11 15:42:28
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -298,18 +298,20 @@ INSERT INTO `projects` (`project_id`, `business_id`, `sales_id`, `project_name`,
 -- Dumping structure for table my.company.projects_comments
 DROP TABLE IF EXISTS `projects_comments`;
 CREATE TABLE IF NOT EXISTS `projects_comments` (
-  `project_comment_id` int(10) DEFAULT NULL,
+  `project_comment_id` int(10) NOT NULL AUTO_INCREMENT,
   `project_id` int(10) DEFAULT NULL,
-  `left` int(10) DEFAULT NULL,
-  `parent_project_id` int(10) DEFAULT NULL,
-  `right` int(10) DEFAULT NULL,
   `comment` text COLLATE utf8_unicode_ci,
-  `user_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `user_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`project_comment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.projects_comments: ~0 rows (approximately)
+-- Dumping data for table my.company.projects_comments: ~3 rows (approximately)
 DELETE FROM `projects_comments`;
 /*!40000 ALTER TABLE `projects_comments` DISABLE KEYS */;
+INSERT INTO `projects_comments` (`project_comment_id`, `project_id`, `comment`, `user_id`) VALUES
+	(10, 10, 'this is the data', 1),
+	(21, 9, 'do you want to keep this comment ?', 1),
+	(22, 9, 'you are making a comment, but does it stand correctly ?', 1);
 /*!40000 ALTER TABLE `projects_comments` ENABLE KEYS */;
 
 

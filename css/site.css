@@ -484,6 +484,10 @@ td.slide {
     cursor:move;
 }
 
+.removeComment {
+    cursor:pointer;
+}
+
 /* Misc Classes */
 
 .addBusinessTitle h6{

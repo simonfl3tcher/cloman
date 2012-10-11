@@ -198,14 +198,18 @@ $(document).ready(function(){
 	$('#projectCommentArea').live('keypress', function(e){
 		if(e.which == 13 && !e.shiftKey){
 			if(!$(this).val() == ''){
+				e.preventDefault();
 				//console.log('shift enter not clicked');
 				var data = 'data=' + $(this).val();
+				$(this).val('');
 				$.ajax({
 					url: '/projects/add_comment/' + $('#projectCommentArea').attr('data-proid'),
 					type: 'POST',
 					dataType: 'html',
 					data: data
 				}).done(function(data){
+					$('.commentsAreaId').html('');
+					$('.commentsAreaId').html(data);
 					console.log(data);
 				});
 			}
@@ -213,6 +217,18 @@ $(document).ready(function(){
 	});
 
 	$('.removeComment').live('click', function(e){
+		addAjaxloader($('.sidebarSlider'));
+		$.ajax({
+			url: '/projects/remove_comment/' + $(this).attr('data-commentId'),
+			type: 'POST',
+			dataType: 'html'
+		}).done(function(data){
+			removeAjaxloader($('.sidebarSlider'), 100);
+			$('.commentsAreaId').html('');
+			$('.commentsAreaId').html(data);
+			console.log('this has now been removed');
+		});
+		console.log($(this).attr('data-commentId'));
 		console.log('remove has been clicked');
 	});
 
