@@ -1,5 +1,7 @@
 	<div class="action-bar">
-		<div class="tasks-add" data-parentTask="<?php echo $task_details->task_id; ?>">SubClass</div>
+		<?php if($task_details->complete == 'N'){ ?>
+			<div class="tasks-add" data-parentTask="<?php echo $task_details->task_id; ?>">SubClass</div>
+		<?php } ?>
 		<span>Start:- <?php echo date('d-M-Y', strtotime($task_details->start_date)); ?> </span>
 		<span>Internal:- <?php echo date('d-M-Y', strtotime($task_details->internal_deadline)); ?></span>
 		<span>Deadline:- <?php echo date('d-M-Y', strtotime($task_details->client_deadline)); ?></span>
@@ -83,18 +85,46 @@
 		    </div>
 		</div>
 	</div>
-	<div class="fields">
+	<?php if($task_details->complete == 'N'){ ?>
+		<div class="fields">
+			<div class="field text box-error-wrapper is-inline-editable">
+	            <div class="label">
+	              Complete Task
+	            </div>
+	        </div>
+	        <div data-field-type="text" class="value field-type-text">    
+			    <div class="display v2">
+			    	<input type="checkbox" name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task_details->task_id; ?>"  />
+			    </div>
+			</div>
+		</div>
+	<?php } else { ?>
+		<div class="fields">
 		<div class="field text box-error-wrapper is-inline-editable">
             <div class="label">
-              Complete Task
+             	Completion Date
             </div>
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	<input type="checkbox" name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task_details->task_id; ?>" />
+		    	<?php echo date('d-M-Y', strtotime($task_details->actual_completion_date)); ?> 
 		    </div>
 		</div>
 	</div>
+	<div class="fields">
+			<div class="field text box-error-wrapper is-inline-editable">
+	            <div class="label">
+	              Uncomplete Task
+	            </div>
+	        </div>
+	        <div data-field-type="text" class="value field-type-text">    
+			    <div class="display v2">
+			    	<button name="uncompleteTask" class="uncompleteTask btn btn-mini btn-success" data-url="/tasks/uncomplete/<?php echo $task_details->task_id; ?>">Uncomplete Task</button>
+			    </div>
+			</div>
+		</div>
+
+	<?php } ?>
     <ul class="nav nav-tabs">
     <li class="active"><a href="#home" data-toggle="tab">Subtasks</a></li>
     <li><a href="#profile" data-toggle="tab">Comments</a></li>
@@ -102,9 +132,38 @@
  
 	<div class="tab-content">
 		<div class="tab-pane active" id="home">
-			<?php foreach($sub_tasks as $task){ ?>
-				<input type="checkbox" name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br />
+			<?php if(count($sub_tasks)){ ?>
+				<?php foreach($sub_tasks as $task){ ?>
+					<input type="checkbox" <?php if($task_details->complete == 'Y'){ echo ' disabled="disabled"'; } ?> name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br />
+				<?php } ?>
+			<?php } else { ?>
+				There are no sub tasks in this task.
 			<?php } ?>
+
 		</div>
-		<div class="tab-pane" id="profile">...2</div>
+		<div class="tab-pane" id="profile">
+			<div class="fields">
+				<div class="field text box-error-wrapper is-inline-editable">
+		            <div class="label">
+		              Comments 
+		            </div>
+		        </div>
+		        <div class="commentsAreaId">
+		        	<?php $this->load->partial('partials/tasks_comments_partial.php'); ?>
+		        	<div class="clear"></div>
+		        </div>
+			</div>
+			<div class="fields">
+				<div class="field text box-error-wrapper is-inline-editable">
+		            <div class="label">
+		              Make Comment 
+		            </div>
+		        </div>
+		        <div data-field-type="text" class="value field-type-text">    
+				    <div class="display v2">
+				    	 <textarea id="commentArea" data-comm="/tasks/add_comment/<?php echo $task_details->task_id; ?>"></textarea>
+				    </div>
+				</div>
+			</div>
+		</div>
 	</div>

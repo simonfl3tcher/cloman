@@ -16,17 +16,28 @@
 left join businesses as b on b.business_id = t.business_id
 left join status_table as st on st.status_id = t.status_id
 left join task_type as tt on tt.task_type_id = t.task_type_id
-left join users as u on u.user_id = t.task_created_by
-where complete = 'N'";
+inner join users as u on u.user_id = t.task_created_by";
 			if($id != null){
 				$sql .= " and t.task_id = {$id}";
 				$query = $this->db->query($sql);
 				return $query->row();
 			} else {
-				$sql .= " order by t.sort asc";
+				$sql .= " where complete = 'N' order by t.sort asc";
 				$query = $this->db->query($sql);
 				return $query->result_array();
 			}
+		}
+
+		public function get_archived_tasks(){
+			$sql = "SELECT b.name as business_name, b.business_id as bid, tt.name as task_type, t.*, u.name as created_by from tasks as t
+left join businesses as b on b.business_id = t.business_id
+left join status_table as st on st.status_id = t.status_id
+left join task_type as tt on tt.task_type_id = t.task_type_id
+left join users as u on u.user_id = t.task_created_by
+where complete = 'Y'
+order by t.actual_completion_date desc, t.task_id desc ";
+			$query = $this->db->query($sql);
+			return $query->result_array();
 		}
 
 		public function get_subtasks($id){
@@ -38,12 +49,17 @@ where complete = 'N'";
 			return $query->result_array();
 		}
 
-		public function search_tasks($data) {
+		public function search_tasks($data, $archive) {
 			$sql = "SELECT b.name as business_name, t.* from tasks as t
 left join businesses as b on b.business_id = t.business_id
-left join status_table as st on st.status_id = t.status_id
-where t.complete = 'N' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
-order by t.sort asc";
+left join status_table as st on st.status_id = t.status_id";
+			if($archive !=null){
+				$sql .=" where t.complete = 'Y' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
+			order by t.actual_completion_date desc, t.task_id desc ";
+			} else {
+				$sql .=" where t.complete = 'N' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
+			order by t.sort asc";
+			}
 			$query = $this->db->query($sql);
 			return $query->result_array();
 		}
@@ -165,7 +181,14 @@ where task_id = ?";
 		}
 
 		public function complete_task($id){
-			$data = array('complete' => 'Y');
+			$data = array('complete' => 'Y', 'actual_completion_date' => date('Y-m-d', strtotime('today')));
+			$this->db->where('task_id', $id);
+			$this->db->update('tasks', $data);
+			return true;
+		}
+
+		public function uncomplete_task($id){
+			$data = array('complete' => 'N', 'actual_completion_date' => null);
 			$this->db->where('task_id', $id);
 			$this->db->update('tasks', $data);
 			return true;
@@ -218,6 +241,37 @@ where task_id = ?";
 			where ttu.task_id = ?";
 			$query = $this->db->query($sql, array($id));
 			return json_encode($query->result_array());
+		}
+
+		public function get_task_comments($id){
+			$this->db->select('*');
+			$this->db->from('task_comments');
+			$this->db->where('task_id', $id);
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function add_task_comment($id){
+			$data = array(
+			   'task_id' => $id,
+			   'comment' => $_POST['data'],
+			   'user_id' => $this->session->userdata('user_id')
+			);
+
+			$this->db->insert('task_comments', $data); 
+		}
+
+		public function remove_task_comment($id){
+			$this->db->delete('task_comments', array('task_comment_id' => $id));
+			return;		
+		}
+
+		public function get_task_of_comment($id){
+			$this->db->select('task_id');
+			$this->db->from('task_comments');
+			$this->db->where('task_comment_id', $id);
+			$query = $this->db->get();
+			return $query->row();
 		}
 
 	}

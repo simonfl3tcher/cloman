@@ -110,7 +110,8 @@
             </div>
         </div>
         <div class="commentsAreaId">
-        	<?php $this->load->partial('partials/comments_partial.php'); ?>
+        	<?php $this->load->partial('partials/projects_comments_partial.php'); ?>
+        	<div class="clear"></div>
         </div>
 	</div>
 
@@ -122,7 +123,7 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	 <textarea id="projectCommentArea" data-proid="<?php echo $project_details->project_id; ?>"></textarea>
+		    	 <textarea id="commentArea" data-comm="/projects/add_comment/<?php echo $project_details->project_id; ?>"></textarea>
 		    </div>
 		</div>
 	</div>

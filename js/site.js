@@ -127,13 +127,13 @@ $(document).ready(function(){
 		$('.sidebar-container').slideLeftHide();
 	});
 
-	$('#myTab a:first').tab('show');
 
-	// $('table tr td:nth-child(2) a').on('click', function(e){
-	// 	e.preventDefault();
-	// 	e.stopPropagation();
-	// 	console.log('You are in here');
-	// });
+	$('.commContainer li').live('mouseenter', function(){
+		 $('.removeComment', $(this)).stop(true, true).animate({opacity:1},1000);
+	});
+	$('.commContainer li').live('mouseleave', function(){
+		 $('.removeComment', $(this)).stop(true, true).animate({opacity:0},1000);
+	});
 
 
 	function clear_form_elements(ele) {

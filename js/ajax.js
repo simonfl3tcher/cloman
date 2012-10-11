@@ -172,6 +172,21 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.uncompleteTask').live('click', function(){
+		$.ajax({
+		url: $(this).attr('data-url'),
+		type: 'POST',
+		dataType: 'html',
+		}).done(function(data){
+			var container = $('.sidebarSlider');
+			container.slideRightHide();
+			setTimeout(function(){
+				window.location.reload();
+			}, 1000);
+			// console.log('done');
+		});
+	});
+
 	$(".taskTableDraggable tbody").sortable({
 		helper: function(e, tr) {
 		    var $originals = tr.children();
@@ -195,41 +210,37 @@ $(document).ready(function(){
         handle: 'td:first'
 	}).disableSelection();
 
-	$('#projectCommentArea').live('keypress', function(e){
+	$('#commentArea').live('keypress', function(e){
 		if(e.which == 13 && !e.shiftKey){
 			if(!$(this).val() == ''){
 				e.preventDefault();
-				//console.log('shift enter not clicked');
 				var data = 'data=' + $(this).val();
 				$(this).val('');
 				$.ajax({
-					url: '/projects/add_comment/' + $('#projectCommentArea').attr('data-proid'),
+					url: $(this).attr('data-comm'),
 					type: 'POST',
 					dataType: 'html',
 					data: data
 				}).done(function(data){
 					$('.commentsAreaId').html('');
 					$('.commentsAreaId').html(data);
-					console.log(data);
 				});
 			}
 		}
 	});
 
 	$('.removeComment').live('click', function(e){
+		var link = $(this).parent().parent().attr('data-comm');
 		addAjaxloader($('.sidebarSlider'));
 		$.ajax({
-			url: '/projects/remove_comment/' + $(this).attr('data-commentId'),
+			url: link + $(this).attr('data-commentId'),
 			type: 'POST',
 			dataType: 'html'
 		}).done(function(data){
 			removeAjaxloader($('.sidebarSlider'), 100);
 			$('.commentsAreaId').html('');
 			$('.commentsAreaId').html(data);
-			console.log('this has now been removed');
 		});
-		console.log($(this).attr('data-commentId'));
-		console.log('remove has been clicked');
 	});
 
 	/* Functions that you may want to use are bellow */

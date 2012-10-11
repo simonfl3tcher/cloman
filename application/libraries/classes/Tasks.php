@@ -13,6 +13,7 @@
 		protected $Name;
 		protected $Notes;
 		protected $Complete;
+		protected $ActualCompletionDate;
 		protected $CreatedBy;
 		protected $LastUpDated;
 		protected $UpdatedBy;
@@ -42,6 +43,7 @@
 				"name" => "Name",
 				"notes" => "Notes",
 				"complete" => "Complete",
+				"actual_completion_date" => "ActualCompletionDate",
 				"task_created_by" => "CreatedBy",
 				"last_updated" => "LastUpDated",
 				"updated_by" => "UpdatedBy",

@@ -345,6 +345,10 @@ li {
     background-position: 0 -1589px;
 }
 
+.icon.cancelIcon {
+    background-position: 0 -1664px;
+}
+
 .icon.taskIcon {
     background-position: 0 -608px;
 }
@@ -355,6 +359,10 @@ li {
 
 .icon.hashIcon {
     background-position: 0 -1854px;
+}
+
+.icon.completeIcon {
+    background-position: 0 -736px;
 }
 
 .icon.personIcon {
@@ -486,6 +494,7 @@ td.slide {
 
 .removeComment {
     cursor:pointer;
+    opacity:0;
 }
 
 /* Misc Classes */

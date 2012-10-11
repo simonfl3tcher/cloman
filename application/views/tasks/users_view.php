@@ -1,4 +1,5 @@
 <a href="/tasks/user_tasks/<?php echo $this->session->userdata('user_id'); ?>"><span style="display:inline-block">My Tasks</span></a>
+<a href="/tasks/archived_tasks"><span style="display:inline-block">Archived Tasks</span></a>
 
 <div id="tableContainer">
 	<!-- Put the table in here -->

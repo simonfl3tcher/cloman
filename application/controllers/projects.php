@@ -135,14 +135,14 @@
 		public function add_comment($id){
 			$this->projects_model->add_project_comment($id);
 			$data['comments'] = $this->projects_model->get_project_comments($id);
-			echo $this->load->partial('partials/comments_partial.php', $data);
+			echo $this->load->partial('partials/projects_comments_partial.php', $data);
 		}
 
 		public function remove_comment($commentId) {
 			$projectNumber = $this->projects_model->get_project_of_comment($commentId);
 			$this->projects_model->remove_project_comment($commentId);
 			$data['comments'] = $this->projects_model->get_project_comments($projectNumber->project_id);
-			echo $this->load->partial('partials/comments_partial.php', $data);
+			echo $this->load->partial('partials/projects_comments_partial.php', $data);
 		}
 	}
 ?>

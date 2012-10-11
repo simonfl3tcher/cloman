@@ -15,6 +15,13 @@
 			$this->render_view('tasks/index', $data);
 		}
 
+		public function archived_tasks(){
+			$data['title'] = 'Tasks Page';
+			$data['task_list'] = $this->task_model->get_archived_tasks();
+			$data['archive'] = true;
+			$this->render_view('tasks/index', $data);
+		}
+
 		public function view($id = null){
 			$task = new Tasks_Class($id);
 			if($this->request->isPost()){
@@ -63,10 +70,10 @@
 			echo $this->task_model->get_project_for_business($id); 
 		}
 
-		public function search() {
+		public function search($archive=null) {
 			$d = $_POST['data'];
 			if($this->request->isPost()){
-				$data['task_list'] = $this->task_model->search_tasks($d);
+				$data['task_list'] = $this->task_model->search_tasks($d, $archive);
 				if(!empty($data['task_list'])){
 					$this->load->partial('tasks/partials/table_partial', $data);
 				} else {
@@ -76,6 +83,7 @@
 				return false;
 			}
 		}
+
 
 		public function user_tasks($id){
 			$data['title'] = 'Tasks Page';
@@ -87,6 +95,7 @@
 			$data['task_details'] = $this->task_model->get($taskid);
 			$data['worker_details'] = $this->task_model->worker_details($taskid);
 			$data['sub_tasks'] = $this->task_model->get_subtasks($taskid);
+			$data['comments'] = $this->task_model->get_task_comments($taskid);
 			$data['title'] = 'Task Details';
 			// Bellow is needed for the side bar partial to work.
 			$data['icon'] = 'businessIcon';
@@ -98,6 +107,11 @@
 
 		public function complete($id){
 			$this->task_model->complete_task($id);
+			return true;
+		}
+
+		public function uncomplete($id){
+			$this->task_model->uncomplete_task($id);
 			return true;
 		}
 
@@ -114,6 +128,19 @@
 		public function task_sort(){
 			$this->task_model->task_sort_order();
 			return true;
+		}
+
+		public function add_comment($id){
+			$this->task_model->add_task_comment($id);
+			$data['comments'] = $this->task_model->get_task_comments($id);
+			echo $this->load->partial('partials/tasks_comments_partial.php', $data);
+		}
+
+		public function remove_comment($commentId) {
+			$taskNum = $this->task_model->get_task_of_comment($commentId);
+			$this->task_model->remove_task_comment($commentId);
+			$data['comments'] = $this->task_model->get_task_comments($taskNum->task_id);
+			echo $this->load->partial('partials/tasks_comments_partial.php', $data);
 		}
 	}
 ?>
