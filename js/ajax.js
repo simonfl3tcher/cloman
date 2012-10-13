@@ -144,7 +144,7 @@ $(document).ready(function(){
 			if(!data.length){
 				container.slideUp('slow');
 			}
-			$('.assigntoproject .content').append('<input id="projectTickbox" type="checkbox" name="task[Project]" value="' + data[0].project_id + '" /><span style="height:20px">' + data[0].project_name + '</span>');
+			$('.assigntoproject .content').append('<select name="task[Project]"><option>No</option><option value="' + data[0].project_id + '">Yes</option></select><span style="height:20px">' + data[0].project_name + '</span>');
 		});
 		//$('#projectTickbox').prop("checked", false);
 

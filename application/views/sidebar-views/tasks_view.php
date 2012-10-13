@@ -126,12 +126,13 @@
 
 	<?php } ?>
     <ul class="nav nav-tabs">
-    <li class="active"><a href="#home" data-toggle="tab">Subtasks</a></li>
-    <li><a href="#profile" data-toggle="tab">Comments</a></li>
+    <li class="active"><a href="#subtasks" data-toggle="tab">Subtasks</a></li>
+    <li><a href="#comments" data-toggle="tab">Comments</a></li>
+    <li><a href="#timetracking" data-toggle="tab">Track Time</a></li>
     </ul>
  
 	<div class="tab-content">
-		<div class="tab-pane active" id="home">
+		<div class="tab-pane active" id="subtasks">
 			<?php if(count($sub_tasks)){ ?>
 				<?php foreach($sub_tasks as $task){ ?>
 					<input type="checkbox" <?php if($task_details->complete == 'Y'){ echo ' disabled="disabled"'; } ?> name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br />
@@ -141,7 +142,7 @@
 			<?php } ?>
 
 		</div>
-		<div class="tab-pane" id="profile">
+		<div class="tab-pane" id="comments">
 			<div class="fields">
 				<div class="field text box-error-wrapper is-inline-editable">
 		            <div class="label">
@@ -162,6 +163,44 @@
 		        <div data-field-type="text" class="value field-type-text">    
 				    <div class="display v2">
 				    	 <textarea id="commentArea" data-comm="/tasks/add_comment/<?php echo $task_details->task_id; ?>"></textarea>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="timetracking">
+			<div class="fields">
+				<div class="field text box-error-wrapper is-inline-editable">
+		            <div class="label">
+		              Total 
+		            </div>
+		        </div>
+		        <div class="commentsAreaId">
+		        	ll
+		        	<div class="clear"></div>
+		        </div>
+			</div>
+			<div class="fields">
+				<div class="field text box-error-wrapper is-inline-editable">
+		            <div class="label">
+		              Your Total
+		            </div>
+		        </div>
+		        <div class="commentsAreaId">
+		        	dd
+		        	<div class="clear"></div>
+		        </div>
+			</div>
+			<div class="fields">
+				<div class="field text box-error-wrapper is-inline-editable">
+		            <div class="label">
+		             Track Time
+		            </div>
+		        </div>
+		        <div data-field-type="text" class="value field-type-text">    
+				    <div class="display v2">
+				    	 <div class="example">
+						    <div class="time-counter">00:00:00</div>
+						</div>
 				    </div>
 				</div>
 			</div>

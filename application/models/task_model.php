@@ -75,6 +75,20 @@ order by ttu.sort";
 			return $query->result_array();
 		}
 
+		public function get_users_archived_tasks($id){
+			$sql = "SELECT b.name as business_name, b.business_id as bid, tt.name as task_type, t.*, u.name as created_by from tasks as t
+left join businesses as b on b.business_id = t.business_id
+left join status_table as st on st.status_id = t.status_id
+left join task_type as tt on tt.task_type_id = t.task_type_id
+inner join tasks_to_users as ttu on ttu.task_id = t.task_id
+left join users as u on u.user_id = t.task_created_by
+where complete = 'Y' and ttu.user_id = {$id}
+order by t.actual_completion_date desc, t.task_id desc";
+			$query = $this->db->query($sql);
+			return $query->result_array();
+
+		}
+
 		public function get_task_types(){
 			$this->db->select('*');
 			$this->db->from('task_type');
@@ -102,7 +116,7 @@ order by ttu.sort";
 			if(isset($_POST['parent-task'])){
 				$task->setParentTaskID($_POST['parent-task']);
 			}
-			if(isset($_POST['task']['Project'])){
+			if(isset($_POST['task']['Project']) && is_numeric($_POST['task']['Project'])){
 				$task->setProjectID($_POST['task']['Project']);
 			}
 			$task->setStatusID($_POST['task']['Status']);

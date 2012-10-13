@@ -88,10 +88,17 @@
 		}
 
 
-		public function user_tasks($id){
+		public function user_tasks(){
 			$data['title'] = 'Tasks Page';
-			$data['task_list'] = $this->task_model->get_users_tasks($id);
+			$data['task_list'] = $this->task_model->get_users_tasks($this->session->userdata('user_id'));
 			$this->render_view('tasks/users_view', $data);
+		}
+
+		public function user_archived_tasks(){
+			$data['title'] = 'Title My archived tasks';
+			$data['task_list'] = $this->task_model->get_users_archived_tasks($this->session->userdata('user_id'));
+			$data['archive'] = true;
+			$this->render_view('tasks/index', $data);
 		}
 
 		public function details($taskid){

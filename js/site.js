@@ -22,21 +22,34 @@ $(document).ready(function(){
 
 	$('.tasks-add').live('click', function(e){
 		e.preventDefault();
-		$('#task-modal').modal({
-			backdrop:true,
-			keyboard: true
-		});
 
 		if($(this).attr('data-parentTask')){
 			$('form#addTaskForm').prepend("<input type='hidden' class='parent-task' name='parent-task' value='" + $(this).attr('data-parentTask') + "' />");
-		} 
-
-	    $('#task-modal').on('hidden', function () {
-	    	// if the hidden field is inside here then remove it.
-	    	if($('.parent-task').length){
-	    		$('.parent-task').remove();
-	    	}
-	    })
+			
+			$('#task-modal').modal({
+				backdrop:true,
+				keyboard: true
+			});
+	
+		    $('#task-modal').on('hidden', function () {
+		    	// if the hidden field is inside here then remove it.
+		    	if($('.parent-task').length){
+		    		$('.parent-task').remove();
+		    	}
+		    })
+		} else {
+			$('#task-modal').modal({
+				backdrop:true,
+				keyboard: true
+			});
+	
+		    $('#task-modal').on('hidden', function () {
+		    	// if the hidden field is inside here then remove it.
+		    	if($('.parent-task').length){
+		    		$('.parent-task').remove();
+		    	}
+		    });
+		}
 	})
 
 	$('.reminder-add').live('click', function(e){

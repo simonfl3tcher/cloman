@@ -7,6 +7,7 @@
 	<script src="<?php echo base_url(); ?>js/functions.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/tokeninput.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/tablesorter.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>js/timer.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/ajax.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/site.js" type="text/javascript"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/poup.js"></script>
