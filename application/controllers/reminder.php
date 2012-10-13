@@ -9,7 +9,6 @@
 
 		public function add(){
 			$this->reminder_model->add_reminder();
-			var_dump('adding a reminder here');
 		}
 	}
 ?>

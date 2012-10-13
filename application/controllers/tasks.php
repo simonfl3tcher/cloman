@@ -75,7 +75,7 @@
 			if($this->request->isPost()){
 				$data['task_list'] = $this->task_model->search_tasks($d, $archive);
 				if(!empty($data['task_list'])){
-					$this->load->partial('tasks/partials/table_partial', $data);
+						$this->load->partial('tasks/partials/table_partial', $data);
 				} else {
 					return false;
 				}
