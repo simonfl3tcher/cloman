@@ -70,6 +70,11 @@
 			echo $q;
 		}
 
+		public function token_all_workers(){
+			$q = $this->projects_model->search_all_workers_token($_GET['q']);
+			echo $q;
+		}
+
 		public function details($projectId){
 			$data['project_details'] = $this->projects_model->project_deatils($projectId);
 			$data['project_workers'] = $this->projects_model->project_workers($projectId);

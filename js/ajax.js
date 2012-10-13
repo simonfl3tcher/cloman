@@ -51,7 +51,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#searchTable .delete').live('click', function(e){
+	$('#searchTable .tableRowFive').live('click', function(e){
 		e.preventDefault();
 		var containingTr = $(this).parent().parent();
 		containingTr.animate({ opacity: 0.0 }, 500);

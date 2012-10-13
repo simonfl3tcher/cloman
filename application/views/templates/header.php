@@ -25,6 +25,7 @@
 </head>
 <body>
 	<span class="tasks-add util-button-new first"><span class="task"></span></span>
+	<span class="reminder-add util-button-new first"><span class="clock"></span></span>
 	<div class="pageWrapper">
 		<h1><?php echo $title; ?></h1>
 	<!-- <div class="container-hide">Hide Container</div>

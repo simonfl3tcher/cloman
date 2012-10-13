@@ -88,6 +88,14 @@
 			return json_encode($query->result_array());
 		}
 
+		public function search_all_workers_token($data){
+			$sql = "SELECT u.user_id as id, name from users as u
+			inner join users_to_group as ug on ug.user_id = u.user_id
+			where name like '%{$data}%'";
+			$query = $this->db->query($sql);
+			return json_encode($query->result_array());
+		}
+
 		public function get_project_types(){
 			$this->db->select('*');
 			$this->db->from('project_type');

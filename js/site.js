@@ -39,6 +39,14 @@ $(document).ready(function(){
 	    })
 	})
 
+	$('.reminder-add').live('click', function(e){
+		e.preventDefault();
+		$('#reminder-modal').modal({
+			backdrop:true,
+			keyboard: true
+		});
+	});
+
 
 	$('.addBusiness').toggle(
 		function(){
@@ -91,6 +99,11 @@ $(document).ready(function(){
 	$("#my-text-input.selectContacts").tokenInput("/contacts/token", {
 		theme: "facebook",
 		preventDuplicates: true
+	});	
+
+	$("#my-text-input.selectAllWorkers").tokenInput("/projects/token_all_workers", {
+		theme: "facebook",
+		preventDuplicates: true
 	});
 
 	$('.resetForm').bind('click', function(){
@@ -121,7 +134,9 @@ $(document).ready(function(){
 		$('.advancedSearchBox').slideToggle('slow');
 	});
 
-	$('.datepicker').datepicker({ dateFormat: "dd-mm-yy" });
+	// var start = $.datepicker.formatDate('dd-mm-yy', new Date())
+	// $('.datepicker').val(start);
+	$('.datepicker').datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
 
 	$('.container-hide').click(function(){
 		$('.sidebar-container').slideLeftHide();
