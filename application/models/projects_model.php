@@ -60,7 +60,6 @@
 				$projectUsers->setUserID($w);
 				$projectUsers->save();
 			}
-
 			return true;
 		}
 

@@ -148,7 +148,6 @@ order by ttu.sort";
 				$query = $query->row_array();
 
 				$arr[] = array('userID' => $w, 'sortID' => $query['sort']);
-
 				
 			}
 
@@ -161,6 +160,7 @@ order by ttu.sort";
 				$projectUsers->setSort($w['sortID']);
 				$projectUsers->save();
 			}
+
 			return true;
 		}
 

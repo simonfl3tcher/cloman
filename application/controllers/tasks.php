@@ -71,6 +71,9 @@
 		}
 
 		public function search($archive=null) {
+			if($archive != null){
+				$data['archive'] = true;
+			}
 			$d = $_POST['data'];
 			if($this->request->isPost()){
 				$data['task_list'] = $this->task_model->search_tasks($d, $archive);

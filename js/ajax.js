@@ -22,7 +22,6 @@ $(document).ready(function(){
 			searchResults(data);
 			removeAjaxloader(wrapper, 500);
 		});
-		console.log('you have clicked this');
 	});
 
 	$(':submit.add').click(function(e){
@@ -98,8 +97,6 @@ $(document).ready(function(){
 	});
 
 	$('#search').keypress(function(e){
-		console.log(e.which);
-		console.log($('#search').val().length);
 		if (e.which == 13 || ($('#search').val().length == 1 && e.which == 8)) {
 			var data = 'data=' + $(this).val();
 			$.ajax({
@@ -114,9 +111,8 @@ $(document).ready(function(){
 	});
 
 	$('#searchGrid').keypress(function(e){
-		console.log(e.which);
-		console.log($('#search').val().length);
-		if (e.which == 13 || ($('#search').val().length == 1 && e.which == 8)) {
+		console.log('you are getting in here');
+		if (e.which == 13 || ($('#searchGrid').val().length == 1 && e.which == 8)) {
 			var data = 'data=' + $(this).val();
 			$.ajax({
 				url: $(this).attr('data-searchurl'),
@@ -124,7 +120,7 @@ $(document).ready(function(){
 				dataType: 'html',
 				data: data
 			}).done(function(data){
-				searchResults(data);
+				searchResultsGrid(data);
 			});
 		}
 	});
