@@ -1,5 +1,5 @@
-
 	<div class="action-bar">
+		<button type="button" class="btn nav-tabs put-on-hold <?php if($project_details->on_hold == 'Y') { echo 'active'; }?>" data-toggle="button" data-projectid="<?php echo $project_details->project_id; ?>" value="Y">Hold Project</button>
 		<span>Start:- <?php echo date('d-M-Y', strtotime($project_details->start_date)); ?> </span>
 		<span>Internal:- <?php echo date('d-M-Y', strtotime($project_details->internal_deadline)); ?></span>
 		<span>Deadline:- <?php echo date('d-M-Y', strtotime($project_details->client_deadline)); ?></span>
@@ -80,6 +80,19 @@
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
 		    	 <?php echo '&pound;' . $project_details->budget; ?>
+		    </div>
+		</div>
+	</div>
+
+	<div class="fields">
+		<div class="field text box-error-wrapper is-inline-editable">
+            <div class="label">
+              Hold Time
+            </div>
+        </div>
+        <div data-field-type="text" class="value field-type-text">    
+		    <div class="display v2">
+		    	 <?php echo $hold_time; ?>
 		    </div>
 		</div>
 	</div>

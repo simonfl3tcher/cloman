@@ -3,8 +3,12 @@
 <a href="/businesses">Businesses</a>
 <a href="/projects">Projects</a>
 <a href="/tasks">Tasks</a>
+<a href="/settings">Settings</a>
+<a href="/project-management">Project Management</a>
 <br />
 
-<div class="example">
-    <div class="time-counter">00:00:00</div>
-</div>
+<span class="toggle-bg">
+    <input type="radio" name="toggle" value="off">
+    <input type="radio" name="toggle" value="on">
+    <span class="switch"></span>
+</span>

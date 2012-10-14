@@ -80,6 +80,7 @@
 			$data['project_workers'] = $this->projects_model->project_workers($projectId);
 			$data['project_tasks'] = $this->projects_model->get_project_tasks($projectId);
 			$data['comments'] = $this->projects_model->get_project_comments($projectId);
+			$data['hold_time'] = $this->projects_model->get_hold_time($projectId);
 			$data['title'] = 'Project Details';
 
 			// Bellow is needed for the side bar partial to work.
@@ -148,6 +149,17 @@
 			$this->projects_model->remove_project_comment($commentId);
 			$data['comments'] = $this->projects_model->get_project_comments($projectNumber->project_id);
 			echo $this->load->partial('partials/projects_comments_partial.php', $data);
+		}
+
+		public function hold($id){
+			// This function is used to put projects on hold. 
+			$this->projects_model->put_project_on_hold($id);
+			return true;
+		}
+
+		public function unhold($id){
+			$this->projects_model->unhold_project($id);
+			return true;
 		}
 	}
 ?>

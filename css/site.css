@@ -431,6 +431,12 @@ td.slide {
     padding-right:15px;
 }
 
+.action-bar span.switch,
+.action-bar span.toggle-bg {
+    padding-left:0;
+    padding-right:0;
+}
+
 .assigntoproject {
     background-color: #D5D5D5;
     color: #FFFFFF;
@@ -664,6 +670,17 @@ td.slide {
     float:right;
 }
 
+.editHover{  
+    background-color: #E8F3FF;  
+}  
+.editBox{  
+    width: 326px;  
+    min-height: 20px;  
+    padding: 10px 15px;  
+    background-color: #fff;  
+    border: 2px solid #E8F3FF;  
+}  
+
 /* End of grid layout styling */
 
 input {
@@ -684,3 +701,4 @@ input {
 .sidebar-container h2 {
     border-bottom: 1px solid #d5d5d5;
 }
+

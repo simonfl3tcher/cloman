@@ -12,6 +12,7 @@
 		protected $ClientDeadline;
 		protected $Name;
 		protected $Notes;
+		protected $StatusNotes;
 		protected $Complete;
 		protected $ActualCompletionDate;
 		protected $CreatedBy;
@@ -42,6 +43,7 @@
 				"client_deadline" => "ClientDeadline",
 				"name" => "Name",
 				"notes" => "Notes",
+				"status_notes" => "StatusNotes",
 				"complete" => "Complete",
 				"actual_completion_date" => "ActualCompletionDate",
 				"task_created_by" => "CreatedBy",

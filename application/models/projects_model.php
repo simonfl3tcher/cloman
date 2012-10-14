@@ -255,4 +255,61 @@ where p.project_id = ?";
 			$query = $this->db->get();
 			return $query->row();
 		}
+
+		public function put_project_on_hold($id){
+			$data = array(
+			   'project_id' => $id,
+			   'hold_date' => date('Y-m-d H:i:s', strtotime('now')),
+			   'done_by' => $this->session->userdata('user_id')
+			);
+			$this->db->insert('projects_on_hold', $data); 
+			$data = array('on_hold' => 'Y', 'hold_id' => $this->db->insert_id());
+			$this->db->where('project_id', $id);
+			$this->db->update('projects', $data); 
+		}
+
+		public function unhold_project($id){
+			$this->db->select('hold_id');
+			$this->db->from('projects');
+			$this->db->where('project_id', $id);
+			$query = $this->db->get();
+			$query = $query->row();
+
+			$data = array('unhold_date' => date('Y-m-d H:i:s', strtotime('now')));
+			$this->db->where('project_hold_id', $query->hold_id);
+			$this->db->update('projects_on_hold', $data); 
+			$data = array('on_hold' => 'N', 'hold_id' => null);
+			$this->db->where('project_id', $id);
+			$this->db->update('projects', $data);
+			return true;
+		}
+
+		public function get_hold_time($id){
+			$this->db->select('*');
+			$this->db->from('projects_on_hold');
+			$this->db->where('project_id', $id);
+			$query = $this->db->get();
+			$query = $query->result_array();
+			$diff = 0;
+
+			foreach($query as $q){
+				if($q['unhold_date'] != null){
+					$unhold = strtotime($q['unhold_date']);
+				} else {
+					$date = new DateTime();
+				    $unhold = $date->getTimestamp();
+				}
+				$diff = $diff + abs($unhold - strtotime($q['hold_date']));
+			}
+
+			$years   = floor($diff / (365*60*60*24)); 
+			$months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
+			$days    = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+			$hours   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24)/ (60*60)); 
+			$minutes  = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60); 
+
+			$time = sprintf("%d months, %d days, %d hours, %d minuts\n", $months, $days, $hours, $minutes);
+			return $time;
+
+		}
 	}

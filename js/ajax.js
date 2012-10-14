@@ -239,6 +239,22 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.put-on-hold').live('click', function(e){
+		if($(this).hasClass('active')){
+			$.ajax({
+				url: '/projects/hold/' + $(this).attr('data-projectid'),
+				type: 'POST',
+				dataType: 'html'
+			});
+		} else {
+			$.ajax({
+				url: '/projects/unhold/' + $(this).attr('data-projectid'),
+				type: 'POST',
+				dataType: 'html'
+			});
+		}
+	})
+
 	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){
 		var surrounder = $('#searchGrid').closest('div.control-group');
