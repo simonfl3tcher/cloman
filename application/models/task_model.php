@@ -9,6 +9,7 @@
 		public function __construct(){
 			parent::__construct();
 			$this->load->database();
+			$this->load->model('Nested_Sets_Model');
 		}
 
 		public function get($id = null){
@@ -105,29 +106,14 @@ order by t.actual_completion_date desc, t.task_id desc";
 			} else {
 				$type = $_POST['task']['Type'];
 			}
-			$task = new Tasks_Class();
-			$task->setName($_POST['task']['Name']);
-			$task->setBusinessID($_POST['task']['Business']);
-			$task->setStartDate(date('Y-m-d', strtotime($_POST['task']['Startdate'])));
-			$task->setInternalDeadline(date('Y-m-d', strtotime($_POST['task']['internal-end-date'])));
-			$task->setClientDeadline(date('Y-m-d', strtotime($_POST['task']['external-end-date'])));
-			$task->setNotes($_POST['task']['Notes']);
-			$task->setTaskTypeID($type);
-			if(isset($_POST['parent-task'])){
-				$task->setParentTaskID($_POST['parent-task']);
-			}
-			if(isset($_POST['task']['Project']) && is_numeric($_POST['task']['Project'])){
-				$task->setProjectID($_POST['task']['Project']);
-			}
-			$task->setStatusID($_POST['task']['Status']);
-			$task->setCreatedBy($this->session->userdata('user_id'));
-			$task->save();
+
+			$nested_task = $this->Nested_Sets_Model->insert_node(isset($_POST['parent-task']) ? $_POST['parent-task'] : null, $type);
 
 			$workers = explode(',', $_POST['task']['Workers']);
 
 			foreach($workers as $w){
 				$projectUsers = new Tasks_To_Users_Class();
-				$projectUsers->setTaskID($task->getID());
+				$projectUsers->setTaskID($nested_task);
 				$projectUsers->setUserID($w);
 				$projectUsers->save();
 			}

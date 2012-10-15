@@ -328,7 +328,7 @@ $(document).ready(function(){
 				//window.location.reload();
 			},
 			error: function(data){
-				alert('Something went wrong...');
+				console.log(data);
 			}
 		});
 	}

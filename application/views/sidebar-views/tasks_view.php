@@ -133,10 +133,22 @@
  
 	<div class="tab-content">
 		<div class="tab-pane active" id="subtasks">
-			<?php if(count($sub_tasks)){ ?>
+			<?php if(count($sub_tasks)){ 
+				$depth = 1;
+			?>
+			<ul>
 				<?php foreach($sub_tasks as $task){ ?>
-					<input type="checkbox" <?php if($task_details->complete == 'Y'){ echo ' disabled="disabled"'; } ?> name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br />
+				<?php if($task['depth'] = $depth+1){ 
+					$depth++;
+				?>
+					<ul>
 				<?php } ?>
+					<li><input type="checkbox" <?php if($task_details->complete == 'Y'){ echo ' disabled="disabled"'; } ?> name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br /></li>
+				<?php if($task['depth'] = $depth+1){ ?>
+					</ul>
+				<?php } ?>
+				<?php } ?>
+			</ul>
 			<?php } else { ?>
 				There are no sub tasks in this task.
 			<?php } ?>

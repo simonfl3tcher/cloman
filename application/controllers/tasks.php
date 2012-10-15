@@ -7,6 +7,7 @@
 		public function __construct(){
 			parent::__construct();
 			$this->load->model('task_model');
+			$this->load->model('Nested_Sets_Model');
 		}
 
 		public function index(){
@@ -89,7 +90,7 @@
 
 
 		public function user_tasks(){
-			$data['title'] = 'Tasks Page';
+			$data['Tasks'] = 'title Page';
 			$data['task_list'] = $this->task_model->get_users_tasks($this->session->userdata('user_id'));
 			$this->render_view('tasks/users_view', $data);
 		}
@@ -104,7 +105,7 @@
 		public function details($taskid){
 			$data['task_details'] = $this->task_model->get($taskid);
 			$data['worker_details'] = $this->task_model->worker_details($taskid);
-			$data['sub_tasks'] = $this->task_model->get_subtasks($taskid);
+			$data['sub_tasks'] = $this->Nested_Sets_Model->get_nested_set($taskid);
 			$data['comments'] = $this->task_model->get_task_comments($taskid);
 			$data['title'] = 'Task Details';
 			// Bellow is needed for the side bar partial to work.
@@ -151,6 +152,11 @@
 			$this->task_model->remove_task_comment($commentId);
 			$data['comments'] = $this->task_model->get_task_comments($taskNum->task_id);
 			echo $this->load->partial('partials/tasks_comments_partial.php', $data);
+		}
+
+		public function something_went_wrong(){
+			var_dump($this->db->last_query());
+			exit;
 		}
 	}
 ?>

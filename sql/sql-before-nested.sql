@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-14 15:37:24
+-- Date/time:                    2012-10-15 19:26:51
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -306,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `projects_comments` (
   `user_id` int(10) DEFAULT NULL,
   `comment_date_time` int(10) DEFAULT NULL,
   PRIMARY KEY (`project_comment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.projects_comments: ~6 rows (approximately)
 DELETE FROM `projects_comments`;
@@ -331,9 +331,9 @@ CREATE TABLE IF NOT EXISTS `projects_on_hold` (
   `reason` text COLLATE utf8_unicode_ci,
   `done_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`project_hold_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.projects_on_hold: ~7 rows (approximately)
+-- Dumping data for table my.company.projects_on_hold: ~8 rows (approximately)
 DELETE FROM `projects_on_hold`;
 /*!40000 ALTER TABLE `projects_on_hold` DISABLE KEYS */;
 INSERT INTO `projects_on_hold` (`project_hold_id`, `project_id`, `hold_date`, `unhold_date`, `reason`, `done_by`) VALUES
@@ -343,7 +343,8 @@ INSERT INTO `projects_on_hold` (`project_hold_id`, `project_id`, `hold_date`, `u
 	(31, 10, '2012-10-14 13:14:48', '2012-10-14 13:16:09', NULL, 1),
 	(32, 10, '2012-10-14 13:16:13', '2012-10-14 16:17:34', NULL, 1),
 	(33, 10, '2012-10-14 13:17:35', '2012-10-14 13:23:44', NULL, 1),
-	(34, 10, '2012-10-14 13:23:48', '2012-10-14 14:27:56', NULL, 1);
+	(34, 10, '2012-10-14 13:23:48', '2012-10-14 14:27:56', NULL, 1),
+	(35, 11, '2012-10-14 16:38:58', '2012-10-14 18:30:54', NULL, 1);
 /*!40000 ALTER TABLE `projects_on_hold` ENABLE KEYS */;
 
 
@@ -632,9 +633,9 @@ INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`, `sort`) V
 	(90, 34, 6, 0),
 	(91, 36, 0, NULL),
 	(100, 30, 2, 5),
-	(101, 30, 1, 2),
-	(103, 26, 1, 0),
-	(104, 37, 1, 1);
+	(101, 30, 1, 1),
+	(103, 26, 1, 2),
+	(104, 37, 1, 0);
 /*!40000 ALTER TABLE `tasks_to_users` ENABLE KEYS */;
 
 
