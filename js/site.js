@@ -162,6 +162,8 @@ $(document).ready(function(){
 		 $('.removeComment', $(this)).stop(true, true).animate({opacity:0},1000);
 	});
 
+	// $('.time-counter').timer();
+
   	$(".editable").bind("dblclick", replaceHTML);
 	 
 	 

@@ -138,15 +138,7 @@
 			?>
 			<ul>
 				<?php foreach($sub_tasks as $task){ ?>
-				<?php if($task['depth'] = $depth+1){ 
-					$depth++;
-				?>
-					<ul>
-				<?php } ?>
 					<li><input type="checkbox" <?php if($task_details->complete == 'Y'){ echo ' disabled="disabled"'; } ?> name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br /></li>
-				<?php if($task['depth'] = $depth+1){ ?>
-					</ul>
-				<?php } ?>
 				<?php } ?>
 			</ul>
 			<?php } else { ?>
@@ -212,6 +204,21 @@
 				    <div class="display v2">
 				    	 <div class="example">
 						    <div class="time-counter">00:00:00</div>
+						</div>
+				    </div>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="field text box-error-wrapper is-inline-editable">
+		            <div class="label">
+		            
+		            </div>
+		        </div>
+		        <div data-field-type="text" class="value field-type-text">    
+				    <div class="display v2">
+				    	 <div class="example">
+						    <button class="btn time-tracker" type="button">Track Time</button>
+						    <button class="btn" type="button">Add time against task</button>
 						</div>
 				    </div>
 				</div>
