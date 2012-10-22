@@ -8,7 +8,15 @@
 		<?php if(!isset($archive)){ ?>
 			<td><a class="tableRowFive" href="/tasks/complete/<?php echo $tasks['task_id']; ?>"><span class="util-button-new first"><span class="complete"></span></span></a></td>
 		<?php } else { ?>
-			<td><span class="icon completeIcon"></span</td>
+			<td><span class="icon completeIcon"></span></td>
 		<?php } ?>
 	</tr>
 <?php } ?>
+	<tr>
+		<td class="non-draggable">drag</td>
+		<td>task name</td>
+		<td>status notes</td>
+		<td>business name</td>
+		<td>status id</td>
+		<td></td>
+	</tr>

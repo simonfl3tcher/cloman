@@ -414,8 +414,13 @@ td.slide {
     vertical-align: bottom;
 }
 
+.datepickerback,
 .datepicker {
     width:115px;
+}
+
+.addTime {
+    width:75px;
 }
 
 .sidebar-divider {

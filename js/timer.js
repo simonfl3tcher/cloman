@@ -96,25 +96,56 @@ $(document).ready(function(){
         if (seconds < 10) {seconds = "0"+seconds;}
         var time    = hours+':'+minutes+':'+seconds;
         return time;
-    }
+    } 
 
-        var count = 100000;
+    var count = 0;
     var timer = $.timer(
         function() {
             count++;
             var c = secondsToTime(count);
-            console.log(c);
             $('.time-counter').html(secondsToTime(count));
-        },
-        1000,
-        false
-        );  
+        }, 1000, false); 
 
-    $('button.time-tracker').live('click', function(){
-        $('button.time-tracker').toggle(function() {
+    $('button.time-tracker.start').live('click', function(){
+            $(this).removeClass('start');
+            $(this).addClass('pause');
+            $.ajax({
+                url: '/tasks/start_timer/' + $(this).parent().attr('data-taskid'),
+                type: 'POST',
+                datatype: 'html'
+            }).done(function(data){
+               console.log(count);
+            });
             timer.play();
-        },function(){
+
+    });
+
+    $('button.time-tracker.pause').live('click', function(){
+            $(this).removeClass('pause');
+            $(this).addClass('start');
             timer.pause();
-        }).trigger('click');
+            var data = 'time=' + count;
+            $.ajax({
+                url: '/tasks/pause_timer/' + $(this).parent().attr('data-taskid'),
+                type: 'POST',
+                dataType: 'html',
+                data: data
+            }).done(function(data){
+                console.log('Timer has been paused');
+            });
+     }).trigger('click');
+
+
+    $('button.time-tracker-complete').live('click', function(){
+        timer.stop();
+        var data = 'time=' + count;
+        $.ajax({
+            url: '/tasks/complete_timer/' + $(this).parent().attr('data-taskid'),
+            type: 'POST',
+            dataType: 'html',
+            data: data
+        }).done(function(data){
+            console.log('Timer has been paused');
+        });
     });
 });

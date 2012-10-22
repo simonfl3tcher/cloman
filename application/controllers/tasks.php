@@ -90,7 +90,7 @@
 
 
 		public function user_tasks(){
-			$data['Tasks'] = 'title Page';
+			$data['title'] = 'Tasks Page';
 			$data['task_list'] = $this->task_model->get_users_tasks($this->session->userdata('user_id'));
 			$this->render_view('tasks/users_view', $data);
 		}
@@ -107,6 +107,8 @@
 			$data['worker_details'] = $this->task_model->worker_details($taskid);
 			$data['sub_tasks'] = $this->Nested_Sets_Model->get_nested_set($taskid);
 			$data['comments'] = $this->task_model->get_task_comments($taskid);
+			$data['total_task_time'] = $this->task_model->get_task_time($taskid);
+			$data['user_task_time'] = $this->task_model->get_task_time($taskid, $this->session->userdata('user_id'));
 			$data['title'] = 'Task Details';
 			// Bellow is needed for the side bar partial to work.
 			$data['icon'] = 'businessIcon';
@@ -154,9 +156,31 @@
 			echo $this->load->partial('partials/tasks_comments_partial.php', $data);
 		}
 
-		public function something_went_wrong(){
-			var_dump($this->db->last_query());
+
+		/* Bellow is all the functions to allow you to add time against a task */
+
+		// I need to call the timer on hold function if you go off the tasks page!! 
+
+		public function start_timer($task_id){
+			// put the timer in the database
+			return $this->task_model->start_timer($task_id);
+		}
+
+		public function pause_timer($task_id){
+			// pause the timer here
+			return $this->task_model->pause_timer($task_id);
+		}
+
+		public function complete_timer($task_id){
+			// Complete the timer task
+			$this->task_model->complete_timer($task_id);
+		}
+
+		public function add_standard_task_time($task_id){
+			// Adding task time manually
+			$this->task_model->add_standard_task_time($task_id);
 			exit;
 		}
+
 	}
 ?>

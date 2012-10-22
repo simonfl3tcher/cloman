@@ -178,8 +178,8 @@
 		              Total 
 		            </div>
 		        </div>
-		        <div class="commentsAreaId">
-		        	ll
+		        <div class="">
+		        	<?php echo $total_task_time; ?>
 		        	<div class="clear"></div>
 		        </div>
 			</div>
@@ -189,8 +189,8 @@
 		              Your Total
 		            </div>
 		        </div>
-		        <div class="commentsAreaId">
-		        	dd
+		        <div class="">
+		        	<?php echo $user_task_time; ?>
 		        	<div class="clear"></div>
 		        </div>
 			</div>
@@ -216,9 +216,23 @@
 		        </div>
 		        <div data-field-type="text" class="value field-type-text">    
 				    <div class="display v2">
-				    	 <div class="example">
-						    <button class="btn time-tracker" type="button">Track Time</button>
-						    <button class="btn" type="button">Add time against task</button>
+				    	 <div class="example" data-taskid="<?php echo $task_details->task_id; ?>">
+						    <button class="btn time-tracker start" type="button">Track Time</button>
+						    <button class="btn time-tracker-complete" type="button">Complete</button>
+						</div>
+				    </div>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="field text box-error-wrapper is-inline-editable">
+		            <div class="label">
+		            	Add Time (Manually)
+		            </div>
+		        </div>
+		        <div data-field-type="text" class="value field-type-text">    
+				    <div class="display v2">
+				    	 <div class="example" data-taskid="<?php echo $task_details->task_id; ?>">
+						   	<input type="text" class="addTime" data-addtime="/tasks/add_standard_task_time/<?php echo $task_details->task_id; ?>" placeholder="00:00:00" value="00:00:00" />
 						</div>
 				    </div>
 				</div>

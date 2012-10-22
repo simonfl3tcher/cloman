@@ -51,6 +51,7 @@ $(document).ready(function(){
 		}
 	})
 
+
 	$('.reminder-add').live('click', function(e){
 		e.preventDefault();
 		$('#reminder-modal').modal({

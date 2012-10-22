@@ -225,6 +225,26 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.addTime').live('keypress', function(e){
+		if(e.which == 13 && !e.shiftKey){
+			if(!$(this).val() == ''){
+				e.preventDefault();
+				var data = 'data=' + $(this).val();
+				$(this).val('00:00:00');
+				$.ajax({
+					url: $(this).attr('data-addTime'),
+					type: 'POST',
+					dataType: 'html',
+					data: data
+				}).done(function(data){
+					console.log('complete');
+					var totalTime = addTime('12:34', '56:12', '78:45');
+					console.log(totalTime);
+				});
+			}
+		}
+	})
+
 	$('.removeComment').live('click', function(e){
 		var link = $(this).parent().parent().attr('data-comm');
 		addAjaxloader($('.sidebarSlider'));

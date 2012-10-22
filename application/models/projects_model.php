@@ -302,14 +302,7 @@ where p.project_id = ?";
 				$diff = $diff + abs($unhold - strtotime($q['hold_date']));
 			}
 
-			$years   = floor($diff / (365*60*60*24)); 
-			$months  = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
-			$days    = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-			$hours   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24)/ (60*60)); 
-			$minutes  = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60); 
-
-			$time = sprintf("%d months, %d days, %d hours, %d minuts\n", $months, $days, $hours, $minutes);
-			return $time;
+			return format_seconds($diff);
 
 		}
 	}

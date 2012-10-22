@@ -146,7 +146,6 @@ order by t.actual_completion_date desc, t.task_id desc";
 				$this->db->where('user_id', $w);
 				$query = $this->db->get();
 				$query = $query->row_array();
-
 				$arr[] = array('userID' => $w, 'sortID' => $query['sort']);
 				
 			}
@@ -251,6 +250,18 @@ where task_id = ?";
 			return $query->result_array();
 		}
 
+		public function get_task_time($task_id, $user = null){
+			$sql = "SELECT SUM(task_total_time) as task_total_time FROM task_timesheets where status = 'C' and task_id = ?";
+			if($user != null){
+				$sql .= " and user_id = ?";
+				$query = $this->db->query($sql, array($task_id, $user));
+			} else {
+				$query = $this->db->query($sql, array($task_id));
+			}
+			$query = $query->row();
+			return format_seconds($query->task_total_time);
+		}
+
 		public function add_task_comment($id){
 			$data = array(
 			   'task_id' => $id,
@@ -274,5 +285,58 @@ where task_id = ?";
 			return $query->row();
 		}
 
+		public function start_timer($task_id = null){
+
+			if($task_id != null){
+				$data = array(
+				   'user_id' => $this->session->userdata('user_id'),
+				   'task_id' => $task_id
+				);
+
+				$this->db->insert('task_timesheets', $data); 
+				return $this->db->insert_id();
+			}
+		}
+
+		public function pause_timer($task_id){
+
+			$data = array(
+				'status' => 'P',
+				'task_total_time' => $_POST['time']
+            );
+
+			$this->db->where('task_id', $task_id);
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->update('task_timesheets', $data);
+
+		}
+
+		public function complete_timer($task_id){
+			$data = array(
+				'status' => 'C',
+				'task_total_time' => $_POST['time']
+            );
+
+			$this->db->where('task_id', $task_id);
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->update('task_timesheets', $data);
+
+		}	
+
+		public function add_standard_task_time($task_id){
+
+			$data = array(
+				'status' => 'C',
+				'task_total_time' => time_to_sec($_POST['data']),
+        	    'user_id' => $this->session->userdata('user_id'),
+				'task_id' => $task_id
+			);
+
+			$this->db->insert('task_timesheets', $data); 
+
+			var_dump($this->db->last_query());
+			exit;
+
+		}
 	}
 ?>
