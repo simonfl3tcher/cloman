@@ -134,13 +134,8 @@
 	<div class="tab-content">
 		<div class="tab-pane active" id="subtasks">
 			<?php if(count($sub_tasks)){ 
-				$depth = 1;
+				echo (MyRenderTree($sub_tasks));
 			?>
-			<ul>
-				<?php foreach($sub_tasks as $task){ ?>
-					<li><input type="checkbox" <?php if($task_details->complete == 'Y'){ echo ' disabled="disabled"'; } ?> name="completeTask" class="completeTask" data-url="/tasks/complete/<?php echo $task['task_id']; ?>" /><span><?php echo $task['name']; ?></span><br /></li>
-				<?php } ?>
-			</ul>
 			<?php } else { ?>
 				There are no sub tasks in this task.
 			<?php } ?>

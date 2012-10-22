@@ -6,8 +6,8 @@
 	<script src="<?php echo base_url(); ?>js/jQuery-ui.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/functions.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/tokeninput.js" type="text/javascript"></script>
-	<script src="<?php echo base_url(); ?>js/tablesorter.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/timer.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>js/fullcalendar.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/ajax.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/site.js" type="text/javascript"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/poup.js"></script>
@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/responsive.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/popup.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/token.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/fullcalendar.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-responsive.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/site.css" />

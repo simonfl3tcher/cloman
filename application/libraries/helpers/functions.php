@@ -63,5 +63,41 @@
 	    return $hours * 3600 + $minutes * 60 + $seconds;
 	}
 
-	$result=time_to_sec('01:00:00');
+	function MyRenderTree ( $tree = array(array('name'=>'','depth'=>'')) ){
+
+		$current_depth = 0;
+		$counter = 0;
+
+		$result = '<ul>';
+
+		foreach($tree as $node){
+		    $node_depth = $node['depth'];
+		    $node_name = $node['name'];
+		    $node_id = $node['task_id'];
+
+		    if($node_depth == $current_depth){
+		        if($counter > 0) $result .= '</li>';            
+		    }
+		    elseif($node_depth > $current_depth){
+		        $result .= '<ul>';
+		        $current_depth = $current_depth + ($node_depth - $current_depth);
+		    }
+		    elseif($node_depth < $current_depth){
+		        $result .= str_repeat('</li></ul>',$current_depth - $node_depth).'</li>';
+		        $current_depth = $current_depth - ($current_depth - $node_depth);
+		    }
+		    $dataUrl = '/tasks/complete/' . $node_id;
+
+		    $result .= '<li id="c'.$node_id.'"';
+		    $result .= $node_depth < 2 ?' class="open"':'';
+		    $result .= '><input type="checkbox" name="completeTask" class="completeTask" data-url=' . $dataUrl . ' /><span>'.$node_name.'</span><br />';
+		    ++$counter;
+		}
+		 $result .= str_repeat('</li></ul>',$node_depth).'</li>';
+
+		$result .= '</ul>';
+
+		return $result;
+	}
+
 ?>
