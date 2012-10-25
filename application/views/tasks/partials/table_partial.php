@@ -12,11 +12,11 @@
 		<?php } ?>
 	</tr>
 <?php } ?>
-	<tr>
+	<tr class="editable-row">
 		<td class="non-draggable">drag</td>
-		<td>task name</td>
-		<td>status notes</td>
-		<td>business name</td>
-		<td>status id</td>
-		<td></td>
+		<td class="editable">task name</td>
+		<td class="editable">status notes</td>
+		<td class="editable">business name</td>
+		<td class="editable">status id</td>
+		<td><button class="btn btn-success btn-mini">Add</button></td>
 	</tr>

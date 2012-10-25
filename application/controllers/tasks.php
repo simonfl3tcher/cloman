@@ -109,6 +109,7 @@
 			$data['comments'] = $this->task_model->get_task_comments($taskid);
 			$data['total_task_time'] = $this->task_model->get_task_time($taskid);
 			$data['user_task_time'] = $this->task_model->get_task_time($taskid, $this->session->userdata('user_id'));
+			$data['get_current_pause_time'] = $this->task_model->get_task_pause_time($taskid, $this->session->userdata('user_id'));
 			$data['title'] = 'Task Details';
 			// Bellow is needed for the side bar partial to work.
 			$data['icon'] = 'businessIcon';

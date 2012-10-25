@@ -49,7 +49,7 @@
 		$months  = floor(($time - $years * 365*60*60*24) / (30*60*60*24)); 
 		$days    = floor(($time - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
 		$hours   = floor(($time - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24)/ (60*60)); 
-		$minutes  = floor(($time - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60); 
+		$minutes  = floor(($time - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60) / 60); 
 
 		$time = sprintf("%d months, %d days, %d hours, %d minuts\n", $months, $days, $hours, $minutes);
 		return $time;
@@ -62,6 +62,19 @@
 
 	    return $hours * 3600 + $minutes * 60 + $seconds;
 	}
+
+	function secondsToTime($secs) {
+        $sec_numb    = floor($secs);
+        $hours   = floor($sec_numb / 3600);
+        $minutes = floor(($sec_numb - ($hours * 3600)) / 60);
+        $seconds = $sec_numb - ($hours * 3600) - ($minutes * 60);
+
+        if ($hours   < 10) {$hours   = "0" . $hours;}
+        if ($minutes < 10) {$minutes = "0" . $minutes;}
+        if ($seconds < 10) {$seconds = "0" . $seconds;}
+        $time    = $hours . ':' . $minutes . ':' . $seconds;
+        return $time;
+    } 
 
 	function MyRenderTree ( $tree = array(array('name'=>'','depth'=>'')) ){
 

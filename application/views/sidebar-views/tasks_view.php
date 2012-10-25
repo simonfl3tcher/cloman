@@ -198,7 +198,14 @@
 		        <div data-field-type="text" class="value field-type-text">    
 				    <div class="display v2">
 				    	 <div class="example">
-						    <div class="time-counter">00:00:00</div>
+						    <div class="time-counter" data-count="<?php if(!empty($get_current_pause_time)){ echo $get_current_pause_time['task_total_time']; } else { echo 0; } ?>">
+
+						    	<?php if(!empty($get_current_pause_time)){ 
+						    		echo (secondsToTime($get_current_pause_time['task_total_time']));
+						    	} else {
+						    		echo '00:00:00';
+						    	} ?>
+						    </div>
 						</div>
 				    </div>
 				</div>

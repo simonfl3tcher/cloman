@@ -83,6 +83,17 @@ $(function($) {
     };
 });
 
+var count = 0;
+
+function changeTimerCount(){        
+    // this has to be done however its not working because of the timing of the function...
+    // Maybe try when loading the sidebar data...
+    setTimeout(function(){
+        count = $('.time-counter').attr('data-count');
+    }, 2000);
+}
+
+
 $(document).ready(function(){
 
     function secondsToTime(secs) {
@@ -96,15 +107,14 @@ $(document).ready(function(){
         if (seconds < 10) {seconds = "0"+seconds;}
         var time    = hours+':'+minutes+':'+seconds;
         return time;
-    } 
+    }  
 
-    var count = 0;
-    var timer = $.timer(
+        var timer = $.timer(
         function() {
             count++;
             var c = secondsToTime(count);
             $('.time-counter').html(secondsToTime(count));
-        }, 1000, false); 
+        }, 1000, false);
 
     $('button.time-tracker.start').live('click', function(){
             $(this).removeClass('start');

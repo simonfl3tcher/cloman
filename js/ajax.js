@@ -81,6 +81,7 @@ $(document).ready(function(){
 		addAjaxloader($('.sidebarSlider'));
 		container.slideRightShow();
 		removeAjaxloader($('.sidebarSlider'), 1000);
+		changeTimerCount();
 	});
 
 

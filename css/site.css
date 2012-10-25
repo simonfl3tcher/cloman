@@ -707,3 +707,72 @@ input {
     border-bottom: 1px solid #d5d5d5;
 }
 
+#subtasks li {
+    padding-left:5px;
+}
+
+#subtasks li input {
+    margin-right:10px;
+}
+
+body:not([class*=""]) li:first-child:before {
+    margin-top: -1.55em;
+}
+body:not([class*=""]) li:before {
+    margin-bottom: -0.6em;
+    margin-left: -35px;
+    margin-top: -1em;
+}
+
+#subtasks li { 
+    border-left:1px solid #d5d5d5; 
+    padding:0 0 1em 32px; 
+    margin-left:0; 
+    list-style:none; 
+    font-size:13px; 
+    position:relative;
+    vertical-align: top;
+}
+        
+#subtasks li:before { 
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #D5D5D5;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    content: " ";
+    display: block;
+    height: 15px;
+    left: 34px;
+    position: absolute;
+    top: 9px;
+    width: 15px;
+}
+#subtasks li:first-child:before { 
+    height: 8px;
+    top: 25px; 
+}
+        
+#subtasks li:last-child { 
+    border-left:none; 
+    margin-left:1px; /* moves the text over by the same amount as the line would have */ 
+}
+        
+#subtasks li input { left: 11px; z-index:1; position:absolute; opacity:.3; margin-left:5px; }
+#subtasks li label { font-weight:bold;  }
+#subtasks li label:after {
+    content: ' (click to open)';
+    font-weight: normal;
+    font-style: italic;
+    font-size:80%;
+    color:green;
+}
+#subtasks li input:checked + label:after {
+    content: ' (click to close)'; 
+    color:red;
+}
+        
+

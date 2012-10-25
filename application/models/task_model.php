@@ -262,6 +262,15 @@ where task_id = ?";
 			return format_seconds($query->task_total_time);
 		}
 
+		public function get_task_pause_time($task_id, $user){
+			$sql = "SELECT task_total_time FROM `task_timesheets` 
+where `user_id` = ? and `task_id`= ? and status = 'P'
+order by `task_timesheet_id`
+limit 1";
+			$query = $this->db->query($sql, array($user, $task_id));
+			return $query->row_array();
+		}
+
 		public function add_task_comment($id){
 			$data = array(
 			   'task_id' => $id,
