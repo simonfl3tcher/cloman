@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-22 22:15:44
+-- Date/time:                    2012-10-26 23:06:26
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -59,9 +59,9 @@ CREATE TABLE IF NOT EXISTS `businesses` (
   `disabled` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`business_id`),
   KEY `business_id` (`business_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.businesses: ~22 rows (approximately)
+-- Dumping data for table my.company.businesses: ~23 rows (approximately)
 DELETE FROM `businesses`;
 /*!40000 ALTER TABLE `businesses` DISABLE KEYS */;
 INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`, `disabled`) VALUES
@@ -86,7 +86,8 @@ INSERT INTO `businesses` (`business_id`, `address_id`, `name`, `phone`, `email`,
 	(28, '22', 'NHS 2 ', '01284 706842', 'hello@nhs.co.uk', 'N'),
 	(29, '23', 'Sam Hunt Artistry', '01284 706842', 'sam@hunt.co.uk', 'N'),
 	(30, '24', 'NHS 2', '01284 706842', 'hello@nhs.co.uk', 'N'),
-	(32, '25', 'Adams Pottery', '01284 706842', 'adam@pottery.co.uk', 'Y');
+	(32, '25', 'Adams Pottery', '01284 706842', 'adam@pottery.co.uk', 'Y'),
+	(33, '0', 'Right Step Fitness', '7', 'info@rsf.co.uk', 'N');
 /*!40000 ALTER TABLE `businesses` ENABLE KEYS */;
 
 
@@ -97,9 +98,9 @@ CREATE TABLE IF NOT EXISTS `business_to_people` (
   `business_id` int(10) DEFAULT '0',
   `people_id` int(10) DEFAULT '0',
   PRIMARY KEY (`b2p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.business_to_people: ~31 rows (approximately)
+-- Dumping data for table my.company.business_to_people: ~32 rows (approximately)
 DELETE FROM `business_to_people`;
 /*!40000 ALTER TABLE `business_to_people` DISABLE KEYS */;
 INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
@@ -133,7 +134,8 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(84, 32, 54),
 	(85, 32, 51),
 	(86, 1, 58),
-	(88, 0, 0);
+	(88, 0, 0),
+	(89, 33, 60);
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
 
 
@@ -238,9 +240,9 @@ CREATE TABLE IF NOT EXISTS `people` (
   `notes` text,
   `disabled` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`people_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.people: ~13 rows (approximately)
+-- Dumping data for table my.company.people: ~14 rows (approximately)
 DELETE FROM `people`;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
 INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`, `disabled`) VALUES
@@ -256,7 +258,8 @@ INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary
 	(56, 'Darren Smith', 'Managing Director / Web Developer', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'this is the the best thing to do...', 'Y'),
 	(57, 'David Fletcher', 'Web Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'this is a great person...', 'N'),
 	(58, 'Charlie Robinson', 'MD', 'charlie@displayworld.co.uk', '01284 345 345', 'N', 'fdgsfdgsfg', 'N'),
-	(59, 'David Williams', 'Website Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'Great guy', 'N');
+	(59, 'David Williams', 'Website Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'Great guy', 'N'),
+	(60, 'Simon Fletcher', 'Managing Director', 'simon@rsf.co.uk', '01284 706842', 'N', 'This guy is brilliant, check this all out!!', 'N');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
 
 
@@ -331,9 +334,9 @@ CREATE TABLE IF NOT EXISTS `projects_on_hold` (
   `reason` text COLLATE utf8_unicode_ci,
   `done_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`project_hold_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.projects_on_hold: ~8 rows (approximately)
+-- Dumping data for table my.company.projects_on_hold: ~9 rows (approximately)
 DELETE FROM `projects_on_hold`;
 /*!40000 ALTER TABLE `projects_on_hold` DISABLE KEYS */;
 INSERT INTO `projects_on_hold` (`project_hold_id`, `project_id`, `hold_date`, `unhold_date`, `reason`, `done_by`) VALUES
@@ -344,7 +347,8 @@ INSERT INTO `projects_on_hold` (`project_hold_id`, `project_id`, `hold_date`, `u
 	(32, 10, '2012-10-14 13:16:13', '2012-10-14 16:17:34', NULL, 1),
 	(33, 10, '2012-10-14 13:17:35', '2012-10-14 13:23:44', NULL, 1),
 	(34, 10, '2012-10-14 13:23:48', '2012-10-14 14:27:56', NULL, 1),
-	(35, 11, '2012-10-14 16:38:58', '2012-10-14 18:30:54', NULL, 1);
+	(35, 11, '2012-10-14 16:38:58', '2012-10-14 18:30:54', NULL, 1),
+	(36, 11, '2012-10-26 00:36:51', '2012-10-26 00:36:53', NULL, 1);
 /*!40000 ALTER TABLE `projects_on_hold` ENABLE KEYS */;
 
 
@@ -513,35 +517,35 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   PRIMARY KEY (`task_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.tasks: ~24 rows (approximately)
+-- Dumping data for table my.company.tasks: ~25 rows (approximately)
 DELETE FROM `tasks`;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
 INSERT INTO `tasks` (`task_id`, `lft`, `parent_task_id`, `rgt`, `business_id`, `project_id`, `task_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `name`, `notes`, `status_notes`, `task_created_by`, `last_updated`, `updated_by`, `sort`, `complete`, `actual_completion_date`) VALUES
-	(5, 1, 0, 84, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Very Top Level Task', '', NULL, 1, '2012-10-12 00:00:00', 2, 11, 'N', NULL),
-	(38, 2, 5, 5, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'hosting 1', 'hosting 1', NULL, 1, '2012-10-12 00:00:00', 2, 13, 'N', NULL),
-	(39, 14, 5, 69, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'hosting 2', 'hosting 2', NULL, 1, '2012-10-12 00:00:00', 2, 12, 'N', NULL),
-	(40, 78, 5, 83, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'hosting 3', 'hosting 3', NULL, 1, '2012-10-12 00:00:00', 2, 14, 'N', NULL),
+	(5, 1, 0, 84, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'Very Top Level Task', '', NULL, 1, '2012-10-12 00:00:00', 2, 9, 'N', NULL),
+	(38, 2, 5, 5, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'hosting 1', 'hosting 1', NULL, 1, '2012-10-12 00:00:00', 2, 11, 'N', NULL),
+	(39, 14, 5, 69, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'hosting 2', 'hosting 2', NULL, 1, '2012-10-12 00:00:00', 2, 10, 'N', NULL),
+	(40, 78, 5, 83, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 'hosting 3', 'hosting 3', NULL, 1, '2012-10-12 00:00:00', 2, 12, 'N', NULL),
 	(41, 3, 38, 4, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 't1', 't1', NULL, 1, '2012-10-12 00:00:00', 2, 1, 'Y', '2012-10-22 00:00:00'),
 	(43, 67, 39, 68, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 't2', 't2', NULL, 1, '2012-10-12 00:00:00', 2, 10, 'Y', '2012-10-22 00:00:00'),
-	(44, 81, 40, 82, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 't3', 't3', NULL, 1, '2012-10-12 00:00:00', 2, 15, 'N', NULL),
+	(44, 81, 40, 82, 0, 10, '2', '2', '2012-10-05 00:00:00', '2012-10-05 00:00:00', '2012-10-05 00:00:00', 't3', 't3', NULL, 1, '2012-10-12 00:00:00', 2, 13, 'N', NULL),
 	(49, 79, 5, 80, 0, NULL, NULL, NULL, NULL, NULL, NULL, 'Get at the top level please', NULL, NULL, NULL, NULL, NULL, NULL, 'N', NULL),
 	(51, 10, 5, 11, 0, NULL, NULL, NULL, NULL, NULL, NULL, 'Hosting working', NULL, NULL, NULL, NULL, NULL, NULL, 'N', NULL),
 	(52, 43, 0, 44, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'Subing a task right here', '', NULL, 1, NULL, NULL, NULL, 'Y', '2012-10-16 00:00:00'),
 	(53, 37, 2, 38, 0, 0, '0', '0', '2012-10-31 00:00:00', '2012-10-31 00:00:00', '2012-10-31 00:00:00', 'hello', '', NULL, 1, NULL, NULL, 0, 'Y', '2012-10-22 00:00:00'),
-	(56, 6, 0, 9, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'This is a top level task check it out', '', NULL, 1, NULL, NULL, 1, 'N', NULL),
-	(57, 33, 39, 36, 1, 5, '2', '3', '2012-10-24 00:00:00', '2012-10-22 00:00:00', '2012-10-23 00:00:00', 'This sub tasking', 'this is a new sub task check it outt...', 'these are the notes to be made by me and no1 else', 1, NULL, NULL, 0, 'N', NULL),
-	(58, 29, 39, 30, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'adding a sub task in here', '', NULL, 1, NULL, NULL, 2, 'N', NULL),
-	(59, 25, 39, 26, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'another sub tree adding', '', NULL, 1, NULL, NULL, 3, 'N', NULL),
-	(60, 76, 0, 77, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'tasking 243', '', NULL, 1, NULL, NULL, 4, 'N', NULL),
+	(56, 6, 0, 9, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'This is a top level task check it out', '', NULL, 1, NULL, NULL, 5, 'N', NULL),
+	(57, 33, 39, 36, 1, 5, '2', '3', '2012-10-24 00:00:00', '2012-10-22 00:00:00', '2012-10-23 00:00:00', 'This sub tasking', 'this is a new sub task check it outt...', 'these are the notes to be made by me and no1 else', 1, NULL, NULL, 1, 'N', NULL),
+	(58, 29, 39, 30, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'adding a sub task in here', '', NULL, 1, NULL, NULL, 4, 'N', NULL),
+	(59, 25, 39, 26, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'another sub tree adding', '', NULL, 1, NULL, NULL, 2, 'Y', '2012-10-26 00:00:00'),
+	(60, 76, 0, 77, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'tasking 243', '', NULL, 1, NULL, NULL, 6, 'N', NULL),
 	(61, 23, 39, 24, 6, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'sub tasking 24', '', NULL, 1, '2012-10-22 00:00:00', 1, NULL, 'Y', '2012-10-16 00:00:00'),
-	(62, 74, 0, 75, 6, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'sub tasking 24999', '', NULL, 1, '2012-10-22 00:00:00', 1, 5, 'N', NULL),
+	(62, 74, 0, 75, 6, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'sub tasking 24999', '', NULL, 1, '2012-10-22 00:00:00', 1, 0, 'Y', '2012-10-26 00:00:00'),
 	(64, 19, 39, 20, 2, 10, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'This is a testing sub task check it out...', '', NULL, 1, '2012-10-22 00:00:00', 1, NULL, 'Y', '2012-10-16 00:00:00'),
-	(65, 15, 39, 18, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'checking', '', NULL, 1, NULL, NULL, 6, 'N', NULL),
-	(66, 16, 65, 17, 0, 0, '0', '0', '2012-10-25 00:00:00', '2012-10-24 00:00:00', '2012-10-22 00:00:00', 'checking sub class man', '', NULL, 1, NULL, NULL, 7, 'N', NULL),
+	(65, 15, 39, 18, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'checking', '', NULL, 1, NULL, NULL, 7, 'N', NULL),
+	(66, 16, 65, 17, 0, 0, '0', '0', '2012-10-25 00:00:00', '2012-10-24 00:00:00', '2012-10-22 00:00:00', 'checking sub class man', '', NULL, 1, NULL, NULL, 7, 'Y', '2012-10-26 00:00:00'),
 	(67, 70, 0, 73, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'a top level task', '', NULL, 1, NULL, NULL, 8, 'N', NULL),
-	(68, 71, 67, 72, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'another sub task within this task ?', '', NULL, 1, NULL, NULL, 9, 'N', NULL),
-	(69, 7, 56, 8, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'subtask of the top level task', '', NULL, 1, NULL, NULL, 10, 'N', NULL),
-	(70, 34, 57, 35, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'this is a sub task of the containing task if you would like to see it!!', '', NULL, 1, NULL, NULL, NULL, 'Y', '2012-10-22 00:00:00');
+	(68, 71, 67, 72, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'another sub task within this task ?', '', NULL, 1, NULL, NULL, 3, 'N', NULL),
+	(69, 7, 56, 8, 0, 0, '0', '0', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', 'subtask of the top level task', '', NULL, 1, NULL, NULL, 10, 'Y', '2012-10-26 00:00:00'),
+	(70, 34, 57, 35, 2, 10, '0', '2', '2012-10-26 00:00:00', '2012-10-31 00:00:00', '2012-10-31 00:00:00', 'this is a sub task of the containing task if you would like to see it!!', '', NULL, 1, '2012-10-26 00:00:00', 1, NULL, 'Y', '2012-10-22 00:00:00');
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 
 
@@ -573,9 +577,9 @@ CREATE TABLE IF NOT EXISTS `tasks_to_users` (
   `sort` int(10) DEFAULT NULL,
   UNIQUE KEY `task_to_user_id` (`task_to_user_id`),
   KEY `task_to_user_id_2` (`task_to_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.tasks_to_users: ~58 rows (approximately)
+-- Dumping data for table my.company.tasks_to_users: ~60 rows (approximately)
 DELETE FROM `tasks_to_users`;
 /*!40000 ALTER TABLE `tasks_to_users` DISABLE KEYS */;
 INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`, `sort`) VALUES
@@ -637,7 +641,8 @@ INSERT INTO `tasks_to_users` (`task_to_user_id`, `task_id`, `user_id`, `sort`) V
 	(110, 64, 0, 0),
 	(111, 61, 0, 0),
 	(114, 62, 0, 0),
-	(115, 70, 0, NULL);
+	(117, 70, 1, 0),
+	(118, 70, 2, 0);
 /*!40000 ALTER TABLE `tasks_to_users` ENABLE KEYS */;
 
 
@@ -652,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `task_comments` (
   PRIMARY KEY (`task_comment_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.task_comments: ~21 rows (approximately)
+-- Dumping data for table my.company.task_comments: ~23 rows (approximately)
 DELETE FROM `task_comments`;
 /*!40000 ALTER TABLE `task_comments` DISABLE KEYS */;
 INSERT INTO `task_comments` (`task_comment_id`, `task_id`, `comment`, `comment_date_time`, `user_id`) VALUES
@@ -692,66 +697,48 @@ CREATE TABLE IF NOT EXISTS `task_timesheets` (
   `task_total_time` int(255) DEFAULT NULL,
   `status` enum('C','P','T','IC') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'IC',
   PRIMARY KEY (`task_timesheet_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.task_timesheets: ~45 rows (approximately)
+-- Dumping data for table my.company.task_timesheets: ~36 rows (approximately)
 DELETE FROM `task_timesheets`;
 /*!40000 ALTER TABLE `task_timesheets` DISABLE KEYS */;
 INSERT INTO `task_timesheets` (`task_timesheet_id`, `user_id`, `task_id`, `time_start`, `task_total_time`, `status`) VALUES
-	(6, 1, 39, '2012-10-18 21:52:18', 100005, 'P'),
-	(7, 1, 43, '2012-10-18 22:02:37', 100016, 'C'),
-	(8, 1, 44, '2012-10-18 22:21:07', 81, 'P'),
-	(9, 1, 44, '2012-10-18 22:21:52', 81, 'P'),
-	(10, 2, 44, '2012-10-18 22:38:12', 100010, 'C'),
-	(11, 2, 44, '2012-10-18 22:40:55', 100010, 'C'),
-	(12, 2, 44, '2012-10-18 22:41:18', 100010, 'C'),
-	(13, 1, 44, '2012-10-18 22:43:42', 81, 'P'),
-	(14, 1, 44, '2012-10-18 22:55:08', 81, 'P'),
-	(15, 1, 44, '2012-10-18 22:59:54', 81, 'P'),
-	(16, 1, 44, '2012-10-18 23:00:58', 81, 'P'),
-	(17, 1, 40, '2012-10-18 23:01:15', NULL, 'IC'),
-	(18, 1, 38, '2012-10-18 23:01:28', NULL, 'IC'),
-	(19, 1, 5, '2012-10-18 23:01:58', 291, 'C'),
-	(20, 1, 40, '2012-10-18 23:02:33', NULL, 'IC'),
-	(21, 1, 44, '2012-10-18 23:12:56', 81, 'P'),
-	(22, 1, 44, '2012-10-18 23:13:11', 81, 'P'),
-	(23, 1, 44, '2012-10-18 23:13:25', 81, 'P'),
-	(24, 1, 56, '2012-10-22 19:29:59', 125, 'C'),
-	(25, 1, 56, '2012-10-22 19:32:14', 125, 'C'),
-	(26, 1, 56, '2012-10-22 19:35:22', 125, 'C'),
-	(27, 1, 56, '2012-10-22 19:35:35', 125, 'C'),
-	(28, 1, 56, '2012-10-22 19:35:35', 125, 'C'),
-	(29, 1, 56, '2012-10-22 19:35:49', 125, 'C'),
-	(30, 1, 68, '2012-10-22 19:39:31', 26, 'P'),
-	(31, 1, 68, '2012-10-22 19:39:56', 26, 'P'),
-	(32, 1, 68, '2012-10-22 19:39:58', 26, 'P'),
-	(33, 1, 68, '2012-10-22 19:40:00', 26, 'P'),
-	(34, 1, 62, '2012-10-22 19:41:20', 9, 'C'),
-	(35, 1, 62, '2012-10-22 19:42:40', 9, 'C'),
-	(36, 1, 62, '2012-10-22 19:42:49', 9, 'C'),
-	(37, 1, 66, '2012-10-22 19:46:57', 12, 'P'),
-	(38, 1, 66, '2012-10-22 19:48:36', 12, 'P'),
-	(39, 1, 66, '2012-10-22 19:49:01', 12, 'P'),
-	(40, 1, 66, '2012-10-22 19:49:11', 12, 'P'),
-	(41, 1, 68, '2012-10-22 19:52:50', NULL, 'IC'),
-	(42, 1, 68, '2012-10-22 20:01:44', NULL, 'IC'),
-	(43, 1, 62, '2012-10-22 20:02:57', NULL, 'IC'),
-	(44, 1, 62, '2012-10-22 20:03:18', NULL, 'IC'),
-	(45, 1, 68, '2012-10-22 20:03:44', NULL, 'IC'),
-	(46, 1, 69, '2012-10-22 20:04:23', NULL, 'IC'),
-	(47, 1, 66, '2012-10-22 20:04:56', NULL, 'IC'),
-	(48, 1, 5, '2012-10-22 20:05:27', 291, 'C'),
-	(49, 1, 5, '2012-10-22 20:05:48', 291, 'C'),
-	(50, 1, 56, '2012-10-22 20:26:25', 125, 'C'),
-	(51, 1, 56, '2012-10-22 21:14:59', 7200, 'C'),
-	(52, 1, 57, '2012-10-22 21:15:52', 61, 'C'),
-	(53, 1, 57, '2012-10-22 21:16:03', 61, 'C'),
-	(54, 1, 57, '2012-10-22 21:19:43', 7200, 'C'),
-	(55, 1, 57, '2012-10-22 21:21:13', 7200, 'C'),
-	(56, 1, 57, '2012-10-22 21:21:18', 1800, 'C'),
-	(57, 1, 66, '2012-10-22 21:29:51', 7200, 'C'),
-	(58, 1, 43, '2012-10-22 21:30:11', 7200, 'C'),
-	(59, 1, 43, '2012-10-22 21:30:26', 18000, 'C');
+	(94, 1, 5, '2012-10-25 22:08:34', 33, 'C'),
+	(95, 1, 5, '2012-10-25 22:09:23', 66, 'C'),
+	(96, 1, 5, '2012-10-25 22:12:15', 54000, 'C'),
+	(97, 1, 5, '2012-10-25 22:13:34', 10800, 'C'),
+	(98, 1, 5, '2012-10-25 22:13:35', 0, 'C'),
+	(99, 1, 5, '2012-10-25 22:13:51', 43200, 'C'),
+	(100, 1, 5, '2012-10-25 22:34:17', 7200, 'C'),
+	(101, 1, 5, '2012-10-25 22:37:36', 7200, 'C'),
+	(102, 1, 5, '2012-10-25 22:39:55', 7200, 'C'),
+	(103, 1, 5, '2012-10-25 22:43:18', 36000, 'C'),
+	(104, 1, 5, '2012-10-25 22:43:56', 36000, 'C'),
+	(105, 1, 5, '2012-10-25 22:44:39', 36000, 'C'),
+	(106, 1, 5, '2012-10-25 22:45:26', 7200, 'C'),
+	(107, 1, 5, '2012-10-25 22:45:32', 10, 'C'),
+	(108, 1, 5, '2012-10-25 22:45:35', 10, 'C'),
+	(109, 1, 5, '2012-10-25 22:45:36', 10, 'C'),
+	(110, 1, 5, '2012-10-25 22:45:45', 87000, 'C'),
+	(111, 1, 5, '2012-10-25 22:46:03', 500, 'C'),
+	(112, 1, 5, '2012-10-25 22:56:34', 33, 'C'),
+	(113, 1, 5, '2012-10-25 22:57:05', 4, 'C'),
+	(114, 1, 5, '2012-10-25 23:01:36', 23, 'C'),
+	(115, 1, 5, '2012-10-25 23:03:17', 2, 'C'),
+	(116, 1, 5, '2012-10-25 23:07:07', 13, 'C'),
+	(117, 1, 5, '2012-10-25 23:12:17', 21, 'C'),
+	(118, 1, 5, '2012-10-25 23:12:45', 112, 'C'),
+	(119, 1, 5, '2012-10-25 23:15:05', 63, 'C'),
+	(120, 1, 39, '2012-10-25 23:15:18', 102, 'C'),
+	(121, 1, 39, '2012-10-25 23:18:27', 18000, 'C'),
+	(122, 1, 5, '2012-10-25 23:21:21', 288000, 'C'),
+	(123, 1, 5, '2012-10-25 23:31:19', 61, 'C'),
+	(124, 1, 5, '2012-10-25 23:31:25', 36000, 'C'),
+	(125, 1, 68, '2012-10-26 22:43:17', 31, 'C'),
+	(126, 1, 68, '2012-10-26 22:43:58', 91, 'C'),
+	(127, 1, 68, '2012-10-26 22:45:34', 36000, 'C'),
+	(128, 1, 68, '2012-10-26 22:47:15', 7200, 'C'),
+	(129, 1, 68, '2012-10-26 22:47:17', 321, 'C');
 /*!40000 ALTER TABLE `task_timesheets` ENABLE KEYS */;
 
 
