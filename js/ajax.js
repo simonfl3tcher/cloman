@@ -47,6 +47,9 @@ $(document).ready(function(){
 			setTimeout(function(){
 				$('.sidebarSlider').html('');
 			}, 900);
+			if($('button.time-tracker').hasClass('pause')){
+				$('button.time-tracker.pause').trigger('click');
+			}
 		}
 	});
 
@@ -98,7 +101,8 @@ $(document).ready(function(){
 	});
 
 	$('#search').keypress(function(e){
-		if (e.which == 13 || ($('#search').val().length == 1 && e.which == 8)) {
+		console.log(e.keyCode);
+		if (e.keyCode == 13 || ($('#search').val().length == 1 && e.keyCode == 8)) {
 			var data = 'data=' + $(this).val();
 			$.ajax({
 				url: $(this).attr('data-searchurl'),
@@ -113,7 +117,9 @@ $(document).ready(function(){
 
 	$('#searchGrid').keypress(function(e){
 		console.log('you are getting in here');
-		if (e.which == 13 || ($('#searchGrid').val().length == 1 && e.which == 8)) {
+				console.log(e.keyCode);
+
+		if (e.keyCode == 13 || ($('#searchGrid').val().length == 1 && e.keyCode == 8)) {
 			var data = 'data=' + $(this).val();
 			$.ajax({
 				url: $(this).attr('data-searchurl'),
@@ -230,6 +236,7 @@ $(document).ready(function(){
 		if(e.which == 13 && !e.shiftKey){
 			if(!$(this).val() == ''){
 				e.preventDefault();
+				addAjaxloader($('.sidebarSlider'));
 				var data = 'data=' + $(this).val();
 				$(this).val('00:00:00');
 				$.ajax({
@@ -238,9 +245,9 @@ $(document).ready(function(){
 					dataType: 'html',
 					data: data
 				}).done(function(data){
-					console.log('complete');
-					var totalTime = addTime('12:34', '56:12', '78:45');
-					console.log(totalTime);
+					removeAjaxloader($('.sidebarSlider'), 100);
+					$('.time_tracker_partial_wrapper').html('');
+					$('.time_tracker_partial_wrapper').html(data);
 				});
 			}
 		}

@@ -175,12 +175,17 @@
 		public function complete_timer($task_id){
 			// Complete the timer task
 			$this->task_model->complete_timer($task_id);
+			$data['total_task_time'] = $this->task_model->get_task_time($task_id);
+			$data['user_task_time'] = $this->task_model->get_task_time($task_id, $this->session->userdata('user_id'));
+			echo $this->load->partial('tasks/partials/task_time_partial.php', $data); 
 		}
 
 		public function add_standard_task_time($task_id){
 			// Adding task time manually
 			$this->task_model->add_standard_task_time($task_id);
-			exit;
+			$data['total_task_time'] = $this->task_model->get_task_time($task_id);
+			$data['user_task_time'] = $this->task_model->get_task_time($task_id, $this->session->userdata('user_id'));
+			echo $this->load->partial('tasks/partials/task_time_partial.php', $data); 
 		}
 
 	}

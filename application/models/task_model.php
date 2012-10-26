@@ -296,18 +296,39 @@ limit 1";
 
 		public function start_timer($task_id = null){
 
-			if($task_id != null){
-				$data = array(
-				   'user_id' => $this->session->userdata('user_id'),
-				   'task_id' => $task_id
-				);
+			if($_POST['time'] == 0){
+				if($task_id != null){
+					$data = array(
+					   'user_id' => $this->session->userdata('user_id'),
+					   'task_id' => $task_id,
+					   'task_total_time' => 0
+					);
 
-				$this->db->insert('task_timesheets', $data); 
-				return $this->db->insert_id();
+					$this->db->insert('task_timesheets', $data); 
+					return $this->db->insert_id();
+				}
+			} else {
+				$sql = "select max(task_timesheet_id) as task_id from task_timesheets where task_id = ? and user_id = ? and status != 'C'";
+				$q = $this->db->query($sql, array($task_id, $this->session->userdata('user_id')));
+				$q = $q->row_array();
+
+				$data = array(
+					'status' => 'IC',
+					'task_total_time' => $_POST['time']
+	            );
+
+				$this->db->where('task_id', $task_id);
+				$this->db->where('user_id', $this->session->userdata('user_id'));
+				$this->db->where('status !=', 'C');
+				$this->db->where('task_timesheet_id', $q['task_id']);
+				$this->db->update('task_timesheets', $data);
 			}
 		}
 
 		public function pause_timer($task_id){
+			$sql = "select max(task_timesheet_id) as task_id from task_timesheets where task_id = ? and user_id = ? and status != 'C'";
+			$q = $this->db->query($sql, array($task_id, $this->session->userdata('user_id')));
+			$q = $q->row_array();
 
 			$data = array(
 				'status' => 'P',
@@ -316,11 +337,17 @@ limit 1";
 
 			$this->db->where('task_id', $task_id);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->where('status !=', 'C');
+			$this->db->where('task_timesheet_id', $q['task_id']);
 			$this->db->update('task_timesheets', $data);
 
 		}
 
 		public function complete_timer($task_id){
+			$sql = "select max(task_timesheet_id) as task_id from task_timesheets where task_id = ? and user_id = ? and status != 'C'";
+			$q = $this->db->query($sql, array($task_id, $this->session->userdata('user_id')));
+			$q = $q->row_array();
+
 			$data = array(
 				'status' => 'C',
 				'task_total_time' => $_POST['time']
@@ -328,7 +355,11 @@ limit 1";
 
 			$this->db->where('task_id', $task_id);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->where('status !=', 'C');
+			$this->db->where('task_timesheet_id', $q['task_id']);
 			$this->db->update('task_timesheets', $data);
+
+			return true;
 
 		}	
 
@@ -342,9 +373,7 @@ limit 1";
 			);
 
 			$this->db->insert('task_timesheets', $data); 
-
-			var_dump($this->db->last_query());
-			exit;
+			return true;
 
 		}
 	}

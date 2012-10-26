@@ -174,7 +174,7 @@ $(document).ready(function(){
 	
 	function replaceHTML(t){
 		oldText = $(t).html().replace(/"/g, "&quot;");
-		$(t).addClass("noPad").html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form>").unbind('click', replaceHTML);
+		$(t).addClass("noPad").html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form>").unbind('click', replaceHTML).unbind('dbclick', replaceHTML);
 	}
 
 

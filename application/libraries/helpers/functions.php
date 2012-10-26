@@ -51,7 +51,7 @@
 		$hours   = floor(($time - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24)/ (60*60)); 
 		$minutes  = floor(($time - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60) / 60); 
 
-		$time = sprintf("%d months, %d days, %d hours, %d minuts\n", $months, $days, $hours, $minutes);
+		$time = sprintf("%d momths, %d days, %d hrs, %d mins\n", $months, $days, $hours, $minutes);
 		return $time;
 	}
 

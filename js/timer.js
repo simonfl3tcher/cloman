@@ -93,6 +93,10 @@ function changeTimerCount(){
     }, 2000);
 }
 
+function changeTimerCountNow(){   
+    count = $('.time-counter').attr('data-count');
+}
+
 
 $(document).ready(function(){
 
@@ -109,6 +113,21 @@ $(document).ready(function(){
         return time;
     }  
 
+    function addAjaxloader(container){
+        var div = container;
+        div.prepend('<div class="ajaxLoader"></div>');
+        var ajaxLoader = $('.ajaxLoader')
+        ajaxLoader.css({
+            "position": "absolute",
+            "top": div.height()/2-$('.ajaxLoader').height()/2,
+            "left": div.width()/2-$('.ajaxLoader').width()/2
+        });
+    }
+
+    function removeAjaxloader(container, delay){
+        $('.ajaxLoader', container).delay(delay).fadeOut();
+    }
+
         var timer = $.timer(
         function() {
             count++;
@@ -119,13 +138,14 @@ $(document).ready(function(){
     $('button.time-tracker.start').live('click', function(){
             $(this).removeClass('start');
             $(this).addClass('pause');
+            var data = 'time=' + count;
             $.ajax({
                 url: '/tasks/start_timer/' + $(this).parent().attr('data-taskid'),
                 type: 'POST',
-                datatype: 'html'
-            }).done(function(data){
-               console.log(count);
+                datatype: 'html',
+                data:data
             });
+
             timer.play();
 
     });
@@ -140,14 +160,14 @@ $(document).ready(function(){
                 type: 'POST',
                 dataType: 'html',
                 data: data
-            }).done(function(data){
-                console.log('Timer has been paused');
             });
+
      }).trigger('click');
 
 
     $('button.time-tracker-complete').live('click', function(){
         timer.stop();
+        addAjaxloader($('.sidebarSlider'));
         var data = 'time=' + count;
         $.ajax({
             url: '/tasks/complete_timer/' + $(this).parent().attr('data-taskid'),
@@ -155,7 +175,22 @@ $(document).ready(function(){
             dataType: 'html',
             data: data
         }).done(function(data){
-            console.log('Timer has been paused');
+            console.log('in here');
+            removeAjaxloader($('.sidebarSlider'), 100);
+
+            // This alters the view of how many hours have been used on the project
+            $('.time_tracker_partial_wrapper').html('');
+            $('.time_tracker_partial_wrapper').html(data);
+
+            // This alters the time counter when you have completed the task
+            $('.time-counter').html('');
+            $('.time-counter').html('00:00:00');
+            $('.time-counter').attr('data-count', 0);
+            changeTimerCount();
+
+            if($('button.time-tracker').hasClass('pause')){
+                $('button.time-tracker').removeClass('pause').addClass('start');
+            }
         });
     });
 });
