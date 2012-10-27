@@ -4,5 +4,5 @@
 <a href="/projects">Projects</a>
 <a href="/tasks">Tasks</a>
 <a href="/settings">Settings</a>
-<a href="/project-management">Project Management</a>
+<a href="/management">Project Management</a>
 <br />

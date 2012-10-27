@@ -60,6 +60,14 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.support_pack-add').live('click', function(e){
+		e.preventDefault();
+		$('#support_pack-modal').modal({
+			backdrop:true,
+			keyboard: true
+		});
+	});
+
 
 	$('.addBusiness').toggle(
 		function(){

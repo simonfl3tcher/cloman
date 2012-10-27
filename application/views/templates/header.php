@@ -4,7 +4,6 @@
 	<title><?php echo $title ?> | Reason Marketing</title>
 	<script src="<?php echo base_url(); ?>js/jQuery.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/underscore.js" type="text/javascript"></script>
-	<script src="<?php echo base_url(); ?>js/backbone.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/jQuery-ui.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/functions.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/tokeninput.js" type="text/javascript"></script>

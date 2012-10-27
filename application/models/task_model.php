@@ -38,7 +38,6 @@ left join users as u on u.user_id = t.task_created_by
 where complete = 'Y'
 order by t.actual_completion_date desc, t.task_id desc ";
 			$query = $this->db->query($sql);
-			var_dump($this->db->last_query());
 			return $query->result_array();
 		}
 
@@ -65,7 +64,6 @@ left join users as u on u.user_id = t.task_created_by";
 			order by t.sort asc";
 			}
 			$query = $this->db->query($sql);
-			var_dump($this->db->last_query());
 			return $query->result_array();
 		}
 

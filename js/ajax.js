@@ -102,7 +102,11 @@ $(document).ready(function(){
 
 	$('#search').keypress(function(e){
 		if (e.keyCode == 13 || ($('#search').val().length == 1 && e.keyCode == 8)) {
-			var data = 'data=' + $(this).val();
+			if(e.keyCode == 8){
+				var data = 'data=' + '';
+			} else {
+				var data = 'data=' + $(this).val();
+			}
 			$.ajax({
 				url: $(this).attr('data-searchurl'),
 				type: 'POST',
@@ -116,7 +120,11 @@ $(document).ready(function(){
 
 	$('#searchGrid').keypress(function(e){
 		if (e.keyCode == 13 || ($('#searchGrid').val().length == 1 && e.keyCode == 8)) {
-			var data = 'data=' + $(this).val();
+			if(e.keyCode == 8){
+				var data = 'data=' + '';
+			} else {
+				var data = 'data=' + $(this).val();
+			}
 			$.ajax({
 				url: $(this).attr('data-searchurl'),
 				type: 'POST',
