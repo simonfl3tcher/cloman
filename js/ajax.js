@@ -101,7 +101,6 @@ $(document).ready(function(){
 	});
 
 	$('#search').keypress(function(e){
-		console.log(e.keyCode);
 		if (e.keyCode == 13 || ($('#search').val().length == 1 && e.keyCode == 8)) {
 			var data = 'data=' + $(this).val();
 			$.ajax({
@@ -116,9 +115,6 @@ $(document).ready(function(){
 	});
 
 	$('#searchGrid').keypress(function(e){
-		console.log('you are getting in here');
-				console.log(e.keyCode);
-
 		if (e.keyCode == 13 || ($('#searchGrid').val().length == 1 && e.keyCode == 8)) {
 			var data = 'data=' + $(this).val();
 			$.ajax({

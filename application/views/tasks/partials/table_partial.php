@@ -12,6 +12,7 @@
 		<?php } ?>
 	</tr>
 <?php } ?>
+<?php if(!isset($archive)){ ?>
 	<tr class="editable-row">
 		<td class="non-draggable">drag</td>
 		<td class="editable">task name</td>
@@ -20,3 +21,4 @@
 		<td class="editable">status id</td>
 		<td><button class="btn btn-success btn-mini">Add</button></td>
 	</tr>
+<?php } ?>

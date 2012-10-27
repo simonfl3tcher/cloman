@@ -96,6 +96,18 @@
 		    </div>
 		</div>
 	</div>
+	<div class="fields">
+		<div class="field text box-error-wrapper is-inline-editable">
+            <div class="label">
+              Task Time
+            </div>
+        </div>
+        <div data-field-type="text" class="value field-type-text">    
+		    <div class="display v2">
+		    	 <?php echo $project_time; ?>
+		    </div>
+		</div>
+	</div>
 
 	<div class="sidebar-divider"></div>
 

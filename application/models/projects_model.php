@@ -305,4 +305,13 @@ where p.project_id = ?";
 			return format_seconds($diff);
 
 		}
+
+		public function get_full_project_time($project_id){
+			$sql = "SELECT SUM(task_total_time) as task_total_time FROM task_timesheets as ttt
+			inner join tasks as t on t.task_id = ttt.task_id 
+			where status = 'C' and t.project_id = ?";
+			$query = $this->db->query($sql, array($project_id));
+			$query = $query->row();
+			return format_seconds($query->task_total_time);
+		}
 	}

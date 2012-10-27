@@ -81,6 +81,7 @@
 			$data['project_tasks'] = $this->projects_model->get_project_tasks($projectId);
 			$data['comments'] = $this->projects_model->get_project_comments($projectId);
 			$data['hold_time'] = $this->projects_model->get_hold_time($projectId);
+			$data['project_time'] = $this->projects_model->get_full_project_time($projectId);
 			$data['title'] = 'Project Details';
 
 			// Bellow is needed for the side bar partial to work.

@@ -165,7 +165,7 @@ $(document).ready(function(){
 
 	// $('.time-counter').timer();
 
-  	$(".editable-row").bind("click", function(){
+  	$(".editable-row").live("click", function(){
   		$('.editable', $(this)).each(function(){
 	  		replaceHTML(this);
   		});
@@ -174,9 +174,8 @@ $(document).ready(function(){
 	
 	function replaceHTML(t){
 		oldText = $(t).html().replace(/"/g, "&quot;");
-		$(t).addClass("noPad").html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form>").unbind('click', replaceHTML).unbind('dbclick', replaceHTML);
+		$(t).addClass("noPad").html("").html("<input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" />").unbind('click', replaceHTML).die("click");
 	}
-
 
 	function clear_form_elements(ele) {
 	    $(ele).find(':input').each(function() {

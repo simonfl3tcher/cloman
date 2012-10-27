@@ -126,12 +126,15 @@
 
 	<?php } ?>
     <ul class="nav nav-tabs">
-    <li class="active"><a href="#subtasks" data-toggle="tab">Subtasks</a></li>
-    <li><a href="#comments" data-toggle="tab">Comments</a></li>
+    <?php if($task_details->complete == 'N'){ ?>
+	    <li class="active"><a href="#subtasks" data-toggle="tab">Subtasks</a></li>
+    <?php } ?>
+    <li  <?php if($task_details->complete == 'Y'){ echo 'class="active"'; } ?>><a href="#comments" data-toggle="tab">Comments</a></li>
     <li><a href="#timetracking" data-toggle="tab">Track Time</a></li>
     </ul>
  
 	<div class="tab-content">
+	    <?php if($task_details->complete == 'N'){ ?>
 		<div class="tab-pane active" id="subtasks">
 			<?php if(count($sub_tasks)){ 
 				echo (MyRenderTree($sub_tasks));
@@ -141,7 +144,8 @@
 			<?php } ?>
 
 		</div>
-		<div class="tab-pane" id="comments">
+		<?php } ?>
+		<div class="tab-pane <?php if($task_details->complete == 'Y'){ echo 'active'; } ?>" id="comments">
 			<div class="fields">
 				<div class="field text box-error-wrapper is-inline-editable">
 		            <div class="label">
@@ -170,6 +174,7 @@
 			<div class="time_tracker_partial_wrapper">
 				<?php $this->load->partial('tasks/partials/task_time_partial.php'); ?>
 			</div>
+            <?php if($task_details->complete == 'N'){ ?>
 			<div class="fields">
 				<div class="field text box-error-wrapper is-inline-editable">
 		            <div class="label">
@@ -191,6 +196,8 @@
 				    </div>
 				</div>
 			</div>
+			<?php } ?>
+		    <?php if($task_details->complete == 'N'){ ?>
 			<div class="fields">
 				<div class="field text box-error-wrapper is-inline-editable">
 		            <div class="label">
@@ -206,6 +213,7 @@
 				    </div>
 				</div>
 			</div>
+			<?php } ?>
 			<div class="fields">
 				<div class="field text box-error-wrapper is-inline-editable">
 		            <div class="label">

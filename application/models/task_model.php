@@ -38,6 +38,7 @@ left join users as u on u.user_id = t.task_created_by
 where complete = 'Y'
 order by t.actual_completion_date desc, t.task_id desc ";
 			$query = $this->db->query($sql);
+			var_dump($this->db->last_query());
 			return $query->result_array();
 		}
 
@@ -51,9 +52,11 @@ order by t.actual_completion_date desc, t.task_id desc ";
 		}
 
 		public function search_tasks($data, $archive) {
-			$sql = "SELECT b.name as business_name, t.* from tasks as t
+			$sql = "SELECT b.name as business_name, b.business_id as bid, tt.name as task_type, t.*, u.name as created_by from tasks as t
 left join businesses as b on b.business_id = t.business_id
-left join status_table as st on st.status_id = t.status_id";
+left join status_table as st on st.status_id = t.status_id
+left join task_type as tt on tt.task_type_id = t.task_type_id
+left join users as u on u.user_id = t.task_created_by";
 			if($archive !=null){
 				$sql .=" where t.complete = 'Y' and (b.name like '%{$data}%' or t.status_id like '%{$data}%' or t.name like '%{$data}%')
 			order by t.actual_completion_date desc, t.task_id desc ";
@@ -62,6 +65,7 @@ left join status_table as st on st.status_id = t.status_id";
 			order by t.sort asc";
 			}
 			$query = $this->db->query($sql);
+			var_dump($this->db->last_query());
 			return $query->result_array();
 		}
 
@@ -183,6 +187,12 @@ where task_id = ?";
 			$data = array('complete' => 'Y', 'actual_completion_date' => date('Y-m-d', strtotime('today')));
 			$this->db->where('task_id', $id);
 			$this->db->update('tasks', $data);
+			$subs = $this->Nested_Sets_Model->get_nested_set($id);
+			foreach($subs as $subtree){
+				$data = array('complete' => 'Y', 'actual_completion_date' => date('Y-m-d', strtotime('today')));
+				$this->db->where('task_id', $subtree['task_id']);
+				$this->db->update('tasks', $data);
+			}
 			return true;
 		}
 
