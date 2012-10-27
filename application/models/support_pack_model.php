@@ -26,5 +26,13 @@
 			return true; 
 
 		}
+
+		public function support_details($id){
+			$this->db->select('*');
+			$this->db->from('support_packs');
+			$this->db->where('support_packs_id', $id);
+			$query = $this->db->get();
+			return $query->row();
+		}
 	}
 ?>

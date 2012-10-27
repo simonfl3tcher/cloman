@@ -25,7 +25,12 @@
 		}
 
 		public function details($id){
-			$this->load->partial('sidebar-views/support_packs_view', $data);
+			$data['support_details'] = $this->support_pack_model->support_details($id);
+			$data['icon'] = 'projectIcon';
+			$data['bannerTitle'] = $data['support_details']->name;
+			$data['sidebarUrl'] = 'sidebar-views/support_packs_view';
+			$data['editLink'] = '/support_packs/view/' .  $data['support_details']->support_packs_id;
+			$this->load->partial('sidebar-views/details_partial', $data);
 		}
 	}
 
