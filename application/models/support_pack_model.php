@@ -12,5 +12,19 @@
 			$query = $this->db->get();
 			return $query->result_array();
 		}
+
+		public function add_support_pack(){
+			$data = array(
+				'name' => $_POST['support']['Name'],
+				'price' => $_POST['support']['Price'],
+				'description' => $_POST['support']['Description'],
+				'includes' => $_POST['support']['Includes'],
+				'time_allowed_pm' => time_to_sec($_POST['support']['Time'])
+			);
+
+			$this->db->insert('support_packs', $data);
+			return true; 
+
+		}
 	}
 ?>

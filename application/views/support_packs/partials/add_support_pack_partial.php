@@ -14,7 +14,15 @@
 							</td>
 							<td>
 								<label for="business_name">Price</label>
-								<span><input type="text" value="" id="reminder_name" name="support[Price]"></span>
+								<div class="input-prepend input-append">
+							   		<span class="add-on">&pound;</span><input name="support[Price]" class="span2" id="appendedPrependedInput" size="16" type="text"><span class="add-on">.00</span>
+							    </div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="business_name">Support Time</label>
+								<input type="text" class="addTime" placeholder="00:00:00" value="00:00:00" name="support[Time]" />
 							</td>
 						</tr>
 					</table>
@@ -22,7 +30,7 @@
             			<tr class="largeField">
 							<td>
 								<label for="business_name">Short Description (255 Characters)</label>
-								<span><textarea name="support[Description]" style="width: 439px; height: 110px;"></textarea></span>
+								<span><textarea name="support[Description]" style="width: 439px; height: 50px;"></textarea></span>
 							</td>
 						</tr>
 					</table>
@@ -34,7 +42,6 @@
 							</td>
 						</tr>
 					</table>
-					
 				</div>
 			</div>
 	    <div class="modal-footer">

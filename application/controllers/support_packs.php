@@ -14,8 +14,18 @@
 		}
 
 		public function add(){
+			$this->support_pack_model->add_support_pack();
 			var_dump('You are adding a support pack here');
 			exit;
+		}
+
+		public function search(){
+			var_dump('you are searching');
+			exit;
+		}
+
+		public function details($id){
+			$this->load->partial('sidebar-views/support_packs_view', $data);
 		}
 	}
 
