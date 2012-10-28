@@ -774,5 +774,9 @@ body:not([class*=""]) li:before {
     content: ' (click to close)'; 
     color:red;
 }
+
+.addingSupport {
+    display: none;
+}
         
 

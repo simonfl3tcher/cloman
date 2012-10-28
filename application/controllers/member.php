@@ -4,6 +4,7 @@
 
 		public function __construct() {
 			parent::__construct();
+			$this->isAuthorised();
 			$this->load->model('member_model');
 			$this->load->helper(array('form', 'url'));
 			$this->load->library('form_validation');

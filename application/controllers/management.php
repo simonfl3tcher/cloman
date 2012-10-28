@@ -4,6 +4,7 @@
 
 		public function __construct(){
 			parent::__construct();
+			$this->isAuthorised();
 		}
 
 		public function index(){

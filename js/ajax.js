@@ -285,7 +285,24 @@ $(document).ready(function(){
 				dataType: 'html'
 			});
 		}
-	})
+	});
+
+
+	$('.addingSupport').live('change', function(){
+		var data = 'data=' + $(this).val();
+		addAjaxloader($('.sidebarSlider'));
+		$.ajax({
+			url: '/support_packs/add_to_business/' + $(this).attr('data-id'),
+			type: 'POST',
+			dataType: 'html',
+			data: data
+		}).done(function(){
+			setTimeout(function(){
+				removeAjaxloader($('.sidebarSlider'), 100);
+				$('.addSupportPack.crossIconGrey').trigger('click');
+			},1000);
+		});
+	});
 
 	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){

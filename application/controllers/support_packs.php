@@ -4,6 +4,7 @@
 
 		public function __construct(){
 			parent::__construct();
+			$this->isAuthorised();
 			$this->load->model('support_pack_model');
 		}
 
@@ -31,6 +32,24 @@
 			$data['sidebarUrl'] = 'sidebar-views/support_packs_view';
 			$data['editLink'] = '/support_packs/view/' .  $data['support_details']->support_packs_id;
 			$this->load->partial('sidebar-views/details_partial', $data);
+		}
+
+		public function view($id = null){
+			
+			if($this->request->isPost()){
+				if($this->support_pack_model->update_support_pack($id)){
+					redirect('/support_packs', 'refresh');
+				}
+			}
+
+			$data['title'] = 'Edit Support Pack';
+			$data['support_pack'] = $this->support_pack_model->get_avalible_support_packs($id);
+
+			$this->render_view('support_packs/view', $data);
+		}
+
+		public function add_to_business($id){
+			$this->support_pack_model->add_support_pack_to_business($id, $_POST['data']);
 		}
 	}
 

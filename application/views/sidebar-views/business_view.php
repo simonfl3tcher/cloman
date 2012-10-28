@@ -76,3 +76,19 @@
 		    </div>
 		</div>
 	</div>
+	<div class="fields">
+		<div class="field text box-error-wrapper is-inline-editable">
+            <div class="label">
+              Support Packs
+            </div>
+        </div>
+        <div data-field-type="text" class="value field-type-text">    
+		    <div class="display v2">
+		    	<span class="addSupportPack icon plusIconGrey"></span>
+		    	<span>
+					<?php $js = 'class="addingSupport" data-id="' . $business_details->business_id . '"'; ?>
+					<?php echo form_dropdown('business[Support_Pack]', $pack_options, '', $js); ?>
+				</span>
+		    </div>
+		</div>
+	</div>

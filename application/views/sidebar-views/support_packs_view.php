@@ -50,6 +50,18 @@
 	<div class="fields">
 		<div class="field text box-error-wrapper is-inline-editable">
             <div class="label">
+              Price
+            </div>
+        </div>
+        <div data-field-type="text" class="value field-type-text">    
+		    <div class="display v2">
+		    	<?php echo '&pound;' . $support_details->price; ?>
+		    </div>
+		</div>
+	</div>
+	<div class="fields">
+		<div class="field text box-error-wrapper is-inline-editable">
+            <div class="label">
              	Who ?
             </div>
         </div>

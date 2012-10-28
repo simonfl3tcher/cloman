@@ -6,8 +6,10 @@
 
 		public function __construct(){
 			parent::__construct();
+			$this->isAuthorised();
 			$this->load->model('business_model');
 			$this->load->model('contact_model');
+			$this->load->model('support_pack_model');
 		}
 
 		public function index(){
@@ -79,6 +81,12 @@
 		public function details($businessId){
 			$data['business_details'] = $this->business_model->business_details($businessId);
 			$data['contact_details'] = $this->business_model->contact_details($businessId);
+			$data['support_pack_options'] = $this->support_pack_model->get_avalible_support_packs();
+			$data['pack_options'] = array();
+			$data['pack_options'][0] = 'Add a support pack';
+			foreach($data['support_pack_options'] as $con){
+				$data['pack_options'][$con['support_packs_id']] = $con['name'];
+			}
 			$data['title'] = 'Contact Details';
 			// Bellow is needed for the side bar partial to work.
 			$data['icon'] = 'businessIcon';

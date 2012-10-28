@@ -6,6 +6,7 @@
 
 		public function __construct(){
 			parent::__construct();
+			$this->isAuthorised();
 			$this->load->model('contact_model');
 			$this->load->model('business_model');
 			$this->load->helper(array('form', 'url'));

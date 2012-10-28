@@ -54,6 +54,7 @@ class CI_Controller {
 		$this->load->initialize();
 		
 		log_message('debug', "Controller Class Initialized");
+
 		// use this to automatically load the helpers into all controllers.
 		$this->load->helper('url');
 		$this->load->helper('form');
@@ -61,10 +62,6 @@ class CI_Controller {
 		$this->load->model('helper_model');
 
 		$this->session->set_userdata('all_users', $this->helper_model->get_users());
-		// THis is where is set the session vairables for the jquery chat this needs to be sorted out properly.
-		if(!$this->session->userdata('Logged_In') && uri_string() != 'login'){
-			redirect('/login');
-		}
 	}
 
 	public static function &get_instance()
@@ -79,6 +76,21 @@ class CI_Controller {
 			$this->load->view('templates/header', $data);
 			$this->load->view($path, $data);
 			$this->load->view('templates/footer');
+		}
+	}
+
+	public function isClientAuthorised(){
+		if(!$this->session->userdata('Client_Logged_In')){
+			redirect('client/login');
+		} else {
+			return true;
+		}
+	}
+
+	public function isAuthorised(){
+		// This is where is set the session vairables for the jquery chat this needs to be sorted out properly.
+		if(!$this->session->userdata('Logged_In') && uri_string() != 'login'){
+			redirect('/login');
 		}
 	}
 }

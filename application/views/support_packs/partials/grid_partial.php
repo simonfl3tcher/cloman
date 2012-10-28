@@ -23,6 +23,12 @@
                   <?php echo $packs['includes']; ?>
                   </span>
                 </p>
+                <p>
+                  <span class="label text-bold">Price:</span>
+                  <span class="value">
+                  <?php echo '&pound;' .  $packs['price']; ?>
+                  </span>
+                </p>
             </div>
             <div class="bottom">
               <div class="g50"></div>

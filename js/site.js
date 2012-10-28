@@ -178,6 +178,21 @@ $(document).ready(function(){
 	  		replaceHTML(this);
   		});
   	});
+
+  	$('.addSupportPack.plusIconGrey').live('click', function(){
+  		$('.addingSupport').slideRightShow('slow');
+  		$(this).removeClass('plusIconGrey');
+		$(this).addClass('crossIconGrey');
+  	});
+
+  	$('.addSupportPack.crossIconGrey').live('click', function(){
+  		$('.addingSupport').slideRightHide('slow');
+  		setTimeout(function(){
+	  		$('.addingSupport').val(0);
+  		},1000);
+  		$(this).removeClass('crossIconGrey');
+		$(this).addClass('plusIconGrey');
+  	});
 	 
 	
 	function replaceHTML(t){

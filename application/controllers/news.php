@@ -4,6 +4,7 @@
 
 	public function __construct() {
 		parent::__construct();
+		$this->isAuthorised();
 		$this->load->model('news_model');
 		$this->load->library('form_validation');
 

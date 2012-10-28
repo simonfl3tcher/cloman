@@ -6,6 +6,7 @@
 
 		public function __construct(){
 			parent::__construct();
+			$this->isAuthorised();
 			$this->load->model('connections_model');
 		}
 
