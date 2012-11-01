@@ -8,7 +8,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.nav-tabs').button()
+	$('.nav-tabs').button();
 
 	
 	$('.boxes-add').bind('click', function(e){
@@ -193,6 +193,32 @@ $(document).ready(function(){
   		$(this).removeClass('crossIconGrey');
 		$(this).addClass('plusIconGrey');
   	});
+
+
+
+  	// MAKE BELLOW A FUNCTION THAT YOU PASS IN THE EVENTS URL AND THE SELECTOR SO IT CAN BE USED FOR PROJECTS AND MEETINGS ETC.
+
+  	var d = new Date();
+
+  	$('#calendar').fullCalendar({
+        // put your options and callbacks here
+        weekends: false,
+        dayClick: function(e) {
+	        $('#calendar').fullCalendar('addEventSource', {title: "lesson", start: d.getDate()});
+	        console.log(e);
+	    },
+	    draggable: true, 
+        events: "/meetings/booking", 
+        eventDrop: function(event, delta) { 
+            alert(event.title + ' was moved ' + delta + ' days\n' + 
+               '(should probably update your database)'); 
+        }, 
+	    header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		}
+    })
 	 
 	
 	function replaceHTML(t){

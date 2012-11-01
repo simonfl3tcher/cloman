@@ -21,12 +21,22 @@
 		}
 
 		public function search(){
-			var_dump('you are searching');
-			exit;
+			$d = $_POST['data'];
+			if($this->request->isPost()){
+				$data['list_of_businesses'] = $this->support_pack_model->search_support_packs($d);
+				if(!empty($data['list_of_businesses'])){
+					$this->load->partial('support_packs/partials/table_partial.php', $data);
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
 		}
 
 		public function details($id){
 			$data['support_details'] = $this->support_pack_model->support_details($id);
+			$data['support_businesses'] = $this->support_pack_model->support_businesses($id);
 			$data['icon'] = 'projectIcon';
 			$data['bannerTitle'] = $data['support_details']->name;
 			$data['sidebarUrl'] = 'sidebar-views/support_packs_view';
@@ -50,6 +60,20 @@
 
 		public function add_to_business($id){
 			$this->support_pack_model->add_support_pack_to_business($id, $_POST['data']);
+		}
+
+		public function all(){
+			$data['title'] = ucfirst('Support Packs');
+			$data['list_of_businesses'] = $this->support_pack_model->get_list_of_businesses();
+			$this->render_view('support_packs/view_all', $data);
+		}
+
+		public function disable($id){
+			return $this->support_pack_model->disable($id);
+		}
+
+		public function renew($id){
+			return $this->support_pack_model->renew($id);
 		}
 	}
 

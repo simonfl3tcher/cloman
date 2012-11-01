@@ -81,6 +81,7 @@
 		public function details($businessId){
 			$data['business_details'] = $this->business_model->business_details($businessId);
 			$data['contact_details'] = $this->business_model->contact_details($businessId);
+			$data['current_support_packs'] = $this->support_pack_model->get_support_packs_for_business($businessId);
 			$data['support_pack_options'] = $this->support_pack_model->get_avalible_support_packs();
 			$data['pack_options'] = array();
 			$data['pack_options'][0] = 'Add a support pack';

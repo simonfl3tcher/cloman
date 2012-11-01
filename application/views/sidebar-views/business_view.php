@@ -83,6 +83,11 @@
             </div>
         </div>
         <div data-field-type="text" class="value field-type-text">    
+        	<div class="display v2">
+        		<?php foreach($current_support_packs as $packs){ 	
+        				echo $packs['name'] . '<br />';
+        			} ?>
+        	</div>
 		    <div class="display v2">
 		    	<span class="addSupportPack icon plusIconGrey"></span>
 		    	<span>

@@ -74,6 +74,25 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.doAjax').live('click', function(e){
+		e.preventDefault();
+		$.ajax({
+			url: $(this).attr('href'),
+			type: 'POST',
+			data: '',
+			success: function(data){
+				$( "#standardModal" ).modal({
+					backdrop:true,
+					keyboard: true
+				});
+				$( "#standardModal" ).on('hidden', function(){
+					window.location.reload();
+				})
+				$('.modal-body').append('<p>That support pack has been updated, thank you');
+			}
+		});
+	});
+
 	$('table tr td:nth-child(2) a').live('click', function(e){
 		e.preventDefault();
 		if(!$('.sidebarSlider').length){
