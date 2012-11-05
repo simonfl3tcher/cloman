@@ -805,3 +805,15 @@ th.headerSortUp {
      background-repeat: no-repeat; 
      background-position: top right;
 } 
+
+.exportDropbox {
+    background-color: #d5d5d5;
+    height:300px;
+    display: none;
+    margin-bottom:20px;
+    width:300px;
+}
+
+.checkDeterminator {
+    cursor: pointer;
+}

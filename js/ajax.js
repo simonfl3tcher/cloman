@@ -377,6 +377,23 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#exportDropdown').live('change', function(e){
+		e.preventDefault();
+		$.ajax({
+			url: '/management/get_columns/' + $(this).val(),
+			type: 'POST',
+			dataType: 'json'
+		}).done(function(data){
+			var options = '';
+			for(var i = 0; i < data.length; i++){
+				options += '<input class="databaseColumns" type="checkbox" name="cols[' + i + ']" checked="checked" value="' + data[i] + '" />' + data[i] + '<br />';
+			}
+			$('.checkboxArea', $('.exportDropbox')).html('');
+			$('.checkboxArea', $('.exportDropbox')).append(options);
+			$('.exportDropbox').slideDown('slow');
+		});
+	});
+
 	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){
 		var surrounder = $('#searchGrid').closest('div.control-group');

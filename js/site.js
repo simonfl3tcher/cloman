@@ -239,6 +239,14 @@ $(document).ready(function(){
 			right: 'month,agendaWeek,agendaDay'
 		}
     })
+
+    $(".checkDeterminator").toggle(function() {
+		$(".databaseColumns").attr('checked', false);
+		$(this).html('Check All');
+	}, function(){
+		$(".databaseColumns").attr('checked', true);
+		$(this).html('Uncheck All');
+	});
 	 
 	
 	function replaceHTML(t){
