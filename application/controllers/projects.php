@@ -9,6 +9,7 @@
 			parent::__construct();
 			$this->isAuthorised();
 			$this->load->model('projects_model');
+			$this->load->model('Nested_Sets_Model');
 		}
 
 		public function index(){
@@ -79,7 +80,7 @@
 		public function details($projectId){
 			$data['project_details'] = $this->projects_model->project_deatils($projectId);
 			$data['project_workers'] = $this->projects_model->project_workers($projectId);
-			$data['project_tasks'] = $this->projects_model->get_project_tasks($projectId);
+			$data['project_tasks'] = $this->Nested_Sets_Model->get_tasks_for_projects($projectId);
 			$data['comments'] = $this->projects_model->get_project_comments($projectId);
 			$data['hold_time'] = $this->projects_model->get_hold_time($projectId);
 			$data['project_time'] = $this->projects_model->get_full_project_time($projectId);
@@ -163,5 +164,20 @@
 			$this->projects_model->unhold_project($id);
 			return true;
 		}
+
+		public function complete($id){
+			$this->projects_model->complete($id);
+			return true;
+		}
+
+		public function get_tasks_against_project($projectId){
+			// This function is used for the timesheets functionality
+			echo $this->Nested_Sets_Model->get_tasks_for_projects($projectId, true);
+		}
+
+		public function get_project_against_business($businessId){
+			echo $this->projects_model->get_project_against_business($businessId);
+		}
+
 	}
 ?>

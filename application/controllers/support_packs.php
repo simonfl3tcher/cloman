@@ -59,7 +59,8 @@
 		}
 
 		public function add_to_business($id){
-			$this->support_pack_model->add_support_pack_to_business($id, $_POST['data']);
+			$q = $this->support_pack_model->add_support_pack_to_business($id, $_POST['data']);
+			echo json_encode($q);
 		}
 
 		public function all(){

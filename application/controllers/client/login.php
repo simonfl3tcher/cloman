@@ -20,7 +20,7 @@
 					$data['error'] = 'Your username / password do not match. please try again';
 				}
 			} 
-			if(!$this->session->userdata('Logged_In')){
+			if(!$this->session->userdata('Client_Logged_In')){
 				$data['title'] = 'Login Page';
 				$this->render_view('client/login/index', $data);
 			} else {

@@ -371,13 +371,34 @@ limit 1";
 
 		}	
 
-		public function add_standard_task_time($task_id){
+		public function add_standard_task_time($task_id, $date = false){
 
 			$data = array(
 				'status' => 'C',
 				'task_total_time' => time_to_sec($_POST['data']),
         	    'user_id' => $this->session->userdata('user_id'),
-				'task_id' => $task_id
+				'task_id' => $task_id,
+				'completion_date' => date('Y-m-d H:i:s', strtotime('now'))
+			);
+
+			$this->db->insert('task_timesheets', $data); 
+			return true;
+
+		}
+
+		public function add_random_time(){
+			$hours = date('H:i:s', strtotime('now'));
+			$mydate = $_POST["timesheet"]["Date"];
+			//Date formated as dd-mm-yyyy
+			list($d, $m, $y) = preg_split('/\-/', $mydate);
+
+			$mydate = sprintf('%4d-%02d-%02d', $y, $m, $d);
+			$data = array(
+				'status' => 'C',
+				'task_total_time' => time_to_sec($_POST['timesheet']['Time']),
+        	    'user_id' => $this->session->userdata('user_id'),
+				'task_id' => $_POST['timesheet']['Task'],
+				'completion_date' => $mydate . ' ' . $hours
 			);
 
 			$this->db->insert('task_timesheets', $data); 

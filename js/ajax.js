@@ -61,6 +61,7 @@ $(document).ready(function(){
 		containingTr.find('td').wrapInner('<div style="display: block;" />').parent().find('td > div').delay(500)
 		.slideUp(500, function(){
 			$(this).parent().parent().remove();
+			containingTr.css({'display' : 'none'});
 
 		});
 
@@ -70,6 +71,9 @@ $(document).ready(function(){
 			data: '',
 			error: function(data){
 				alert('There was an error when trying to delete');
+			},
+			success: function(data){
+				$("#searchTable").trigger("update");
 			}
 		});
 	});
@@ -308,18 +312,68 @@ $(document).ready(function(){
 
 
 	$('.addingSupport').live('change', function(){
-		var data = 'data=' + $(this).val();
+		var d = 'data=' + $(this).val();
 		addAjaxloader($('.sidebarSlider'));
 		$.ajax({
 			url: '/support_packs/add_to_business/' + $(this).attr('data-id'),
 			type: 'POST',
-			dataType: 'html',
-			data: data
-		}).done(function(){
+			dataType: 'json',
+			data: d
+		}).done(function(data){
+			var info = data;
 			setTimeout(function(){
 				removeAjaxloader($('.sidebarSlider'), 100);
 				$('.addSupportPack.crossIconGrey').trigger('click');
+				$('.display.v2.supportPacks').html('');
+				var options = '';
+				for(var i = 0; i < info.length; i++){
+					options += info[i].name + '<br />';
+				}
+				$('.display.v2.supportPacks').append(options);
 			},1000);
+		});
+	});
+
+	$('.timesheetProjectSelector').live('change', function(){
+		$.ajax({
+			url: '/projects/get_tasks_against_project/' + $(this).val(),
+			type: 'POST',
+			dataType: 'json'
+		}).done(function(data){
+			$('#appendProjectTasks').html('');
+			var options = '<option value="0"></option>';
+
+			for(var i = 0; i < data.length; i++){
+				options += '<option value="' + data[i].task_id + '">' + data[i].name + '</option>';
+			}
+
+			$('#appendProjectTasks').append(options);
+		});
+	});
+
+	$('.timesheetBusinessSelector').live('change', function(){
+		$.ajax({
+			url: '/projects/get_project_against_business/' + $(this).val(),
+			type: 'POST',
+			dataType: 'json'
+		}).done(function(data){
+			$('.timesheetProjectSelector').html('');
+			var options = '<option value="0"></option>';
+
+			for(var i = 0; i < data.projects.length; i++){
+				options += '<option value="' + data.projects[i].project_id + '">' + data.projects[i].project_name + '</option>';
+			}
+
+			$('.timesheetProjectSelector').append(options);
+
+			$('#appendProjectTasks').html('');
+			var options = '<option value="0"></option>';
+
+			for(var i = 0; i < data.tasks.length; i++){
+				options += '<option value="' + data.tasks[i].task_id + '">' + data.tasks[i].name + '</option>';
+			}
+
+			$('#appendProjectTasks').append(options);
 		});
 	});
 
@@ -343,6 +397,7 @@ $(document).ready(function(){
 			$('#searchTable tbody tr').remove();
 			$(surrounder).removeClass('error');
 			$('#searchTable tbody').html(data);
+			$("#searchTable").trigger("update");
 		} else {
 			$(surrounder).addClass('error');
 			$('.ajaxLoader').addClass('error');

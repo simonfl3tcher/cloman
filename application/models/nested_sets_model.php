@@ -20,6 +20,25 @@ order by node.lft";
 			return $query->result_array();
 		}
 
+		public function get_tasks_for_projects($projectid, $json = false){
+			$sql = "SELECT node.*, (count(parent.name) - (sub_tree.depth + 1)) as depth 
+from tasks as node, tasks as parent, tasks as sub_parent, (
+select node.name, (count(parent.name) - 1) as depth from tasks as node, tasks as parent where node.lft between parent.lft and parent.rgt and node.task_id = (select task_id from tasks where project_id = ? order by task_id asc limit 1)
+group by node.name
+order by node.lft) as sub_tree
+where node.lft between parent.lft and parent.rgt
+and node.lft between sub_parent.lft and sub_parent.rgt and sub_parent.name = sub_tree.name 
+and node.complete = 'N'
+group by node.name 
+order by node.lft";
+			$query = $this->db->query($sql, array($projectid));
+			if($json){
+				return json_encode($query->result_array());
+			} else {
+				return $query->result_array();
+			}
+		}
+
 		public function insert_node($parentId = null, $type){
 			if($parentId != null){
 				$sql = "lock table tasks write";

@@ -189,5 +189,10 @@
 			echo $this->load->partial('tasks/partials/task_time_partial.php', $data); 
 		}
 
+		public function add_time(){
+			$this->task_model->add_random_time();
+			return true;
+		}
+
 	}
 ?>

@@ -80,6 +80,8 @@ where sp.support_packs_id = ?";
 				'renewal_date' => date('Y-m-d H:i:s', strtotime('+1 year'))
 			);
 			$this->db->insert('support_packs_to_businesses', $data);
+
+			return $this->get_support_packs_for_business($business_id); 
 		}
 
 		public function get_support_packs_for_business($id){

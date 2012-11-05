@@ -13,12 +13,14 @@
 	</tr>
 <?php } ?>
 <?php if(!isset($archive)){ ?>
-	<tr class="editable-row">
-		<td class="non-draggable">drag</td>
-		<td class="editable">task name</td>
-		<td class="editable">status notes</td>
-		<td class="editable">business name</td>
-		<td class="editable">status id</td>
-		<td><button class="btn btn-success btn-mini">Add</button></td>
-	</tr>
+	<tfoot class="editable-row">
+		<tr>
+			<td class="non-draggable"></td>
+			<td class="editable">task name</td>
+			<td class="editable">status notes</td>
+			<td class="editable">business name</td>
+			<td class="editable">status id</td>
+			<td><button class="btn btn-success btn-mini">Add</button></td>
+		</tr>
+	</tfoot>
 <?php } ?>

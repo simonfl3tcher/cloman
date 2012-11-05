@@ -9,6 +9,7 @@
 	<script src="<?php echo base_url(); ?>js/tokeninput.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/timer.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/fullcalendar.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>js/tablesorter.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/ajax.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>js/site.js" type="text/javascript"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/poup.js"></script>
@@ -29,6 +30,7 @@
 <body>
 	<span class="tasks-add util-button-new first"><span class="task"></span></span>
 	<span class="reminder-add util-button-new first"><span class="clock"></span></span>
+	<span class="time-add util-button-new first"><span class="clock"></span></span>
 	<div class="pageWrapper">
 		<h1><?php echo $title; ?></h1>
 	<!-- <div class="container-hide">Hide Container</div>

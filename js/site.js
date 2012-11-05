@@ -68,6 +68,15 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.time-add').live('click', function(e){
+		e.preventDefault();
+		$('#time-modal').modal({
+			backdrop:true,
+			keyboard: true
+		});
+	});
+
+
 
 	$('.addBusiness').toggle(
 		function(){
@@ -129,8 +138,9 @@ $(document).ready(function(){
 
 	$('.resetForm').bind('click', function(){
 		clear_form_elements($(this).closest('form'));
+
+		$('#appendProjectTasks').length ? $('#appendProjectTasks').html('') : '';
 		if($('.assigntoproject').length && $('.assigntoproject').css('display') == 'block'){
-			console.log('this exists');
 			$('.assigntoproject').slideUp('slow');
 			$('.assigntoproject .content').html('');
 		}
@@ -158,7 +168,17 @@ $(document).ready(function(){
 	// var start = $.datepicker.formatDate('dd-mm-yy', new Date())
 	// $('.datepicker').val(start);
 	$('.datepicker').datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
-
+	$('.datepickerFull').datepicker({dateFormat: "dd-mm-yy"});
+	
+	var myDate = new Date();
+    var month = myDate.getMonth() + 1;
+    var d = myDate.getDate();
+    var day = (d < 10) ? '0' + d : d;
+    var prettyDate = day + '-' + month + '-' + myDate.getFullYear();
+  
+    $(".datepicker").val(prettyDate);
+	$('.datepickerFull').val(prettyDate);
+	
 	$('.container-hide').click(function(){
 		$('.sidebar-container').slideLeftHide();
 	});
@@ -194,7 +214,7 @@ $(document).ready(function(){
 		$(this).addClass('plusIconGrey');
   	});
 
-
+  	$("#searchTable").tablesorter(); 
 
   	// MAKE BELLOW A FUNCTION THAT YOU PASS IN THE EVENTS URL AND THE SELECTOR SO IT CAN BE USED FOR PROJECTS AND MEETINGS ETC.
 

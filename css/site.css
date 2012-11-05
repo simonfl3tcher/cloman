@@ -706,11 +706,11 @@ input {
 .sidebar-container h2 {
     border-bottom: 1px solid #d5d5d5;
 }
-
+#tasks li,
 #subtasks li {
     padding-left:5px;
 }
-
+#tasks li input,
 #subtasks li input {
     margin-right:10px;
 }
@@ -723,7 +723,7 @@ body:not([class*=""]) li:before {
     margin-left: -35px;
     margin-top: -1em;
 }
-
+#tasks li,
 #subtasks li { 
     border-left:1px solid #d5d5d5; 
     padding:0 0 1em 32px; 
@@ -733,7 +733,7 @@ body:not([class*=""]) li:before {
     position:relative;
     vertical-align: top;
 }
-        
+#tasks li:before,       
 #subtasks li:before { 
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
@@ -751,18 +751,21 @@ body:not([class*=""]) li:before {
     top: 9px;
     width: 15px;
 }
+#tasks li:first-child:before,
 #subtasks li:first-child:before { 
     height: 8px;
     top: 25px; 
 }
-        
+#tasks li:last-child,       
 #subtasks li:last-child { 
     border-left:none; 
     margin-left:1px; /* moves the text over by the same amount as the line would have */ 
 }
-        
+#tasks li input,        
 #subtasks li input { left: 11px; z-index:1; position:absolute; opacity:.3; margin-left:5px; }
+#tasks li label,
 #subtasks li label { font-weight:bold;  }
+#tasks li label:after,
 #subtasks li label:after {
     content: ' (click to open)';
     font-weight: normal;
@@ -770,6 +773,7 @@ body:not([class*=""]) li:before {
     font-size:80%;
     color:green;
 }
+#tasks li input:checked + label:after,
 #subtasks li input:checked + label:after {
     content: ' (click to close)'; 
     color:red;
@@ -778,5 +782,26 @@ body:not([class*=""]) li:before {
 .addingSupport {
     display: none;
 }
-        
 
+.dateSeperator {
+    background-color: #FCF953;
+}
+        
+/* Table sort css */
+
+th.header { 
+    background-image: url(../img/small.gif);     
+    cursor: pointer; 
+} 
+
+th.headerSortDown { 
+    background-image: url(../img/desc.png);
+    background-repeat: no-repeat; 
+    background-position: top right;
+} 
+
+th.headerSortUp { 
+    background-image: url(../img/asc.png); 
+     background-repeat: no-repeat; 
+     background-position: top right;
+} 

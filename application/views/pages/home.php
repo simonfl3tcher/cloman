@@ -6,4 +6,5 @@
 <a href="/settings">Settings</a>
 <a href="/management">Project Management</a>
 <a href="/support_packs/all">Support Packs</a>
+<a href="/profile/my_timesheets">Timesheets</a>
 <br />

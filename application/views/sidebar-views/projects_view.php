@@ -108,27 +108,27 @@
 		    </div>
 		</div>
 	</div>
-
-	<div class="sidebar-divider"></div>
-
 	<div class="fields">
 		<div class="field text box-error-wrapper is-inline-editable">
             <div class="label">
-              Tasks 
+              Complete Project
             </div>
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	 <?php foreach($project_tasks as $tasks){ ?>
-		    	 		<span><?php echo $tasks['name']; ?></span><br />
-		    	 <?php } ?>
+		    	<input type="checkbox" name="completeTask" class="completeTask" data-url="/projects/complete/<?php echo $project_details->project_id; ?>"  />
 		    </div>
 		</div>
 	</div>
 
-	<div class="sidebar-divider"></div>
+	<ul class="nav nav-tabs">
+	    <li class="active"><a href="#comments" data-toggle="tab">Comments</a></li>
+	    <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
+    </ul>
 
-	<div class="fields">
+    <div class="tab-content">
+    	<div class="tab-pane active" id="comments">
+    			<div class="fields">
 		<div class="field text box-error-wrapper is-inline-editable">
             <div class="label">
               Comments 
@@ -152,3 +152,14 @@
 		    </div>
 		</div>
 	</div>
+    	</div>
+    	<div class="tab-pane" id="tasks">
+    		<?php if(count($project_tasks)){ 
+				echo (MyRenderTree($project_tasks, false));
+			?>
+			<?php } else { ?>
+				There are no tasks against this project.
+			<?php } ?>
+    	</div>
+    </div>
+

@@ -314,4 +314,32 @@ where p.project_id = ?";
 			$query = $query->row();
 			return format_seconds($query->task_total_time);
 		}
+
+		public function complete($id){
+			$data = array('complete' => 'Y', 'completion_date' => date('Y-m-d', strtotime('today')));
+			$this->db->where('project_id', $id);
+			$this->db->update('projects', $data);
+
+			$data = array('reminder_time' => date('Y-m-d', strtotime('+3 months')), 'name' => 'Project Follow Up', 'text' => "Please follow up on project number {$id}", 'remindee' => $this->session->userdata('user_id'));
+			$this->db->insert('reminders', $data);
+			return true;
+		}
+
+		public function get_project_against_business($businessId){
+			$this->db->select('*');
+			$this->db->from('projects');
+			$this->db->where('business_id', $businessId);
+			$query = $this->db->get();
+
+			$data = array('projects' => $query->result_array());
+
+			$this->db->select('*');
+			$this->db->from('tasks');
+			$this->db->where('business_id', $businessId);
+			$q = $this->db->get();
+
+			$data['tasks'] = $q->result_array();
+
+			return json_encode($data);
+		}
 	}

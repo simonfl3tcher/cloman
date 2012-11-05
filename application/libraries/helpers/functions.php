@@ -76,7 +76,7 @@
         return $time;
     } 
 
-	function MyRenderTree ( $tree = array(array('name'=>'','depth'=>'')) ){
+	function MyRenderTree ( $tree = array(array('name'=>'','depth'=>'')), $checkbox = true ){
 
 		$current_depth = 0;
 		$counter = 0;
@@ -103,7 +103,11 @@
 
 		    $result .= '<li id="c'.$node_id.'"';
 		    $result .= $node_depth < 2 ?' class="open"':'';
-		    $result .= '><input type="checkbox" name="completeTask" class="completeTask" data-url=' . $dataUrl . ' /><span>'.$node_name.'</span><br />';
+		    $result .= '>';
+		    if($checkbox){
+		    	$result .= '<input type="checkbox" name="completeTask" class="completeTask" data-url=' . $dataUrl . ' />';
+		    }
+		    $result .= '<span>'.$node_name.'</span><br />';
 		    ++$counter;
 		}
 		 $result .= str_repeat('</li></ul>',$node_depth).'</li>';

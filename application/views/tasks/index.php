@@ -14,6 +14,7 @@
 				<th><span class="icon personIcon"></span></th>
 				<th><span class="icon emailIcon"></span></th>
 				<th><span class="icon phoneIcon"></span></th>
+				<th>Importance</th>
 			</tr>
 		</thead>
 		<tbody>

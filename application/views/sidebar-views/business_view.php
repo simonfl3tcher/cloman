@@ -83,7 +83,7 @@
             </div>
         </div>
         <div data-field-type="text" class="value field-type-text">    
-        	<div class="display v2">
+        	<div class="display v2 supportPacks">
         		<?php foreach($current_support_packs as $packs){ 	
         				echo $packs['name'] . '<br />';
         			} ?>

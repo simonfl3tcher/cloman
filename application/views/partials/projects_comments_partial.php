@@ -3,7 +3,7 @@
     	<?php if(count($comments)){ ?>
 	    	<ul class="commContainer" data-comm="/projects/remove_comment/">
 	    		<?php foreach($comments as $comment){ ?>
-	    			<li><?php echo $comment['comment']; ?>    <?php if($comment['user_id'] == $this->session->userdata('user_id')){ ?><span class="icon cancelIcon removeComment" data-commentId="<?php echo $comment['project_comment_id']; ?>"></span><?php } ?></li>
+	    			<li><?php echo $comment['user_id'] . ' said... ' . $comment['comment']; ?>    <?php if($comment['user_id'] == $this->session->userdata('user_id')){ ?><span class="icon cancelIcon removeComment" data-commentId="<?php echo $comment['project_comment_id']; ?>"></span><?php } ?></li>
 	    		<?php } ?>
 	    	</ul>
     	<?php } else { ?>
