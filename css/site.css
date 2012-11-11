@@ -817,3 +817,34 @@ th.headerSortUp {
 .checkDeterminator {
     cursor: pointer;
 }
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.one_half {
+    width:45%;
+    float:left;
+    margin-right:5%;
+}
+
+.one_half.last {
+    margin-right:0px;
+}
+
+.paginationContainer .one_half {
+    padding:10px;
+    background-color: #F5F5F5;
+    text-align: center;
+    font-size: 20px;
+    color: #d5d5d5;
+}
+
+#calendar {
+    width:960px;
+    margin:0 auto;
+}

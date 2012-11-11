@@ -19,6 +19,11 @@
 			$this->render_view('businesses/index', $data);
 		}
 
+		public function get(){
+			$q = $this->business_model->get();
+			echo json_encode($q);
+		}
+
 		public function view($id){
 			$business = new Business_CLass($id);
 			if($business->getAddressID() !== 0){

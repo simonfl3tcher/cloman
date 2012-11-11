@@ -3,6 +3,7 @@
 	<a href="/tasks/user_tasks/"><span style="display:inline-block">My Tasks</span></a>
 	<a href="/tasks/archived_tasks"><span style="display:inline-block">Archived Tasks</span></a>
 	<a href="/tasks/user_archived_tasks"><span style="display:inline-block">My Archived Tasks</span></a>
+	<span style="display:inline-block" class="sortList">View my sorted list</span>
 </div>
 
 <div id="tableContainer">
@@ -20,7 +21,31 @@
 		<tbody>
 			<?php $this->load->partial('tasks/partials/table_partial.php'); ?>
 		</tbody>
+		<?php if(!isset($archive)){ ?>
+			<tfoot class="editable-row">
+				<form post="POST">
+						<tr>
+							<td class="non-draggable"></td>
+							<td class="editable">Name</td>
+							<td class="editable">Status Notes</td>
+							<td class="editable business">business name</td>
+							<td class="editable status">status id</td>
+							<td><button class="btn btn-success btn-mini">Add</button></td>
+						</tr>
+				</form>
+			</tfoot>
+		<?php } ?>
 	</table>
+	<div class="paginationContainer">
+		<div class="one_half" id="loadMore">
+			Load More
+		</div>
+
+		<div class="one_half last" id="loadAll">
+			Load All
+		</div>
+
+	</div>
 </div>
 
 <br />

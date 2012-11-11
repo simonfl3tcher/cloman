@@ -9,6 +9,9 @@
 		protected $Notes;
 		protected $IsPrimaryContact;
 		protected $Disabled;
+		protected $Password;
+		protected $HasLoginAccess;
+		protected $IsLoggedIn;
 
 		protected function DefineTableName(){
 			return("people"); //Name of the table you want to use.
@@ -29,7 +32,10 @@
 				"phone" => "Phone",
 				"notes" => "Notes",
 				"is_primary_contact" => "IsPrimaryContact",
-				"disabled" => "Disabled");
+				"disabled" => "Disabled",
+				"password" => "Password",
+				"has_login_access" => "HasLoginAccess",
+				"is_logged_in" => "IsLoggedIn");
 		}
 	}
 ?>

@@ -8,6 +8,10 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.sortList').bind('click', function(){
+		window.location.reload();
+	});
+
 	$('.nav-tabs').button();
 
 	
@@ -193,11 +197,12 @@ $(document).ready(function(){
 
 	// $('.time-counter').timer();
 
-  	$(".editable-row").live("click", function(){
-  		$('.editable', $(this)).each(function(){
-	  		replaceHTML(this);
-  		});
-  	});
+  	// $(".editable-row").live("click", function(){
+  	// 	$('.editable', $(this)).each(function(){
+	  // 		replaceHTML(this);
+  	// 	});
+  	// });
+
 
   	$('.addSupportPack.plusIconGrey').live('click', function(){
   		$('.addingSupport').slideRightShow('slow');
@@ -218,27 +223,6 @@ $(document).ready(function(){
 
   	// MAKE BELLOW A FUNCTION THAT YOU PASS IN THE EVENTS URL AND THE SELECTOR SO IT CAN BE USED FOR PROJECTS AND MEETINGS ETC.
 
-  	var d = new Date();
-
-  	$('#calendar').fullCalendar({
-        // put your options and callbacks here
-        weekends: false,
-        dayClick: function(e) {
-	        $('#calendar').fullCalendar('addEventSource', {title: "lesson", start: d.getDate()});
-	        console.log(e);
-	    },
-	    draggable: true, 
-        events: "/meetings/booking", 
-        eventDrop: function(event, delta) { 
-            alert(event.title + ' was moved ' + delta + ' days\n' + 
-               '(should probably update your database)'); 
-        }, 
-	    header: {
-			left: 'prev,next today',
-			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
-		}
-    })
 
     $(".checkDeterminator").toggle(function() {
 		$(".databaseColumns").attr('checked', false);

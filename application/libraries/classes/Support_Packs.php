@@ -2,9 +2,13 @@
 	
 	class Support_Packs_Class extends DataboundObject {
 
+		protected $Name;
+		protected $Price;
+		protected $Description;
 		protected $Description;
 		protected $Includes;
 		protected $TimeAllowed;
+		protected $IsLive;
 
 		protected function DefineTableName(){
 			return("support_packs"); //Name of the table you want to use.
@@ -19,9 +23,12 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"support_packs_id" => "ID",
-				"description" => "Description", 
-				"includes" => "Includes", 
-				"time_allowed_pm" => "TimeAllowed");
+				"name" => "Name", 
+				"price" => "Price", 
+				"description" => "Description",
+				"includes" => "Includes",
+				"time_allowed_pm" => "TimeAllowed",
+				"is_live" => "IsLive");
 		}
 	}
 ?>

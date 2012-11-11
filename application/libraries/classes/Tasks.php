@@ -4,6 +4,8 @@
 
 		protected $ParentTaskID;
 		protected $BusinessID;
+		protected $Lft;
+		protected $Rgt;
 		protected $ProjectID;
 		protected $TaskTypeID;
 		protected $StatusID;
@@ -33,6 +35,8 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"task_id" => "ID",
+				"lft" => "Lft",
+				"rgt" => "Rgt",
 				"parent_task_id" => "ParentTaskID",
 				"business_id" => "BusinessID",
 				"project_id" => "ProjectID",

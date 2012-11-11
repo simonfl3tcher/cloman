@@ -394,6 +394,108 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.editable-row td.editable:first').live('click', function(){
+		if(!$(this).hasClass('ajax')){
+		  	$('td.editable', $('.editable-row')).each(function(){
+				$(this).addClass('ajax');  
+				if($(this).hasClass('business')){
+					var html = '<select class="status" name="task[Business]">';
+					$.ajax({
+						url: '/businesses/get/',
+						type: 'POST',
+						dataType: 'json'
+					}).done(function(data){
+						for(var i = 0; i < data.length; i++){
+							html += '<option value="' + data[i].business_id + '">' + data[i].name + '</option>';
+						}
+					});
+					html += '<option>name1</option>';
+					html += '</select>';
+					$(this).html(html);
+				} else if ($(this).hasClass('status')){
+					var html = '<select class="status" name="task[Status]">';
+					$.ajax({
+						url: '/tasks/get_list_of_status/',
+						type: 'POST',
+						dataType: 'json'
+					}).done(function(data){
+						for(var i = 0; i < data.length; i++){
+							html += '<option value="' + data[i].status_id + '">' + data[i].name + '</option>';
+						}
+					});
+					html += '</select>';
+					$(this).html(html);
+				} else {
+					$(this).html('<input name="task[' + $(this).text().replace(' ', '') +  ']" id="editbox" size="'+$(this).text().length+'" value="' + $(this).text()+'" type="text">'); 
+				} 
+				$('#editbox').focus();  
+		  	}); 
+		}
+	}); 
+
+	
+	$('.editable-row button').live('click', function(e){
+		e.preventDefault();
+		var d = '';
+		addAjaxloader($('.pageWrapper'));
+		$('td.editable input', $('.editable-row')).each(function(){
+			d += this.name + '=' + $(this).val() + '&';
+			console.log($(this).val());
+		});
+		$('td.editable select', $('.editable-row')).each(function(){
+			console.log(this.name);
+			d += this.name + '=' + $(this).val() + '&';
+		});
+		$.ajax({
+			url: '/tasks/add_on_the_fly/',
+			type: 'POST',
+			dataType: 'json',
+			data: d.substring(0, d.length -1) 
+		}).done(function(data){
+			window.location.reload();
+			removeAjaxloader($('.pageWrapper'), 1000);
+		});
+	});
+
+	$('#loadMore').live('click', function(){
+		addAjaxLoadedScreen($('body'));
+		var limit = $('#searchTable tr').length - 2 + 20;
+		$.ajax({
+			url: 'tasks/ajax_get/' + limit,
+			type: 'POST',
+			dataType: 'html'
+		}).done(function(data){
+			setTimeout(function(){
+				removeAjaxloader($('body'), 500);
+				searchResults(data);
+			},1000);
+		});
+		/*
+			Make the ajax request then utput the data and scroll to the area that it starts on!!
+			$("#id").scrollTop($("#id").scrollTop() + 100);
+		*/
+		console.log('sdfsdfds');
+	});
+
+	$('#loadAll').live('click', function(){
+		addAjaxLoadedScreen($('body'));
+		var limit = 100000000;
+		$.ajax({
+			url: 'tasks/ajax_get/' + limit,
+			type: 'POST',
+			dataType: 'html'
+		}).done(function(data){
+			setTimeout(function(){
+				removeAjaxloader($('body'), 500);
+				searchResults(data);
+			},1000);
+		});
+		/*
+			Make the ajax request then utput the data and scroll to the area that it starts on!!
+			$("#id").scrollTop($("#id").scrollTop() + 100);
+		*/
+		console.log('sdfsdfds');
+	});
 	/* Functions that you may want to use are bellow */
 	function searchResultsGrid(data){
 		var surrounder = $('#searchGrid').closest('div.control-group');
@@ -484,7 +586,23 @@ $(document).ready(function(){
 		});
 	}
 
+	function addAjaxLoadedScreen(container){
+		var div = container;
+		div.prepend('<div class="ajaxLoader"></div>');
+		var ajaxLoader = $('.ajaxLoader');
+		ajaxLoader.center();
+	}
+
+	$.fn.center = function () {
+	    this.css("position","absolute");
+	    this.css("top", Math.max(0, (($(window).height() - this.outerHeight()) / 2) + 
+	    $(window).scrollTop()) + "px");
+	    this.css("left", Math.max(0, (($(window).width() - this.outerWidth()) / 2) + 
+	    $(window).scrollLeft()) + "px");
+	    return this;
+	}
+
 	function removeAjaxloader(container, delay){
-		$('.ajaxLoader', container).delay(delay).fadeOut();
+		$('.ajaxLoader', container).delay(delay).fadeOut().delay(1000).remove();
 	}
 }); 

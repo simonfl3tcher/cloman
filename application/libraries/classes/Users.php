@@ -3,6 +3,12 @@
 	class Users_Class extends DataboundObject {
 
 		protected $Email;
+		protected $Name;
+		protected $Phone;
+		protected $Bio;
+		protected $Twitter;
+		protected $IsLoggedIn;
+		protected $Privilage;
 		protected $DisplayName;
 		protected $Group;
 		protected $Password;
@@ -20,6 +26,12 @@
 			// The variables have to match up through the two pages. 
 			return array(
 				"user_id" => "ID",
+				"name" => "Name",
+				"phone" => "Phone",
+				"bio" => "Bio",
+				"twitter" => "Twitter",
+				"is_logged_in" => "IsLoggedIn",
+				"name" => "Name",
 				"email" => "Email", 
 				"display_name" => "DisplayName", 
 				"group" => "Group",

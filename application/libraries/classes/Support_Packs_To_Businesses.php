@@ -6,6 +6,8 @@
 		protected $SupportPackID;
 		protected $Reminder;
 		protected $ReminderDate;
+		protected $RenewalDate;
+		protected $IsLive;
 
 		protected function DefineTableName(){
 			return("support_packs_to_businesses"); //Name of the table you want to use.
@@ -23,7 +25,9 @@
 				"businesses_id" => "BusinessID", 
 				"support_pack_id" => "SupportPackID", 
 				"reminder" => "Reminder",
-				"reminder_when" => "ReminderDate");
+				"reminder_when" => "ReminderDate",
+				"renewal_date" => "RenewalDate",
+				"is_live" => "IsLive");
 		}
 	}
 ?>

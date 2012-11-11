@@ -14,6 +14,10 @@
 		protected $Notes;
 		protected $TaskTemplateID;
 		protected $Budget;
+		protected $Complete;
+		protected $CompletionDate;
+		protected $OnHold;
+		protected $HoldID;
 
 		protected function DefineTableName(){
 			return("projects"); //Name of the table you want to use.
@@ -39,6 +43,10 @@
 				"client_deadline" => "ClientDeadline",
 				"notes" => "Notes",
 				"task_template_id" => "TaskTemplateID",
+				"complete" => "Complete",
+				"completion_date" => "CompletionDate",
+				"on_hold" => "OnHold",
+				"hold_id" => "HoldID",
 				"budget" => "Budget");
 		}
 	}

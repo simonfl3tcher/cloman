@@ -12,7 +12,7 @@
 			$this->load->model('Nested_Sets_Model');
 		}
 
-		public function get($id = null){
+		public function get($id = null, $limit = 10){
 			$sql = "SELECT b.name as business_name, b.business_id as bid, tt.name as task_type, t.*, u.name as created_by from tasks as t
 left join businesses as b on b.business_id = t.business_id
 left join status_table as st on st.status_id = t.status_id
@@ -24,6 +24,7 @@ inner join users as u on u.user_id = t.task_created_by";
 				return $query->row();
 			} else {
 				$sql .= " where complete = 'N' order by t.sort asc";
+				$sql .= " limit {$limit}";
 				$query = $this->db->query($sql);
 				return $query->result_array();
 			}
@@ -405,5 +406,17 @@ limit 1";
 			return true;
 
 		}
+
+		public function get_list_of_status(){
+			$this->db->select('*');
+			$this->db->from('status_table');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function add_task_on_the_fly(){
+			$this->Nested_Sets_Model->insert_node(null, 0);
+			return true;
+		}	
 	}
 ?>

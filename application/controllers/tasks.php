@@ -89,6 +89,13 @@
 			}
 		}
 
+		public function ajax_get($limit){
+			$data['task_list'] = $this->task_model->get(null, $limit);
+			if(!empty($data['task_list'])){
+				$this->load->partial('tasks/partials/table_partial', $data);
+			}
+		}
+
 
 		public function user_tasks(){
 			$data['title'] = 'Tasks Page';
@@ -192,6 +199,17 @@
 		public function add_time(){
 			$this->task_model->add_random_time();
 			return true;
+		}
+
+		public function get_list_of_status(){
+			$q = $this->task_model->get_list_of_status();
+			echo json_encode($q);
+		}
+
+		public function add_on_the_fly(){
+			if($this->task_model->add_task_on_the_fly()){
+				return true;
+			}
 		}
 
 	}

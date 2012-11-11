@@ -12,7 +12,7 @@
 			$this->render_view('pages/management', $data);
 		}
 
-		public function export(){
+		public function show_tables(){
 
 			$query = $this->db->query("SHOW tables");
 			$query = $query->result_array();
@@ -25,7 +25,12 @@
 				}
 			}
 
-			$data['tables_array'] = $dropArray;
+			return $dropArray;
+		}
+
+		public function export(){
+
+			$data['tables_array'] = $this->show_tables();
 
 
 			if($this->request->isPost()){
@@ -43,7 +48,7 @@
 			}
 
 			$data['title'] = "Export Data";
-			$this->render_view('management/export.php', $data);
+			$this->render_view('management/export', $data);
 		}
 
 		public function get_columns($table){
@@ -59,8 +64,54 @@
 		}
 
 		public function import(){
-			var_dump('you can import a file here if you would like');
-			exit;
+
+			$this->load->model('file_model');
+			$this->load->helper('file');
+			$data['tables_array'] = $this->show_tables();
+
+		    if($this->request->isPost()){
+		    	$table = $_POST['importDatabase'];
+		    	$primary = $_POST['primary'];
+		    	$config['upload_path'] = 'files/';
+				$config['allowed_types'] = '*';
+				$this->load->library('upload', $config);
+
+				if (!$this->upload->do_upload()){
+					$data['error'] = $this->upload->display_errors();
+				} else {
+					$file = $this->upload->data();
+			    	// do the importing here!!
+					$this->load->library('csvreader');  
+		    
+				    $filePath = base_url() . 'files/' . $file['file_name'];  
+				  
+				    $d = $this->csvreader->parse_file($filePath);
+				    delete_files('files/');
+				    foreach($d as $key => $value){
+				    	$d[trim($key)] = $value;
+				    }
+				    if($this->file_model->import($table, $primary, $d)){
+				    	$this->session->set_flashdata('successful_import', 'Successful, ' . count($d) . ' rows were imported!');
+				    	redirect('management/import');
+				    } else {
+				    	$this->session->set_flashdata('error_importing', 'There seems to be an error please try again');
+				    	redirect('management/import');
+				    }
+				}
+		    }
+
+		    $data['title'] = 'Import Data';
+		    $this->render_view('management/import', $data);  
+		}
+
+		public function backup(){
+			$this->load->library('zip');
+			$path = '/';
+
+			$this->zip->read_dir($path);
+
+			// Download the file to your desktop. Name it "my_backup.zip"
+			$this->zip->download('reason_backup.zip'); 
 		}
 	}
 

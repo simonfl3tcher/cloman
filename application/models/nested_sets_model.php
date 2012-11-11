@@ -61,12 +61,15 @@ order by node.lft";
 					isset($_POST['task']['Project']) ? $_POST['task']['Project'] : 0, 
 					$type, 
 					isset($_POST['task']['Status']) ? $_POST['task']['Status'] : null, 
-					date('Y-m-d', strtotime($_POST['task']['Startdate'])), 
-					date('Y-m-d', strtotime($_POST['task']['internal-end-date'])), 
-					date('Y-m-d', strtotime($_POST['task']['external-end-date'])), 
+					isset($_POST['task']['Startdate']) ? date('Y-m-d', strtotime($_POST['task']['Startdate'])) : '', 
+					isset($_POST['task']['internal-end-date']) ? date('Y-m-d', strtotime($_POST['task']['internal-end-date'])) : '', 
+					isset($_POST['task']['external-end-date']) ? date('Y-m-d', strtotime($_POST['task']['external-end-date'])) : '', 
 					isset($_POST['task']['Name']) ? $_POST['task']['Name'] : '', 
 					isset($_POST['task']['Notes']) ? $_POST['task']['Notes'] : '', 
-					$this->session->userdata('user_id')));
+					$this->session->userdata('user_id'),
+					isset($_POST['task']['StatusNotes']) ? $_POST['task']['StatusNotes'] : ''
+
+				));
 
 				$insertId = $this->db->insert_id();
 
@@ -86,8 +89,8 @@ order by node.lft";
 				$sql = "update tasks set lft = lft + 2 where lft > @myRight";
 				$result = $this->db->query($sql);
 
-				$sql = "insert into tasks (lft, rgt, business_id, project_id, task_type_id, status_id, start_date, internal_deadline, client_deadline, name, notes, task_created_by) 
-values (@myRight+1, @myRight+2, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				$sql = "insert into tasks (lft, rgt, business_id, project_id, task_type_id, status_id, start_date, internal_deadline, client_deadline, name, notes, task_created_by, status_notes) 
+values (@myRight+1, @myRight+2, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 				$query = $this->db->query($sql, 
 				array(
@@ -95,12 +98,14 @@ values (@myRight+1, @myRight+2, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 					isset($_POST['task']['Project']) ? $_POST['task']['Project'] : 0, 
 					$type, 
 					isset($_POST['task']['Status']) ? $_POST['task']['Status'] : null, 
-					date('Y-m-d', strtotime($_POST['task']['Startdate'])), 
-					date('Y-m-d', strtotime($_POST['task']['internal-end-date'])), 
-					date('Y-m-d', strtotime($_POST['task']['external-end-date'])), 
+					isset($_POST['task']['Startdate']) ? date('Y-m-d', strtotime($_POST['task']['Startdate'])) : '', 
+					isset($_POST['task']['internal-end-date']) ? date('Y-m-d', strtotime($_POST['task']['internal-end-date'])) : '', 
+					isset($_POST['task']['external-end-date']) ? date('Y-m-d', strtotime($_POST['task']['external-end-date'])) : '', 
 					isset($_POST['task']['Name']) ? $_POST['task']['Name'] : '', 
 					isset($_POST['task']['Notes']) ? $_POST['task']['Notes'] : '', 
-					$this->session->userdata('user_id')));
+					$this->session->userdata('user_id'),
+					isset($_POST['task']['StatusNotes']) ? $_POST['task']['StatusNotes'] : ''
+				));
 
 				$insertId = $this->db->insert_id();
 
