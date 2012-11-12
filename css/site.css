@@ -264,7 +264,7 @@ li {
 }
 
 .addWrapper ul.token-input-list-facebook {
-    width:404px;
+    width:447px;
 }
 
 .addWrapper td {
@@ -397,8 +397,12 @@ li {
 
 /* Page Layout */
 
-select.connectionSelection {
+.connectionion {
     width:202px;
+}
+
+select.time-small {
+    width: 107px;
 }
 
 .addConnection {
@@ -417,6 +421,10 @@ td.slide {
 .datepickerback,
 .datepicker {
     width:115px;
+}
+
+.datepicker-small {
+    width:101px;
 }
 
 .addTime {

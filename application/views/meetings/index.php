@@ -14,48 +14,65 @@
                     </td>
                     <td>
                         <label for="business_name">Optional Notes</label>
-                        <span><input type="text" id="notes" placeholder="Optional Notes" class="datepicker"></span>
+                        <span><input type="text" id="notes" placeholder="Optional Notes"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="business_name">Start Date</label>
-                        <span><input type="text" id="start_date" placeholder="00/00/00 00:00:00" class="datepicker"></span>
+                        <label for="business_name">Date</label>
+                        <span><input type="text" id="start_date" placeholder="00/00/00 00:00:00" class="datepicker-small"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="business_name">Start</label>
                         <span>
-                            <select>
+                            <select id="start-hours" class="time-small">
                                 <?php for($i = 9; $i < 19; $i++){ ?> 
-                                    <option value="<?php echo $i; ?>"><?= $i % 12 ? $i % 12 : 12 ?></option>
+                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                 <?php } ?>
                             </select>
                         </span>
                         <span>
-                            <select>
+                            <select id="start-minutes" class="time-small">
                                 <option value="00">00</option>
-                                <option value="15">15</option>
-                                <option value="15">30</option>
-                                <option value="15">45</option>
+                                <option value="30">30</option>
                             </select>
                         </span>
                     </td>
                     <td>
+                        <label for="business_name">End</label>
+                        <span>
+                            <select id="end-hours" class="time-small">
+                                <?php for($i = 9; $i < 19; $i++){ ?> 
+                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php } ?>
+                            </select>
+                        </span>
+                        <span>
+                            <select id="end-minutes" class="time-small">
+                                <option value="00">00</option>
+                                <option value="30">30</option>
+                            </select>
+                        </span>
+                    </td>
+                    <!-- <td>
                         <label for="business_name">End Date</label>
-                        <span><input type="text" id="end_date" placeholder="00/00/00 00:00:00"></span>
+                        <span><input type="text" id="end_date" placeholder="00/00/00 00:00:00" class="datepicker-small"></span>
                          <span>
-                            <select>
+                            <select class="time-small">
                                 <?php for($i = 9; $i < 19; $i++){ ?> 
                                     <option value="<?php echo $i; ?>"><?= $i % 12 ? $i % 12 : 12 ?></option>
                                 <?php } ?>
                             </select>
                         </span>
                         <span>
-                            <select>
+                            <select class="time-small">
                                 <option value="00">00</option>
-                                <option value="15">15</option>
-                                <option value="15">30</option>
-                                <option value="15">45</option>
+                                <option value="30">30</option>
                             </select>
                         </span>
-                    </td>
+                    </td> -->
                 </tr>
                 <tr>
                     <td colspan="2"> 
@@ -77,7 +94,7 @@
                 </tr>
                 <tr>
                      <td colspan="2">
-                        <span><input type="checkbox" id="send_email"><small>Send everyone an email now and a reminder at 9am the day of the meeting</small></span>
+                        <span><input type="checkbox" id="send_email" value="Y"><small style="margin-left:10px;">Send everyone an email now and a reminder at 9am the day of the meeting</small></span>
                     </td>
                 </tr>
             </table>
@@ -107,17 +124,25 @@
 			selectHelper: true,
 			select: function(start, end, allDay) {
                 var startDateString = $.fullCalendar.formatDate(start, 'dd/MM/yyyy');
-                var endDateString = $.fullCalendar.formatDate(end, 'dd/MM/yyyy');
+                var startDateStringTime = $.fullCalendar.formatDate(start, 'HH:mm');
+                var endDateStringTime = $.fullCalendar.formatDate(end, 'HH:mm');
 				$('#book-modal').modal({
                     backdrop:true,
                     keyboard: true
                 });
+                var st = startDateStringTime.split(":");
+                var en = endDateStringTime.split(":");
+                console.log(en);
+                $('#start-hours').val(st[0]);
+                $('#start-minutes').val(st[1]);
+                $('#end-hours').val(en[0]);
+                $('#end-minutes').val(en[1]);
                 $('#start_date').val(startDateString);
-                $('#end_date').val(endDateString);
 
                 $(".modal-footer .btn-primary").bind("click", { start: start, end: end,allDay: allDay }, function(event){ // when you click in a create button inside dialog you should send as parameters start,end,etc
-                    input1 = $("#input1").val();
                     title = $("#meeting_name").val();
+                    var s = $('#start_date').val() + ' ' + $('#start-hours').val() + ':' + $('#start-minutes').val() +':00';
+                    var e = $('#start_date').val() + ' ' + $('#start-hours').val() + ':' + $('#start-minutes').val() +':00';
 				if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
@@ -136,7 +161,12 @@
                         data: {
                             startDate: startDateString,
                             endDate: endDateString,
-                            eventTitle: title                            
+                            eventTitle: title,
+                            employees: $('.selectAllWorkers').val(),
+                            people: $('.selectContacts').val(),
+                            business: $('.selectBusinesses').val(),
+                            email: $('#send_email').val(),  
+                            notes: $('#notes').val()    
                         },
                         dateType: 'json',
                         success: function (resp) {
@@ -150,7 +180,12 @@
 	    draggable: true, 
 	    editable:true,
         events: "meetings/get_meetings",
-        timeFormat:  'HH:mm { - HH:mm}', 
+        axisFormat: 'H:mm', //,'h(:mm)tt',
+        timeFormat: {
+            agenda: 'H:mm { - H:mm}' //h:mm{ - h:mm}'
+        },
+        minTime: 9,
+        maxTime: 19, 
         eventDrop: function(event, delta) { 
 	         console.log(event);
 	         console.log(delta);
@@ -197,9 +232,10 @@
         ''   : .5
     },
 	    header: {
-			left: 'prev,next today',
+			left: 'prev,next',
 			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
+			right: 'month,agendaWeek',
+            name: 'basicWeek'
 		}
     })
 	});

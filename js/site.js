@@ -173,6 +173,7 @@ $(document).ready(function(){
 	// $('.datepicker').val(start);
 	$('.datepicker').datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
 	$('.datepickerFull').datepicker({dateFormat: "dd-mm-yy"});
+	$('.datepicker-small').datepicker({dateFormat: "dd-mm-yy"});
 	
 	var myDate = new Date();
     var month = myDate.getMonth() + 1;

@@ -18,6 +18,8 @@
 		}
 
 		public function add_meeting(){
+			var_dump($_POST);
+			exit;
 			$this->meeting_model->add_meeting();
 			return true;
 		}
