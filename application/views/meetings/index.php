@@ -1,4 +1,92 @@
 <div id="calendar"></div>
+<div id="book-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+        <h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <div class="addWrapper">
+            <table>
+                <tr class="largeField">
+                    <td>
+                        <label for="business_name">Name</label>
+                        <span><input type="text" id="meeting_name"placeholder="Name"></span>
+                    </td>
+                    <td>
+                        <label for="business_name">Optional Notes</label>
+                        <span><input type="text" id="notes" placeholder="Optional Notes" class="datepicker"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="business_name">Start Date</label>
+                        <span><input type="text" id="start_date" placeholder="00/00/00 00:00:00" class="datepicker"></span>
+                        <span>
+                            <select>
+                                <?php for($i = 9; $i < 19; $i++){ ?> 
+                                    <option value="<?php echo $i; ?>"><?= $i % 12 ? $i % 12 : 12 ?></option>
+                                <?php } ?>
+                            </select>
+                        </span>
+                        <span>
+                            <select>
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="15">30</option>
+                                <option value="15">45</option>
+                            </select>
+                        </span>
+                    </td>
+                    <td>
+                        <label for="business_name">End Date</label>
+                        <span><input type="text" id="end_date" placeholder="00/00/00 00:00:00"></span>
+                         <span>
+                            <select>
+                                <?php for($i = 9; $i < 19; $i++){ ?> 
+                                    <option value="<?php echo $i; ?>"><?= $i % 12 ? $i % 12 : 12 ?></option>
+                                <?php } ?>
+                            </select>
+                        </span>
+                        <span>
+                            <select>
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="15">30</option>
+                                <option value="15">45</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> 
+                        <label for="business_name">Employees Involved</label>
+                        <input id="my-text-input" type="text" name="task[Workers]" class="selectAllWorkers" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> 
+                        <label for="business_name">People Involved</label>
+                        <input id="my-text-input" type="text" name="task[Workers]" class="selectContacts" />
+                    </td>
+                </tr>
+                 <tr>
+                    <td colspan="2"> 
+                        <label for="business_name">Business</label>
+                        <input id="my-text-input" type="text" name="task[Workers]" class="selectBusinesses" />
+                    </td>
+                </tr>
+                <tr>
+                     <td colspan="2">
+                        <span><input type="checkbox" id="send_email"><small>Send everyone an email now and a reminder at 9am the day of the meeting</small></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button data-dismiss="modal" type="submit" class="btn btn-primary">Add</button>
+    </div>
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -18,7 +106,18 @@
 	    selectable: true,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-				var title = prompt('Event Title:');
+                var startDateString = $.fullCalendar.formatDate(start, 'dd/MM/yyyy');
+                var endDateString = $.fullCalendar.formatDate(end, 'dd/MM/yyyy');
+				$('#book-modal').modal({
+                    backdrop:true,
+                    keyboard: true
+                });
+                $('#start_date').val(startDateString);
+                $('#end_date').val(endDateString);
+
+                $(".modal-footer .btn-primary").bind("click", { start: start, end: end,allDay: allDay }, function(event){ // when you click in a create button inside dialog you should send as parameters start,end,etc
+                    input1 = $("#input1").val();
+                    title = $("#meeting_name").val();
 				if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
@@ -41,11 +140,12 @@
                         },
                         dateType: 'json',
                         success: function (resp) {
-                            //calendar.fullCalendar('refetchEvents');
+                           // calendar.fullCalendar('refetchEvents');
                         }
                     });
 				}
 				calendar.fullCalendar('unselect');
+                });
 			},
 	    draggable: true, 
 	    editable:true,
