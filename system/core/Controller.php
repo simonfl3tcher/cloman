@@ -79,6 +79,16 @@ class CI_Controller {
 		}
 	}
 
+	public function render_client_view($path, $data=null, $noInclude=false){
+		if($noInclude == true){
+			$this->load->view($path, $data);
+		} else {
+			$this->load->view('templates/header', $data);
+			$this->load->view('client/' . $path, $data);
+			$this->load->view('templates/footer');
+		}
+	}
+
 	public function isClientAuthorised(){
 		if(!$this->session->userdata('Client_Logged_In')){
 			redirect('client/login');
