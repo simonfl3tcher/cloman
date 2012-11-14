@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-11-11 17:39:27
+-- Date/time:                    2012-11-14 23:03:13
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -250,23 +250,31 @@ CREATE TABLE IF NOT EXISTS `meetings` (
   `who` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`meeting_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.meetings: ~10 rows (approximately)
+-- Dumping data for table my.company.meetings: ~19 rows (approximately)
 DELETE FROM `meetings`;
 /*!40000 ALTER TABLE `meetings` DISABLE KEYS */;
 INSERT INTO `meetings` (`meeting_id`, `name`, `start`, `end`, `who`, `updated_by`) VALUES
-	(1, '0', '2012-10-30 00:00:00', '2012-10-30 00:00:00', 1, NULL),
+	(1, '0', '2012-11-01 00:00:00', '0000-00-00 00:00:00', 1, 1),
 	(2, '0', '2012-11-07 00:00:00', '2012-11-09 00:00:00', 1, 1),
 	(3, 'Birthday Party', '2012-11-13 19:00:00', '2012-11-13 22:30:00', 1, 1),
-	(4, 'simon fletcher has a meeting with animal DNA', '2012-10-29 00:00:00', '2012-11-01 00:00:00', 1, 1),
+	(4, 'simon fletcher has a meeting with animal DNA', '2012-11-08 00:00:00', '2012-11-11 00:00:00', 1, 1),
 	(5, 'hello', '2012-11-12 08:30:00', '2012-11-15 17:30:00', 1, 1),
 	(6, 'another meeting', '2012-11-14 07:30:00', '2012-11-14 15:30:00', 1, 1),
 	(7, 'another meeting goes in here', '2012-11-13 10:30:00', '2012-11-13 16:00:00', 1, NULL),
 	(8, 'hellol', '2012-11-13 14:30:00', '2012-11-13 19:00:00', 1, 1),
 	(9, 'dsfdsf', '2012-11-13 00:00:00', '2012-11-13 00:00:00', 1, NULL),
 	(10, 'hello there', '2012-11-02 00:00:00', '2012-11-16 00:00:00', 1, NULL),
-	(11, 'a new task going in here', '2012-11-06 08:30:00', '2012-11-06 17:30:00', 1, 1);
+	(11, 'a new task going in here', '2012-11-06 08:30:00', '2012-11-06 17:30:00', 1, 1),
+	(12, 'sdfsgfg', '2012-11-20 00:00:00', '2012-11-23 00:00:00', 1, 1),
+	(13, 'sdfsgfg', '2012-10-30 00:00:00', '2012-10-30 00:00:00', 1, NULL),
+	(14, 'sdfsgfg', '2012-11-26 00:00:00', '2012-11-30 00:00:00', 1, NULL),
+	(15, 'dfsghd', '2012-11-26 00:00:00', '2012-11-26 00:00:00', 1, NULL),
+	(16, 'xfhbndf', '2012-11-13 10:30:00', '2012-11-13 13:00:00', 1, NULL),
+	(17, 'xfhbndf', '2012-11-13 10:30:00', '2012-11-13 15:30:00', 1, NULL),
+	(18, 'xfhbndf', '2012-11-13 08:00:00', '2012-11-13 15:00:00', 1, NULL),
+	(19, 'xfhbndf', '2012-11-20 00:00:00', '2012-11-21 00:00:00', 1, NULL);
 /*!40000 ALTER TABLE `meetings` ENABLE KEYS */;
 
 
