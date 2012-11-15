@@ -18,9 +18,10 @@
 		}
 
 		public function add_meeting(){
-			var_dump($_POST);
-			exit;
 			$this->meeting_model->add_meeting();
+			if($_POST['email'] == 'Y'){
+				// send emails out in here
+			}
 			return true;
 		}
 

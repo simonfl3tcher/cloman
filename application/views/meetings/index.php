@@ -123,7 +123,7 @@
 	    selectable: true,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-                var startDateString = $.fullCalendar.formatDate(start, 'dd/MM/yyyy');
+                var startDateString = $.fullCalendar.formatDate(start, 'dd-MM-yyyy');
                 var startDateStringTime = $.fullCalendar.formatDate(start, 'HH:mm');
                 var endDateStringTime = $.fullCalendar.formatDate(end, 'HH:mm');
 				$('#book-modal').modal({
@@ -132,7 +132,6 @@
                 });
                 var st = startDateStringTime.split(":");
                 var en = endDateStringTime.split(":");
-                console.log(en);
                 $('#start-hours').val(st[0]);
                 $('#start-minutes').val(st[1]);
                 $('#end-hours').val(en[0]);
@@ -155,6 +154,8 @@
 					);
 					var startDateString = $.fullCalendar.formatDate(start, 'yyyy-MM-dd HH:mm:ss');
                     var endDateString = $.fullCalendar.formatDate(end, 'yyyy-MM-dd HH:mm:ss');
+
+
                     $.ajax({
                         type: 'POST',
                         url: 'meetings/add_meeting',
@@ -170,7 +171,7 @@
                         },
                         dateType: 'json',
                         success: function (resp) {
-                           // calendar.fullCalendar('refetchEvents');
+                            calendar.fullCalendar('refetchEvents');
                         }
                     });
 				}

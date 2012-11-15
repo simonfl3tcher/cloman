@@ -8,14 +8,46 @@
 		}
 
 		public function add_meeting(){
+
 			$data = array(
 
 				'name' => $_POST['eventTitle'],
 				'start' => $_POST['startDate'],
+				'notes' => $_POST['notes'],
+				'business' => $_POST['business'],
 				'end' => $_POST['endDate'],
 				'who' => $this->session->userdata('user_id')
 			);
 			$this->db->insert('meetings', $data);
+
+			$id = $this->db->insert_id();
+
+			if(!empty($_POST['employees'])){
+				$workers = explode(',', $_POST['employees']);
+
+				foreach($workers as $w){
+					$array = array(
+						'meeting_id' => $id,
+						'user_id' => $w 
+					);
+					$this->db->insert('meetings_to_users', $array);
+				}
+			}
+
+			if(!empty($_POST['people'])){
+				$people = explode(',',$_POST['people']);
+
+				foreach($people as $p){
+					$array = array(
+						'meeting_id' => $id,
+						'people_id' => $p
+					);
+					$this->db->insert('meetings_to_people', $array);
+				}
+
+			}
+
+			return true;
 		}
 
 		public function update_meeting(){
