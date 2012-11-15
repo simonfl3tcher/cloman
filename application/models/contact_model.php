@@ -17,7 +17,7 @@
 			$this->db->from('people');
 			$this->db->where('disabled', 'N');
 			if($id){
-				$this->db->where('ID', $id);
+				$this->db->where('people_id', $id);
 			}
 			$this->db->order_by('name', 'asc');
 

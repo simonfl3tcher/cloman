@@ -12,7 +12,6 @@ group by node.name
 order by node.lft) as sub_tree
 where node.lft between parent.lft and parent.rgt
 and node.lft between sub_parent.lft and sub_parent.rgt and sub_parent.name = sub_tree.name 
-and node.complete = 'N'
 group by node.name 
 having depth >= 1
 order by node.lft";

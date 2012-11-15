@@ -12,7 +12,7 @@
 
 		public function get($id=null){
 			if($id){
-				$this->db->where('ID', $id);
+				$this->db->where('people_id', $id);
 			}
 			$query = $this->db->get('people');
 			return $query->result_array();

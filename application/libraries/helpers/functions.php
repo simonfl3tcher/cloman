@@ -87,6 +87,10 @@
 		    $node_depth = $node['depth'];
 		    $node_name = $node['name'];
 		    $node_id = $node['task_id'];
+		    $disabled = '';
+		    if($node['complete'] == 'Y'){
+		    	$disabled = 'disabled="disabled" checked="checked"';
+		    }
 
 		    if($node_depth == $current_depth){
 		        if($counter > 0) $result .= '</li>';            
@@ -105,7 +109,7 @@
 		    $result .= $node_depth < 2 ?' class="open"':'';
 		    $result .= '>';
 		    if($checkbox){
-		    	$result .= '<input type="checkbox" name="completeTask" class="completeTask" data-url=' . $dataUrl . ' />';
+		    	$result .= '<input type="checkbox" name="completeTask" ' . $disabled . ' class="completeTask" data-url=' . $dataUrl . ' />';
 		    }
 		    $result .= '<span>'.$node_name.'</span><br />';
 		    ++$counter;

@@ -9,6 +9,9 @@
 			$this->load->model('login_model');
 			$this->load->library('encrypt');
 			$this->load->model('meeting_model');
+			$this->load->model('contact_model');
+			$this->load->model('user_model');
+			$this->load->model('email');
 		}
 
 		public function index(){
@@ -19,9 +22,24 @@
 
 		public function add_meeting(){
 			$this->meeting_model->add_meeting();
-			if($_POST['email'] == 'Y'){
+			
+			if(isset($_POST['email']) && $_POST['email'] == 'checked'){
 				// send emails out in here
+				$employees = explode(',', $_POST['employees']);
+				foreach($employees as $employee){
+					$p = $this->user_model->get($employee);
+					$message = 'Hello, We have set up and email for you...'; //
+					$this->email->do_email($p['simon@logicdesign.co.uk'], 'hello@logicdesign.co.uk', 'Logic Design', 'Meeting | Logic Design', $message);
+				}
+
+				$people = explode(',', $_POST['people']);
+				foreach($people as $peeps){
+					$p = $this->contact_model->get($peeps);
+					$message = 'Hello, We have set up and email for you...'; //
+					$this->email->do_email($p['email'], 'hello@logicdesign.co.uk', 'Logic Design', 'Meeting | Logic Design', $message);
+				}
 			}
+
 			return true;
 		}
 
@@ -32,6 +50,11 @@
 
 		public function get_meetings(){
 			echo $this->meeting_model->get_json_meetings();
+			exit;
+		}
+
+		public function get($id){
+			echo $this->meeting_model->get($id);
 			exit;
 		}
 
