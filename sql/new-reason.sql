@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-11-14 23:03:13
+-- Date/time:                    2012-11-15 20:34:03
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -245,50 +245,78 @@ DROP TABLE IF EXISTS `meetings`;
 CREATE TABLE IF NOT EXISTS `meetings` (
   `meeting_id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `business` int(11) DEFAULT NULL,
   `start` timestamp NULL DEFAULT NULL,
   `end` timestamp NULL DEFAULT NULL,
   `who` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`meeting_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.meetings: ~19 rows (approximately)
+-- Dumping data for table my.company.meetings: ~4 rows (approximately)
 DELETE FROM `meetings`;
 /*!40000 ALTER TABLE `meetings` DISABLE KEYS */;
-INSERT INTO `meetings` (`meeting_id`, `name`, `start`, `end`, `who`, `updated_by`) VALUES
-	(1, '0', '2012-11-01 00:00:00', '0000-00-00 00:00:00', 1, 1),
-	(2, '0', '2012-11-07 00:00:00', '2012-11-09 00:00:00', 1, 1),
-	(3, 'Birthday Party', '2012-11-13 19:00:00', '2012-11-13 22:30:00', 1, 1),
-	(4, 'simon fletcher has a meeting with animal DNA', '2012-11-08 00:00:00', '2012-11-11 00:00:00', 1, 1),
-	(5, 'hello', '2012-11-12 08:30:00', '2012-11-15 17:30:00', 1, 1),
-	(6, 'another meeting', '2012-11-14 07:30:00', '2012-11-14 15:30:00', 1, 1),
-	(7, 'another meeting goes in here', '2012-11-13 10:30:00', '2012-11-13 16:00:00', 1, NULL),
-	(8, 'hellol', '2012-11-13 14:30:00', '2012-11-13 19:00:00', 1, 1),
-	(9, 'dsfdsf', '2012-11-13 00:00:00', '2012-11-13 00:00:00', 1, NULL),
-	(10, 'hello there', '2012-11-02 00:00:00', '2012-11-16 00:00:00', 1, NULL),
-	(11, 'a new task going in here', '2012-11-06 08:30:00', '2012-11-06 17:30:00', 1, 1),
-	(12, 'sdfsgfg', '2012-11-20 00:00:00', '2012-11-23 00:00:00', 1, 1),
-	(13, 'sdfsgfg', '2012-10-30 00:00:00', '2012-10-30 00:00:00', 1, NULL),
-	(14, 'sdfsgfg', '2012-11-26 00:00:00', '2012-11-30 00:00:00', 1, NULL),
-	(15, 'dfsghd', '2012-11-26 00:00:00', '2012-11-26 00:00:00', 1, NULL),
-	(16, 'xfhbndf', '2012-11-13 10:30:00', '2012-11-13 13:00:00', 1, NULL),
-	(17, 'xfhbndf', '2012-11-13 10:30:00', '2012-11-13 15:30:00', 1, NULL),
-	(18, 'xfhbndf', '2012-11-13 08:00:00', '2012-11-13 15:00:00', 1, NULL),
-	(19, 'xfhbndf', '2012-11-20 00:00:00', '2012-11-21 00:00:00', 1, NULL);
+INSERT INTO `meetings` (`meeting_id`, `name`, `notes`, `business`, `start`, `end`, `who`, `updated_by`) VALUES
+	(20, 'Hello', '0', 1, '2012-11-07 00:00:00', '2012-11-07 00:00:00', 1, NULL),
+	(21, 'Hello', 'Hello how are you ?', 1, '2012-11-07 00:00:00', '2012-11-07 00:00:00', 1, NULL),
+	(22, 'Hello', 'Hello how are you ?', 1, '2012-11-13 00:00:00', '2012-11-13 00:00:00', 1, NULL),
+	(23, 'Hello', 'Hello how are you ?', 1, '2012-11-06 00:00:00', '2012-11-06 00:00:00', 1, NULL),
+	(24, 'Hello', 'Hello how are you ?', 1, '2012-11-07 00:00:00', '2012-11-07 00:00:00', 1, NULL),
+	(25, 'Hello', 'Hello how are you ?', 1, '2012-11-13 00:00:00', '2012-11-13 00:00:00', 1, NULL),
+	(26, 'Hello', 'Hello how are you ?', 1, '2012-11-06 00:00:00', '2012-11-06 00:00:00', 1, NULL),
+	(27, 'Hello', 'Hello how are you ?', 1, '2012-11-08 00:00:00', '2012-11-08 00:00:00', 1, NULL),
+	(28, 'SImon Fletcher', 'Meeting Room', 1, '2012-11-14 00:00:00', '2012-11-14 00:00:00', 1, NULL),
+	(29, 'Hello', '', 0, '2012-11-15 00:00:00', '2012-11-15 00:00:00', 1, NULL),
+	(30, 'Hello', '', 0, '2012-11-15 00:00:00', '2012-11-15 00:00:00', 1, NULL),
+	(31, 'dsghfjklk;l', '', 0, '2012-10-29 00:00:00', '2012-10-29 00:00:00', 1, NULL),
+	(32, 'safddgfhgjhkj', '', 0, '2012-10-30 00:00:00', '2012-10-30 00:00:00', 1, NULL),
+	(33, 'safddgfhgjhkj', '', 0, '2012-10-30 00:00:00', '2012-10-30 00:00:00', 1, NULL),
+	(34, 'safddgfhgjhkj', '', 0, '2012-10-31 00:00:00', '2012-10-31 00:00:00', 1, NULL);
 /*!40000 ALTER TABLE `meetings` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.meetings_to_people
+DROP TABLE IF EXISTS `meetings_to_people`;
+CREATE TABLE IF NOT EXISTS `meetings_to_people` (
+  `meeting_to_people_id` int(10) NOT NULL AUTO_INCREMENT,
+  `meeting_id` int(10) DEFAULT '0',
+  `people_id` int(10) DEFAULT '0',
+  PRIMARY KEY (`meeting_to_people_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.meetings_to_people: ~0 rows (approximately)
+DELETE FROM `meetings_to_people`;
+/*!40000 ALTER TABLE `meetings_to_people` DISABLE KEYS */;
+INSERT INTO `meetings_to_people` (`meeting_to_people_id`, `meeting_id`, `people_id`) VALUES
+	(1, 28, 51),
+	(2, 28, 58);
+/*!40000 ALTER TABLE `meetings_to_people` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.meetings_to_users
 DROP TABLE IF EXISTS `meetings_to_users`;
 CREATE TABLE IF NOT EXISTS `meetings_to_users` (
-  `meetings_to_users_id` int(10) DEFAULT NULL,
+  `meetings_to_users_id` int(10) NOT NULL AUTO_INCREMENT,
   `meeting_id` int(10) DEFAULT NULL,
-  `user_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `user_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`meetings_to_users_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.meetings_to_users: ~0 rows (approximately)
 DELETE FROM `meetings_to_users`;
 /*!40000 ALTER TABLE `meetings_to_users` DISABLE KEYS */;
+INSERT INTO `meetings_to_users` (`meetings_to_users_id`, `meeting_id`, `user_id`) VALUES
+	(1, 24, 1),
+	(2, 24, 2),
+	(3, 25, 1),
+	(4, 25, 2),
+	(5, 26, 1),
+	(6, 26, 2),
+	(7, 27, 1),
+	(8, 27, 2),
+	(9, 28, 1),
+	(10, 28, 2);
 /*!40000 ALTER TABLE `meetings_to_users` ENABLE KEYS */;
 
 
