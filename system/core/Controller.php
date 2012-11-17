@@ -52,16 +52,12 @@ class CI_Controller {
 		$this->load =& load_class('Loader', 'core');
 
 		$this->load->initialize();
-		
-		log_message('debug', "Controller Class Initialized");
 
 		// use this to automatically load the helpers into all controllers.
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->model('helpers/request_model', 'request');
 		$this->load->model('helper_model');
-
-		$this->session->set_userdata('all_users', $this->helper_model->get_users());
 	}
 
 	public static function &get_instance()

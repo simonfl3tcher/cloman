@@ -342,4 +342,13 @@ where p.project_id = ?";
 
 			return json_encode($data);
 		}
+
+		public function get_projects_to_person($personID){
+			$sql = "SELECT p.* from projects  as p
+inner join business_to_people as btp on btp.business_id = p.business_id
+inner join people as po on po.people_id = btp.people_id
+where po.people_id = ?";
+			$query = $this->db->query($sql, $personID);
+			return $query->result_array();
+		}
 	}
