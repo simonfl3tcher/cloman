@@ -54,8 +54,13 @@
 		}
 
 		public function get($id){
-			echo $this->meeting_model->get($id);
-			exit;
+			$data['meeting_info'] = $this->meeting_model->get($id);
+			$this->load->partial('partials/meeting_partial', $data);
+		}
+
+		public function delete($id){
+			$this->meeting_model->delete($id);
+			return true;
 		}
 
 	}	

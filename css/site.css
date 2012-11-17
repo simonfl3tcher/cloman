@@ -856,3 +856,12 @@ th.headerSortUp {
     width:960px;
     margin:0 auto;
 }
+
+#file {
+   display: none;
+}
+   
+.dummyfile input[type="text"] {
+   width: 120px;
+   display: inline;
+}

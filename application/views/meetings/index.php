@@ -45,7 +45,7 @@
                         <span>
                             <select id="end-hours" class="time-small">
                                 <?php for($i = 9; $i < 19; $i++){ ?> 
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                    <option <?php if($i == 10) { echo "selected='selected'"; } ?> value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                 <?php } ?>
                             </select>
                         </span>
@@ -114,7 +114,6 @@
         <h3 id="myModalLabel">Meeting Details</h3>
     </div>
     <div class="modal-body">
-        wefdsf
     </div>
     <div class="modal-footer">
         <button data-dismiss="modal" type="submit" class="btn btn-primary delete">Delete</button>
@@ -158,8 +157,7 @@
                 $(".modal-footer .btn-primary").bind("click", { start: start, end: end,allDay: allDay }, function(event){ // when you click in a create button inside dialog you should send as parameters start,end,etc
                     title = $("#meeting_name").val();
                     var s = $('#start_date').val() + ' ' + $('#start-hours').val() + ':' + $('#start-minutes').val() +':00';
-                    var e = $('#start_date').val() + ' ' + $('#start-hours').val() + ':' + $('#start-minutes').val() +':00';
-                    console.log('1');
+                    var e = $('#start_date').val() + ' ' + $('#end-hours').val() + ':' + $('#end-minutes').val() +':00';
 				if (title) {
 					calendar.fullCalendar('renderEvent',
 						{
@@ -170,27 +168,25 @@
 						},
 						true // make the event "stick"
 					);
-					var startDateString = $.fullCalendar.formatDate(start, 'yyyy-MM-dd HH:mm:ss');
-                    var endDateString = $.fullCalendar.formatDate(end, 'yyyy-MM-dd HH:mm:ss');
-
 
                     $.ajax({
                         type: 'POST',
                         url: 'meetings/add_meeting',
                         data: {
-                            startDate: startDateString,
-                            endDate: endDateString,
+                            startDate: s,
+                            endDate: e,
                             eventTitle: title,
                             employees: $('.selectAllWorkers').val(),
                             people: $('.selectContacts').val(),
                             business: $('.selectBusinesses').val(),
                             email: $('#send_email').attr('checked'),  
                             notes: $('#notes').val(),
-                            meetingRoom: $('#meeting_room').attr('checked')
+                            meetingRoom: $('#meeting_room').attr('checked'),
+                            allDay: allDay
                         },
                         dateType: 'json',
                         success: function (resp) {
-                            // calendar.fullCalendar('refetchEvents');
+                            //calendar.fullCalendar('refetchEvents');
                             window.location.reload();
 
                         }
@@ -207,6 +203,7 @@
         timeFormat: {
             agenda: 'H:mm { - H:mm}' //h:mm{ - h:mm}'
         },
+        allDayDefault: false,
         minTime: 9,
         maxTime: 19, 
         eventDrop: function(event, delta) { 
@@ -251,25 +248,29 @@
             });
 
             $('.delete', $('#look-modal')).bind('click', function(){
-                console.log('clicked');
-                console.log(calEvent.id);
+                $.ajax({
+                type: 'POST',
+                url: 'meetings/delete/' + calEvent.id,
+                dateType: 'json'
+                }).done(function(data){
+                   console.log('done');
+                   window.location.reload();
+                });
             });
 
             $.ajax({
                 type: 'POST',
                 url: 'meetings/get/' + calEvent.id,
-                dateType: 'json',
-                success: function (e) {
-                    console.log(e.name);
-                    var html = '<strong>Name: </strong>' + e.name;
-                    $('.modal-body', $('#lock-modal')).html('dfs');
-                }
+                dateType: 'json'
+            }).done(function(data){
+                console.log(data);
+                $('#look-modal .modal-body').html(data);
             });
    		},
         dragOpacity: {
-        month: .2,
-        ''   : .5
-    },
+            month: .2,
+            ''   : .5
+        },
 	    header: {
 			left: 'prev,next',
 			center: 'title',
