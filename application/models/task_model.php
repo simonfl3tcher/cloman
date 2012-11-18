@@ -417,6 +417,53 @@ limit 1";
 		public function add_task_on_the_fly(){
 			$this->Nested_Sets_Model->insert_node(null, 0);
 			return true;
+		}
+
+		public function get_json_tasks(){
+			$sql ="SELECT  DATE_FORMAT(start_date, '%Y-%m-%dT%TZ') as start, 
+DATE_FORMAT(internal_deadline, '%Y-%m-%dT%TZ') as end, 
+task_id as id, 
+t.name as title,
+st.color as backgroundColor, st.color as borderColor
+from tasks as t
+inner join status_table as st on st.`status_id` = t.`status_id`
+where complete = 'N'";
+			$query = $this->db->query($sql);
+			$query = $query->result_array();
+			return json_encode($query);
+		}
+
+		public function update_task_from_calender(){
+			$data = array(
+				'start_date' => $_POST['startDate'],
+				'internal_deadline' => $_POST['endDate'],
+				'updated_by' => $this->session->userdata('user_id')
+			);
+			$this->db->where('task_id', $_POST['id']);
+			$this->db->update('tasks', $data);
 		}	
+
+
+		public function update_task_statuses(){
+			foreach($_POST as $key => $value){
+				if($key == 'new'){
+					foreach($value as $v){
+						$data = array(
+							'name' => $v['name'],
+							'color' => $v['color']
+						);
+						$this->db->insert('status_table', $data);
+					}
+
+				} else {
+					$data = array(
+						'name' => $value['name'],
+						'color' => $value['color']
+					);
+					$this->db->where('status_id', $key);
+					$this->db->update('status_table', $data);
+				}
+			}
+		}
 	}
 ?>

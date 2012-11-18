@@ -36,6 +36,12 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.taskstatuses .plusIconGrey').bind('click', function(){
+		var html = '<input type="text" name="new[' + $(this).attr('data-count') +'][name]" value="" /><span><input type="text" name="new[' + $(this).attr('data-count') +'][color]" value="#000" class="hexref"/></span><br />';
+		$('.taskstatuses .inputWrapper').append(html);
+		$(this).attr('data-count', parseFloat($(this).attr('data-count')) + 1);
+	});
+
 	$('.tasks-add').live('click', function(e){
 		e.preventDefault();
 

@@ -16,10 +16,5 @@
 			$this->render_client_view('dashboard', $data);
 		}
 
-		public function project($id){
-			$projectInfo = $this->projects_model->project_deatils($id);
-			var_dump($projectInfo);
-			
-		}
 	}
 ?>

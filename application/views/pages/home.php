@@ -7,6 +7,7 @@
 <a href="/management">Management</a>
 <a href="/support_packs/all">Support Packs</a>
 <a href="/profile/my_timesheets">Timesheets</a>
-<a href="/planners">Planners</a>
+<a href="/calendar/projects">Project Planner</a>
+<a href="/calendar/tasks">Task Planner</a>
 <a href="/meetings">Meetings</a>
 <br />

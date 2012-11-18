@@ -10,7 +10,7 @@
             			<tr class="largeField">
 							<td>
 								<label for="business_name">Task Name</label>
-								<span><input type="text" value="" id="project_name" name="task[Name]"></span>
+								<span><input type="text" value="" id="task_name" name="task[Name]"></span>
 							</td>
 						</tr>
 					</table>
@@ -59,13 +59,13 @@
 					<table class="std">
 						<tr>
 							<td>
-								<input type="text" name="task[Startdate]" class="datepicker" />
+								<input type="text" name="task[Startdate]" class="datepicker" id="start_date"/>
 							</td>
 							<td>
-								<input type="text" name="task[internal-end-date]" class="datepicker" />
+								<input type="text" name="task[internal-end-date]" class="datepicker" id="internal_date" />
 							</td>
 							<td>
-								<input type="text" name="task[external-end-date]" class="datepicker" />
+								<input type="text" name="task[external-end-date]" class="datepicker" id="external_date" />
 							</td>
 						</tr>
 					</table>

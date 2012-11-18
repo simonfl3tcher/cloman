@@ -78,7 +78,7 @@
 		}
 
 		public function details($projectId){
-			$data['project_details'] = $this->projects_model->project_deatils($projectId);
+			$data['project_details'] = $this->projects_model->project_details($projectId);
 			$data['project_workers'] = $this->projects_model->project_workers($projectId);
 			$data['project_tasks'] = $this->Nested_Sets_Model->get_tasks_for_projects($projectId);
 			$data['comments'] = $this->projects_model->get_project_comments($projectId);
@@ -177,6 +177,28 @@
 
 		public function get_project_against_business($businessId){
 			echo $this->projects_model->get_project_against_business($businessId);
+		}
+
+		public function get_projects_for_calender(){
+			echo $this->projects_model->get_json_projects();
+			exit;
+		}
+
+		public function update_project_date(){
+			$this->projects_model->update_project_from_calender();
+			return true;
+		}
+
+		public function get_for_calender($projectId){
+			$data['project_details'] = $this->projects_model->project_details($projectId);
+			$data['project_workers'] = $this->projects_model->project_workers($projectId);
+			$data['project_tasks'] = $this->Nested_Sets_Model->get_tasks_for_projects($projectId);
+			$data['comments'] = $this->projects_model->get_project_comments($projectId);
+			$data['hold_time'] = $this->projects_model->get_hold_time($projectId);
+			$data['project_time'] = $this->projects_model->get_full_project_time($projectId);
+			$data['title'] = 'Project Details';
+
+			$this->load->partial('partials/projects_calender_partial', $data);
 		}
 
 	}

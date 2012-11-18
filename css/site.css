@@ -66,6 +66,7 @@ li {
     display:inline-block;
 }
 
+.modal-body .fields .label,
 .sidebarSlider .content .fields .label {
     float: left;
     font-size: 12px;
@@ -79,7 +80,7 @@ li {
     background-color:#fff;
     color: #525252;
 }
-
+.modal-body .fields .value, 
 .sidebarSlider .content .fields .value {
     font-size: 12px;
     vertical-align: top;
@@ -91,6 +92,7 @@ li {
 
 }
 
+.modal-body .fields,
 .sidebarSlider .content .fields {
     -moz-transition-duration: 0.25s;
     -moz-transition-property: background-color;
@@ -99,6 +101,8 @@ li {
     padding:15px 0;
 }
 
+
+.modal-body .fields:after,
 .sidebarSlider .content .fields:after {
     clear: both;
     content: " ";
@@ -108,7 +112,7 @@ li {
     visibility: hidden;
     width: 0;
 }
-
+.modal-body .action-bar,
 .sidebarSlider .action-bar {
     background: none repeat scroll 0 0 #F3F3F3;
     border-top: 1px solid #DBDBDB;
@@ -864,4 +868,13 @@ th.headerSortUp {
 .dummyfile input[type="text"] {
    width: 120px;
    display: inline;
+}
+
+input.hexref {
+    width:75px;
+    margin-left:20px;
+}
+
+.taskstatuses .plusIconGrey {
+    cursor:pointer;
 }

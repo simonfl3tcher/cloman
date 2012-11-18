@@ -37,7 +37,7 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-$route['client/(:any)'] = 'client/(:any)';
+$route['client'] = 'client/dashboard';
 $route['default_controller'] = "pages/view";
 
 /* End of file routes.php */

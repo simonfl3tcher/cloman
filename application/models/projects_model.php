@@ -152,7 +152,7 @@
 			return $query->result_array();
 		}
 
-		public function project_deatils($id){
+		public function project_details($id){
 			$sql = "SELECT p.*, pt.name as project_type, st.name as status_name, u.*, uu.name as sales_name, uu.display_name as sales_display_name, b.name as business_name from projects as p
 				inner join users as u on u.user_id = p.manager_id
 				inner join users as uu on uu.user_id = p.sales_id
@@ -350,5 +350,32 @@ inner join people as po on po.people_id = btp.people_id
 where po.people_id = ?";
 			$query = $this->db->query($sql, $personID);
 			return $query->result_array();
+		}
+
+		public function get_json_projects(){
+			$sql ="SELECT  DATE_FORMAT(start_date, '%Y-%m-%dT%TZ') as start, DATE_FORMAT(internal_deadline, '%Y-%m-%dT%TZ') as end, project_id as id, project_name as title from projects where complete = 'N'";
+			$query = $this->db->query($sql);
+			$query = $query->result_array();
+			$count = 0;
+			foreach($query as $row){
+
+				foreach($row as $key => $value){
+					if($key == 'allDay'){
+						$query[$count][$key] = true;
+					}
+				}
+				$count++;
+			}
+			return json_encode($query);
+		}
+
+		public function update_project_from_calender(){
+			$data = array(
+				'start_date' => $_POST['startDate'],
+				'internal_deadline' => $_POST['endDate'],
+				'updated_by' => $this->session->userdata('user_id')
+			);
+			$this->db->where('project_id', $_POST['id']);
+			$this->db->update('projects', $data);
 		}
 	}

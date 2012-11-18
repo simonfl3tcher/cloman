@@ -5,11 +5,13 @@
 		public function __construct(){
 			parent::__construct();
 			$this->isAuthorised();
+			$this->load->model('task_model');
 		}
 
 		public function index(){
 			$data['title'] = ucfirst('Project Management');
-			$this->render_view('pages/management', $data);
+			$data['task_statuses'] = $this->task_model->get_list_of_status();
+			$this->render_view('management/home', $data);
 		}
 
 		public function show_tables(){
@@ -112,6 +114,13 @@
 
 			// Download the file to your desktop. Name it "my_backup.zip"
 			$this->zip->download('reason_backup.zip'); 
+		}
+
+		public function update_task_statuses(){
+			if($this->request->isPost()){
+				$this->task_model->update_task_statuses();
+				redirect('/management', 'refresh');
+			}
 		}
 	}
 

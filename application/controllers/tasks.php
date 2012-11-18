@@ -212,5 +212,26 @@
 			}
 		}
 
+		public function get_tasks_for_calender(){
+			echo $this->task_model->get_json_tasks();
+			exit;
+		}
+
+		public function update_task_date(){
+			$this->task_model->update_task_from_calender();
+			return true;
+		}
+
+		public function get_info($taskid){
+			$data['task_details'] = $this->task_model->get($taskid);
+			$data['worker_details'] = $this->task_model->worker_details($taskid);
+			$data['sub_tasks'] = $this->Nested_Sets_Model->get_nested_set($taskid);
+			$data['comments'] = $this->task_model->get_task_comments($taskid);
+			$data['total_task_time'] = $this->task_model->get_task_time($taskid);
+			$data['user_task_time'] = $this->task_model->get_task_time($taskid, $this->session->userdata('user_id'));
+			$data['get_current_pause_time'] = $this->task_model->get_task_pause_time($taskid, $this->session->userdata('user_id'));
+			$this->load->partial('partials/task_calender_partial', $data);
+		}
+
 	}
 ?>
