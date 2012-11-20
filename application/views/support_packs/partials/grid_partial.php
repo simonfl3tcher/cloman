@@ -4,7 +4,7 @@
     <li class="item g33">  
       <div class="inner">
         <div class="header">
-          <a href="<?php echo site_url(); ?>/support_packs/details/<?php echo $packs['support_packs_id']; ?>">
+          <a href="<?php echo site_url(); ?>support_packs/details/<?php echo $packs['support_packs_id']; ?>">
             <h2 title="<?php echo $packs['name']; ?>"><?php echo $packs['name']; ?></h2>
           </a>
         </div>

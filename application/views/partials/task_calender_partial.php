@@ -23,7 +23,7 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		      <a href="<?php echo site_url(); ?>/users/view/<?php echo $task_details->task_created_by; ?>"><?php echo $task_details->created_by; ?></a>
+		      <a href="<?php echo site_url(); ?>users/view/<?php echo $task_details->task_created_by; ?>"><?php echo $task_details->created_by; ?></a>
 		    </div>
 		</div>
 	</div>
@@ -60,7 +60,7 @@
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
 		    	<?php foreach($worker_details as $workers){ ?>
-					<a href="<?php echo site_url(); ?>/users/view/<?php echo $workers['user_id']; ?>"><?php echo $workers['name'] ?></a><br />
+					<a href="<?php echo site_url(); ?>users/view/<?php echo $workers['user_id']; ?>"><?php echo $workers['name'] ?></a><br />
 				<?php } ?>
 		    </div>
 		</div>

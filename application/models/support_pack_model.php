@@ -77,7 +77,8 @@ where sp.support_packs_id = ?";
 			$data = array(
 				'business_id' => $business_id, 
 				'support_pack_id' => $support_pack,
-				'renewal_date' => date('Y-m-d H:i:s', strtotime('+1 year'))
+				'renewal_date' => date('Y-m-d H:i:s', strtotime('+1 year')),
+				'notes' => $_POST['notes']
 			);
 			$this->db->insert('support_packs_to_businesses', $data);
 

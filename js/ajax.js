@@ -311,27 +311,35 @@ $(document).ready(function(){
 	});
 
 
-	$('.addingSupport').live('change', function(){
-		var d = 'data=' + $(this).val();
-		addAjaxloader($('.sidebarSlider'));
-		$.ajax({
-			url: '/support_packs/add_to_business/' + $(this).attr('data-id'),
-			type: 'POST',
-			dataType: 'json',
-			data: d
-		}).done(function(data){
-			var info = data;
-			setTimeout(function(){
-				removeAjaxloader($('.sidebarSlider'), 100);
-				$('.addSupportPack.crossIconGrey').trigger('click');
-				$('.display.v2.supportPacks').html('');
-				var options = '';
-				for(var i = 0; i < info.length; i++){
-					options += info[i].name + '<br />';
-				}
-				$('.display.v2.supportPacks').append(options);
-			},1000);
-		});
+	$('.addingSup #supportComment.comm').live('keypress', function(e){
+		if(e.which == 13 && !e.shiftKey){
+			console.log('dfsdfds');
+			var d = 'notes=' + $(this).val();
+			d += '&data=' + $('.addingSup .addingSupport').val();
+			addAjaxloader($('.sidebarSlider'));
+			$.ajax({
+				url: '/support_packs/add_to_business/' + $('.addingSup .addingSupport').attr('data-id'),
+				type: 'POST',
+				dataType: 'json',
+				data: d
+			}).done(function(data){
+				console.log('sdfsd');
+				$('.addingSup #supportComment.comm').val('');
+				$('.addingSup #supportComment.comm').blur();
+				var info = data;
+				setTimeout(function(){
+					removeAjaxloader($('.sidebarSlider'), 100);
+					$('.addSupportPack.crossIconGrey').trigger('click');
+					$('.display.v2.supportPacks').html('');
+					var options = '';
+					for(var i = 0; i < info.length; i++){
+						options += info[i].name + '<br />';
+					}
+					$('.display.v2.supportPacks').append(options);
+					
+				},1000);
+			});
+		}
 	});
 
 	$('.timesheetProjectSelector').live('change', function(){

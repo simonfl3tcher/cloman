@@ -1,6 +1,6 @@
-<a href="<?php echo site_url(); ?>/support_packs">Support Packs</a>
-<a href="<?php echo site_url(); ?>/management/import">Import</a>
-<a href="<?php echo site_url(); ?>/management/export">Export</a>
+<a href="<?php echo site_url(); ?>support_packs">Support Packs</a>
+<a href="<?php echo site_url(); ?>management/import">Import</a>
+<a href="<?php echo site_url(); ?>management/export">Export</a>
 <br /><br />
  <ul class="nav nav-tabs">
     <li class="active"><a href="#taskstatuses" data-toggle="tab">Task Statuses</a></li>
@@ -22,7 +22,7 @@
 		</div>
 		<div class="tab-pane" id="employees">
 			<div class="formContainer">
-				<form action="<?php echo site_url(); ?>/management/update_users_color" method="post" class="taskstatuses">
+				<form action="<?php echo site_url(); ?>management/update_users_color" method="post" class="taskstatuses">
 					<?php foreach($employee_list as $employees){ ?>
 						<div class="employeeSpan"><?php echo $employees['name']; ?></div><span><input type="text" name="<?php echo $employees['user_id']; ?>[color]" value="<?php echo $employees['color']; ?>" class="hexref"/></span><br />
 					<?php } ?>
@@ -32,7 +32,7 @@
 
 			<div class="formConatinerRight">
 				<h2>Add Employee</h2>
-				<form action="<?php echo site_url(); ?>/management/add_employee" method="post" class="taskstatuses">
+				<form action="<?php echo site_url(); ?>management/add_employee" method="post" class="taskstatuses">
 					<label>Name</label>
 					<input name="name" type="text" placeholder="Name" />
 					<label>Email Address</label>

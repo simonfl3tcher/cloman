@@ -45,7 +45,7 @@
 		    <div class="display v2">
 		    	<?php if(!empty($contact_details)){ ?>
 			    	<?php foreach($contact_details as $bd){ ?>
-						<a href="<?php echo site_url(); ?>/contacts/view/<?php echo $bd['people_id']; ?>"><?php echo $bd['name'] ?></a><br />
+						<a href="<?php echo site_url(); ?>contacts/view/<?php echo $bd['people_id']; ?>"><?php echo $bd['name'] ?></a><br />
 					<?php } ?>
 				<?php } else { 
 					echo 'No Contacts';
@@ -89,10 +89,13 @@
         			} ?>
         	</div>
 		    <div class="display v2">
-		    	<span class="addSupportPack icon plusIconGrey"></span>
-		    	<span>
+		    	<span class="addingSup">
+		    		<br />
 					<?php $js = 'class="addingSupport" data-id="' . $business_details->business_id . '"'; ?>
 					<?php echo form_dropdown('business[Support_Pack]', $pack_options, '', $js); ?>
+					<input type="text" name="date" class="datepicker" id="recuringDate" />
+					<span><input type="checkbox" name="recurring" class="recurring" /><lable>Recurring?</label></span>
+					<textarea id="supportComment" class="comm"></textarea>
 				</span>
 		    </div>
 		</div>

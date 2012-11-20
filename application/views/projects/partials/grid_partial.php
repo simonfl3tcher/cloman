@@ -4,7 +4,7 @@
     <li class="item g33">  
       <div class="inner">
         <div class="header">
-          <a href="<?php echo site_url(); ?>/projects/details/<?php echo $project['project_id']; ?>">
+          <a href="<?php echo site_url(); ?>projects/details/<?php echo $project['project_id']; ?>">
             <h2 title="<?php echo $project['name']; ?>"><?php echo $project['name']; ?></h2>
           </a>
           <div class="comment-count badge text-bold">

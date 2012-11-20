@@ -791,9 +791,6 @@ body:not([class*=""]) li:before {
     color:red;
 }
 
-.addingSupport {
-    display: none;
-}
 
 .dateSeperator {
     background-color: #FCF953;

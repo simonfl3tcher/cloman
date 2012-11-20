@@ -57,7 +57,7 @@
 		    <div class="display v2">
 		    	
 		    	<?php foreach($business_details as $bd){ ?>
-					<a href="<?php echo site_url(); ?>/businesses/view/<?php echo $bd['business_id']; ?>"><?php echo $bd['name'] ?></a><br />
+					<a href="<?php echo site_url(); ?>businesses/view/<?php echo $bd['business_id']; ?>"><?php echo $bd['name'] ?></a><br />
 				<?php } ?>
 		    </div>
 		</div>
