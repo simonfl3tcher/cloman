@@ -36,7 +36,7 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		    	<a href="/users/view/<?php echo $project_details->user_id; ?>"><?php echo $project_details->name; ?></a>
+		    	<a href="<?php echo site_url(); ?>/users/view/<?php echo $project_details->user_id; ?>"><?php echo $project_details->name; ?></a>
 		    </div>
 		</div>
 	</div>
@@ -49,7 +49,7 @@
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
 		    	<?php foreach($project_workers as $workers){ ?>
-					<a href="/users/view/<?php echo $workers['user_id']; ?>"><?php echo $workers['name'] ?></a><br />
+					<a href="<?php echo site_url(); ?>/users/view/<?php echo $workers['user_id']; ?>"><?php echo $workers['name'] ?></a><br />
 				<?php } ?>
 		    </div>
 		</div>

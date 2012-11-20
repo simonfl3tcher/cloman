@@ -1,7 +1,4 @@
 	<div class="action-bar">
-		<?php if($task_details->complete == 'N'){ ?>
-			<div class="tasks-add" data-parentTask="<?php echo $task_details->task_id; ?>">SubClass</div>
-		<?php } ?>
 		<span>Start:- <?php echo date('d-M-Y', strtotime($task_details->start_date)); ?> </span>
 		<span>Internal:- <?php echo date('d-M-Y', strtotime($task_details->internal_deadline)); ?></span>
 		<span>Deadline:- <?php echo date('d-M-Y', strtotime($task_details->client_deadline)); ?></span>
@@ -26,7 +23,7 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
-		      <a href="/users/view/<?php echo $task_details->task_created_by; ?>"><?php echo $task_details->created_by; ?></a>
+		      <a href="<?php echo site_url(); ?>/users/view/<?php echo $task_details->task_created_by; ?>"><?php echo $task_details->created_by; ?></a>
 		    </div>
 		</div>
 	</div>
@@ -63,7 +60,7 @@
         <div data-field-type="text" class="value field-type-text">    
 		    <div class="display v2">
 		    	<?php foreach($worker_details as $workers){ ?>
-					<a href="/users/view/<?php echo $workers['user_id']; ?>"><?php echo $workers['name'] ?></a><br />
+					<a href="<?php echo site_url(); ?>/users/view/<?php echo $workers['user_id']; ?>"><?php echo $workers['name'] ?></a><br />
 				<?php } ?>
 		    </div>
 		</div>

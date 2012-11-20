@@ -45,7 +45,7 @@
 		    <div class="display v2">
 		    	<?php if(!empty($contact_details)){ ?>
 			    	<?php foreach($contact_details as $bd){ ?>
-						<a href="/contacts/view/<?php echo $bd['people_id']; ?>"><?php echo $bd['name'] ?></a><br />
+						<a href="<?php echo site_url(); ?>/contacts/view/<?php echo $bd['people_id']; ?>"><?php echo $bd['name'] ?></a><br />
 					<?php } ?>
 				<?php } else { 
 					echo 'No Contacts';

@@ -878,3 +878,16 @@ input.hexref {
 .taskstatuses .plusIconGrey {
     cursor:pointer;
 }
+
+.employeeSpan {
+    width:200px;
+    display:inline-block;
+}
+
+.formContainer {
+    float:left;
+}
+
+.formConatinerRight {
+    float:right;
+}

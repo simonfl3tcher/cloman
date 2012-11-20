@@ -72,15 +72,18 @@
 		}
 
 		public function get_json_meetings(){
-			$sql ="SELECT  DATE_FORMAT(start, '%Y-%m-%dT%TZ') as start, DATE_FORMAT(end, '%Y-%m-%dT%TZ') as end, who, meeting_id as id, name as title, color as backgroundColor, color as borderColor, true as allDay from meetings ";
+			$sql ="SELECT  DATE_FORMAT(start, '%Y-%m-%dT%TZ') as start, DATE_FORMAT(end, '%Y-%m-%dT%TZ') as end, who, meeting_id as id, name as title, color as backgroundColor, color as borderColor, all_day as allDay from meetings ";
 			$query = $this->db->query($sql);
 			$query = $query->result_array();
 			$count = 0;
+
 			foreach($query as $row){
 
 				foreach($row as $key => $value){
-					if($key == 'allDay'){
+					if($key == 'allDay' && $value == 0){
 						$query[$count][$key] = false;
+					} else if($key == 'allDay' && $value == 1){
+						$query[$count][$key] = true;
 					}
 				}
 				$count++;

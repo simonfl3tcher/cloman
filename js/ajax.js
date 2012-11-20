@@ -566,8 +566,8 @@ $(document).ready(function(){
 			type: 'POST',
 			data: data,
 			success: function(data){
-				console.log('put reload back in');
-				//window.location.reload();
+				
+				 window.location.reload();
 			},
 			error: function(data){
 				console.log(data);
