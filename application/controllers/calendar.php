@@ -15,13 +15,18 @@
 		}
 
 		public function projects(){
-			$data['title'] = 'Project Calender';
+			$data['title'] = 'Project Calendar';
 			$this->render_view('planners/projects', $data);
 		}
 
 		public function tasks(){
-			$data['title'] = 'Task Calender';
+			$data['title'] = 'Task Calendar';
 			$this->render_view('planners/tasks', $data);
+		}
+
+		public function employees(){
+			$data['title'] = 'Task Calendar';
+			$this->render_view('planners/employees', $data);
 		}
 	}
 ?>

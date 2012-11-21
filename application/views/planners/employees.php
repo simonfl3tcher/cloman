@@ -60,7 +60,7 @@
 							end: end,
 							allDay: allDay
 						},
-						false // make the event "stick"
+						true // make the event "stick"
 					);
 				}
 				calendar.fullCalendar('unselect');

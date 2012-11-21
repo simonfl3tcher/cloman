@@ -6,11 +6,13 @@
 			parent::__construct();
 			$this->isAuthorised();
 			$this->load->model('task_model');
+			$this->load->model('management_model');
 		}
 
 		public function index(){
 			$data['title'] = ucfirst('Project Management');
 			$data['task_statuses'] = $this->task_model->get_list_of_status();
+			$data['employee_list'] = $this->management_model->get();
 			$this->render_view('management/home', $data);
 		}
 
@@ -119,6 +121,20 @@
 		public function update_task_statuses(){
 			if($this->request->isPost()){
 				$this->task_model->update_task_statuses();
+				redirect('/management', 'refresh');
+			}
+		}
+
+		public function update_users_color(){
+			if($this->request->isPost()){
+				$this->management_model->update_users_color();
+				redirect('/management', 'refresh');
+			}
+		}
+
+		public function add_employee(){
+			if($this->request->isPost()){
+				$this->management_model->add_employee();
 				redirect('/management', 'refresh');
 			}
 		}

@@ -791,9 +791,6 @@ body:not([class*=""]) li:before {
     color:red;
 }
 
-.addingSupport {
-    display: none;
-}
 
 .dateSeperator {
     background-color: #FCF953;
@@ -877,4 +874,17 @@ input.hexref {
 
 .taskstatuses .plusIconGrey {
     cursor:pointer;
+}
+
+.employeeSpan {
+    width:200px;
+    display:inline-block;
+}
+
+.formContainer {
+    float:left;
+}
+
+.formConatinerRight {
+    float:right;
 }

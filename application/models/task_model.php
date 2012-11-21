@@ -426,7 +426,7 @@ task_id as id,
 t.name as title,
 st.color as backgroundColor, st.color as borderColor
 from tasks as t
-inner join status_table as st on st.`status_id` = t.`status_id`
+left join status_table as st on st.`status_id` = t.`status_id`
 where complete = 'N'";
 			$query = $this->db->query($sql);
 			$query = $query->result_array();
