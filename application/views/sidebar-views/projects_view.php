@@ -124,6 +124,7 @@
 	<ul class="nav nav-tabs">
 	    <li class="active"><a href="#comments" data-toggle="tab">Comments</a></li>
 	    <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
+	    <li><a href="#concepts" data-toggle="tab">Concepts</a></li>
     </ul>
 
     <div class="tab-content">
@@ -161,5 +162,15 @@
 				There are no tasks against this project.
 			<?php } ?>
     	</div>
+
+	    <div class="tab-pane" id="concepts">
+	    	<ul>
+	    	<?php foreach($concepts as $c){ ?>
+	    		<li><?php echo $c['name']; ?></li>
+	    	<?php } ?>
+	    </ul>
+	    	<button class="btn btn-primary" id="concept">Add Concept</a>
+	    </div>
     </div>
+
 

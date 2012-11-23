@@ -14,3 +14,5 @@
 <span class="boxes-add util-button-new first"><span class="project"></span></span>
 <?php $this->load->partial('projects/partials/add_project_partial.php');  ?>
 <br />
+
+<?php $this->load->partial('templates/concepts_modal.php'); ?>

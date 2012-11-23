@@ -8,6 +8,18 @@ $(document).ready(function(){
 		});
 	});
 
+	$('#concept').live('click', function(e){
+		e.preventDefault();
+		$('#concepts-modal').modal({
+			backdrop:true,
+			keyboard: true
+		});
+	});
+
+	$('#addAnotherConceptImage').live('click', function(){
+		console.log('clicked');
+	});
+	
 	$('#fileselectbutton').click(function(e){
 		$('#file').trigger('click');
 		});

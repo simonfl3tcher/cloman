@@ -378,4 +378,12 @@ where po.people_id = ?";
 			$this->db->where('project_id', $_POST['id']);
 			$this->db->update('projects', $data);
 		}
+
+		public function get_concepts($project_id){
+			$this->db->select('*');
+			$this->db->from('concepts');
+			$this->db->where('project_id', $project_id);
+			$query = $this->db->get();
+			return $query->result_array();
+		}
 	}
