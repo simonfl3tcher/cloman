@@ -11,7 +11,7 @@
 		public function index(){
 			$data['title'] = 'Client Dashboard';
 			$data['projects'] = $this->projects_model->get_projects_to_person($this->session->userdata('people_id'));
-			$this->render_client_view('dashboard', $data);
+			$this->render_client_view('client/dashboard2', $data, true);
 		}
 	}
 ?>
