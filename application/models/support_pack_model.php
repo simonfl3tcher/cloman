@@ -78,7 +78,9 @@ where sp.support_packs_id = ?";
 				'business_id' => $business_id, 
 				'support_pack_id' => $support_pack,
 				'renewal_date' => date('Y-m-d H:i:s', strtotime('+1 year')),
-				'notes' => $_POST['notes']
+				'notes' => $_POST['notes'],
+				'task_per_month' => date('Y-m-d H:i:s', strtotime($_POST['date'])),
+				'recursive' => $_POST['recurring']
 			);
 			$this->db->insert('support_packs_to_businesses', $data);
 

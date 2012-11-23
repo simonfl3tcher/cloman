@@ -315,7 +315,7 @@ $(document).ready(function(){
 		if(e.which == 13 && !e.shiftKey){
 			console.log('dfsdfds');
 			var d = 'notes=' + $(this).val();
-			d += '&data=' + $('.addingSup .addingSupport').val();
+			d += '&data=' + $('.addingSup .addingSupport').val() + '&date=' + $('.addingSup #recuringDate').val() + '&recurring=' + $('.addingSup .recurring');
 			addAjaxloader($('.sidebarSlider'));
 			$.ajax({
 				url: '/support_packs/add_to_business/' + $('.addingSup .addingSupport').attr('data-id'),

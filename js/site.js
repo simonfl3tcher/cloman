@@ -193,6 +193,10 @@ $(document).ready(function(){
 	$('.datepicker').datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
 	$('.datepickerFull').datepicker({dateFormat: "dd-mm-yy"});
 	$('.datepicker-small').datepicker({dateFormat: "dd-mm-yy"});
+
+	$('.datepicker').live('click', function(){
+		$(this).datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
+	});
 	
 	var myDate = new Date();
     var month = myDate.getMonth() + 1;
@@ -214,14 +218,6 @@ $(document).ready(function(){
 	$('.commContainer li').live('mouseleave', function(){
 		 $('.removeComment', $(this)).stop(true, true).animate({opacity:0},1000);
 	});
-
-	// $('.time-counter').timer();
-
-  	// $(".editable-row").live("click", function(){
-  	// 	$('.editable', $(this)).each(function(){
-	  // 		replaceHTML(this);
-  	// 	});
-  	// });
 
 
   	$('.addSupportPack.plusIconGrey').live('click', function(){
