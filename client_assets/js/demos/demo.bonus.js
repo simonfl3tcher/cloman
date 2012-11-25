@@ -51,5 +51,64 @@ $(function () {
 		  }
 		});
 	});
+
+
+
+	$('.gallery-container > li').hoverIntent({
+		over: showPreview,
+	     timeout: 500,
+	     out: hidePreview,
+	     sensitivity: 4
+	});
 	
+	function showPreview () {
+		$(this).find ('.preview').fadeIn ();
+	}
+	
+	function hidePreview () {
+		$(this).find ('.preview').fadeOut ();
+	}
+	
+	setTimeout (function () {
+		$('.gallery-container > li').each (function () {
+			var preview, img, width, height;
+			
+			preview = $(this).find ('.preview');
+			img = $(this).find ('img');
+			
+			width = img.width ();
+			height = img.height ();
+			
+			preview.css ({ width: width });
+			preview.css ({ height: height });
+			
+			preview.addClass ('ui-lightbox');
+		});
+	}, 500);
+
+	$('.commentForm input').bind('click', function(e){
+		e.preventDefault();
+		var form = $(e.target).closest('.commentForm');
+		var data = 'comment=' + $('textarea', form).val() + '&concept=' + form.attr('data-concept');
+		$.ajax({
+			url: form.attr('action'),
+			type: 'POST',
+			dataType: 'html',
+			data: data
+		}).done(function(data){
+			$('.commentForm textarea').val('').empty();;
+			$('.commentsUl').val('').empty();
+			$('.commentsUl').html(data);
+		});
+	});
+
+	$('.conceptList').bind('click', function(e){
+		$.ajax({
+			url: '/concepts/client_seen/' + $(this).attr('data-concept'),
+			type: 'POST',
+			dataType: 'html'
+		}).done(function(data){
+			$('.comCount', $(e.target)).fadeOut('slow');
+		});
+	});
 });

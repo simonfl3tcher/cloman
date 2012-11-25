@@ -22,7 +22,7 @@
 			} 
 			if(!$this->session->userdata('Client_Logged_In')){
 				$data['title'] = 'Login Page';
-				$this->render_client_view('login/index', $data);
+				$this->render_client_view('client/login', $data, true);
 			} else {
 				redirect('/client', 'refresh');
 			}

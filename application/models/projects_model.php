@@ -386,4 +386,56 @@ where po.people_id = ?";
 			$query = $this->db->get();
 			return $query->result_array();
 		}
+
+		public function get_concept_data($id){
+			$sql = "SELECT c.*, (SELECT Count(*) FROM concept_comments as cc WHERE customer_seen='N' and cc.concept_id = c.concept_id and who = 'A') as commentCount from concepts as c
+where c.project_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return $query->result_array();
+		}
+
+		public function add_comment_to_concept(){
+			$data = array(
+				'concept_id' => $_POST['concept'],
+				'comment' => $_POST['comment'],
+				'date' => date("Y-m-d H:i:s", strtotime('now'))
+			);
+
+			if($this->session->userdata('Client_Logged_In') == true){
+				$data['who'] = 'C';
+				$data['who_id'] = $this->session->userdata('people_id');
+				$data['customer_seen'] = 'Y';
+			} else {
+				$data['who'] = 'A';
+				$data['who_id'] = $this->session->userdata('user_id');
+				$data['admin_seen'] = 'Y';
+			}
+			$this->db->insert('concept_comments', $data);
+		}
+
+		public function get_comments($id){
+			$this->db->select('*');
+			$this->db->from('concept_comments');
+			$this->db->join('users', 'users.user_id = concept_comments.who_id', 'left');
+			$this->db->where('concept_id', $id);
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function customer_comment_count($personID){
+			$sql = "SELECT p.* from projects  as p
+inner join business_to_people as btp on btp.business_id = p.business_id
+inner join people as po on po.people_id = btp.people_id
+where po.people_id = ?";
+			$query = $this->db->query($sql, $personID);
+			return $query->row_array();
+		}
+
+		public function client_seen($id){
+			$data = array(
+				'customer_seen' => 'Y'
+			);
+			$this->db->where('concept_id', $id);
+			$this->db->update('concept_comments', $data);
+		}
 	}

@@ -79,9 +79,9 @@ class CI_Controller {
 		if($noInclude == true){
 			$this->load->view($path, $data);
 		} else {
-			$this->load->view('templates/header', $data);
+			$this->load->view('client/header', $data);
 			$this->load->view('client/' . $path, $data);
-			$this->load->view('templates/footer');
+			$this->load->view('client/footer');
 		}
 	}
 
