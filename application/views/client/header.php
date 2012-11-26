@@ -48,7 +48,7 @@
 			
 			<ul class="pull-right">
 				<li class="grey"><i class="icon-user"></i> Logged in as <?php echo $user_data['name']; ?></li>
-				<li class="grey"><span class="badge badge-primary"><?php echo 1; ?></span> New Comment</li>
+				<?php if($comment_full_count['c'] > 0){ ?><li class="grey"><span class="badge badge-primary"><?php echo $comment_full_count['c']; ?></span> New Comments</li><?php } ?>
 				<li><a href="<?php echo site_url('client/logout'); ?>">Logout</a></li>
 			</ul>
 			
@@ -89,7 +89,7 @@
 				
 					<ul class="dropdown-menu">
 						<?php foreach($projects as $project){ ?>
-							<li><a href="<?php echo site_url('client/project/' . $project['project_id']); ?>"><?php echo $project['project_name']; ?></a></li>
+							<li><a href="<?php echo site_url('client/project/' . $project['project_id']); ?>"><?php echo $project['project_name']; ?><?php if($project['comment_count'] > 0) { echo ' <span class="badge badge-primary">' . $project['comment_count'] . '</span>'; } ?></a></li>
 						<?php } ?>
 					</ul>    				
 				</li>
@@ -142,7 +142,11 @@
 			
 			<div class="masthead-text">
 				<h2>Hello <?php echo $user_data['name']; ?></h2>
-				<p>You are currently working on 4 projects, with 23 total tasks.</p>
+				<?php if($comment_full_count['c'] > 0) { ?>
+					<p>You are currently have <?php echo $comment_full_count['c']; ?> comments against your concepts.</p>
+				<?php } else { ?>
+					<p>You don't have any comments against your concepts</p>
+				<?php } ?>
 			</div> <!-- /.masthead-text -->
 			
 		</div>

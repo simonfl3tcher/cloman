@@ -21,15 +21,34 @@
 			$data['title'] = 'Project Overview | Logic Client';
 			$data['project_details'] = $this->projects_model->project_details($id);
 			$data['projects'] = $this->projects_model->get_projects_to_person($this->session->userdata('people_id'));
+			
+			$count = 0;
+			foreach($data['projects'] as $proj){
+				$c = $this->projects_model->get_comment_count($proj['project_id']);
+				$data['projects'][$count]['comment_count'] = $c['count'];
+				$count++;
+			}
+
 			$data['concepts'] = $this->projects_model->get_concept_data($id);
+			$data['comment_full_count'] = $this->projects_model->customer_full_count();
 			$count = 0;
 			foreach($data['concepts'] as $con){
 				$data['concepts'][$count]['comms'] = $this->projects_model->get_comments($con['concept_id']);
+				$data['concepts'][$count]['images'] = explode('|', $con['images']);
 				$count++;
+
 			}
 			$data['user_data'] = $this->people_model->get($this->session->userdata('people_id'));
 			$this->render_client_view('project', $data);
 		}
+
+		public function preview($projectId, $image){
+			$data['url'] = $_SERVER['HTTP_REFERER'];
+			$data['project'] = $projectId;
+			$data['image'] = $image;
+			$this->render_client_view('client/preview', $data, true);
+		}
+
 	}
 
 ?>

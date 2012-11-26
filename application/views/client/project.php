@@ -34,75 +34,14 @@
 					<br />
 					<p><?php echo $con['notes']; ?></p>
 					<div class="gallery-container">
+						<?php foreach($con['images'] as $img){ ?>
 						<li>
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr1_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr1.png" alt="" />
+							<a href="<?php echo site_url(); ?>client/project/preview/<?php echo $con['project_id']; ?>/<?php echo $img; ?>" >
+								<img src="<?php echo site_url(); ?>uploads/concepts/<?php echo $con['project_id']; ?>/<?php echo $img; ?>" alt="" />
 							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr1_large.png" class="preview"></a>
+							<a href="<?php echo site_url(); ?>client/project/preview/<?php echo $con['project_id']; ?>/<?php echo $img; ?>"></a>
 						</li>
-
-						<li>
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr1_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr1.png" alt="" />
-							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr1_large.png" class="preview"></a>
-						</li>
-
-						<li>
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr1_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr1.png" alt="" />
-							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr1_large.png" class="preview"></a>
-						</li>
-						
-						<li>
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr2_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr2.png" alt="" />
-							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr2_large.png" class="preview"></a>
-						</li>
-						
-						<li>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr3_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr3.png" alt="" />
-							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr3_large.png" class="preview"></a>
-						</li>
-						
-						<li>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr4_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr4.png" alt="" />
-							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr4_large.png" class="preview"></a>
-						</li>
-						
-						<li>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr5_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr5.png" alt="" />
-							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr5_large.png" class="preview"></a>
-							
-						</li>
-						
-						<li>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr2_large.png" class="ui-lightbox">
-								<img src="<?php echo site_url(); ?>client_assets/img/gallery/lr2.png" alt="" />
-							</a>
-							
-							<a href="<?php echo site_url(); ?>client_assets/img/gallery/lr2_large.png" class="preview"></a>
-							<a target="_blank" href="http://www.google.com"><small>Preview In Browser</small></a>
-						</li>
+						<?php } ?>
 					</div>
 
 					<div class="commentsArea">

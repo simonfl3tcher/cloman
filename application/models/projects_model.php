@@ -388,7 +388,7 @@ where po.people_id = ?";
 		}
 
 		public function get_concept_data($id){
-			$sql = "SELECT c.*, (SELECT Count(*) FROM concept_comments as cc WHERE customer_seen='N' and cc.concept_id = c.concept_id and who = 'A') as commentCount from concepts as c
+			$sql = "SELECT c.*, (SELECT Count(*) FROM concept_comments as cc WHERE customer_seen='N' and cc.concept_id = c.concept_id and who = 'C') as commentCount from concepts as c
 where c.project_id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->result_array();
@@ -422,6 +422,13 @@ where c.project_id = ?";
 			return $query->result_array();
 		}
 
+		public function customer_full_count(){
+			$sql = "SELECT count(*) as c from concept_comments as cc
+where who = 'C' and who_id = ? and customer_seen = 'N'";
+			$query = $this->db->query($sql, array($this->session->userdata('people_id')));
+			return $query->row_array();
+		}
+
 		public function customer_comment_count($personID){
 			$sql = "SELECT p.* from projects  as p
 inner join business_to_people as btp on btp.business_id = p.business_id
@@ -437,5 +444,13 @@ where po.people_id = ?";
 			);
 			$this->db->where('concept_id', $id);
 			$this->db->update('concept_comments', $data);
+		}
+
+		public function get_comment_count($id){
+			$sql = "SELECT count(*) as count from concepts as c 
+inner join concept_comments as cc on cc.concept_id = c.concept_id
+where c.project_id = ? and cc.customer_seen = 'N' and cc.who = 'C' and cc.who_id = ?";
+			$query = $this->db->query($sql, array($id, $this->session->userdata('people_id')));
+			return $query->row_array();
 		}
 	}

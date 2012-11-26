@@ -1,9 +1,9 @@
 -- --------------------------------------------------------
--- Host:                         localhost
--- Server version:               5.5.16 - MySQL Community Server (GPL)
--- Server OS:                    Win32
+-- Host:                         
+-- Server version:               5.5.24-log - MySQL Community Server (GPL)
+-- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-11-25 16:31:24
+-- Date/time:                    2012-11-26 19:14:04
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -60,6 +60,24 @@ INSERT INTO `address` (`Address_ID`, `Address_Line_1`, `Address_Line_2`, `Addres
 	(25, '2 Gelbe House', 'Woolpit', 'Suffolk', 'Stowmarket', 'England', 'IP30 9TY'),
 	(26, '', '', '', '', '', '');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.admin
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `Admin_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Email_Address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`Admin_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.admin: ~1 rows (approximately)
+DELETE FROM `admin`;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`Admin_ID`, `Email_Address`, `Username`, `Password`) VALUES
+	(1, 'simon@logicdesign.co.uk', 'simon-fletcher', 'b71685ea71d2cb978152d17bcaac97761f533325');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.businesses
@@ -151,6 +169,47 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
 
 
+-- Dumping structure for table my.company.casestudies
+DROP TABLE IF EXISTS `casestudies`;
+CREATE TABLE IF NOT EXISTS `casestudies` (
+  `Casestudy_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `User_ID` int(10) DEFAULT NULL,
+  `Injury_Name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Breed` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Age` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Sex` enum('F','M') COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Case_Submitted_By` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Wound_Age` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Wound_Location` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Wound_Size` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Tissue_Status` int(10) DEFAULT NULL,
+  `Date_Of_First_Presentation` date DEFAULT NULL,
+  `Advice_On_Application` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
+  `Interventions_Used` text COLLATE utf8_unicode_ci,
+  `Infected_Wound` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
+  `Wound_Treated_Prior` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
+  `Image` text COLLATE utf8_unicode_ci,
+  `Initial_Dressing_ID` int(10) DEFAULT NULL,
+  `Prior_Treatment` text COLLATE utf8_unicode_ci,
+  `Management_Plan` text COLLATE utf8_unicode_ci NOT NULL,
+  `Presentation_Of_Wound` text COLLATE utf8_unicode_ci,
+  `Outcome` text COLLATE utf8_unicode_ci,
+  `Admin_Status` enum('0','1') COLLATE utf8_unicode_ci DEFAULT '0',
+  `Customer_Status` enum('0','1','2') COLLATE utf8_unicode_ci DEFAULT '0',
+  PRIMARY KEY (`Casestudy_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.casestudies: ~4 rows (approximately)
+DELETE FROM `casestudies`;
+/*!40000 ALTER TABLE `casestudies` DISABLE KEYS */;
+INSERT INTO `casestudies` (`Casestudy_ID`, `User_ID`, `Injury_Name`, `Breed`, `Age`, `Sex`, `Case_Submitted_By`, `Wound_Age`, `Wound_Location`, `Wound_Size`, `Tissue_Status`, `Date_Of_First_Presentation`, `Advice_On_Application`, `Interventions_Used`, `Infected_Wound`, `Wound_Treated_Prior`, `Image`, `Initial_Dressing_ID`, `Prior_Treatment`, `Management_Plan`, `Presentation_Of_Wound`, `Outcome`, `Admin_Status`, `Customer_Status`) VALUES
+	(1, 5, 'Wounded Leg (Gash)', '', '', 'M', '', 'M', 'M', 'M', 0, '2012-11-22', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'N', 'N', '', 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '1'),
+	(6, 5, 'Wounded Leg', 'Stallion', '28', 'M', 'Simon Fletcher', '7 weeks', 'Knee', '10x50', 1, '2012-11-14', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Y', 'Y', 'me13.jpg|T_M_Homepage_Image2.jpg|me9.jpg', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '0', '0'),
+	(7, 5, 'Testing Injury', 'Testing', '78', 'M', 'Simon', '78', 'Knee', '12x85', 1, '2012-11-23', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Y', 'Y', 'me14.jpg|inflatable-bilboards1.jpg|clever-banner.png', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '0', '1'),
+	(8, 5, 'Testing Injury', 'Testing', '78', 'M', 'Simon', '78', 'Knee', '12x85', 1, '2012-11-23', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Y', 'Y', 'me14.jpg|inflatable-bilboards1.jpg|clever-banner.png', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '1', '1');
+/*!40000 ALTER TABLE `casestudies` ENABLE KEYS */;
+
+
 -- Dumping structure for table my.company.chat
 DROP TABLE IF EXISTS `chat`;
 CREATE TABLE IF NOT EXISTS `chat` (
@@ -185,9 +244,9 @@ CREATE TABLE IF NOT EXISTS `concepts` (
 DELETE FROM `concepts`;
 /*!40000 ALTER TABLE `concepts` DISABLE KEYS */;
 INSERT INTO `concepts` (`concept_id`, `project_id`, `name`, `notes`, `date`, `images`) VALUES
-	(1, 11, 'Initial Concepts', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-10 17:13:00', NULL),
-	(2, 11, 'Concept Revisions', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-15 17:03:02', NULL),
-	(3, 11, 'Finals', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-24 17:13:52', NULL);
+	(1, 11, 'Initial Concepts', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-10 17:13:00', 'Maranello_CLIENTS_3.jpg|Maranello_HOME.jpg'),
+	(2, 11, 'Concept Revisions', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-15 17:03:02', 'Maranello_CLIENTS_3.jpg|Maranello_HOME.jpg'),
+	(3, 11, 'Finals', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-24 17:13:52', 'Maranello_CLIENTS_3.jpg|Maranello_HOME.jpg');
 /*!40000 ALTER TABLE `concepts` ENABLE KEYS */;
 
 
@@ -203,9 +262,9 @@ CREATE TABLE IF NOT EXISTS `concept_comments` (
   `customer_seen` enum('Y','N') DEFAULT 'N',
   `admin_seen` enum('Y','N') DEFAULT 'N',
   PRIMARY KEY (`concept_comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Dumping data for table my.company.concept_comments: 25 rows
+-- Dumping data for table my.company.concept_comments: 26 rows
 DELETE FROM `concept_comments`;
 /*!40000 ALTER TABLE `concept_comments` DISABLE KEYS */;
 INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_id`, `comment`, `date`, `customer_seen`, `admin_seen`) VALUES
@@ -233,7 +292,12 @@ INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_
 	(22, 2, 'C', 44, 'sdfdsfsd', '2012-11-25 16:56:34', 'Y', 'N'),
 	(23, 2, 'C', 44, 'dfdsfdsfs', '2012-11-25 16:56:36', 'Y', 'N'),
 	(24, 3, 'C', 44, 'This is the first comment please see it working!!\n', '2012-11-25 17:07:42', 'Y', 'N'),
-	(25, 3, 'A', 1, 'This is the first comment please see it working!! by the admin\n', '2012-11-25 17:09:42', 'Y', 'Y');
+	(25, 3, 'A', 1, 'This is the first comment please see it working!! by the admin\n', '2012-11-25 17:09:42', 'Y', 'Y'),
+	(26, 3, 'C', 44, 'hello\n', '2012-11-26 13:49:13', 'Y', 'N'),
+	(27, 1, 'C', 44, 'i like that', '2012-11-26 19:12:00', 'Y', 'N'),
+	(28, 2, 'C', 44, 'thats nice', '2012-11-26 19:12:14', 'Y', 'N'),
+	(29, 3, 'C', 44, 'good', '2012-11-26 19:12:21', 'Y', 'N'),
+	(30, 1, 'C', 44, 'just one thing can i have my logo bigger? you cunt', '2012-11-26 19:12:41', 'Y', 'N');
 /*!40000 ALTER TABLE `concept_comments` ENABLE KEYS */;
 
 
@@ -306,6 +370,89 @@ INSERT INTO `connection_options` (`connection_options_id`, `name`) VALUES
 	(12, 'Moose'),
 	(13, 'Sagepay Live Account');
 /*!40000 ALTER TABLE `connection_options` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.dressings
+DROP TABLE IF EXISTS `dressings`;
+CREATE TABLE IF NOT EXISTS `dressings` (
+  `Dressing_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  `Price` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Rating` int(10) DEFAULT NULL,
+  PRIMARY KEY (`Dressing_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.dressings: ~0 rows (approximately)
+DELETE FROM `dressings`;
+/*!40000 ALTER TABLE `dressings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dressings` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.experts
+DROP TABLE IF EXISTS `experts`;
+CREATE TABLE IF NOT EXISTS `experts` (
+  `Expert_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Qualification` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Small_Bio` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Image` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Bio` text COLLATE utf8_unicode_ci NOT NULL,
+  `Email_Address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`Expert_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.experts: ~4 rows (approximately)
+DELETE FROM `experts`;
+/*!40000 ALTER TABLE `experts` DISABLE KEYS */;
+INSERT INTO `experts` (`Expert_ID`, `Name`, `Qualification`, `Small_Bio`, `Image`, `Bio`, `Email_Address`) VALUES
+	(1, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'guy.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk'),
+	(2, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk'),
+	(3, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk'),
+	(4, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'guy.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk');
+/*!40000 ALTER TABLE `experts` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.follow-ups
+DROP TABLE IF EXISTS `follow-ups`;
+CREATE TABLE IF NOT EXISTS `follow-ups` (
+  `Followup_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Casestudy_ID` int(10) DEFAULT NULL,
+  `Date` date DEFAULT NULL,
+  `Status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Tissue_Status` int(255) DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  `Images` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`Followup_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.follow-ups: ~21 rows (approximately)
+DELETE FROM `follow-ups`;
+/*!40000 ALTER TABLE `follow-ups` DISABLE KEYS */;
+INSERT INTO `follow-ups` (`Followup_ID`, `Casestudy_ID`, `Date`, `Status`, `Tissue_Status`, `Description`, `Images`) VALUES
+	(1, 6, '2012-11-22', 'Improved', 0, 'lorem ipsummmmm', 'me.jpg|inflatable-bilboards.jpg'),
+	(2, 6, '2012-11-22', '', 0, 'lorem ipsummmmm', 'me1.jpg|inflatable-bilboards1.jpg'),
+	(3, 6, '2012-11-22', 'got a lot better', 0, 'lorem ', 'business-banner.png|T_M_Homepage_Image.jpg'),
+	(4, 1, '2012-11-08', 'sgfdhjk', 0, 'shdgjfk,gghjfhrahjgm,jgfshfhm,jhfdgj', 'T_M_Homepage_Image1.jpg|me2.jpg'),
+	(5, 1, '2012-11-29', 'sdfhgj', 0, 'dsgfhgjhmgdfsadgfhgjk,', 'me3.jpg'),
+	(6, 1, '2012-11-03', 'afsdghj,', 0, 'sdfhgjk,.kgdfgfhnjm,j.', 'inflatable-bilboards2.jpg|me4.jpg'),
+	(7, 1, '2012-11-23', 'trtjryretyrtere', 0, 'rytykuli;o/.k,jmhtgrefwdefgrdhfgkhkl', ''),
+	(8, 6, '2012-11-17', 'asfdghjk,', 0, 'fdhgjfhklk/lhgfdgjhfklgkh;/l', ''),
+	(9, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(10, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(11, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(12, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(13, 6, '2012-11-22', 'This is a new status', 2, '	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'me5.jpg|clever-banner.png'),
+	(14, 6, '2012-11-29', 'sdgfhj', 1, 'sdagfhjkjl;\'ljhgfdsadfghjkl;', ''),
+	(15, 7, '2012-11-27', 'sdfhgjk', 2, 'sdgfhjkl;', ''),
+	(16, 7, '2012-11-24', 'esdfghjkl', 3, 'dfghjkl;\'#\r\n', ''),
+	(17, 6, '2012-11-22', 'sadsfghjk', 1, 'afdsghjkl', ''),
+	(18, 6, '2012-11-22', 'sadsfghjk', 1, 'afdsghjkl', ''),
+	(19, 6, '2012-11-16', 'esdrfghbkjnm,.', 2, 'eztdxfcyguhvbjnkml;', ''),
+	(20, 6, '2012-11-16', 'esdrfghbkjnm,.', 2, 'eztdxfcyguhvbjnkml;', ''),
+	(21, 7, '2012-11-29', 'opikujh', 1, 'o9jpik', '');
+/*!40000 ALTER TABLE `follow-ups` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.meetings
@@ -429,6 +576,33 @@ INSERT INTO `meetings_to_users` (`meetings_to_users_id`, `meeting_id`, `user_id`
 /*!40000 ALTER TABLE `meetings_to_users` ENABLE KEYS */;
 
 
+-- Dumping structure for table my.company.orders
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `Order_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Casestudy_ID` int(10) DEFAULT NULL,
+  `Follow_Up_ID` int(10) DEFAULT NULL,
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Status` enum('N','C') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`Order_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.orders: ~9 rows (approximately)
+DELETE FROM `orders`;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`Order_ID`, `Casestudy_ID`, `Follow_Up_ID`, `Date`, `Status`) VALUES
+	(1, 6, 12, '2012-11-13 18:41:17', 'C'),
+	(2, 6, 13, '2012-11-14 12:24:28', 'N'),
+	(3, 6, 14, '2012-11-14 12:41:46', 'N'),
+	(4, 7, 15, '2012-11-14 13:15:47', 'N'),
+	(5, 7, 16, '2012-11-14 13:16:14', 'N'),
+	(6, 6, 17, '2012-11-14 13:20:34', 'N'),
+	(7, 6, 18, '2012-11-14 13:20:47', 'N'),
+	(8, 6, 19, '2012-11-14 13:52:22', 'N'),
+	(9, 7, 0, '2012-11-14 14:23:22', 'N');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+
+
 -- Dumping structure for table my.company.people
 DROP TABLE IF EXISTS `people`;
 CREATE TABLE IF NOT EXISTS `people` (
@@ -464,6 +638,108 @@ INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary
 	(58, 'Charlie Robinson', 'MD', 'charlie@displayworld.co.uk', '01284 345 345', 'N', 'fdgsfdgsfg', 'N', NULL, '', ''),
 	(59, 'David Williams', 'Website Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'Great guy', 'Y', NULL, '', '');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.products
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `Product_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  `Minimum_Order` int(100) DEFAULT NULL,
+  PRIMARY KEY (`Product_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.products: ~5 rows (approximately)
+DELETE FROM `products`;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` (`Product_ID`, `Name`, `Image`, `Description`, `Minimum_Order`) VALUES
+	(2, 'Melolin', 'product_1.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 3),
+	(3, 'Self Adhering Bandage', 'product_2.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 3),
+	(4, 'Veterinary Absorbent Foam Dressing', 'product_3.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 2),
+	(5, 'Sterile Equine Absorbent Foam Dressing', 'product_4.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1),
+	(6, 'Sterile Equine Absorbent Foam Dressing', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.products_to_categories
+DROP TABLE IF EXISTS `products_to_categories`;
+CREATE TABLE IF NOT EXISTS `products_to_categories` (
+  `Products_To_Categories_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Product_ID` int(10) DEFAULT NULL,
+  `Category_ID` int(10) DEFAULT NULL,
+  PRIMARY KEY (`Products_To_Categories_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.products_to_categories: ~6 rows (approximately)
+DELETE FROM `products_to_categories`;
+/*!40000 ALTER TABLE `products_to_categories` DISABLE KEYS */;
+INSERT INTO `products_to_categories` (`Products_To_Categories_ID`, `Product_ID`, `Category_ID`) VALUES
+	(1, 1, 2),
+	(2, 2, 2),
+	(3, 3, 2),
+	(4, 4, 2),
+	(5, 5, 2),
+	(6, 6, 2);
+/*!40000 ALTER TABLE `products_to_categories` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.product_to_orders
+DROP TABLE IF EXISTS `product_to_orders`;
+CREATE TABLE IF NOT EXISTS `product_to_orders` (
+  `Product_To_Orders_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Order_ID` int(10) DEFAULT NULL,
+  `Product_ID` int(10) DEFAULT NULL,
+  `Quantity` int(10) DEFAULT NULL,
+  PRIMARY KEY (`Product_To_Orders_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.product_to_orders: ~40 rows (approximately)
+DELETE FROM `product_to_orders`;
+/*!40000 ALTER TABLE `product_to_orders` DISABLE KEYS */;
+INSERT INTO `product_to_orders` (`Product_To_Orders_ID`, `Order_ID`, `Product_ID`, `Quantity`) VALUES
+	(1, 1, 2, 3),
+	(2, 1, 3, 0),
+	(3, 1, 4, 2),
+	(4, 1, 5, 1),
+	(5, 1, 6, 1),
+	(6, 2, 2, 3),
+	(7, 2, 3, 0),
+	(8, 2, 4, 2),
+	(9, 2, 5, 1),
+	(10, 2, 6, 1),
+	(11, 3, 2, 3),
+	(12, 3, 3, 3),
+	(13, 3, 4, 2),
+	(14, 3, 5, 1),
+	(15, 3, 6, 1),
+	(16, 5, 2, 3),
+	(17, 5, 3, 3),
+	(18, 5, 4, 2),
+	(19, 5, 5, 1),
+	(20, 5, 6, 1),
+	(21, 6, 2, 3),
+	(22, 6, 3, 3),
+	(23, 6, 4, 2),
+	(24, 6, 5, 1),
+	(25, 6, 6, 1),
+	(26, 7, 2, 3),
+	(27, 7, 3, 3),
+	(28, 7, 4, 2),
+	(29, 7, 5, 1),
+	(30, 7, 6, 1),
+	(31, 8, 2, 3),
+	(32, 8, 3, 3),
+	(33, 8, 4, 2),
+	(34, 8, 5, 1),
+	(35, 8, 6, 1),
+	(36, 9, 2, 3),
+	(37, 9, 3, 3),
+	(38, 9, 4, 2),
+	(39, 9, 5, 1),
+	(40, 9, 6, 1);
+/*!40000 ALTER TABLE `product_to_orders` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.projects
@@ -888,12 +1164,12 @@ INSERT INTO `tasks` (`task_id`, `lft`, `parent_task_id`, `rgt`, `business_id`, `
 	(96, 30, 0, 31, 2, 0, '0', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'simons task', '', 'do this noq', 1, NULL, NULL, 0, 'N', NULL),
 	(97, 28, 0, 29, 1, 5, '7', '2', '2012-11-16 00:00:00', '2012-11-21 00:00:00', '2012-11-26 00:00:00', 'this is a task name', 'these are the task notes', '', 1, NULL, 1, NULL, 'N', NULL),
 	(98, 26, 0, 27, 1, 0, '7', '2', '2012-11-05 00:00:00', '2012-11-29 00:00:00', '2012-11-29 00:00:00', 'this is a new tasking that needs to get added properly', 'hello there', '', 1, NULL, NULL, NULL, 'Y', '2012-11-18 00:00:00'),
-	(99, 24, 0, 25, 0, 0, '0', '0', '2012-11-06 00:00:00', '2012-11-30 00:00:00', '2012-11-06 00:00:00', 'example task', '', '', 1, NULL, 1, NULL, 'N', NULL),
+	(99, 24, 0, 25, 0, 0, '0', '0', '2012-10-30 00:00:00', '2012-11-23 00:00:00', '2012-11-06 00:00:00', 'example task', '', '', 1, NULL, 1, NULL, 'N', NULL),
 	(100, 22, 0, 23, 6, 0, '0', '0', '2012-11-09 00:00:00', '2012-11-09 00:00:00', '2012-11-09 00:00:00', 'example tasking', '', '', 1, NULL, NULL, NULL, 'N', NULL),
 	(101, 20, 0, 21, 0, 0, '0', '0', '2012-11-13 00:00:00', '2012-11-13 00:00:00', '2012-11-13 00:00:00', 'hello this is a task', '', '', 1, NULL, NULL, NULL, 'N', NULL),
 	(102, 18, 0, 19, 1, 0, '9', '1', '2012-11-13 00:00:00', '2012-11-28 00:00:00', '2012-11-28 00:00:00', 'this is a new task', 'theses are the notes', '', 1, NULL, NULL, NULL, 'Y', '2012-11-20 00:00:00'),
 	(103, 16, 0, 17, 1, 0, '0', '0', '2012-11-14 00:00:00', '2012-11-14 00:00:00', '2012-11-14 00:00:00', 'this is a new tasking that needs to get added properly', '', '', 1, NULL, NULL, NULL, 'N', NULL),
-	(104, 14, 0, 15, 0, 0, '0', '0', '2012-10-30 00:00:00', '2012-10-30 00:00:00', '2012-10-30 00:00:00', 'hello  testing now', '', '', 1, NULL, NULL, NULL, 'N', NULL),
+	(104, 14, 0, 15, 0, 0, '0', '0', '2012-10-30 00:00:00', '2012-11-16 00:00:00', '2012-10-30 00:00:00', 'hello  testing now', '', '', 1, NULL, 1, NULL, 'N', NULL),
 	(105, 12, 0, 13, 0, 0, '4', '2', '2012-10-29 00:00:00', '2012-11-01 00:00:00', '2012-10-30 00:00:00', 'herer is an example', '', '', 1, NULL, 1, NULL, 'N', NULL),
 	(106, 10, 0, 11, 0, 0, '0', '2', '2012-11-07 00:00:00', '0000-00-00 00:00:00', '2012-10-31 00:00:00', 'there is another example123', '', '', 1, NULL, 1, NULL, 'N', NULL),
 	(107, 8, 0, 9, 0, 0, '0', '2', '2012-11-01 00:00:00', '2012-11-01 00:00:00', '2012-11-01 00:00:00', 'there is an example right here y\'all', 'another fucking task...', '', 1, NULL, NULL, NULL, 'N', NULL);
@@ -1250,6 +1526,68 @@ INSERT INTO `task_types` (`task_type_id`, `name`) VALUES
 	(NULL, 'development'),
 	(NULL, 'hosting');
 /*!40000 ALTER TABLE `task_types` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.tissue_categories
+DROP TABLE IF EXISTS `tissue_categories`;
+CREATE TABLE IF NOT EXISTS `tissue_categories` (
+  `Tissue_Category_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`Tissue_Category_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.tissue_categories: ~3 rows (approximately)
+DELETE FROM `tissue_categories`;
+/*!40000 ALTER TABLE `tissue_categories` DISABLE KEYS */;
+INSERT INTO `tissue_categories` (`Tissue_Category_ID`, `Name`, `Description`) VALUES
+	(1, 'Necrotic', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed '),
+	(2, 'Granulating', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed '),
+	(3, 'Third Type', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed ');
+/*!40000 ALTER TABLE `tissue_categories` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.tissue_status
+DROP TABLE IF EXISTS `tissue_status`;
+CREATE TABLE IF NOT EXISTS `tissue_status` (
+  `tissue_status_id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`tissue_status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.tissue_status: ~2 rows (approximately)
+DELETE FROM `tissue_status`;
+/*!40000 ALTER TABLE `tissue_status` DISABLE KEYS */;
+INSERT INTO `tissue_status` (`tissue_status_id`, `name`) VALUES
+	(1, 'new'),
+	(2, 'old');
+/*!40000 ALTER TABLE `tissue_status` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.tissue_subcategories
+DROP TABLE IF EXISTS `tissue_subcategories`;
+CREATE TABLE IF NOT EXISTS `tissue_subcategories` (
+  `Tissue_Subcategory_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Tissue_Category_ID` int(10) DEFAULT NULL,
+  `Exuldate_Level` enum('high','medium','low') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`Tissue_Subcategory_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.tissue_subcategories: ~9 rows (approximately)
+DELETE FROM `tissue_subcategories`;
+/*!40000 ALTER TABLE `tissue_subcategories` DISABLE KEYS */;
+INSERT INTO `tissue_subcategories` (`Tissue_Subcategory_ID`, `Tissue_Category_ID`, `Exuldate_Level`, `Image`) VALUES
+	(1, 1, 'high', 'example_1_1.png'),
+	(2, 1, 'medium', 'example_2_1.png'),
+	(3, 1, 'low', 'example_3_1.png'),
+	(4, 2, 'high', 'example_1_2.png'),
+	(5, 2, 'medium', 'example_2_2.png'),
+	(6, 2, 'low', 'example_3_2.png'),
+	(7, 3, 'high', 'example_1_3.png'),
+	(8, 3, 'medium', 'example_2_3.png'),
+	(9, 3, 'low', 'example_3_3.png');
+/*!40000 ALTER TABLE `tissue_subcategories` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.users
