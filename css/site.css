@@ -888,3 +888,10 @@ input.hexref {
 .formConatinerRight {
     float:right;
 }
+
+.uploadContainer {
+    float:left;
+}
+
+
+}

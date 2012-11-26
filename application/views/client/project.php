@@ -8,7 +8,7 @@
 
 				<?php $counter = 1;
 				foreach($concepts as $con) { ?>
-				<li class="conceptList <?php if($counter == 1) { echo "active"; } ?>" data-concept="<?php echo $con['concept_id']; ?>">
+				<li class="conceptList <?php if($counter == $tab) { echo "active"; } ?>" data-concept="<?php echo $con['concept_id']; ?>">
 					<a href="#tab<?php echo $counter; ?>" data-toggle="tab">
 						<i class="icon-tasks"></i>
 						<?php echo $con['name']; ?><?php if($con['commentCount'] != 0){ echo '<span class="comCount"> (' . $con['commentCount'] . ')</span>'; } ?>
@@ -28,7 +28,7 @@
 
 				<?php $counter = 1;
 				foreach($concepts as $con) { ?>
-				<div class="tab-pane <?php if($counter == 1) { echo 'active'; } ?> " id="tab<?php echo $counter; ?>">
+				<div class="tab-pane <?php if($tab == $counter) { echo 'active'; } ?> " id="tab<?php echo $counter; ?>">
 					<h2><?php echo $con['name']; ?></h2>
 					<small>Upload Date: <?php echo date('Y-m-d', strtotime($con['date'])); ?></small>
 					<br />
@@ -50,7 +50,17 @@
 						</ul>
 
 						<br /><br />
-						<form action="/concepts/add_comment" method="post" class="commentForm" data-concept="<?php echo $con['concept_id']; ?>">
+						<form id="form<?php echo $counter; ?>" action="/concepts/add_comment" method="post" class="commentForm" data-concept="<?php echo $con['concept_id']; ?>">
+							<div class="uploadContainer">
+								<label>Upload Files</label>
+								<input type="file" id="file" name="userfile" size="20" />
+									<div class="dummyfile input-append">
+										<input id="filename" type="text" class="input disabled span2" name="userfile" readonly="readonly" />
+										<a id="fileselectbutton" class="btn">Choose...</a>
+									</div>
+									<span class="inline"><span class="icon plusIconButton" id="addAnotherConceptImage"></span></span>
+							</div>
+							<br /><br />
 							<textarea name="comment"></textarea>
 							<input type="submit" name="submit_comment" value="Add Comment" class="btn btn-primary" />
 						</form>

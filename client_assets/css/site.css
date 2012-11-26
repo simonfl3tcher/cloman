@@ -13,7 +13,6 @@
 .commentForm {
 	padding:20px 0px;
 	border-top:1px solid #d5d5d5;
-	text-align: center;
 }
 
 
@@ -31,4 +30,34 @@
     width:100%;
     height:40px;
     background-color: #FFA31A;
+}
+
+#file {
+	display: none;
+}
+
+.icon {
+    background-image: url("../../img/mastersprite16_aug302012-2.png?1347364552");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 16px;
+}
+
+.icon.plusIconButton {
+     background-position: 0 -5728px;
+}
+
+.inline {
+	display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+
+.dummyfile {
+	float:left;
 }

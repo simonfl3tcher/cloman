@@ -18,6 +18,11 @@
 		}
 
 		public function view($id, $tab = null){
+			$data['tab'] = 1;
+			if(isset($_GET['tab'])){
+				$data['tab'] = $_GET['tab'];
+			}
+
 			$data['title'] = 'Project Overview | Logic Client';
 			$data['project_details'] = $this->projects_model->project_details($id);
 			$data['projects'] = $this->projects_model->get_projects_to_person($this->session->userdata('people_id'));
@@ -43,7 +48,8 @@
 		}
 
 		public function preview($projectId, $image, $tab){
-			$data['url'] = $_SERVER['HTTP_REFERER'] . '/' . $tab;
+			$data['url'] = site_url() . 'client/project/' . $projectId;
+			$data['tab'] = $tab;
 			$data['project'] = $projectId;
 			$data['image'] = $image;
 			$this->render_client_view('client/preview', $data, true);
