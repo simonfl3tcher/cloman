@@ -17,7 +17,7 @@
 			$this->render_client_view('project/overview', $data);
 		}
 
-		public function view($id){
+		public function view($id, $tab = null){
 			$data['title'] = 'Project Overview | Logic Client';
 			$data['project_details'] = $this->projects_model->project_details($id);
 			$data['projects'] = $this->projects_model->get_projects_to_person($this->session->userdata('people_id'));
@@ -42,8 +42,8 @@
 			$this->render_client_view('project', $data);
 		}
 
-		public function preview($projectId, $image){
-			$data['url'] = $_SERVER['HTTP_REFERER'];
+		public function preview($projectId, $image, $tab){
+			$data['url'] = $_SERVER['HTTP_REFERER'] . '/' . $tab;
 			$data['project'] = $projectId;
 			$data['image'] = $image;
 			$this->render_client_view('client/preview', $data, true);

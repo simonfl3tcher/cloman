@@ -36,10 +36,10 @@
 					<div class="gallery-container">
 						<?php foreach($con['images'] as $img){ ?>
 						<li>
-							<a href="<?php echo site_url(); ?>client/project/preview/<?php echo $con['project_id']; ?>/<?php echo $img; ?>" >
+							<a href="<?php echo site_url(); ?>client/project/preview/<?php echo $con['project_id']; ?>/<?php echo $img; ?>/<?php echo $counter; ?>" >
 								<img src="<?php echo site_url(); ?>uploads/concepts/<?php echo $con['project_id']; ?>/<?php echo $img; ?>" alt="" />
 							</a>
-							<a href="<?php echo site_url(); ?>client/project/preview/<?php echo $con['project_id']; ?>/<?php echo $img; ?>"></a>
+							<a href="<?php echo site_url(); ?>client/project/preview/<?php echo $con['project_id']; ?>/<?php echo $img; ?>/<?php echo $counter; ?>"></a>
 						</li>
 						<?php } ?>
 					</div>

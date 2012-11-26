@@ -39,6 +39,7 @@
 */
 $route['client'] = 'client/dashboard';
 $route['client/project/(:num)'] = 'client/project/view/$1';
+$route['client/project/(:num)/(:num)'] = 'client/project/view/$1/$2';
 $route['default_controller'] = "pages/view";
 
 /* End of file routes.php */
