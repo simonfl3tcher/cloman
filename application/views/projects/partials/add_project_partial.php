@@ -119,6 +119,18 @@
 						</tr>
 					</table>
 
+					<div class="stdpadh stdpadt">
+						<span>No. of project concepts</span>
+					</div>
+						
+					<table class="std">
+						<tr>
+							<td>
+								<input type="text" name="project[concepts]" value="5" />
+							</td>
+						</tr>
+					</table>
+
 
 					<br />		
 				</div>

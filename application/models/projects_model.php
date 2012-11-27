@@ -10,7 +10,7 @@
 			parent::__construct();
 		}
 
-		public function insert_project($id){
+		public function insert_project(){
 			$project = new Project_Class();
 			$project->setBusinessID($_POST['project']['Business']);
 			$project->setSalesID($_POST['project']['Salesman']);
@@ -23,6 +23,7 @@
 			$project->setClientDeadline(date('Y-m-d', strtotime($_POST['project']['external-end-date'])));
 			$project->setNotes($_POST['project']['Notes']);
 			$project->setBudget($_POST['project']['Cost']);
+			$project->setConcepts($_POST['project']['concepts']);
 			$project->save();
 
 			$workers = explode(',', $_POST['project']['Workers']);
@@ -48,6 +49,7 @@
 			$project->setClientDeadline(date('Y-m-d', strtotime($_POST['project']['external-end-date'])));
 			$project->setNotes($_POST['project']['Notes']);
 			$project->setBudget($_POST['project']['Cost']);
+			$project->setConcepts($_POST['project']['concepts']);
 			$project->save();
 
 			$workers = explode(',', $_POST['project']['Workers']);

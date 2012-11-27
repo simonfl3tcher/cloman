@@ -99,23 +99,36 @@ $(function () {
 
 	});
 
-	$('.commentForm input[type="submit"]').bind('click', function(e){
-		e.preventDefault();
-		console.log( $(e.target).closest('.commentForm'));
-		var form = $(e.target).closest('.commentForm');
-		var container = form.parent().parent();
-		var data = 'comment=' + $('textarea', form).val() + '&concept=' + form.attr('data-concept');
-		$.ajax({
-			url: form.attr('action'),
-			type: 'POST',
-			dataType: 'html',
-			data: data
-		}).done(function(data){
-			$('.commentForm textarea').val('').empty();;
-			$('.commentsUl', container).val('').empty();
-			$('.commentsUl', container).html(data);
-		});
-	});
+	// $('.commentForm input[type="submit"]').bind('click', function(e){
+	// 	e.preventDefault();
+	// 	console.log( $(e.target).closest('.commentForm'));
+	// 	var form = $(e.target).closest('.commentForm');
+	// 	var container = form.parent().parent();
+	// 	var data = 'comment=' + $('textarea', form).val() + '&concept=' + form.attr('data-concept');
+	// 	$.ajax({
+	// 		url: form.attr('action'),
+	// 		type: 'POST',
+	// 		dataType: 'html',
+	// 		data: data
+	// 	}).done(function(data){
+	// 		$('.commentForm textarea').val('').empty();;
+	// 		$('.commentsUl', container).val('').empty();
+	// 		$('.commentsUl', container).html(data);
+	// 	});
+	// });
+
+	// $('.commentForm').submit(function(e){
+	// 	// do e.preventDefault here
+	// 	e.preventDefault();
+	//   $.ajax({ 
+	// 	    type: "POST",
+	// 	    url: $(this).attr('action'),
+	// 	    contentType:$(this).attr( "enctype", "multipart/form-data" ),
+	// 	    data: $(this).serializeArray()
+	// 	}).done(function(data){
+	// 		console.log(data);
+	// 	});
+	// });
 
 	$('.conceptList').bind('click', function(e){
 		$.ajax({
@@ -125,5 +138,12 @@ $(function () {
 		}).done(function(data){
 			$('.comCount', $(e.target)).fadeOut('slow');
 		});
+	});
+
+	$('.addAnotherBox').bind('click', function(){
+		console.log('clicked');
+		var num = parseInt($(this).attr('data-number'))+1;
+		$('.uploadContainer').append("<input type=\"file\" autocomplete=\"off\" value=\"\" name=\"images" + num + "\"><br />");
+		$(this).attr('data-number', parseInt($(this).attr('data-number'))+1);
 	});
 });

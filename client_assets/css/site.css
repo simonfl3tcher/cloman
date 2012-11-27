@@ -32,10 +32,6 @@
     background-color: #FFA31A;
 }
 
-#file {
-	display: none;
-}
-
 .icon {
     background-image: url("../../img/mastersprite16_aug302012-2.png?1347364552");
     background-position: 0 0;

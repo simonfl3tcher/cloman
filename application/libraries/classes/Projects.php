@@ -18,6 +18,7 @@
 		protected $CompletionDate;
 		protected $OnHold;
 		protected $HoldID;
+		protected $Concepts;
 
 		protected function DefineTableName(){
 			return("projects"); //Name of the table you want to use.
@@ -47,7 +48,8 @@
 				"completion_date" => "CompletionDate",
 				"on_hold" => "OnHold",
 				"hold_id" => "HoldID",
-				"budget" => "Budget");
+				"budget" => "Budget",
+				"concept_no" => "Concepts");
 		}
 	}
 ?>
