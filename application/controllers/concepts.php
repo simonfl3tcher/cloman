@@ -12,6 +12,8 @@
 		public function add_comment(){
 			if($this->request->isPost()){
 
+				$images = '';
+
 				if(isset($_FILES) && !empty($_FILES)){
 
 					$path = 'uploads/concepts/' . $_POST['project_id'] .'/uploads';
@@ -21,7 +23,7 @@
 					}
 					
 					$config['upload_path'] =  $path;
-					$config['allowed_types'] = 'gif|jpg|png';
+					$config['allowed_types'] = 'gif|jpg|png|pdf|txt';
 					$this->load->library('upload', $config);
 					$this->upload->initialize($config);
 
@@ -30,21 +32,18 @@
 					foreach($_FILES as $key => $value){
 						if(!empty($value['name'])){
 							if($this->upload->do_upload($key)){
-								$files[] = $this->upload->data();
+								$files[] = $this->upload->data()['file_name'];
 							} else {
 								var_dump('There seems to have been an error uploading some of the images, please try again');
 							}
 						}
 					}
 
-					$images = '';
 					$images = implode('|', $files);
-					var_dump($images);
-					exit;
 				}
-			}
 
-			$this->projects_model->add_comment_to_concept();
+				$this->projects_model->add_comment_to_concept($images);
+			}
 			$data['comms'] = $this->projects_model->get_comments($_POST['concept']);
 			echo $this->load->partial('partials/client_comments_partial.php', $data);
 		}

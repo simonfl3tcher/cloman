@@ -1,5 +1,11 @@
 <div class="row">
 	<strong>You have used <?php echo count($concepts); ?> out of <?php echo $project_details->concept_no; ?> of your concept revisions</strong>
+	<?php if(isset($success)){ ?>
+	    <div class="alert alert-success">
+		    <button type="button" class="close" data-dismiss="alert">×</button>
+		    <strong>Success!</strong> <?php echo $success; ?>
+    	</div>
+	<?php } ?>
 </div>
 <div class="row">
 				
@@ -53,8 +59,9 @@
 						</ul>
 
 						<br /><br />
-						<form id="form<?php echo $counter; ?>" action="/concepts/add_comment" method="post" class="commentForm" data-concept="<?php echo $con['concept_id']; ?>"  enctype="multipart/form-data">
+						<form id="form<?php echo $counter; ?>" action="" method="post" class="commentForm" data-concept="<?php echo $con['concept_id']; ?>"  enctype="multipart/form-data">
 							<input type="hidden" name="project_id" value="<?php echo $project_details->project_id; ?>" />
+							<input type="hidden" name="concept" value="<?php echo $con['concept_id']; ?>" />
 							<div class="uploadContainer">
 								<label>Upload Files</label>
 									<input type="file" id="file" name="userfile" size="20" />

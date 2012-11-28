@@ -396,11 +396,12 @@ where c.project_id = ?";
 			return $query->result_array();
 		}
 
-		public function add_comment_to_concept(){
+		public function add_comment_to_concept($images){
 			$data = array(
 				'concept_id' => $_POST['concept'],
 				'comment' => $_POST['comment'],
-				'date' => date("Y-m-d H:i:s", strtotime('now'))
+				'date' => date("Y-m-d H:i:s", strtotime('now')),
+				'files' => $images
 			);
 
 			if($this->session->userdata('Client_Logged_In') == true){

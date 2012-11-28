@@ -18,7 +18,44 @@
 		}
 
 		public function view($id, $tab = null){
+			if($this->request->isPost()){
+
+				$images = '';
+
+				if(isset($_FILES) && !empty($_FILES)){
+
+					$path = 'uploads/concepts/' . $_POST['project_id'] .'/uploads';
+
+					if(!is_dir($path)){
+						mkdir($path, 0777, true);
+					}
+					
+					$config['upload_path'] =  $path;
+					$config['allowed_types'] = 'gif|jpg|png|pdf|doc';
+					$this->load->library('upload', $config);
+					$this->upload->initialize($config);
+
+
+					$files = array();
+					foreach($_FILES as $key => $value){
+						if(!empty($value['name'])){
+							if($this->upload->do_upload($key)){
+								$files[] = $this->upload->data()['file_name'];
+								$data['success'] = 'Your comment has been added against this concept';
+							} else {
+								var_dump('There seems to have been an error uploading some of the images, please try again');
+							}
+						}
+					}
+
+					$images = implode('|', $files);
+				}
+				
+				$this->projects_model->add_comment_to_concept($images);
+			}
+
 			$data['tab'] = 1;
+			
 			if(isset($_GET['tab'])){
 				$data['tab'] = $_GET['tab'];
 			}
@@ -36,6 +73,7 @@
 
 			$data['concepts'] = $this->projects_model->get_concept_data($id);
 			$data['comment_full_count'] = $this->projects_model->customer_full_count();
+			
 			$count = 0;
 			foreach($data['concepts'] as $con){
 				$data['concepts'][$count]['comms'] = $this->projects_model->get_comments($con['concept_id']);
@@ -43,6 +81,7 @@
 				$count++;
 
 			}
+			
 			$data['user_data'] = $this->people_model->get($this->session->userdata('people_id'));
 			$this->render_client_view('project', $data);
 		}
