@@ -3,7 +3,7 @@
 -- Server version:               5.5.24-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-11-26 19:14:04
+-- Date/time:                    2012-11-29 18:23:41
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -261,43 +261,78 @@ CREATE TABLE IF NOT EXISTS `concept_comments` (
   `date` datetime DEFAULT NULL,
   `customer_seen` enum('Y','N') DEFAULT 'N',
   `admin_seen` enum('Y','N') DEFAULT 'N',
+  `files` text,
   PRIMARY KEY (`concept_comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
--- Dumping data for table my.company.concept_comments: 26 rows
+-- Dumping data for table my.company.concept_comments: 64 rows
 DELETE FROM `concept_comments`;
 /*!40000 ALTER TABLE `concept_comments` DISABLE KEYS */;
-INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_id`, `comment`, `date`, `customer_seen`, `admin_seen`) VALUES
-	(1, 1, 'A', 1, 'hellosd\n', '2012-11-25 14:35:50', 'Y', 'N'),
-	(2, 1, 'A', 1, 'THis is another xample ?', '2012-11-25 14:36:58', 'Y', 'N'),
-	(3, 1, 'A', 1, 'gfhfghfhfg', '2012-11-25 14:37:25', 'Y', 'N'),
-	(4, 1, 'A', 1, 'gfhgfhgfhgf', '2012-11-25 14:37:42', 'Y', 'N'),
-	(5, 1, 'C', 44, 'fdsfsdfdsf', '2012-11-25 14:38:22', 'Y', 'N'),
-	(6, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:03:09', 'Y', 'N'),
-	(7, 1, 'A', 1, 'this is another one\n', '2012-11-25 15:30:51', 'Y', 'N'),
-	(8, 1, 'A', 1, 'and another\n', '2012-11-25 15:31:36', 'Y', 'N'),
-	(9, 1, 'A', 1, 'sdfdsfdsf', '2012-11-25 15:32:38', 'Y', 'N'),
-	(10, 1, 'C', 44, 'dfdsfds', '2012-11-25 15:32:55', 'Y', 'N'),
-	(11, 1, 'A', 1, 'Here we go its working now\n', '2012-11-25 15:33:04', 'Y', 'N'),
-	(12, 1, 'A', 1, 'and its now working really well', '2012-11-25 15:33:36', 'Y', 'N'),
-	(13, 1, 'C', 44, 'and another one\n', '2012-11-25 15:33:43', 'Y', 'N'),
-	(14, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:40:19', 'Y', 'N'),
-	(15, 1, 'C', 44, 'hello this should now say me to be fair', '2012-11-25 15:47:06', 'Y', 'N'),
-	(16, 1, 'C', 44, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-25 15:47:23', 'Y', 'N'),
-	(17, 1, 'C', 44, 'another comment', '2012-11-25 16:00:55', 'Y', 'N'),
-	(18, 1, 'C', 44, '', '2012-11-25 16:34:44', 'Y', 'N'),
-	(19, 2, 'A', 1, 'hello are you working on this at the moment ?', '2012-11-25 16:35:12', 'Y', 'Y'),
-	(20, 1, 'C', 44, 'this is an example\n', '2012-11-25 16:43:27', 'Y', 'N'),
-	(21, 1, 'C', 44, 'and another one', '2012-11-25 16:43:31', 'Y', 'N'),
-	(22, 2, 'C', 44, 'sdfdsfsd', '2012-11-25 16:56:34', 'Y', 'N'),
-	(23, 2, 'C', 44, 'dfdsfdsfs', '2012-11-25 16:56:36', 'Y', 'N'),
-	(24, 3, 'C', 44, 'This is the first comment please see it working!!\n', '2012-11-25 17:07:42', 'Y', 'N'),
-	(25, 3, 'A', 1, 'This is the first comment please see it working!! by the admin\n', '2012-11-25 17:09:42', 'Y', 'Y'),
-	(26, 3, 'C', 44, 'hello\n', '2012-11-26 13:49:13', 'Y', 'N'),
-	(27, 1, 'C', 44, 'i like that', '2012-11-26 19:12:00', 'Y', 'N'),
-	(28, 2, 'C', 44, 'thats nice', '2012-11-26 19:12:14', 'Y', 'N'),
-	(29, 3, 'C', 44, 'good', '2012-11-26 19:12:21', 'Y', 'N'),
-	(30, 1, 'C', 44, 'just one thing can i have my logo bigger? you cunt', '2012-11-26 19:12:41', 'Y', 'N');
+INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_id`, `comment`, `date`, `customer_seen`, `admin_seen`, `files`) VALUES
+	(1, 1, 'A', 1, 'hellosd\n', '2012-11-25 14:35:50', 'Y', 'N', NULL),
+	(2, 1, 'A', 1, 'THis is another xample ?', '2012-11-25 14:36:58', 'Y', 'N', NULL),
+	(3, 1, 'A', 1, 'gfhfghfhfg', '2012-11-25 14:37:25', 'Y', 'N', NULL),
+	(4, 1, 'A', 1, 'gfhgfhgfhgf', '2012-11-25 14:37:42', 'Y', 'N', NULL),
+	(5, 1, 'C', 44, 'fdsfsdfdsf', '2012-11-25 14:38:22', 'Y', 'N', NULL),
+	(6, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:03:09', 'Y', 'N', NULL),
+	(7, 1, 'A', 1, 'this is another one\n', '2012-11-25 15:30:51', 'Y', 'N', NULL),
+	(8, 1, 'A', 1, 'and another\n', '2012-11-25 15:31:36', 'Y', 'N', NULL),
+	(9, 1, 'A', 1, 'sdfdsfdsf', '2012-11-25 15:32:38', 'Y', 'N', NULL),
+	(10, 1, 'C', 44, 'dfdsfds', '2012-11-25 15:32:55', 'Y', 'N', NULL),
+	(11, 1, 'A', 1, 'Here we go its working now\n', '2012-11-25 15:33:04', 'Y', 'N', NULL),
+	(12, 1, 'A', 1, 'and its now working really well', '2012-11-25 15:33:36', 'Y', 'N', NULL),
+	(13, 1, 'C', 44, 'and another one\n', '2012-11-25 15:33:43', 'Y', 'N', NULL),
+	(14, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:40:19', 'Y', 'N', NULL),
+	(15, 1, 'C', 44, 'hello this should now say me to be fair', '2012-11-25 15:47:06', 'Y', 'N', NULL),
+	(16, 1, 'C', 44, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-25 15:47:23', 'Y', 'N', NULL),
+	(17, 1, 'C', 44, 'another comment', '2012-11-25 16:00:55', 'Y', 'N', NULL),
+	(18, 1, 'C', 44, '', '2012-11-25 16:34:44', 'Y', 'N', NULL),
+	(19, 2, 'A', 1, 'hello are you working on this at the moment ?', '2012-11-25 16:35:12', 'Y', 'Y', NULL),
+	(20, 1, 'C', 44, 'this is an example\n', '2012-11-25 16:43:27', 'Y', 'N', NULL),
+	(21, 1, 'C', 44, 'and another one', '2012-11-25 16:43:31', 'Y', 'N', NULL),
+	(22, 2, 'C', 44, 'sdfdsfsd', '2012-11-25 16:56:34', 'Y', 'N', NULL),
+	(23, 2, 'C', 44, 'dfdsfdsfs', '2012-11-25 16:56:36', 'Y', 'N', NULL),
+	(24, 3, 'C', 44, 'This is the first comment please see it working!!\n', '2012-11-25 17:07:42', 'Y', 'N', NULL),
+	(25, 3, 'A', 1, 'This is the first comment please see it working!! by the admin\n', '2012-11-25 17:09:42', 'Y', 'Y', NULL),
+	(26, 3, 'C', 44, 'hello\n', '2012-11-26 13:49:13', 'Y', 'N', NULL),
+	(27, 1, 'C', 44, 'i like that', '2012-11-26 19:12:00', 'Y', 'N', NULL),
+	(28, 2, 'C', 44, 'thats nice', '2012-11-26 19:12:14', 'Y', 'N', NULL),
+	(29, 3, 'C', 44, 'good', '2012-11-26 19:12:21', 'Y', 'N', NULL),
+	(30, 1, 'C', 44, 'just one thing can i have my logo bigger? you cunt', '2012-11-26 19:12:41', 'Y', 'N', NULL),
+	(31, 1, 'C', 44, 'this is another place\n', '2012-11-26 21:14:02', 'Y', 'N', NULL),
+	(32, 2, 'C', 44, 'and another', '2012-11-26 21:52:08', 'Y', 'N', NULL),
+	(33, 2, 'C', 44, 'fsdfdsf', '2012-11-26 21:56:49', 'Y', 'N', NULL),
+	(34, 2, 'C', 44, 'sdffdfds', '2012-11-26 21:57:03', 'Y', 'N', NULL),
+	(35, 2, 'C', 44, 'hello', '2012-11-26 21:57:29', 'Y', 'N', NULL),
+	(36, 3, 'C', 44, 'another hello right here', '2012-11-26 21:57:41', 'Y', 'N', NULL),
+	(37, 3, 'C', 44, 'and another ', '2012-11-26 21:58:01', 'Y', 'N', NULL),
+	(38, 3, 'C', 44, '', '2012-11-26 22:07:46', 'Y', 'N', NULL),
+	(39, 3, 'C', 44, '', '2012-11-26 22:07:48', 'Y', 'N', NULL),
+	(40, 3, 'C', 44, '', '2012-11-26 22:07:49', 'Y', 'N', NULL),
+	(41, 3, 'C', 44, '', '2012-11-26 22:07:55', 'Y', 'N', NULL),
+	(42, 3, 'C', 44, '', '2012-11-26 22:08:10', 'Y', 'N', NULL),
+	(43, 2, 'C', 44, 'another one', '2012-11-26 22:32:24', 'Y', 'N', NULL),
+	(44, NULL, 'C', 44, 'fsdfdsf', '2012-11-27 22:49:42', 'Y', 'N', NULL),
+	(45, NULL, 'C', 44, 'fsdfdsf', '2012-11-27 22:49:42', 'Y', 'N', NULL),
+	(46, NULL, 'C', 44, 'Please see the attached files to see what i mean...', '2012-11-28 09:31:51', 'Y', 'N', 'me1.jpg|T_M_Homepage_Image4.jpg|Concare-Homepage1.jpg'),
+	(47, 1, 'C', 44, 'Helo how are you ?', '2012-11-28 09:34:25', 'Y', 'N', 'me2.jpg|signature.jpg'),
+	(48, 1, 'C', 44, 'This is an example piece of text', '2012-11-28 09:46:42', 'Y', 'N', 'me3.jpg|pdf.png'),
+	(49, 1, 'C', 44, 'This is an example piece of text', '2012-11-28 09:50:23', 'Y', 'N', 'me4.jpg|pdf1.png'),
+	(50, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:12', 'Y', 'N', ''),
+	(51, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:44', 'Y', 'N', ''),
+	(52, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:53', 'Y', 'N', ''),
+	(53, 1, 'C', 44, 'this is an example please check it out', '2012-11-29 13:13:46', 'Y', 'N', 'me5.jpg|T_M_Homepage_Image5.jpg|clever-banner.png'),
+	(54, 1, 'C', 44, '', '2012-11-29 13:16:59', 'Y', 'N', ''),
+	(55, 1, 'C', 44, '', '2012-11-29 13:18:26', 'Y', 'N', ''),
+	(56, 1, 'C', 44, '', '2012-11-29 13:21:34', 'Y', 'N', 'Logic_Design_feedback.docx'),
+	(57, 1, 'C', 44, 'example1', '2012-11-29 13:23:19', 'Y', 'N', 'Certification-Study-Guide-MCD-v1.pdf'),
+	(58, 1, 'C', 44, '', '2012-11-29 13:41:56', 'Y', 'N', 'Certification-Study-Guide-MCD-v11.pdf'),
+	(59, 1, 'C', 44, '', '2012-11-29 13:45:29', 'Y', 'N', 'Certification-Study-Guide-MCD-v12.pdf'),
+	(60, 1, 'C', 44, '', '2012-11-29 13:47:29', 'Y', 'N', 'Certification-Study-Guide-MCD-v13.pdf'),
+	(61, 1, 'C', 44, '', '2012-11-29 13:48:54', 'Y', 'N', 'Certification-Study-Guide-MCD-v14.pdf'),
+	(62, 1, 'C', 44, '', '2012-11-29 13:57:09', 'Y', 'N', 'Certification-Study-Guide-MCD-v15.pdf'),
+	(63, 1, 'C', 44, '', '2012-11-29 13:57:59', 'Y', 'N', 'Certification-Study-Guide-MCD-v16.pdf'),
+	(64, 1, 'C', 44, '', '2012-11-29 13:58:31', 'Y', 'N', 'Certification-Study-Guide-MCD-v17.pdf');
 /*!40000 ALTER TABLE `concept_comments` ENABLE KEYS */;
 
 
@@ -747,6 +782,7 @@ DROP TABLE IF EXISTS `projects`;
 CREATE TABLE IF NOT EXISTS `projects` (
   `project_id` int(10) NOT NULL AUTO_INCREMENT,
   `business_id` varchar(255) DEFAULT NULL,
+  `concept_no` int(11) DEFAULT NULL,
   `sales_id` varchar(255) DEFAULT NULL,
   `project_name` varchar(255) DEFAULT NULL,
   `manager_id` int(10) DEFAULT NULL,
@@ -764,20 +800,22 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `hold_id` int(10) DEFAULT NULL,
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.projects: ~8 rows (approximately)
+-- Dumping data for table my.company.projects: ~10 rows (approximately)
 DELETE FROM `projects`;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` (`project_id`, `business_id`, `sales_id`, `project_name`, `manager_id`, `project_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `budget`, `notes`, `task_template_id`, `complete`, `completion_date`, `on_hold`, `hold_id`, `updated_by`) VALUES
-	(5, '1', '5', 'Reason Marketing', 4, '3', 0, '2012-09-30 00:00:00', '2012-11-02 00:00:00', '2012-10-29 00:00:00', '3500', 'This is the notes section ', NULL, 'N', NULL, 'N', NULL, '1'),
-	(6, '1', '5', 'Reason Marketing', 4, '3', 4, '2012-09-30 00:00:00', '2012-10-02 00:00:00', '2012-10-02 00:00:00', '4000', 'Project notes go in here', NULL, 'N', NULL, 'N', NULL, NULL),
-	(7, '12', '3', 'Animal DNA Diagnostics', 4, '5', 2, '2012-10-29 00:00:00', '2012-11-28 00:00:00', '2012-11-27 00:00:00', '12000', 'This is a bespoke development project make sure you spend time testing.', NULL, 'N', NULL, 'Y', 39, '1'),
-	(8, '', '', 'hello', 0, '1', 1, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '', '', NULL, 'N', NULL, 'N', NULL, NULL),
-	(9, '1', '5', 'Hello Project', 4, '2', 3, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '4000', 'dsfdsfds', NULL, 'N', NULL, 'N', NULL, NULL),
-	(10, '2', '3', 'Ta Shain (ebay like site)', 4, '4', 3, '2012-10-26 00:00:00', '2013-01-17 00:00:00', '2013-01-31 00:00:00', '20000', 'This is a shop like ebay for uni student books check this out it really is working check it out', NULL, 'Y', '2012-11-01 00:00:00', 'N', NULL, '1'),
-	(11, '1', '5', 'Animal DNA Diagnostics', 4, '3', 1, '2012-10-03 00:00:00', '2012-10-18 00:00:00', '2012-10-18 00:00:00', '4000', 'These are the project notes check them out here y\'all', NULL, 'N', NULL, 'Y', 38, NULL),
-	(12, '', '', 'Example Project', 0, '', 0, '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '', '', NULL, 'N', NULL, 'N', NULL, NULL);
+INSERT INTO `projects` (`project_id`, `business_id`, `concept_no`, `sales_id`, `project_name`, `manager_id`, `project_type_id`, `status_id`, `start_date`, `internal_deadline`, `client_deadline`, `budget`, `notes`, `task_template_id`, `complete`, `completion_date`, `on_hold`, `hold_id`, `updated_by`) VALUES
+	(5, '1', 5, '5', 'Reason Marketing', 4, '3', 0, '2012-09-30 00:00:00', '2012-11-02 00:00:00', '2012-10-29 00:00:00', '3500', 'This is the notes section ', NULL, 'N', NULL, 'N', NULL, '1'),
+	(6, '1', 5, '5', 'Reason Marketing', 4, '3', 4, '2012-09-30 00:00:00', '2012-10-02 00:00:00', '2012-10-02 00:00:00', '4000', 'Project notes go in here', NULL, 'N', NULL, 'N', NULL, NULL),
+	(7, '12', 5, '3', 'Animal DNA Diagnostics', 4, '5', 2, '2012-10-29 00:00:00', '2012-11-28 00:00:00', '2012-11-27 00:00:00', '12000', 'This is a bespoke development project make sure you spend time testing.', NULL, 'N', NULL, 'Y', 39, '1'),
+	(8, '', 5, '', 'hello', 0, '1', 1, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '', '', NULL, 'N', NULL, 'N', NULL, NULL),
+	(9, '1', 5, '5', 'Hello Project', 4, '2', 3, '2012-09-30 00:00:00', '2012-09-17 00:00:00', '2012-09-17 00:00:00', '4000', 'dsfdsfds', NULL, 'N', NULL, 'N', NULL, NULL),
+	(10, '2', 5, '3', 'Ta Shain (ebay like site)', 4, '4', 3, '2012-10-26 00:00:00', '2013-01-17 00:00:00', '2013-01-31 00:00:00', '20000', 'This is a shop like ebay for uni student books check this out it really is working check it out', NULL, 'Y', '2012-11-01 00:00:00', 'N', NULL, '1'),
+	(11, '1', 5, '5', 'Animal DNA Diagnostics', 4, '3', 1, '2012-10-03 00:00:00', '2012-10-18 00:00:00', '2012-10-18 00:00:00', '4000', 'These are the project notes check them out here y\'all', NULL, 'N', NULL, 'Y', 38, NULL),
+	(12, '', 5, '', 'Example Project', 0, '', 0, '1970-01-01 00:00:00', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '', '', NULL, 'N', NULL, 'N', NULL, NULL),
+	(13, '', 10, '', 'example 21', 0, '1', 1, '2012-11-27 00:00:00', '2012-11-27 00:00:00', '2012-11-27 00:00:00', '', '', NULL, 'N', NULL, 'N', NULL, NULL),
+	(14, '', 5, '', 'example 21', 0, '1', 1, '2012-11-27 00:00:00', '2012-11-27 00:00:00', '2012-11-27 00:00:00', '', '', NULL, 'N', NULL, 'N', NULL, NULL);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 
 
@@ -846,9 +884,9 @@ CREATE TABLE IF NOT EXISTS `project_to_users` (
   `user_id` int(10) DEFAULT NULL,
   `project_id` int(10) DEFAULT NULL,
   PRIMARY KEY (`users_to_project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.project_to_users: ~23 rows (approximately)
+-- Dumping data for table my.company.project_to_users: ~25 rows (approximately)
 DELETE FROM `project_to_users`;
 /*!40000 ALTER TABLE `project_to_users` DISABLE KEYS */;
 INSERT INTO `project_to_users` (`users_to_project_id`, `user_id`, `project_id`) VALUES
@@ -874,7 +912,9 @@ INSERT INTO `project_to_users` (`users_to_project_id`, `user_id`, `project_id`) 
 	(52, 0, 0),
 	(53, 0, 0),
 	(58, 2, 10),
-	(59, 1, 10);
+	(59, 1, 10),
+	(60, 0, 0),
+	(61, 0, 0);
 /*!40000 ALTER TABLE `project_to_users` ENABLE KEYS */;
 
 
@@ -1008,15 +1048,17 @@ CREATE TABLE IF NOT EXISTS `support_packs` (
   `includes` text,
   `time_allowed_pm` int(255) DEFAULT NULL,
   `is_live` enum('Y','N') DEFAULT 'Y',
+  `client_description` text,
   PRIMARY KEY (`support_packs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.support_packs: ~2 rows (approximately)
+-- Dumping data for table my.company.support_packs: ~3 rows (approximately)
 DELETE FROM `support_packs`;
 /*!40000 ALTER TABLE `support_packs` DISABLE KEYS */;
-INSERT INTO `support_packs` (`support_packs_id`, `name`, `price`, `description`, `includes`, `time_allowed_pm`, `is_live`) VALUES
-	(5, 'Support Pack 2', 10, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Lorem ipsum dolor sit amet, consectetur', 2700, 'Y'),
-	(6, 'Support Task Level 1', 150, 'This is a basic level task', 'dffdgijidfsg', 3600, 'Y');
+INSERT INTO `support_packs` (`support_packs_id`, `name`, `price`, `description`, `includes`, `time_allowed_pm`, `is_live`, `client_description`) VALUES
+	(5, 'Support Pack 2', 10, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Lorem ipsum dolor sit amet, consectetur', 2700, 'Y', 'Free setup|1 Website|2 Projects|1GB Storage|$15 Google Adwords Credit'),
+	(6, 'Support Task Level 1', 150, 'This is a basic level task', 'dffdgijidfsg', 3600, 'Y', 'Free setup|1 Website|2 Projects|1GB Storage|$15 Google Adwords Credit'),
+	(7, 'Another Support Pack', 60, 'Lorem ipsum dolor sit amet, consectetur adipisicin', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 36000, 'Y', 'Free setup|1 Website|2 Projects|1GB Storage|$15 Google Adwords Credit|8 Hour Support');
 /*!40000 ALTER TABLE `support_packs` ENABLE KEYS */;
 
 

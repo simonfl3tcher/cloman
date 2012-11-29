@@ -35,6 +35,14 @@
 			</td>
 		</tr>
 	</table>
+	<table>
+		<tr class="largeField">
+			<td>
+				<label for="business_name">Client Description</label>
+				<span><textarea name="support[Client]" style="width: 438px; height: 200px;"><?php echo $support_pack->client_description ? $support_pack->client_description : ''; ?></textarea></span>
+			</td>
+		</tr>
+	</table>
 	<br />
 	<input type="submit" class="btn btn-mini btn-success" value="Update Support Pack" />
 </form>

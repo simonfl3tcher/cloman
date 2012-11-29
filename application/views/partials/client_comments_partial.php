@@ -9,11 +9,11 @@
 				case "gif":
 				case "png":
 				case "jpg":
-					echo 'Image';
+					echo '<a target="_blank" href="' . site_url() . 'uploads/concepts/' . $comments['project_id'] . '/uploads/' . $img . '">Image</a>';
 					break;
 				case "pdf":
 				case "doc":
-					echo "File";
+					echo '<a target="_blank" href="' . site_url() . 'uploads/concepts/' . $comments['project_id'] . '/uploads/' . $img . '">File</a>';;
 					break;
 			}
 		}

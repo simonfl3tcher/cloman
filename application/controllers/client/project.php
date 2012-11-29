@@ -31,7 +31,7 @@
 					}
 					
 					$config['upload_path'] =  $path;
-					$config['allowed_types'] = 'gif|jpg|png|pdf|doc';
+					$config['allowed_types'] = 'exe|psd|pdf|xls|ppt|php|php4|php3|js|swf|Xhtml|zip|mid|midi|mp2|mp3|wav|bmp|gif|jpg|jpeg|png|html|htm|txt|rtf|mpeg|mpg|avi|doc|docx|xlsx';
 					$this->load->library('upload', $config);
 					$this->upload->initialize($config);
 
@@ -43,7 +43,7 @@
 								$files[] = $this->upload->data()['file_name'];
 								$data['success'] = 'Your comment has been added against this concept';
 							} else {
-								var_dump('There seems to have been an error uploading some of the images, please try again');
+								// dont upload the files.
 							}
 						}
 					}

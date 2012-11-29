@@ -420,7 +420,8 @@ where c.project_id = ?";
 			$this->db->select('*');
 			$this->db->from('concept_comments');
 			$this->db->join('users', 'users.user_id = concept_comments.who_id', 'left');
-			$this->db->where('concept_id', $id);
+			$this->db->join('concepts', 'concepts.concept_id = concept_comments.concept_id');
+			$this->db->where('concept_comments.concept_id', $id);
 			$query = $this->db->get();
 			return $query->result_array();
 		}

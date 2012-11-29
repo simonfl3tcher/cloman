@@ -42,6 +42,14 @@
 							</td>
 						</tr>
 					</table>
+					<table>
+            			<tr class="largeField">
+							<td>
+								<label for="business_name">Client Description</label>
+								<span><textarea name="support[Client]" style="width: 438px; height: 200px;"></textarea></span>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 	    <div class="modal-footer">

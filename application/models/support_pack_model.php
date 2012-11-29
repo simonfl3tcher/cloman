@@ -35,7 +35,8 @@ order by b.name";
 				'price' => $_POST['support']['Price'],
 				'description' => $_POST['support']['Description'],
 				'includes' => $_POST['support']['Includes'],
-				'time_allowed_pm' => time_to_sec($_POST['support']['Time'])
+				'time_allowed_pm' => time_to_sec($_POST['support']['Time']),
+				'client_description' => $_POST['support']['Client']
 			);
 
 			$this->db->insert('support_packs', $data);
@@ -66,7 +67,8 @@ where sp.support_packs_id = ?";
 				'price' => $_POST['support']['Price'],
 				'description' => $_POST['support']['Description'],
 				'includes' => $_POST['support']['Includes'],
-				'time_allowed_pm' => time_to_sec($_POST['support']['Time'])
+				'time_allowed_pm' => time_to_sec($_POST['support']['Time']),
+				'client_description' => $_POST['support']['Client']
 			);
 			$this->db->where('support_packs_id', $id);
 			$this->db->update('support_packs', $data); 

@@ -6,6 +6,7 @@
 			parent::__construct();
 			$this->isClientAuthorised();
 			$this->load->model('projects_model');
+			$this->load->model('support_pack_model');
 			$this->load->model('people_model');
 		}
 
@@ -18,6 +19,7 @@
 
 		public function support() {
 			$data['title'] = 'Client Dashboard';
+			$data['support_packs'] = $this->support_pack_model->get_avalible_support_packs();
 			$this->render_client_view('support_packs', $data);
 		}
 
