@@ -10,6 +10,7 @@
 			$this->load->model('projects_model');
 			$this->load->model('people_model');
 			$this->load->model('support_pack_model');
+			$this->load->model('email');
 		}
 
 		public function index() {
@@ -24,8 +25,16 @@
 
 			$data['user_data'] = $this->people_model->get($this->session->userdata('people_id'));
 			$data['comment_full_count'] = $this->projects_model->customer_full_count();
-			$data['support_packs'] = $this->support_pack_model->get_avalible_support_packs();
+			$data['support_packs'] = $this->support_pack_model->get_client_support_packs();
 			$this->render_client_view('support_packs', $data);
+		}
+
+		public function callback_email($id = null){
+			$user = $this->people_model->get($this->session->userdata('people_id'));
+			$message = 'Hello, You have got a callback request for support pack:- ' . $id . ' Email address: - ' . $user['email']; //
+			$this->email->do_email($user['email'], 'hello@logicdesign.co.uk', 'Logic Design', 'Callback Request | Logic Design', $message);
+			var_dump($user['email']);
+			exit;
 		}
 	}
 

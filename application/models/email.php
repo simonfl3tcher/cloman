@@ -15,7 +15,7 @@
 			$this->email->subject($subject);
 			$this->email->message($message);
 
-			$this->email->send();
+			// $this->email->send();
 
 			echo $this->email->print_debugger();
 		}

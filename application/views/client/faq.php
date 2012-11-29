@@ -83,14 +83,11 @@ These scripts do nothing when JavaScript is disabled or unavailable, when JavaSc
 			
 			
 			<div class="span4">
-				
-						
-				<a href="javascript:;" class="btn btn-large btn-primary btn-block btn-big-block">Ask A Question</a>	
-				
-				
-				<a href="javascript:;" class="btn btn-large btn-tertiary btn-block btn-big-block">Contact Support</a>
-				
-				
+					
+				<section id="modals">
+					<a href="#myModal" data-toggle="modal" class="btn btn-large btn-primary btn-block btn-big-block">Ask A Question</a>	
+				</section>
+
 				<div class="well">
 					
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>						
@@ -103,3 +100,22 @@ These scripts do nothing when JavaScript is disabled or unavailable, when JavaSc
 			</div> <!-- /.span4 -->
 			
 		</div> <!-- /.row -->
+
+		<div class="modal fade hide" id="myModal">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Ask A Question</h3>
+				</div>
+				<form action="" method="post" class="questionModalForm">
+				<div class="modal-body">
+					<input type="text" name="title" placeholder="Title" />
+					<br />
+					<textarea name="question"></textarea>
+				</div>
+				<div class="modal-footer">
+				<a href="javascript:;" class="btn" data-dismiss="modal">Close</a>
+				<a href="javascript:;" class="btn btn-primary">Save changes</a>
+				</form>
+				</div>
+		</div>
+

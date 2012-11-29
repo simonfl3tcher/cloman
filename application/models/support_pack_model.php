@@ -19,6 +19,15 @@
 			}
 		}
 
+		public function get_client_support_packs(){
+			$this->db->select('*');
+			$this->db->from('support_packs');
+			$this->db->where('is_live', 'Y');
+			$this->db->order_by('price', 'asc');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
 		public function search_support_packs($search){
 			$sql = "SELECT *, sp.name as support_name from support_packs_to_businesses as sptb
 inner join support_packs as sp on sp.`support_packs_id` = sptb.`support_pack_id`

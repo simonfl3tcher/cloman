@@ -57,3 +57,12 @@
 .dummyfile {
 	float:left;
 }
+
+.questionModalForm input,
+.questionModalForm textarea {
+	width:98%;
+}
+
+.questionModalForm textarea {
+	height:100px;
+}

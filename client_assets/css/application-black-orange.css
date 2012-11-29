@@ -1490,7 +1490,7 @@ Faq Styles
 .faq-container .faq-search input {
   width: 96%;
   display: block;
-  padding: 2%;
+  padding: 10px;
 }
 .faq-container .faq-empty {
   display: none;

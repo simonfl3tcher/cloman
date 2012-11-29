@@ -119,8 +119,8 @@
 						<!-- <li><a href="#">Request Support Ticket</a></li> -->
 						<li><a href="<?php echo site_url('client/faq'); ?>">FAQ</a></li>
 						<li><a href="<?php echo site_url('client/support'); ?>">Support Packs</a></li>
-						<li><a href="#">Documents</a></li>
-						<!-- <li><a target="_blank" href="http://www.logicdesign.co.uk">Plugins</a></li> -->
+						<li><a href="<?php echo site_url('client/documents'); ?>">Documents</a></li>
+						<li><a target="_blank" href="http://www.logicdesign.co.uk">Plugins</a></li>
 					</ul>    				
 				</li>
 			</ul>

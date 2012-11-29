@@ -56,6 +56,7 @@
 
 <script src="<?php echo base_url(); ?>client_assets/js/demos/demo.bonus.js"></script>
 <script src="<?php echo base_url(); ?>client_assets/js/demos/demo.gallery.js"></script>
+<script src="<?php echo base_url(); ?>client_assets/js/plugins/faq/faq.js"></script>
 
 <script>
 
