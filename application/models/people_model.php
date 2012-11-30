@@ -60,9 +60,12 @@
 			$contact->MarkForDeletion();
 		}
 
-		public function edit_person($id){
-			// $contact = new Contact_Class($id);
-			// $address = new Address_Class($contact->getAddressID());
+		public function get_faqs(){
+			$this->db->select('*');
+			$this->db->from('faq');
+			$this->db->where('verified', 'Y');
+			$query = $this->db->get();
+			return $query->result_array();
 		}
 	}
 ?>

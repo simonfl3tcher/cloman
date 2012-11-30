@@ -457,4 +457,23 @@ where c.project_id = ? and cc.customer_seen = 'N' and cc.who = 'C' and cc.who_id
 			$query = $this->db->query($sql, array($id, $this->session->userdata('people_id')));
 			return $query->row_array();
 		}
+
+		public function ask_question(){
+			$this->db->select('*');
+			$this->db->from('faq');
+			$this->db->like('question', $_POST['question']);
+			$count = $this->db->count_all_results();
+			
+			if($count == 1){
+				return false;
+			} else {
+				$data = array(
+					'question' => $_POST['question'],
+					'request_by' => $this->session->userdata('people_id')
+				);
+				$this->db->insert('faq', $data);
+				return true;
+			}
+			
+		}
 	}
