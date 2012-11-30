@@ -3,7 +3,7 @@
 -- Server version:               5.5.24-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-11-30 15:03:07
+-- Date/time:                    2012-11-30 18:13:07
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -376,12 +376,19 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_live` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
   PRIMARY KEY (`document_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.documents: ~0 rows (approximately)
+-- Dumping data for table my.company.documents: ~4 rows (approximately)
 DELETE FROM `documents`;
 /*!40000 ALTER TABLE `documents` DISABLE KEYS */;
+INSERT INTO `documents` (`document_id`, `file_name`, `image`, `description`, `title`, `is_live`) VALUES
+	(1, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 1', 'Y'),
+	(2, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 2', 'Y'),
+	(3, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 3', 'Y'),
+	(4, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 4', 'Y');
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
 
 

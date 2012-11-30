@@ -21,6 +21,7 @@
 			}
 			$data['user_data'] = $this->people_model->get($this->session->userdata('people_id'));
 			$data['comment_full_count'] = $this->projects_model->customer_full_count();
+			$data['documents'] = $this->people_model->get_live_documents();
 			$this->render_client_view('documents', $data);
 		}
 

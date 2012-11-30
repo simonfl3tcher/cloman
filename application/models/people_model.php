@@ -67,5 +67,13 @@
 			$query = $this->db->get();
 			return $query->result_array();
 		}
+
+		public function get_live_documents(){
+			$this->db->select('*');
+			$this->db->from('documents');
+			$this->db->where('is_live', 'Y');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
 	}
 ?>
