@@ -25,4 +25,11 @@
 			$this->render_client_view('documents', $data);
 		}
 
+		public function download($file){
+			$this->load->helper('download');
+			$data = file_get_contents("uploads/documents/" . $file); // Read the file's contents
+			$name = $file;
+			force_download($name, $data); 
+		}
+
 	}

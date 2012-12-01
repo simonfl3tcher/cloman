@@ -40,10 +40,12 @@
 					foreach($_FILES as $key => $value){
 						if(!empty($value['name'])){
 							if($this->upload->do_upload($key)){
-								$files[] = $this->upload->data()['file_name'];
+								$d = $this->upload->data();
+								$files[] = $d['file_name'];
 								$data['success'] = 'Your comment has been added against this concept';
 							} else {
 								// dont upload the files.
+								$data['error'] = 'This file did not upload properly, please try again';
 							}
 						}
 					}
@@ -92,6 +94,13 @@
 			$data['project'] = $projectId;
 			$data['image'] = $image;
 			$this->render_client_view('client/preview', $data, true);
+		}
+
+		public function download($projId, $image){
+			$this->load->helper('download');
+			$data = file_get_contents("uploads/concepts/" . $projId . "/uploads/" . $image); // Read the file's contents
+			$name = $image;
+			force_download($name, $data); 
 		}
 
 	}
