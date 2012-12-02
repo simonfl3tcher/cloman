@@ -36,16 +36,18 @@
 			</tfoot>
 		<?php } ?>
 	</table>
-	<div class="paginationContainer">
-		<div class="one_half" id="loadMore">
-			Load More
-		</div>
+	<?php if(!isset($archive)){ ?>
+		<div class="paginationContainer">
+			<div class="one_half" id="loadMore">
+				Load More
+			</div>
 
-		<div class="one_half last" id="loadAll">
-			Load All
-		</div>
+			<div class="one_half last" id="loadAll">
+				Load All
+			</div>
 
-	</div>
+		</div>
+	<?php } ?>
 </div>
 
 <br />

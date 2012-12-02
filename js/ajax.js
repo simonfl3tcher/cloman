@@ -468,7 +468,7 @@ $(document).ready(function(){
 		addAjaxLoadedScreen($('body'));
 		var limit = $('#searchTable tr').length - 2 + 20;
 		$.ajax({
-			url: 'tasks/ajax_get/' + limit,
+			url: '/tasks/ajax_get/' + limit,
 			type: 'POST',
 			dataType: 'html'
 		}).done(function(data){
@@ -484,7 +484,7 @@ $(document).ready(function(){
 		addAjaxLoadedScreen($('body'));
 		var limit = 100000000;
 		$.ajax({
-			url: 'tasks/ajax_get/' + limit,
+			url: '/tasks/ajax_get/' + limit,
 			type: 'POST',
 			dataType: 'html'
 		}).done(function(data){
