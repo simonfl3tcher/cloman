@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	$("#recuringDate").live('click', function(){
+		$(this).datepicker('destroy').datepicker({ dateFormat: "dd-mm-yy", minDate: 0 }).focus();
+	});
+
 	$('.edit').bind('click', function(e){
 		e.preventDefault();
 		$('#myModal').modal({
@@ -206,9 +210,6 @@ $(document).ready(function(){
 	$('.datepickerFull').datepicker({dateFormat: "dd-mm-yy"});
 	$('.datepicker-small').datepicker({dateFormat: "dd-mm-yy"});
 
-	$('.datepicker').live('click', function(){
-		$(this).datepicker({ dateFormat: "dd-mm-yy", minDate: 0 });
-	});
 	
 	var myDate = new Date();
     var month = myDate.getMonth() + 1;

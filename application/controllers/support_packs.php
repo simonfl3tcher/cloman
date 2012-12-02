@@ -60,7 +60,8 @@
 
 		public function add_to_business($id){
 			$q = $this->support_pack_model->add_support_pack_to_business($id, $_POST['data']);
-			echo json_encode($q);
+			$data['current_support_packs'] = $this->support_pack_model->get_support_packs_for_business($id);
+			$this->load->partial('partials/support_pack_partial.php', $data);
 		}
 
 		public function all(){

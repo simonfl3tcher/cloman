@@ -46,6 +46,26 @@
 		</tr>
 	</table>
 	<br />
+	<div class="stdpadh stdpadt">
+		<h3>Client Portal</h3>
+		<p>You can allow client access by the settings bellow</p>
+	</div>
+
+	<table class="std">
+		<tbody>
+		<tr  class="largeField">
+			<td>
+				<input  type="checkbox" name="contact[Has_Login_Access]" <?php if($contact->getHasLoginAccess() == 'Y'){ echo 'checked="checked"'; } ?> /><span>Allow Client Access?</span>
+			</td>
+		</tr>
+		<tr  class="largeField">
+			<td>
+				<label>Password</label>
+				<input type="text" name="contact[Password]" /><span>Current Password:- <?php echo $contact->getPassword(); ?></span>
+			</td>
+		</tr>
+	</table>
+	<br />
 	<input type="submit" class="btn btn-mini btn-success" value="Update Contact" />
 </form>
 

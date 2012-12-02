@@ -10,4 +10,5 @@
 <a href="<?php echo site_url(); ?>calendar/projects">Project Planner</a>
 <a href="<?php echo site_url(); ?>calendar/tasks">Task Planner</a>
 <a href="<?php echo site_url(); ?>meetings">Meetings</a>
+<a href="<?php echo site_url(); ?>client_portal">Client Portal</a>
 <br />

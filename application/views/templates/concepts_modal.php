@@ -23,7 +23,7 @@
 							<tr>
 								<td>
 									<label>Files</label>
-									<input type="file" id="file" name="userfile" size="20" />
+									<input type="file" id="filehidden" name="userfile" size="20" />
 									<div class="dummyfile input-append">
 										<input id="filename" type="text" class="input disabled span2" name="userfile" readonly="readonly" />
 										<a id="fileselectbutton" class="btn">Choose...</a>

@@ -1,9 +1,9 @@
 -- --------------------------------------------------------
--- Host:                         
--- Server version:               5.5.24-log - MySQL Community Server (GPL)
--- Server OS:                    Win64
+-- Host:                         localhost
+-- Server version:               5.5.16 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-11-30 18:13:07
+-- Date/time:                    2012-12-02 15:23:56
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -129,26 +129,21 @@ CREATE TABLE IF NOT EXISTS `business_to_people` (
   `business_id` int(10) DEFAULT '0',
   `people_id` int(10) DEFAULT '0',
   PRIMARY KEY (`b2p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.business_to_people: ~31 rows (approximately)
 DELETE FROM `business_to_people`;
 /*!40000 ALTER TABLE `business_to_people` DISABLE KEYS */;
 INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
-	(15, 1, 44),
-	(19, 1, 44),
-	(23, 10, 44),
 	(32, 1, 51),
 	(33, 23, 51),
 	(36, 1, 53),
 	(42, NULL, 51),
 	(44, 6, 53),
-	(45, 6, 44),
 	(51, 25, 51),
 	(56, 2, 51),
 	(59, 18, 51),
 	(64, 28, 55),
-	(65, 28, 44),
 	(66, 29, 57),
 	(67, 1, 49),
 	(68, 3, 49),
@@ -164,9 +159,55 @@ INSERT INTO `business_to_people` (`b2p_id`, `business_id`, `people_id`) VALUES
 	(82, 1, 54),
 	(84, 32, 54),
 	(85, 32, 51),
-	(86, 1, 58),
-	(89, 1, 0);
+	(89, 1, 0),
+	(90, 1, 44),
+	(91, 1, 44),
+	(92, 6, 44),
+	(93, 28, 44),
+	(94, 1, 58),
+	(96, 1, 60);
 /*!40000 ALTER TABLE `business_to_people` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.casestudies
+DROP TABLE IF EXISTS `casestudies`;
+CREATE TABLE IF NOT EXISTS `casestudies` (
+  `Casestudy_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `User_ID` int(10) DEFAULT NULL,
+  `Injury_Name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Breed` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Age` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Sex` enum('F','M') COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Case_Submitted_By` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Wound_Age` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Wound_Location` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Wound_Size` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'M',
+  `Tissue_Status` int(10) DEFAULT NULL,
+  `Date_Of_First_Presentation` date DEFAULT NULL,
+  `Advice_On_Application` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
+  `Interventions_Used` text COLLATE utf8_unicode_ci,
+  `Infected_Wound` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
+  `Wound_Treated_Prior` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
+  `Image` text COLLATE utf8_unicode_ci,
+  `Initial_Dressing_ID` int(10) DEFAULT NULL,
+  `Prior_Treatment` text COLLATE utf8_unicode_ci,
+  `Management_Plan` text COLLATE utf8_unicode_ci NOT NULL,
+  `Presentation_Of_Wound` text COLLATE utf8_unicode_ci,
+  `Outcome` text COLLATE utf8_unicode_ci,
+  `Admin_Status` enum('0','1') COLLATE utf8_unicode_ci DEFAULT '0',
+  `Customer_Status` enum('0','1','2') COLLATE utf8_unicode_ci DEFAULT '0',
+  PRIMARY KEY (`Casestudy_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.casestudies: ~4 rows (approximately)
+DELETE FROM `casestudies`;
+/*!40000 ALTER TABLE `casestudies` DISABLE KEYS */;
+INSERT INTO `casestudies` (`Casestudy_ID`, `User_ID`, `Injury_Name`, `Breed`, `Age`, `Sex`, `Case_Submitted_By`, `Wound_Age`, `Wound_Location`, `Wound_Size`, `Tissue_Status`, `Date_Of_First_Presentation`, `Advice_On_Application`, `Interventions_Used`, `Infected_Wound`, `Wound_Treated_Prior`, `Image`, `Initial_Dressing_ID`, `Prior_Treatment`, `Management_Plan`, `Presentation_Of_Wound`, `Outcome`, `Admin_Status`, `Customer_Status`) VALUES
+	(1, 5, 'Wounded Leg (Gash)', '', '', 'M', '', 'M', 'M', 'M', 0, '2012-11-22', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'N', 'N', '', 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '1'),
+	(6, 5, 'Wounded Leg', 'Stallion', '28', 'M', 'Simon Fletcher', '7 weeks', 'Knee', '10x50', 1, '2012-11-14', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Y', 'Y', 'me13.jpg|T_M_Homepage_Image2.jpg|me9.jpg', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '0', '0'),
+	(7, 5, 'Testing Injury', 'Testing', '78', 'M', 'Simon', '78', 'Knee', '12x85', 1, '2012-11-23', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Y', 'Y', 'me14.jpg|inflatable-bilboards1.jpg|clever-banner.png', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '0', '1'),
+	(8, 5, 'Testing Injury', 'Testing', '78', 'M', 'Simon', '78', 'Knee', '12x85', 1, '2012-11-23', 'Y', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Y', 'Y', 'me14.jpg|inflatable-bilboards1.jpg|clever-banner.png', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '0', '1', '1');
+/*!40000 ALTER TABLE `casestudies` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.chat
@@ -222,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `concept_comments` (
   `admin_seen` enum('Y','N') DEFAULT 'N',
   `files` text,
   PRIMARY KEY (`concept_comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table my.company.concept_comments: 67 rows
 DELETE FROM `concept_comments`;
@@ -294,7 +335,17 @@ INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_
 	(64, 1, 'C', 44, '', '2012-11-29 13:58:31', 'Y', 'N', 'Certification-Study-Guide-MCD-v17.pdf'),
 	(65, 1, 'C', 44, 'this is an example', '2012-11-30 14:21:11', 'Y', 'N', ''),
 	(66, 1, 'C', 44, 'this is an example', '2012-11-30 14:21:16', 'Y', 'N', ''),
-	(67, 1, 'C', 44, 'sadfghjk', '2012-11-30 14:21:36', 'Y', 'N', 'Logic_Design_feedback1.docx');
+	(67, 1, 'C', 44, 'sadfghjk', '2012-11-30 14:21:36', 'Y', 'N', 'Logic_Design_feedback1.docx'),
+	(68, 2, 'C', 60, 'This is a new comment', '2012-12-02 15:59:13', 'Y', 'N', ''),
+	(69, 2, 'C', 60, 'This is a new comment', '2012-12-02 15:59:26', 'Y', 'N', ''),
+	(70, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:04:54', 'Y', 'N', ''),
+	(71, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:08:28', 'Y', 'N', ''),
+	(72, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:10:40', 'Y', 'N', ''),
+	(73, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:11:56', 'Y', 'N', ''),
+	(74, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:12:20', 'Y', 'N', ''),
+	(75, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:12:29', 'Y', 'N', ''),
+	(76, 3, 'C', 60, 'new comment ', '2012-12-02 16:13:21', 'Y', 'N', ''),
+	(77, 3, 'C', 60, 'new comment ', '2012-12-02 16:13:54', 'Y', 'N', '');
 /*!40000 ALTER TABLE `concept_comments` ENABLE KEYS */;
 
 
@@ -379,17 +430,61 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_live` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
   PRIMARY KEY (`document_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.documents: ~4 rows (approximately)
 DELETE FROM `documents`;
 /*!40000 ALTER TABLE `documents` DISABLE KEYS */;
 INSERT INTO `documents` (`document_id`, `file_name`, `image`, `description`, `title`, `is_live`) VALUES
-	(1, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 1', 'Y'),
+	(1, 'Programming_in_Objective-C_3rd_Edition_Developers_Library3.pdf', 'simonfletcherlogo2.jpg', 'This is the description for document one, check them out', 'Document 1', 'Y'),
 	(2, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 2', 'Y'),
 	(3, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 3', 'Y'),
-	(4, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 4', 'Y');
+	(4, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 4', 'Y'),
+	(5, 'Programming_in_Objective-C_(3rd_Edition)_(Developers_Library)3.pdf', 'sqicon57.jpg', 'gffdgfdgfdgdfg', 'This is an example', 'Y'),
+	(6, 'Programming_in_Objective-C_(3rd_Edition)_(Developers_Library)4.pdf', 'Penguins.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Document 21', 'Y');
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.dressings
+DROP TABLE IF EXISTS `dressings`;
+CREATE TABLE IF NOT EXISTS `dressings` (
+  `Dressing_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  `Price` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Rating` int(10) DEFAULT NULL,
+  PRIMARY KEY (`Dressing_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.dressings: ~0 rows (approximately)
+DELETE FROM `dressings`;
+/*!40000 ALTER TABLE `dressings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dressings` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.experts
+DROP TABLE IF EXISTS `experts`;
+CREATE TABLE IF NOT EXISTS `experts` (
+  `Expert_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Qualification` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Small_Bio` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Image` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Bio` text COLLATE utf8_unicode_ci NOT NULL,
+  `Email_Address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`Expert_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.experts: ~4 rows (approximately)
+DELETE FROM `experts`;
+/*!40000 ALTER TABLE `experts` DISABLE KEYS */;
+INSERT INTO `experts` (`Expert_ID`, `Name`, `Qualification`, `Small_Bio`, `Image`, `Bio`, `Email_Address`) VALUES
+	(1, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'guy.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk'),
+	(2, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk'),
+	(3, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk'),
+	(4, 'Simon Fletcher', 'Horse Vet', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'guy.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'simon@logicdesign.co.uk');
+/*!40000 ALTER TABLE `experts` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.faq
@@ -400,28 +495,70 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `explanation` text COLLATE utf8_unicode_ci,
   `verified` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
   `request_by` int(11) DEFAULT NULL,
+  `disabled` enum('Y','N') COLLATE utf8_unicode_ci DEFAULT 'N',
   PRIMARY KEY (`faq_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table my.company.faq: ~14 rows (approximately)
 DELETE FROM `faq`;
 /*!40000 ALTER TABLE `faq` DISABLE KEYS */;
-INSERT INTO `faq` (`faq_id`, `question`, `explanation`, `verified`, `request_by`) VALUES
-	(3, 'How can I get my own domain name?', 'The Internet Corporation for Assigned Names and Numbers (ICANN) maintains a list of accredited registrars . Any of the companies on this list can register a domain name for you..', 'N', 44),
-	(4, 'How can I block my hosting service\'s advertisements?', 'Check the Terms of Service (TOS) agreement for your hosting service. It almost certainly prohibits interfering with the advertisements they add to your web pages. If you use some trick to block their advertisements on your own, then your hosting service may delete your account for violating its TOS.', 'Y', 44),
-	(5, 'How do I redirect someone to another page?', 'The most reliable way is to configure the server to send out a redirection instruction when the old URL is requested. Then the browser will automatically get the new URL. This is the fastest and most efficient way, and is the only way described here that can convince indexing robots to phase out the old URL. For configuration details consult your server admin or documentation (with NCSA or Apache servers, use a Redirect statement in .htaccess).', 'N', 44),
-	(6, 'How do I password protect my web site?', 'Password protection is done through HTTP authentication. The configuration details vary from server to server, so you should read the authentication section of your server documentation. Contact your server administrator if you need help with this.', 'N', 44),
-	(7, 'How do I stop my page from being cached?', 'Browsers cache web documents; they store local copies of documents to speed up repeated references to documents that haven\'t changed. Also, many browsers are configured to use public proxy caches, which serve many users (e.g., all customers of an ISP, or all employees behind a corporate firewall). To effectively control how your documents are cached you must configure your server to send appropriate HTTP headers.', 'Y', 44),
-	(8, 'How can I disable the browser\'s right-click options?', 'These scripts annoy visitors who lose ready access to their browsers\' normal context-menu functions (e.g., "Open in new window" or "Bookmark link"). These scripts can also interfere with features like mouse gestures. Nothing (including these scripts) can prevent anyone from copying your source or images. The browser cannot display your document without the source and images, so your web server must send them to the browser. Even without the various "save" functions in today\'s browsers, someone can retrieve your source or images from the browser\'s cache, request them from the server with some other tool, or use a screen-capture tool to copy the images. These scripts do nothing when JavaScript is disabled or unavailable, when JavaScript access to right-click events is disabled, on systems without mice, or on systems with single-button mice.', 'N', 44),
-	(9, 'How do I hide my URL?', 'You can\'t. URLs are fundamental to navigation on the WWW. The URL is necessary for the browser to be able to retrieve your document. It is impossible to hide the URL of a resource from the browser.', 'N', 44),
-	(10, 'How do I detect what browser is being used?', 'Many browsers identify themselves when they request a document. A CGI script will have this information available in the HTTP_USER_AGENT environment variable, and it can use that to send out a version of the document which is optimized for that browser.', 'Y', 44),
-	(11, 'How do I get my visitors\' email addresses?', 'You can\'t. Although each request for a document is usually logged with the name or address of the remote host, the actual username is almost never logged as well. This is mostly because of performance reasons, as it would require that the server uses the ident protocol to see who is on the other end. This takes time. And if a cache proxy is doing the request, you don\'t get anything sensible.', 'N', 44),
-	(12, 'Why is my custom 404 Not Found message not displayed?', 'If only Internet Explorer ignores your custom 404 Not Found messages, then you\'ve been caught by its "friendly" HTTP error messages. When a special HTTP response (e.g., a 404 Not Found response) is shorter than 512 bytes, Internet Explorer substitutes its own message for the one delivered by the server. As a user of Internet Explorer, you can disable this feature in the "Advanced" options panel. As a web author, your only recourse is to make your 404 Not Found message longer.', 'N', 44),
-	(13, 'How do I take control of my domain ?', NULL, 'N', 44),
-	(14, 'How do I take control of my domain ?', NULL, 'N', 44),
-	(15, 'this is another question', NULL, 'N', 44),
-	(16, 'Example 21 ?', NULL, 'N', 44);
+INSERT INTO `faq` (`faq_id`, `question`, `explanation`, `verified`, `request_by`, `disabled`) VALUES
+	(3, 'How can I get my own domain name?', 'The Internet Corporation for Assigned Names and Numbers (ICANN) maintains a list of accredited registrars . Any of the companies on this list can register a domain name for you..', 'N', 44, 'N'),
+	(4, 'How can I block my hosting service\'s advertisements?', 'Check the Terms of Service (TOS) agreement for your hosting service. It almost certainly prohibits interfering with the advertisements they add to your web pages. If you use some trick to block their advertisements on your own, then your hosting service may delete your account for violating its TOS.', 'Y', 44, 'N'),
+	(5, 'How do I redirect someone to another page?', 'The most reliable way is to configure the server to send out a redirection instruction when the old URL is requested. Then the browser will automatically get the new URL. This is the fastest and most efficient way, and is the only way described here that can convince indexing robots to phase out the old URL. For configuration details consult your server admin or documentation (with NCSA or Apache servers, use a Redirect statement in .htaccess).', 'N', 44, 'N'),
+	(6, 'How do I password protect my web site?', 'Password protection is done through HTTP authentication. The configuration details vary from server to server, so you should read the authentication section of your server documentation. Contact your server administrator if you need help with this.', 'N', 44, 'N'),
+	(7, 'How do I stop my page from being cached?', 'Browsers cache web documents; they store local copies of documents to speed up repeated references to documents that haven\'t changed. Also, many browsers are configured to use public proxy caches, which serve many users (e.g., all customers of an ISP, or all employees behind a corporate firewall). To effectively control how your documents are cached you must configure your server to send appropriate HTTP headers.', 'Y', 44, 'N'),
+	(8, 'How can I disable the browser\'s right-click options?', 'These scripts annoy visitors who lose ready access to their browsers\' normal context-menu functions (e.g., "Open in new window" or "Bookmark link"). These scripts can also interfere with features like mouse gestures. Nothing (including these scripts) can prevent anyone from copying your source or images. The browser cannot display your document without the source and images, so your web server must send them to the browser. Even without the various "save" functions in today\'s browsers, someone can retrieve your source or images from the browser\'s cache, request them from the server with some other tool, or use a screen-capture tool to copy the images. These scripts do nothing when JavaScript is disabled or unavailable, when JavaScript access to right-click events is disabled, on systems without mice, or on systems with single-button mice.', 'N', 44, 'N'),
+	(9, 'How do I hide my URL?', 'You can\'t. URLs are fundamental to navigation on the WWW. The URL is necessary for the browser to be able to retrieve your document. It is impossible to hide the URL of a resource from the browser.', 'N', 44, 'N'),
+	(10, 'How do I detect what browser is being used?', 'Many browsers identify themselves when they request a document. A CGI script will have this information available in the HTTP_USER_AGENT environment variable, and it can use that to send out a version of the document which is optimized for that browser.', 'Y', 44, 'Y'),
+	(11, 'How do I get my visitors\' email addresses?', 'You can\'t. Although each request for a document is usually logged with the name or address of the remote host, the actual username is almost never logged as well. This is mostly because of performance reasons, as it would require that the server uses the ident protocol to see who is on the other end. This takes time. And if a cache proxy is doing the request, you don\'t get anything sensible.', 'Y', 44, 'N'),
+	(12, 'Why is my custom 404 Not Found message not displayed?', 'If only Internet Explorer ignores your custom 404 Not Found messages, then you\'ve been caught by its "friendly" HTTP error messages. When a special HTTP response (e.g., a 404 Not Found response) is shorter than 512 bytes, Internet Explorer substitutes its own message for the one delivered by the server. As a user of Internet Explorer, you can disable this feature in the "Advanced" options panel. As a web author, your only recourse is to make your 404 Not Found message longer.', 'Y', 44, 'N'),
+	(13, 'How do I take control of my domain ?', '', 'Y', 44, 'N'),
+	(14, 'How do I take control of my domain ?', '', 'Y', 44, 'Y'),
+	(15, 'this is another question', 'This is the answer and it should go live straight after this!!!', 'Y', 44, 'Y'),
+	(16, 'Example 21 ?', 'dfdsfdsfsdfdsfdsf', 'Y', 44, 'Y');
 /*!40000 ALTER TABLE `faq` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.follow-ups
+DROP TABLE IF EXISTS `follow-ups`;
+CREATE TABLE IF NOT EXISTS `follow-ups` (
+  `Followup_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Casestudy_ID` int(10) DEFAULT NULL,
+  `Date` date DEFAULT NULL,
+  `Status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Tissue_Status` int(255) DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  `Images` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`Followup_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.follow-ups: ~21 rows (approximately)
+DELETE FROM `follow-ups`;
+/*!40000 ALTER TABLE `follow-ups` DISABLE KEYS */;
+INSERT INTO `follow-ups` (`Followup_ID`, `Casestudy_ID`, `Date`, `Status`, `Tissue_Status`, `Description`, `Images`) VALUES
+	(1, 6, '2012-11-22', 'Improved', 0, 'lorem ipsummmmm', 'me.jpg|inflatable-bilboards.jpg'),
+	(2, 6, '2012-11-22', '', 0, 'lorem ipsummmmm', 'me1.jpg|inflatable-bilboards1.jpg'),
+	(3, 6, '2012-11-22', 'got a lot better', 0, 'lorem ', 'business-banner.png|T_M_Homepage_Image.jpg'),
+	(4, 1, '2012-11-08', 'sgfdhjk', 0, 'shdgjfk,gghjfhrahjgm,jgfshfhm,jhfdgj', 'T_M_Homepage_Image1.jpg|me2.jpg'),
+	(5, 1, '2012-11-29', 'sdfhgj', 0, 'dsgfhgjhmgdfsadgfhgjk,', 'me3.jpg'),
+	(6, 1, '2012-11-03', 'afsdghj,', 0, 'sdfhgjk,.kgdfgfhnjm,j.', 'inflatable-bilboards2.jpg|me4.jpg'),
+	(7, 1, '2012-11-23', 'trtjryretyrtere', 0, 'rytykuli;o/.k,jmhtgrefwdefgrdhfgkhkl', ''),
+	(8, 6, '2012-11-17', 'asfdghjk,', 0, 'fdhgjfhklk/lhgfdgjhfklgkh;/l', ''),
+	(9, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(10, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(11, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(12, 6, '2012-11-14', 'Hello Status', 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', ''),
+	(13, 6, '2012-11-22', 'This is a new status', 2, '	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'me5.jpg|clever-banner.png'),
+	(14, 6, '2012-11-29', 'sdgfhj', 1, 'sdagfhjkjl;\'ljhgfdsadfghjkl;', ''),
+	(15, 7, '2012-11-27', 'sdfhgjk', 2, 'sdgfhjkl;', ''),
+	(16, 7, '2012-11-24', 'esdfghjkl', 3, 'dfghjkl;\'#\r\n', ''),
+	(17, 6, '2012-11-22', 'sadsfghjk', 1, 'afdsghjkl', ''),
+	(18, 6, '2012-11-22', 'sadsfghjk', 1, 'afdsghjkl', ''),
+	(19, 6, '2012-11-16', 'esdrfghbkjnm,.', 2, 'eztdxfcyguhvbjnkml;', ''),
+	(20, 6, '2012-11-16', 'esdrfghbkjnm,.', 2, 'eztdxfcyguhvbjnkml;', ''),
+	(21, 7, '2012-11-29', 'opikujh', 1, 'o9jpik', '');
+/*!40000 ALTER TABLE `follow-ups` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.meetings
@@ -545,6 +682,33 @@ INSERT INTO `meetings_to_users` (`meetings_to_users_id`, `meeting_id`, `user_id`
 /*!40000 ALTER TABLE `meetings_to_users` ENABLE KEYS */;
 
 
+-- Dumping structure for table my.company.orders
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `Order_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Casestudy_ID` int(10) DEFAULT NULL,
+  `Follow_Up_ID` int(10) DEFAULT NULL,
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Status` enum('N','C') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`Order_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.orders: ~9 rows (approximately)
+DELETE FROM `orders`;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`Order_ID`, `Casestudy_ID`, `Follow_Up_ID`, `Date`, `Status`) VALUES
+	(1, 6, 12, '2012-11-13 18:41:17', 'C'),
+	(2, 6, 13, '2012-11-14 12:24:28', 'N'),
+	(3, 6, 14, '2012-11-14 12:41:46', 'N'),
+	(4, 7, 15, '2012-11-14 13:15:47', 'N'),
+	(5, 7, 16, '2012-11-14 13:16:14', 'N'),
+	(6, 6, 17, '2012-11-14 13:20:34', 'N'),
+	(7, 6, 18, '2012-11-14 13:20:47', 'N'),
+	(8, 6, 19, '2012-11-14 13:52:22', 'N'),
+	(9, 7, 0, '2012-11-14 14:23:22', 'N');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+
+
 -- Dumping structure for table my.company.people
 DROP TABLE IF EXISTS `people`;
 CREATE TABLE IF NOT EXISTS `people` (
@@ -560,13 +724,13 @@ CREATE TABLE IF NOT EXISTS `people` (
   `has_login_access` enum('Y','N') NOT NULL DEFAULT 'N',
   `is_logged_in` enum('Y','N') NOT NULL DEFAULT 'N',
   PRIMARY KEY (`people_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table my.company.people: ~13 rows (approximately)
 DELETE FROM `people`;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
 INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`, `disabled`, `password`, `has_login_access`, `is_logged_in`) VALUES
-	(44, 'Simon Fletcher', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'Y', '041529ab9a34a072fe9ac57db4e088ff2602a83d', 'Y', 'Y'),
+	(44, 'Simon Fletcher', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'N', '041529ab9a34a072fe9ac57db4e088ff2602a83d', 'Y', 'N'),
 	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', '', 'Y', NULL, '', ''),
 	(49, 'Finn Johnson', 'Website Designer / Studio Manager', 'finn@logicdesign.co.uk', '', 'N', 'Finn is the senior designer and studio manager', 'Y', NULL, '', ''),
 	(50, 'Keith Bradley', 'Website Developer', 'keith@logicdesign.co.uk', '', 'N', 'Keith is the senior web developer and Managing Director at logic design you are looking here ', 'Y', NULL, '', ''),
@@ -577,9 +741,112 @@ INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary
 	(55, 'Shaun Palfrey', 'Medrecs Officer', 'shaun@NHS.co.uk', '01284 345 345', 'N', 'this is the notes', 'Y', NULL, '', ''),
 	(56, 'Darren Smith', 'Managing Director / Web Developer', 'darren@logicdesign.co.uk', '01284 345 345', 'N', 'this is the the best thing to do...', 'Y', NULL, '', ''),
 	(57, 'David Fletcher', 'Web Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'this is a great person...', 'N', NULL, '', ''),
-	(58, 'Charlie Robinson', 'MD', 'charlie@displayworld.co.uk', '01284 345 345', 'N', 'fdgsfdgsfg', 'N', NULL, '', ''),
-	(59, 'David Williams', 'Website Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'Great guy', 'Y', NULL, '', '');
+	(58, 'Charlie Robinson', 'MD', 'charlie@displayworld.co.uk', '01284 345 345', 'N', 'fdgsfdgsfg', 'N', '041529ab9a34a072fe9ac57db4e088ff2602a83d', 'Y', 'Y'),
+	(59, 'David Williams', 'Website Developer', 'david@logicdesign.co.uk', '01284 706842', 'N', 'Great guy', 'Y', NULL, '', ''),
+	(60, 'Keith Bradley', 'Web Developer', 'keith.bradley@logicdesign.co.uk', '10', 'N', 'These are the notes to be taken by the system for a new user.', 'N', 'aad1285fa6881af30d3de4ea4d82078299a15e93', 'Y', 'Y');
 /*!40000 ALTER TABLE `people` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.products
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `Product_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` text COLLATE utf8_unicode_ci,
+  `Minimum_Order` int(100) DEFAULT NULL,
+  PRIMARY KEY (`Product_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.products: ~5 rows (approximately)
+DELETE FROM `products`;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` (`Product_ID`, `Name`, `Image`, `Description`, `Minimum_Order`) VALUES
+	(2, 'Melolin', 'product_1.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 3),
+	(3, 'Self Adhering Bandage', 'product_2.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 3),
+	(4, 'Veterinary Absorbent Foam Dressing', 'product_3.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 2),
+	(5, 'Sterile Equine Absorbent Foam Dressing', 'product_4.png', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1),
+	(6, 'Sterile Equine Absorbent Foam Dressing', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 1);
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.products_to_categories
+DROP TABLE IF EXISTS `products_to_categories`;
+CREATE TABLE IF NOT EXISTS `products_to_categories` (
+  `Products_To_Categories_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Product_ID` int(10) DEFAULT NULL,
+  `Category_ID` int(10) DEFAULT NULL,
+  PRIMARY KEY (`Products_To_Categories_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.products_to_categories: ~6 rows (approximately)
+DELETE FROM `products_to_categories`;
+/*!40000 ALTER TABLE `products_to_categories` DISABLE KEYS */;
+INSERT INTO `products_to_categories` (`Products_To_Categories_ID`, `Product_ID`, `Category_ID`) VALUES
+	(1, 1, 2),
+	(2, 2, 2),
+	(3, 3, 2),
+	(4, 4, 2),
+	(5, 5, 2),
+	(6, 6, 2);
+/*!40000 ALTER TABLE `products_to_categories` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.product_to_orders
+DROP TABLE IF EXISTS `product_to_orders`;
+CREATE TABLE IF NOT EXISTS `product_to_orders` (
+  `Product_To_Orders_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `Order_ID` int(10) DEFAULT NULL,
+  `Product_ID` int(10) DEFAULT NULL,
+  `Quantity` int(10) DEFAULT NULL,
+  PRIMARY KEY (`Product_To_Orders_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table my.company.product_to_orders: ~40 rows (approximately)
+DELETE FROM `product_to_orders`;
+/*!40000 ALTER TABLE `product_to_orders` DISABLE KEYS */;
+INSERT INTO `product_to_orders` (`Product_To_Orders_ID`, `Order_ID`, `Product_ID`, `Quantity`) VALUES
+	(1, 1, 2, 3),
+	(2, 1, 3, 0),
+	(3, 1, 4, 2),
+	(4, 1, 5, 1),
+	(5, 1, 6, 1),
+	(6, 2, 2, 3),
+	(7, 2, 3, 0),
+	(8, 2, 4, 2),
+	(9, 2, 5, 1),
+	(10, 2, 6, 1),
+	(11, 3, 2, 3),
+	(12, 3, 3, 3),
+	(13, 3, 4, 2),
+	(14, 3, 5, 1),
+	(15, 3, 6, 1),
+	(16, 5, 2, 3),
+	(17, 5, 3, 3),
+	(18, 5, 4, 2),
+	(19, 5, 5, 1),
+	(20, 5, 6, 1),
+	(21, 6, 2, 3),
+	(22, 6, 3, 3),
+	(23, 6, 4, 2),
+	(24, 6, 5, 1),
+	(25, 6, 6, 1),
+	(26, 7, 2, 3),
+	(27, 7, 3, 3),
+	(28, 7, 4, 2),
+	(29, 7, 5, 1),
+	(30, 7, 6, 1),
+	(31, 8, 2, 3),
+	(32, 8, 3, 3),
+	(33, 8, 4, 2),
+	(34, 8, 5, 1),
+	(35, 8, 6, 1),
+	(36, 9, 2, 3),
+	(37, 9, 3, 3),
+	(38, 9, 4, 2),
+	(39, 9, 5, 1),
+	(40, 9, 6, 1);
+/*!40000 ALTER TABLE `product_to_orders` ENABLE KEYS */;
 
 
 -- Dumping structure for table my.company.projects
@@ -879,9 +1146,9 @@ CREATE TABLE IF NOT EXISTS `support_packs_to_businesses` (
   `is_live` enum('Y','N') DEFAULT 'Y',
   `notes` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`sptb_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.support_packs_to_businesses: ~40 rows (approximately)
+-- Dumping data for table my.company.support_packs_to_businesses: ~53 rows (approximately)
 DELETE FROM `support_packs_to_businesses`;
 /*!40000 ALTER TABLE `support_packs_to_businesses` DISABLE KEYS */;
 INSERT INTO `support_packs_to_businesses` (`sptb_id`, `business_id`, `support_pack_id`, `reminder`, `reminder_when`, `renewal_date`, `is_live`, `notes`) VALUES
@@ -924,7 +1191,20 @@ INSERT INTO `support_packs_to_businesses` (`sptb_id`, `business_id`, `support_pa
 	(40, 25, 5, 'N', NULL, '2013-11-20 23:00:07', 'Y', 'here we are\n'),
 	(41, 24, 5, 'N', NULL, '2013-11-20 23:00:58', 'Y', 'here we go'),
 	(42, 6, 6, 'N', NULL, '2013-11-20 23:01:21', 'Y', 'here we fucking go'),
-	(43, 2, 6, 'N', NULL, '2013-11-20 23:04:06', 'Y', 'nnn');
+	(43, 2, 6, 'N', NULL, '2013-11-20 23:04:06', 'Y', 'nnn'),
+	(44, 6, 7, 'N', NULL, '2013-12-02 00:33:43', 'Y', 'This is an example support pack that I am adding to business - display world'),
+	(45, 2, 7, 'N', NULL, '2013-12-02 00:36:09', 'Y', 'This is another support pack going against big earth'),
+	(46, 2, 7, 'N', NULL, '2013-12-02 00:36:52', 'Y', 'dgfhfdgdsgdf'),
+	(47, 2, 7, 'N', NULL, '2013-12-02 00:40:06', 'Y', 'And another one'),
+	(48, 2, 6, 'N', NULL, '2013-12-02 00:40:36', 'Y', 'dsfdsfdsf'),
+	(49, 6, 7, 'N', NULL, '2013-12-02 00:41:31', 'Y', 'dsfsdgfdgfdgfdgdf'),
+	(50, 21, 7, 'Y', '2012-12-26 00:00:00', '2013-12-02 00:50:58', 'Y', 'This is a task against john lewis check it out'),
+	(51, 30, 7, 'Y', '2012-12-04 00:00:00', '2013-12-02 00:53:28', 'Y', 'dsafdsfdsfs'),
+	(52, 30, 5, 'Y', '2012-12-24 00:00:00', '2013-12-02 01:00:15', 'Y', 'dsfsfdsfdsfdsfsd'),
+	(53, 22, 7, 'Y', '2012-12-26 00:00:00', '2013-12-02 01:06:50', 'Y', 'sdfdsfdsfsd'),
+	(54, 22, 5, 'Y', '2012-12-26 00:00:00', '2013-12-02 01:07:38', 'Y', 'zxczxcxzczxc'),
+	(55, 21, 7, 'Y', '2012-12-19 00:00:00', '2013-12-02 01:08:59', 'Y', 'This is another one'),
+	(56, 30, 6, 'Y', '2012-12-19 00:00:00', '2013-12-02 01:19:36', 'Y', 'This is a recurring event check it out...');
 /*!40000 ALTER TABLE `support_packs_to_businesses` ENABLE KEYS */;
 
 
@@ -1512,5 +1792,20 @@ INSERT INTO `user_groups` (`group_id`, `group_name`) VALUES
 	(4, 'Developer'),
 	(5, 'Manager');
 /*!40000 ALTER TABLE `user_groups` ENABLE KEYS */;
+
+
+-- Dumping structure for table my.company.websites
+DROP TABLE IF EXISTS `websites`;
+CREATE TABLE IF NOT EXISTS `websites` (
+  `website_id` int(10) NOT NULL AUTO_INCREMENT,
+  `business_id` int(10) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`website_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table my.company.websites: ~0 rows (approximately)
+DELETE FROM `websites`;
+/*!40000 ALTER TABLE `websites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `websites` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

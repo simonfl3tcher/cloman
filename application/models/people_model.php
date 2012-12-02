@@ -64,6 +64,7 @@
 			$this->db->select('*');
 			$this->db->from('faq');
 			$this->db->where('verified', 'Y');
+			$this->db->where('disabled', 'N');
 			$query = $this->db->get();
 			return $query->result_array();
 		}
@@ -74,6 +75,25 @@
 			$this->db->where('is_live', 'Y');
 			$query = $this->db->get();
 			return $query->result_array();
+		}
+
+		public function get_all_with_client_access(){
+			$this->db->select('people.*, businesses.name as business_name');
+			$this->db->from('people');
+			$this->db->join('business_to_people', 'business_to_people.people_id = people.people_id');
+			$this->db->join('businesses', 'businesses.business_id = business_to_people.business_id');
+			$this->db->where('people.has_login_access', 'Y');
+			$this->db->group_by('people.people_id');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
+		public function disable_portal_access($id){
+			$data = array(
+				'has_login_access' => 'N'
+			);
+			$this->db->where('people_id', $id);
+			$this->db->update('people', $data);
 		}
 	}
 ?>

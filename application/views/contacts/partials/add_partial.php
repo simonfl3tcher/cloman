@@ -36,6 +36,22 @@
 								</tr>
 							</tbody>
 						</table>
+						<label>Client Portal Access</label>
+						<table class="std">
+							<tbody>
+								<tr class="largeField">
+									<td>
+										<input  type="checkbox" name="contact[Has_Login_Access]" /><span>Allow Client Access?</span>
+									</td>
+								</tr>
+								<tr  class="largeField">
+									<td>
+										<label>Password</label>
+										<input type="text" name="contact[Password]" /></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 						<!-- This needs to be hidden until they say to add a business. -->
 						<div class="stdpadh stdpadt">
 							<span>Business</span>

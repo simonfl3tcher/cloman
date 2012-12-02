@@ -13,6 +13,7 @@
 		public function index(){
 			if($this->request->isPost()){
 				if($this->projects_model->ask_question()){
+					// Email Logic here
 					$data['success'] = 'Your question has been sent to Logic Design to be answered';
 				} else {
 					$data['error'] = 'This question has already been asked';

@@ -29,8 +29,46 @@
 				$data['status_options'][$stat_opts['status_id']] = $stat_opts['name'];
 			}
 
+			$sort = null;
 
-			$data['list_of_projects'] = $this->projects_model->get_project_list();
+			$data['alphabet'] = 'alphabet-low';
+			$data['importance'] = 'importance-low';
+			$data['date'] = 'date-low';
+
+			if(isset($_GET['sort'])){
+				$sort = $_GET['sort'];
+				switch ($sort) {
+					case "alphabet-low":
+				        $sort = "project_name asc";
+				        $data['alphabet'] = 'alphabet-high';
+				        break;
+			       	case "alphabet-high":
+				        $sort = "project_name desc";
+				        $data['alphabet'] = 'alphabet-low';
+				        break;
+				    case "importance-low":
+				        $sort = "status_id asc";
+				        $data['importance'] = 'importance-high';
+				        break;
+				    case "importance-high":
+				        $sort = "status_id desc";
+				        $data['importance'] = 'importance-low';
+				        break;
+				    case "date-low":
+				        $sort = "internal_deadline asc";
+				        $data['date'] = 'date-high';
+				        break;
+				    case "date-high":
+				        $sort = "internal_deadline desc";
+				        $data['date'] = 'date-low';
+				        break;
+				    default: 
+				    	$sort = "status_id asc, internal_deadline desc";
+				        break;
+				}
+			}
+
+			$data['list_of_projects'] = $this->projects_model->get_project_list($sort);
 			$this->render_view('projects/index', $data);
 		}
 

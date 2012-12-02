@@ -84,9 +84,7 @@
         </div>
         <div data-field-type="text" class="value field-type-text">    
         	<div class="display v2 supportPacks">
-        		<?php foreach($current_support_packs as $packs){ 	
-        				echo $packs['name'] . '<br />';
-        			} ?>
+				<?php $this->load->partial('partials/support_pack_partial.php'); ?>
         	</div>
 		    <div class="display v2">
 		    	<span class="addingSup">
@@ -94,7 +92,7 @@
 					<?php $js = 'class="addingSupport" data-id="' . $business_details->business_id . '"'; ?>
 					<?php echo form_dropdown('business[Support_Pack]', $pack_options, '', $js); ?>
 					<input type="text" name="date" class="datepicker" id="recuringDate" />
-					<span><input type="checkbox" name="recurring" class="recurring" /><lable>Recurring?</label></span>
+					<span><input type="checkbox" name="recurring" class="recurring" value="Y"><lable>Recurring?</label></span>
 					<textarea id="supportComment" class="comm"></textarea>
 				</span>
 		    </div>

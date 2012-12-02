@@ -49,6 +49,7 @@
 					redirect('/contacts', 'refresh');
 				}
 			}
+
 			$data['title'] = 'Edit a contact';
 			$data['contact'] = $people;
 

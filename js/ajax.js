@@ -313,30 +313,29 @@ $(document).ready(function(){
 
 	$('.addingSup #supportComment.comm').live('keypress', function(e){
 		if(e.which == 13 && !e.shiftKey){
-			console.log('dfsdfds');
+			if($('.addingSup .recurring').attr('checked') == 'checked'){
+				var checkbox = 'Y';
+			} else {
+				var checkbox = 'N';
+			}
 			var d = 'notes=' + $(this).val();
-			d += '&data=' + $('.addingSup .addingSupport').val() + '&date=' + $('.addingSup #recuringDate').val() + '&recurring=' + $('.addingSup .recurring');
+			d += '&data=' + $('.addingSup .addingSupport').val() + '&date=' + $('.addingSup #recuringDate').val() + '&recurring=' + checkbox;
 			addAjaxloader($('.sidebarSlider'));
 			$.ajax({
 				url: '/support_packs/add_to_business/' + $('.addingSup .addingSupport').attr('data-id'),
 				type: 'POST',
-				dataType: 'json',
+				dataType: 'html',
 				data: d
 			}).done(function(data){
-				console.log('sdfsd');
 				$('.addingSup #supportComment.comm').val('');
-				$('.addingSup #supportComment.comm').blur();
+				$('.addingSup #recuringDate').val('');
+				$('.addingSup .recurring').attr('checked', false);
+				$('.addingSupport').val('');
 				var info = data;
 				setTimeout(function(){
 					removeAjaxloader($('.sidebarSlider'), 100);
-					$('.addSupportPack.crossIconGrey').trigger('click');
 					$('.display.v2.supportPacks').html('');
-					var options = '';
-					for(var i = 0; i < info.length; i++){
-						options += info[i].name + '<br />';
-					}
-					$('.display.v2.supportPacks').append(options);
-					
+					$('.display.v2.supportPacks').append(info);
 				},1000);
 			});
 		}
@@ -478,10 +477,6 @@ $(document).ready(function(){
 				searchResults(data);
 			},1000);
 		});
-		/*
-			Make the ajax request then utput the data and scroll to the area that it starts on!!
-			$("#id").scrollTop($("#id").scrollTop() + 100);
-		*/
 		console.log('sdfsdfds');
 	});
 
@@ -498,13 +493,11 @@ $(document).ready(function(){
 				searchResults(data);
 			},1000);
 		});
-		/*
-			Make the ajax request then utput the data and scroll to the area that it starts on!!
-			$("#id").scrollTop($("#id").scrollTop() + 100);
-		*/
 		console.log('sdfsdfds');
 	});
+	
 	/* Functions that you may want to use are bellow */
+
 	function searchResultsGrid(data){
 		var surrounder = $('#searchGrid').closest('div.control-group');
 		if(data){

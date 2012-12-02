@@ -8,6 +8,7 @@
 			$this->load->model('projects_model');
 			$this->load->model('people_model');
 			$this->load->helper('date');
+			$this->load->model('email');
 		}
 
 		public function index($id){
@@ -54,6 +55,14 @@
 				}
 				
 				$this->projects_model->add_comment_to_concept($images);
+				$users = $this->projects_model->get_contacts_responsible($id);
+				if($this->session->userdata('Client_Logged_In') == true){
+					foreach($users as $u){
+						// THis needs fixing
+						$message = 'You have recieved a new message against  no.' .$_POST['concept'] .' <br />The message is as follows:- ' . $_POST['comment'];
+						$this->email->do_email($u['email'], 'hello@logicdesign.co.uk', 'Logic Design', 'New Comment against concept no.' .$_POST['concept'] .' | Logic Design', $message);
+					}
+				}
 			}
 
 			$data['tab'] = 1;

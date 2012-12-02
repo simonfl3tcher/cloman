@@ -23,6 +23,10 @@
 		}
 	}
 
+	function is_sha1($str) {
+	    return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
+	}
+
 
 	function dateDiff($start, $end) {
 

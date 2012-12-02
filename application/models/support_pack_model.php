@@ -90,8 +90,8 @@ where sp.support_packs_id = ?";
 				'support_pack_id' => $support_pack,
 				'renewal_date' => date('Y-m-d H:i:s', strtotime('+1 year')),
 				'notes' => $_POST['notes'],
-				'task_per_month' => date('Y-m-d H:i:s', strtotime($_POST['date'])),
-				'recursive' => $_POST['recurring']
+				'reminder_when' => date('Y-m-d H:i:s', strtotime($_POST['date'])),
+				'reminder' => $_POST['recurring']
 			);
 			$this->db->insert('support_packs_to_businesses', $data);
 
@@ -99,7 +99,7 @@ where sp.support_packs_id = ?";
 		}
 
 		public function get_support_packs_for_business($id){
-			$sql = "SELECT sp.`name` from `support_packs_to_businesses` as s
+			$sql = "SELECT sp.`name`, s.`reminder_when`, s.`notes`  from `support_packs_to_businesses` as s
 inner join support_packs as sp on sp.`support_packs_id` = s.`support_pack_id`
 where business_id = ? and s.is_live = 'Y'";
 			$query = $this->db->query($sql, $id);

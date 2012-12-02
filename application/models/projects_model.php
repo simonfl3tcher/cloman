@@ -111,13 +111,17 @@
 			return $query->result_array();
 		}
 
-		public function get_project_list(){
+		public function get_project_list($order = null){
 			$this->db->select('*');
 			$this->db->from('projects');
 			$this->db->join('users', 'projects.manager_id = users.user_id');
 			$this->db->join('businesses', 'businesses.business_id = projects.business_id');
 			$this->db->where('complete', 'N');
-			$this->db->order_by('status_id asc, internal_deadline desc'); 
+			if($order != null){
+				$this->db->order_by($order); 
+			} else {
+				$this->db->order_by('status_id asc, internal_deadline desc'); 
+			}
 			$query = $this->db->get();
 			return $query->result_array();
 		}
@@ -475,5 +479,14 @@ where c.project_id = ? and cc.customer_seen = 'N' and cc.who = 'C' and cc.who_id
 				return true;
 			}
 			
+		}
+
+		public function get_contacts_responsible($id){
+			$sql = "select u.* from projects as p
+inner join project_to_users as ptu on ptu.project_id = p.project_id 
+inner join users as u on u.user_id = ptu.user_id
+where p.project_id = ?";
+			$query = $this->db->query($sql, array($id));
+			return $query->result_array();
 		}
 	}

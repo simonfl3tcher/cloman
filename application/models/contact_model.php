@@ -44,6 +44,12 @@
 			$member->setEmail($_POST['contact']['Email']);
 			$member->setPhone($_POST['contact']['Phone']);
 			$member->setNotes($_POST['contact']['Notes']);
+			if(!empty($_POST['contact']['Password'])){
+				$member->setPassword(encryption_hard($_POST['contact']['Password']));
+			}
+			if(isset($_POST['contact']['Has_Login_Access'])){
+				$member->setHasLoginAccess('Y');
+			}
 			$member->save();
 
 			$bus = explode(',', $_POST['business']['Current_2']);
@@ -76,6 +82,12 @@
 			$member->setEmail($_POST['contact']['Email']);
 			$member->setPhone($_POST['contact']['Phone']);
 			$member->setNotes($_POST['contact']['Notes']);
+			if(!empty($_POST['contact']['Password'])){
+				$member->setPassword(encryption_hard($_POST['contact']['Password']));
+			}
+			if(isset($_POST['contact']['Has_Login_Access'])){
+				$member->setHasLoginAccess('Y');
+			}
 			$member->save();
 
 			$bus = explode(',', $_POST['business']['Current_2']);
