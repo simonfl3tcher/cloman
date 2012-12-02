@@ -28,6 +28,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bootstrap/css/bootstrap-responsive.css" />
 </head>
 <body>
+	
+	<span>Comments to attend to:- <?php $d = $this->request->return_my_comment_count(); echo $d['c'] ?></span>
 	<span class="tasks-add util-button-new first"><span class="task"></span></span>
 	<span class="reminder-add util-button-new first"><span class="clock"></span></span>
 	<span class="time-add util-button-new first"><span class="clock"></span></span>

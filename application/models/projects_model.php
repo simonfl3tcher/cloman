@@ -462,6 +462,18 @@ where c.project_id = ? and cc.customer_seen = 'N' and cc.who = 'C' and cc.who_id
 			return $query->row_array();
 		}
 
+		public function get_all_read_customer_comments(){
+			$this->db->select('*');
+			$this->db->from('concept_comments');
+			$this->db->join('concepts', 'concepts.concept_id = concept_comments.concept_id');
+			$this->db->join('people', 'people.people_id = concept_comments.who_id');
+			$this->db->where('who', 'C');
+			$this->db->where('admin_seen', 'N');
+			$this->db->order_by('concept_comments.date', 'desc');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+
 		public function ask_question(){
 			$this->db->select('*');
 			$this->db->from('faq');

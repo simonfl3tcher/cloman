@@ -38,6 +38,10 @@
 			return true;
 		}
 
+		public function client_login_for_admin(){
+			// log in here.
+		}
+
 		public function set_client_logout($id){
 			$data = array('is_logged_in' => 'N');
 			$this->db->where('people_id', $id);

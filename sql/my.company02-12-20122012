@@ -1,0 +1,134 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 3408
+#
+# http://www.sequelpro.com/
+# http://code.google.com/p/sequel-pro/
+#
+# Host: 127.0.0.1 (MySQL 5.1.44)
+# Database: my.company
+# Generation Time: 2012-12-02 22:35:02 +0000
+# ************************************************************
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table concept_comments
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `concept_comments`;
+
+CREATE TABLE `concept_comments` (
+  `concept_comment_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `concept_id` int(11) DEFAULT NULL,
+  `who` enum('C','A') DEFAULT NULL,
+  `who_id` int(11) DEFAULT NULL,
+  `comment` text,
+  `date` datetime DEFAULT NULL,
+  `customer_seen` enum('Y','N') DEFAULT 'N',
+  `admin_seen` enum('Y','N') DEFAULT 'N',
+  `files` text,
+  PRIMARY KEY (`concept_comment_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+LOCK TABLES `concept_comments` WRITE;
+/*!40000 ALTER TABLE `concept_comments` DISABLE KEYS */;
+
+INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_id`, `comment`, `date`, `customer_seen`, `admin_seen`, `files`)
+VALUES
+	(1,1,'A',1,'hellosd\n','2012-11-25 14:35:50','Y','Y',NULL),
+	(2,1,'A',1,'THis is another xample ?','2012-11-25 14:36:58','Y','N',NULL),
+	(3,1,'A',1,'gfhfghfhfg','2012-11-25 14:37:25','Y','N',NULL),
+	(4,1,'A',1,'gfhgfhgfhgf','2012-11-25 14:37:42','Y','N',NULL),
+	(5,1,'C',44,'fdsfsdfdsf','2012-11-25 14:38:22','Y','N',NULL),
+	(6,1,'C',44,'this is another example\n','2012-11-25 15:03:09','Y','N',NULL),
+	(7,1,'A',1,'this is another one\n','2012-11-25 15:30:51','Y','N',NULL),
+	(8,1,'A',1,'and another\n','2012-11-25 15:31:36','Y','N',NULL),
+	(9,1,'A',1,'sdfdsfdsf','2012-11-25 15:32:38','Y','N',NULL),
+	(10,1,'C',44,'dfdsfds','2012-11-25 15:32:55','Y','N',NULL),
+	(11,1,'A',1,'Here we go its working now\n','2012-11-25 15:33:04','Y','N',NULL),
+	(12,1,'A',1,'and its now working really well','2012-11-25 15:33:36','Y','N',NULL),
+	(13,1,'C',44,'and another one\n','2012-11-25 15:33:43','Y','N',NULL),
+	(14,1,'C',44,'this is another example\n','2012-11-25 15:40:19','Y','N',NULL),
+	(15,1,'C',44,'hello this should now say me to be fair','2012-11-25 15:47:06','Y','N',NULL),
+	(16,1,'C',44,'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2012-11-25 15:47:23','Y','N',NULL),
+	(17,1,'C',44,'another comment','2012-11-25 16:00:55','Y','N',NULL),
+	(18,1,'C',44,'','2012-11-25 16:34:44','Y','N',NULL),
+	(19,2,'A',1,'hello are you working on this at the moment ?','2012-11-25 16:35:12','Y','Y',NULL),
+	(20,1,'C',44,'this is an example\n','2012-11-25 16:43:27','Y','N',NULL),
+	(21,1,'C',44,'and another one','2012-11-25 16:43:31','Y','N',NULL),
+	(22,2,'C',44,'sdfdsfsd','2012-11-25 16:56:34','Y','N',NULL),
+	(23,2,'C',44,'dfdsfdsfs','2012-11-25 16:56:36','Y','N',NULL),
+	(24,3,'C',44,'This is the first comment please see it working!!\n','2012-11-25 17:07:42','Y','N',NULL),
+	(25,3,'A',1,'This is the first comment please see it working!! by the admin\n','2012-11-25 17:09:42','Y','Y',NULL),
+	(26,3,'C',44,'hello\n','2012-11-26 13:49:13','Y','N',NULL),
+	(27,1,'C',44,'i like that','2012-11-26 19:12:00','Y','N',NULL),
+	(28,2,'C',44,'thats nice','2012-11-26 19:12:14','Y','N',NULL),
+	(29,3,'C',44,'good','2012-11-26 19:12:21','Y','N',NULL),
+	(30,1,'C',44,'just one thing can i have my logo bigger? you cunt','2012-11-26 19:12:41','Y','N',NULL),
+	(31,1,'C',44,'this is another place\n','2012-11-26 21:14:02','Y','N',NULL),
+	(32,2,'C',44,'and another','2012-11-26 21:52:08','Y','N',NULL),
+	(33,2,'C',44,'fsdfdsf','2012-11-26 21:56:49','Y','N',NULL),
+	(34,2,'C',44,'sdffdfds','2012-11-26 21:57:03','Y','N',NULL),
+	(35,2,'C',44,'hello','2012-11-26 21:57:29','Y','N',NULL),
+	(36,3,'C',44,'another hello right here','2012-11-26 21:57:41','Y','N',NULL),
+	(37,3,'C',44,'and another ','2012-11-26 21:58:01','Y','N',NULL),
+	(38,3,'C',44,'','2012-11-26 22:07:46','Y','N',NULL),
+	(39,3,'C',44,'','2012-11-26 22:07:48','Y','N',NULL),
+	(40,3,'C',44,'','2012-11-26 22:07:49','Y','N',NULL),
+	(41,3,'C',44,'','2012-11-26 22:07:55','Y','N',NULL),
+	(42,3,'C',44,'','2012-11-26 22:08:10','Y','N',NULL),
+	(43,2,'C',44,'another one','2012-11-26 22:32:24','Y','N',NULL),
+	(44,NULL,'C',44,'fsdfdsf','2012-11-27 22:49:42','Y','N',NULL),
+	(45,NULL,'C',44,'fsdfdsf','2012-11-27 22:49:42','Y','N',NULL),
+	(46,NULL,'C',44,'Please see the attached files to see what i mean...','2012-11-28 09:31:51','Y','N','me1.jpg|T_M_Homepage_Image4.jpg|Concare-Homepage1.jpg'),
+	(47,1,'C',44,'Helo how are you ?','2012-11-28 09:34:25','Y','N','me2.jpg|signature.jpg'),
+	(48,1,'C',44,'This is an example piece of text','2012-11-28 09:46:42','Y','N','me3.jpg|pdf.png'),
+	(49,1,'C',44,'This is an example piece of text','2012-11-28 09:50:23','Y','N','me4.jpg|pdf1.png'),
+	(50,1,'C',44,'dsgfdgfdgfd','2012-11-28 14:56:12','Y','N',''),
+	(51,1,'C',44,'dsgfdgfdgfd','2012-11-28 14:56:44','Y','N',''),
+	(52,1,'C',44,'dsgfdgfdgfd','2012-11-28 14:56:53','Y','N',''),
+	(53,1,'C',44,'this is an example please check it out','2012-11-29 13:13:46','Y','N','me5.jpg|T_M_Homepage_Image5.jpg|clever-banner.png'),
+	(54,1,'C',44,'','2012-11-29 13:16:59','Y','N',''),
+	(55,1,'C',44,'','2012-11-29 13:18:26','Y','N',''),
+	(56,1,'C',44,'','2012-11-29 13:21:34','Y','N','Logic_Design_feedback.docx'),
+	(57,1,'C',44,'example1','2012-11-29 13:23:19','Y','N','Certification-Study-Guide-MCD-v1.pdf'),
+	(58,1,'C',44,'','2012-11-29 13:41:56','Y','N','Certification-Study-Guide-MCD-v11.pdf'),
+	(59,1,'C',44,'','2012-11-29 13:45:29','Y','N','Certification-Study-Guide-MCD-v12.pdf'),
+	(60,1,'C',44,'','2012-11-29 13:47:29','Y','N','Certification-Study-Guide-MCD-v13.pdf'),
+	(61,1,'C',44,'','2012-11-29 13:48:54','Y','N','Certification-Study-Guide-MCD-v14.pdf'),
+	(62,1,'C',44,'','2012-11-29 13:57:09','Y','N','Certification-Study-Guide-MCD-v15.pdf'),
+	(63,1,'C',44,'','2012-11-29 13:57:59','Y','N','Certification-Study-Guide-MCD-v16.pdf'),
+	(64,1,'C',44,'','2012-11-29 13:58:31','Y','N','Certification-Study-Guide-MCD-v17.pdf'),
+	(65,1,'C',44,'this is an example','2012-11-30 14:21:11','Y','N',''),
+	(66,1,'C',44,'this is an example','2012-11-30 14:21:16','Y','N',''),
+	(67,1,'C',44,'sadfghjk','2012-11-30 14:21:36','Y','N','Logic_Design_feedback1.docx'),
+	(68,2,'C',60,'This is a new comment','2012-12-02 15:59:13','Y','N',''),
+	(69,2,'C',60,'This is a new comment','2012-12-02 15:59:26','Y','N',''),
+	(70,2,'C',60,'This is a new comment','2012-12-02 16:04:54','Y','N',''),
+	(71,2,'C',60,'This is a new comment','2012-12-02 16:08:28','Y','N',''),
+	(72,2,'C',60,'This is a new comment','2012-12-02 16:10:40','Y','N',''),
+	(73,2,'C',60,'This is a new comment','2012-12-02 16:11:56','Y','N',''),
+	(74,2,'C',60,'This is a new comment','2012-12-02 16:12:20','Y','N',''),
+	(75,2,'C',60,'This is a new comment','2012-12-02 16:12:29','Y','N',''),
+	(76,3,'C',60,'new comment ','2012-12-02 16:13:21','Y','N',''),
+	(77,3,'C',60,'new comment ','2012-12-02 16:13:54','Y','N','');
+
+/*!40000 ALTER TABLE `concept_comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

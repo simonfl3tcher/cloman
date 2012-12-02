@@ -169,7 +169,8 @@
 	    		<li><?php echo $c['name']; ?></li>
 	    	<?php } ?>
 	    </ul>
-	    	<button class="btn btn-primary" id="concept">Add Concept</a>
+	    	<button class="btn btn-primary" id="concept">Add Concept</button>
+	    	<a href="<?php echo site_url('client_portal/login/' . $project_details->project_id); ?>"><button class="btn btn-primary">Client Portal</button></a>
 	    </div>
     </div>
 

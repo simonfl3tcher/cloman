@@ -9,6 +9,8 @@
 			$this->load->model('misc');
 			$this->load->model('email');
 			$this->load->model('people_model');
+			$this->load->model('projects_model');
+			$this->load->helper('text');
 		}
 
 		public function index(){
@@ -16,6 +18,7 @@
 			$data['all_faqs'] = $this->misc->get_all_faqs();
 			$data['all_documents'] = $this->misc->get_all_documents();
 			$data['people'] = $this->people_model->get_all_with_client_access();
+			$data['comments'] = $this->projects_model->get_all_read_customer_comments();
 			$this->render_view('management/client_portal_home', $data);
 		}
 
@@ -89,5 +92,18 @@
 
 		public function disable_client($id){
 			$this->people_model->disable_portal_access($id);
+		}
+
+		public function login($projectId, $conceptId = null){
+			$results = $this->login_model->client_login_for_admin();
+			// Make sure that you set certain session data for an admin login!!
+			if(!empty($results)){
+				$this->login_model->set_client_login($results->people_id);
+				$this->session->set_userdata('Client_Logged_In', true);
+				$this->session->set_userdata('people_id', $results->people_id);
+				redirect('/client', 'refresh');
+			} else {
+				$data['error'] = 'Your username / password do not match. please try again';
+				}
 		}
 	}

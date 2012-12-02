@@ -2,6 +2,7 @@
     <li class="active"><a href="#faqs" data-toggle="tab">FAQs</a></li>
     <li><a href="#documents" data-toggle="tab">Documents</a></li>
     <li><a href="#clients" data-toggle="tab">Cleint Access</a></li>
+    <li><a href="#clientscomments" data-toggle="tab">Client Comments</a></li>
     </ul>
  
 	<div class="tab-content">
@@ -69,6 +70,29 @@
 							<td><?php echo $peeps['business_name']; ?></td>
 							<td><?php if($peeps['has_login_access'] == 'Y'){ echo 'Active'; } else { echo 'disabled'; } ?></td>
 							<td><a class="tableRowFive" href="<?php echo site_url(); ?>client_portal/disable_client/<?php echo $peeps['people_id']; ?>"><span class="util-button-new first"><span class="disable"></span></span></a></td>
+					<?php } ?>
+				</tbody>
+			</table>
+		</div>
+		<div class="tab-pane" id="clientscomments">
+			<table id="searchTable" class="table table-hover">
+				<thead>
+					<tr>
+						<th><span class="icon hashIcon"></span></th>
+						<th>Who</span></th>
+						<th>Comment</span></th>
+						<th>Date</th>
+						<th>Edit</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($comments as $comms){ ?>
+						<tr>
+							<td><?php echo $comms['concept_comment_id']; ?></td>
+							<td><?php echo $comms['name']; ?></td>
+							<td><?php echo character_limiter($comms['comment'], 255); ?></td>
+							<td><?php echo date('d/m/Y H:i:s', strtotime($comms['date'])); ?></td>
+							<td><a href="<?php echo site_url('client_portal/login/' . $comms['project_id'] . '/' . $comms['concept_id']); ?>"><button class="btn btn-primary">Comment Back</button></a></td>
 					<?php } ?>
 				</tbody>
 			</table>

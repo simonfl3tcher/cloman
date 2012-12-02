@@ -87,5 +87,15 @@
 				return false;
 			}
 		}
+
+		public function return_my_comment_count(){
+			$sql = "SELECT count(distinct cc.`concept_comment_id`) as c from project_to_users as ptu
+inner join projects as p on p.`project_id` = ptu.`project_id`
+inner join concepts as c on c.`project_id` = ptu.`project_id`
+inner join concept_comments as cc on cc.`who_id`= ptu.`user_id`
+where ptu.`user_id` = ? and cc.`admin_seen` = 'N'";
+			$query = $this->db->query($sql, array($this->session->userdata('user_id')));
+			return $query->row_array();
+		}
 	}
 ?>
