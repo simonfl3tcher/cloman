@@ -10,6 +10,7 @@
 			$this->load->model('email');
 			$this->load->model('people_model');
 			$this->load->model('projects_model');
+			$this->load->model('login_model');
 			$this->load->helper('text');
 		}
 
@@ -95,15 +96,23 @@
 		}
 
 		public function login($projectId, $conceptId = null){
-			$results = $this->login_model->client_login_for_admin();
-			// Make sure that you set certain session data for an admin login!!
-			if(!empty($results)){
-				$this->login_model->set_client_login($results->people_id);
+			$result = $this->login_model->get_client_login_against_project($projectId);
+			if(!count($result) == 1){
+				var_dump("There isnt a user against this account that has login access, please sort this and try again");
+				exit;
+			}
+
+			if(!empty($result)){
 				$this->session->set_userdata('Client_Logged_In', true);
-				$this->session->set_userdata('people_id', $results->people_id);
-				redirect('/client', 'refresh');
+				$this->session->set_userdata('people_id', $result->people_id);
+				$this->session->set_userdata('is_admin', true);
+				if($conceptId != null){
+					redirect('/client/project/' . $projectId . '/?tab=' . $conceptId . '#form' . $conceptId, 'refresh');
+				} else {
+					redirect('/client/project/' . $projectId, 'refresh');
+				}
 			} else {
 				$data['error'] = 'Your username / password do not match. please try again';
-				}
+			}
 		}
 	}

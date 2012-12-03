@@ -3,7 +3,7 @@
 -- Server version:               5.5.16 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-12-02 15:23:56
+-- Date/time:                    2012-12-03 23:49:46
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -263,47 +263,47 @@ CREATE TABLE IF NOT EXISTS `concept_comments` (
   `admin_seen` enum('Y','N') DEFAULT 'N',
   `files` text,
   PRIMARY KEY (`concept_comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 
--- Dumping data for table my.company.concept_comments: 67 rows
+-- Dumping data for table my.company.concept_comments: 77 rows
 DELETE FROM `concept_comments`;
 /*!40000 ALTER TABLE `concept_comments` DISABLE KEYS */;
 INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_id`, `comment`, `date`, `customer_seen`, `admin_seen`, `files`) VALUES
-	(1, 1, 'A', 1, 'hellosd\n', '2012-11-25 14:35:50', 'Y', 'N', NULL),
-	(2, 1, 'A', 1, 'THis is another xample ?', '2012-11-25 14:36:58', 'Y', 'N', NULL),
-	(3, 1, 'A', 1, 'gfhfghfhfg', '2012-11-25 14:37:25', 'Y', 'N', NULL),
-	(4, 1, 'A', 1, 'gfhgfhgfhgf', '2012-11-25 14:37:42', 'Y', 'N', NULL),
-	(5, 1, 'C', 44, 'fdsfsdfdsf', '2012-11-25 14:38:22', 'Y', 'N', NULL),
-	(6, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:03:09', 'Y', 'N', NULL),
-	(7, 1, 'A', 1, 'this is another one\n', '2012-11-25 15:30:51', 'Y', 'N', NULL),
-	(8, 1, 'A', 1, 'and another\n', '2012-11-25 15:31:36', 'Y', 'N', NULL),
-	(9, 1, 'A', 1, 'sdfdsfdsf', '2012-11-25 15:32:38', 'Y', 'N', NULL),
-	(10, 1, 'C', 44, 'dfdsfds', '2012-11-25 15:32:55', 'Y', 'N', NULL),
-	(11, 1, 'A', 1, 'Here we go its working now\n', '2012-11-25 15:33:04', 'Y', 'N', NULL),
-	(12, 1, 'A', 1, 'and its now working really well', '2012-11-25 15:33:36', 'Y', 'N', NULL),
-	(13, 1, 'C', 44, 'and another one\n', '2012-11-25 15:33:43', 'Y', 'N', NULL),
-	(14, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:40:19', 'Y', 'N', NULL),
-	(15, 1, 'C', 44, 'hello this should now say me to be fair', '2012-11-25 15:47:06', 'Y', 'N', NULL),
-	(16, 1, 'C', 44, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-25 15:47:23', 'Y', 'N', NULL),
-	(17, 1, 'C', 44, 'another comment', '2012-11-25 16:00:55', 'Y', 'N', NULL),
-	(18, 1, 'C', 44, '', '2012-11-25 16:34:44', 'Y', 'N', NULL),
-	(19, 2, 'A', 1, 'hello are you working on this at the moment ?', '2012-11-25 16:35:12', 'Y', 'Y', NULL),
-	(20, 1, 'C', 44, 'this is an example\n', '2012-11-25 16:43:27', 'Y', 'N', NULL),
-	(21, 1, 'C', 44, 'and another one', '2012-11-25 16:43:31', 'Y', 'N', NULL),
-	(22, 2, 'C', 44, 'sdfdsfsd', '2012-11-25 16:56:34', 'Y', 'N', NULL),
-	(23, 2, 'C', 44, 'dfdsfdsfs', '2012-11-25 16:56:36', 'Y', 'N', NULL),
+	(1, 1, 'A', 1, 'hellosd\n', '2012-11-25 14:35:50', 'N', 'N', NULL),
+	(2, 1, 'A', 1, 'THis is another xample ?', '2012-11-25 14:36:58', 'N', 'N', NULL),
+	(3, 1, 'A', 1, 'gfhfghfhfg', '2012-11-25 14:37:25', 'N', 'N', NULL),
+	(4, 1, 'A', 1, 'gfhgfhgfhgf', '2012-11-25 14:37:42', 'N', 'N', NULL),
+	(5, 1, 'C', 44, 'fdsfsdfdsf', '2012-11-25 14:38:22', 'N', 'N', NULL),
+	(6, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:03:09', 'N', 'N', NULL),
+	(7, 1, 'A', 1, 'this is another one\n', '2012-11-25 15:30:51', 'N', 'N', NULL),
+	(8, 1, 'A', 1, 'and another\n', '2012-11-25 15:31:36', 'N', 'N', NULL),
+	(9, 1, 'A', 1, 'sdfdsfdsf', '2012-11-25 15:32:38', 'N', 'N', NULL),
+	(10, 1, 'C', 44, 'dfdsfds', '2012-11-25 15:32:55', 'N', 'N', NULL),
+	(11, 1, 'A', 1, 'Here we go its working now\n', '2012-11-25 15:33:04', 'N', 'N', NULL),
+	(12, 1, 'A', 1, 'and its now working really well', '2012-11-25 15:33:36', 'N', 'N', NULL),
+	(13, 1, 'C', 44, 'and another one\n', '2012-11-25 15:33:43', 'N', 'N', NULL),
+	(14, 1, 'C', 44, 'this is another example\n', '2012-11-25 15:40:19', 'N', 'N', NULL),
+	(15, 1, 'C', 44, 'hello this should now say me to be fair', '2012-11-25 15:47:06', 'N', 'N', NULL),
+	(16, 1, 'C', 44, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2012-11-25 15:47:23', 'N', 'N', NULL),
+	(17, 1, 'C', 44, 'another comment', '2012-11-25 16:00:55', 'N', 'N', NULL),
+	(18, 1, 'C', 44, '', '2012-11-25 16:34:44', 'N', 'N', NULL),
+	(19, 2, 'A', 1, 'hello are you working on this at the moment ?', '2012-11-25 16:35:12', 'N', 'Y', NULL),
+	(20, 1, 'C', 44, 'this is an example\n', '2012-11-25 16:43:27', 'N', 'N', NULL),
+	(21, 1, 'C', 44, 'and another one', '2012-11-25 16:43:31', 'N', 'N', NULL),
+	(22, 2, 'C', 44, 'sdfdsfsd', '2012-11-25 16:56:34', 'N', 'N', NULL),
+	(23, 2, 'C', 44, 'dfdsfdsfs', '2012-11-25 16:56:36', 'N', 'N', NULL),
 	(24, 3, 'C', 44, 'This is the first comment please see it working!!\n', '2012-11-25 17:07:42', 'Y', 'N', NULL),
 	(25, 3, 'A', 1, 'This is the first comment please see it working!! by the admin\n', '2012-11-25 17:09:42', 'Y', 'Y', NULL),
 	(26, 3, 'C', 44, 'hello\n', '2012-11-26 13:49:13', 'Y', 'N', NULL),
-	(27, 1, 'C', 44, 'i like that', '2012-11-26 19:12:00', 'Y', 'N', NULL),
-	(28, 2, 'C', 44, 'thats nice', '2012-11-26 19:12:14', 'Y', 'N', NULL),
+	(27, 1, 'C', 44, 'i like that', '2012-11-26 19:12:00', 'N', 'N', NULL),
+	(28, 2, 'C', 44, 'thats nice', '2012-11-26 19:12:14', 'N', 'N', NULL),
 	(29, 3, 'C', 44, 'good', '2012-11-26 19:12:21', 'Y', 'N', NULL),
-	(30, 1, 'C', 44, 'just one thing can i have my logo bigger? you cunt', '2012-11-26 19:12:41', 'Y', 'N', NULL),
-	(31, 1, 'C', 44, 'this is another place\n', '2012-11-26 21:14:02', 'Y', 'N', NULL),
-	(32, 2, 'C', 44, 'and another', '2012-11-26 21:52:08', 'Y', 'N', NULL),
-	(33, 2, 'C', 44, 'fsdfdsf', '2012-11-26 21:56:49', 'Y', 'N', NULL),
-	(34, 2, 'C', 44, 'sdffdfds', '2012-11-26 21:57:03', 'Y', 'N', NULL),
-	(35, 2, 'C', 44, 'hello', '2012-11-26 21:57:29', 'Y', 'N', NULL),
+	(30, 1, 'C', 44, 'just one thing can i have my logo bigger? you cunt', '2012-11-26 19:12:41', 'N', 'N', NULL),
+	(31, 1, 'C', 44, 'this is another place\n', '2012-11-26 21:14:02', 'N', 'N', NULL),
+	(32, 2, 'C', 44, 'and another', '2012-11-26 21:52:08', 'N', 'N', NULL),
+	(33, 2, 'C', 44, 'fsdfdsf', '2012-11-26 21:56:49', 'N', 'N', NULL),
+	(34, 2, 'C', 44, 'sdffdfds', '2012-11-26 21:57:03', 'N', 'N', NULL),
+	(35, 2, 'C', 44, 'hello', '2012-11-26 21:57:29', 'N', 'N', NULL),
 	(36, 3, 'C', 44, 'another hello right here', '2012-11-26 21:57:41', 'Y', 'N', NULL),
 	(37, 3, 'C', 44, 'and another ', '2012-11-26 21:58:01', 'Y', 'N', NULL),
 	(38, 3, 'C', 44, '', '2012-11-26 22:07:46', 'Y', 'N', NULL),
@@ -311,41 +311,44 @@ INSERT INTO `concept_comments` (`concept_comment_id`, `concept_id`, `who`, `who_
 	(40, 3, 'C', 44, '', '2012-11-26 22:07:49', 'Y', 'N', NULL),
 	(41, 3, 'C', 44, '', '2012-11-26 22:07:55', 'Y', 'N', NULL),
 	(42, 3, 'C', 44, '', '2012-11-26 22:08:10', 'Y', 'N', NULL),
-	(43, 2, 'C', 44, 'another one', '2012-11-26 22:32:24', 'Y', 'N', NULL),
-	(44, NULL, 'C', 44, 'fsdfdsf', '2012-11-27 22:49:42', 'Y', 'N', NULL),
-	(45, NULL, 'C', 44, 'fsdfdsf', '2012-11-27 22:49:42', 'Y', 'N', NULL),
-	(46, NULL, 'C', 44, 'Please see the attached files to see what i mean...', '2012-11-28 09:31:51', 'Y', 'N', 'me1.jpg|T_M_Homepage_Image4.jpg|Concare-Homepage1.jpg'),
-	(47, 1, 'C', 44, 'Helo how are you ?', '2012-11-28 09:34:25', 'Y', 'N', 'me2.jpg|signature.jpg'),
-	(48, 1, 'C', 44, 'This is an example piece of text', '2012-11-28 09:46:42', 'Y', 'N', 'me3.jpg|pdf.png'),
-	(49, 1, 'C', 44, 'This is an example piece of text', '2012-11-28 09:50:23', 'Y', 'N', 'me4.jpg|pdf1.png'),
-	(50, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:12', 'Y', 'N', ''),
-	(51, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:44', 'Y', 'N', ''),
-	(52, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:53', 'Y', 'N', ''),
-	(53, 1, 'C', 44, 'this is an example please check it out', '2012-11-29 13:13:46', 'Y', 'N', 'me5.jpg|T_M_Homepage_Image5.jpg|clever-banner.png'),
-	(54, 1, 'C', 44, '', '2012-11-29 13:16:59', 'Y', 'N', ''),
-	(55, 1, 'C', 44, '', '2012-11-29 13:18:26', 'Y', 'N', ''),
-	(56, 1, 'C', 44, '', '2012-11-29 13:21:34', 'Y', 'N', 'Logic_Design_feedback.docx'),
-	(57, 1, 'C', 44, 'example1', '2012-11-29 13:23:19', 'Y', 'N', 'Certification-Study-Guide-MCD-v1.pdf'),
-	(58, 1, 'C', 44, '', '2012-11-29 13:41:56', 'Y', 'N', 'Certification-Study-Guide-MCD-v11.pdf'),
-	(59, 1, 'C', 44, '', '2012-11-29 13:45:29', 'Y', 'N', 'Certification-Study-Guide-MCD-v12.pdf'),
-	(60, 1, 'C', 44, '', '2012-11-29 13:47:29', 'Y', 'N', 'Certification-Study-Guide-MCD-v13.pdf'),
-	(61, 1, 'C', 44, '', '2012-11-29 13:48:54', 'Y', 'N', 'Certification-Study-Guide-MCD-v14.pdf'),
-	(62, 1, 'C', 44, '', '2012-11-29 13:57:09', 'Y', 'N', 'Certification-Study-Guide-MCD-v15.pdf'),
-	(63, 1, 'C', 44, '', '2012-11-29 13:57:59', 'Y', 'N', 'Certification-Study-Guide-MCD-v16.pdf'),
-	(64, 1, 'C', 44, '', '2012-11-29 13:58:31', 'Y', 'N', 'Certification-Study-Guide-MCD-v17.pdf'),
-	(65, 1, 'C', 44, 'this is an example', '2012-11-30 14:21:11', 'Y', 'N', ''),
-	(66, 1, 'C', 44, 'this is an example', '2012-11-30 14:21:16', 'Y', 'N', ''),
-	(67, 1, 'C', 44, 'sadfghjk', '2012-11-30 14:21:36', 'Y', 'N', 'Logic_Design_feedback1.docx'),
-	(68, 2, 'C', 60, 'This is a new comment', '2012-12-02 15:59:13', 'Y', 'N', ''),
-	(69, 2, 'C', 60, 'This is a new comment', '2012-12-02 15:59:26', 'Y', 'N', ''),
-	(70, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:04:54', 'Y', 'N', ''),
-	(71, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:08:28', 'Y', 'N', ''),
-	(72, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:10:40', 'Y', 'N', ''),
-	(73, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:11:56', 'Y', 'N', ''),
-	(74, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:12:20', 'Y', 'N', ''),
-	(75, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:12:29', 'Y', 'N', ''),
+	(43, 2, 'C', 44, 'another one', '2012-11-26 22:32:24', 'N', 'N', NULL),
+	(44, NULL, 'C', 44, 'fsdfdsf', '2012-11-27 22:49:42', 'N', 'N', NULL),
+	(45, NULL, 'C', 44, 'fsdfdsf', '2012-11-27 22:49:42', 'N', 'N', NULL),
+	(46, NULL, 'C', 44, 'Please see the attached files to see what i mean...', '2012-11-28 09:31:51', 'N', 'N', 'me1.jpg|T_M_Homepage_Image4.jpg|Concare-Homepage1.jpg'),
+	(47, 1, 'C', 44, 'Helo how are you ?', '2012-11-28 09:34:25', 'N', 'N', 'me2.jpg|signature.jpg'),
+	(48, 1, 'C', 44, 'This is an example piece of text', '2012-11-28 09:46:42', 'N', 'N', 'me3.jpg|pdf.png'),
+	(49, 1, 'C', 44, 'This is an example piece of text', '2012-11-28 09:50:23', 'N', 'N', 'me4.jpg|pdf1.png'),
+	(50, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:12', 'N', 'N', ''),
+	(51, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:44', 'N', 'N', ''),
+	(52, 1, 'C', 44, 'dsgfdgfdgfd', '2012-11-28 14:56:53', 'N', 'N', ''),
+	(53, 1, 'C', 44, 'this is an example please check it out', '2012-11-29 13:13:46', 'N', 'N', 'me5.jpg|T_M_Homepage_Image5.jpg|clever-banner.png'),
+	(54, 1, 'C', 44, '', '2012-11-29 13:16:59', 'N', 'N', ''),
+	(55, 1, 'C', 44, '', '2012-11-29 13:18:26', 'N', 'N', ''),
+	(56, 1, 'C', 44, '', '2012-11-29 13:21:34', 'N', 'N', 'Logic_Design_feedback.docx'),
+	(57, 1, 'C', 44, 'example1', '2012-11-29 13:23:19', 'N', 'N', 'Certification-Study-Guide-MCD-v1.pdf'),
+	(58, 1, 'C', 44, '', '2012-11-29 13:41:56', 'N', 'N', 'Certification-Study-Guide-MCD-v11.pdf'),
+	(59, 1, 'C', 44, '', '2012-11-29 13:45:29', 'N', 'N', 'Certification-Study-Guide-MCD-v12.pdf'),
+	(60, 1, 'C', 44, '', '2012-11-29 13:47:29', 'N', 'N', 'Certification-Study-Guide-MCD-v13.pdf'),
+	(61, 1, 'C', 44, '', '2012-11-29 13:48:54', 'N', 'N', 'Certification-Study-Guide-MCD-v14.pdf'),
+	(62, 1, 'C', 44, '', '2012-11-29 13:57:09', 'N', 'N', 'Certification-Study-Guide-MCD-v15.pdf'),
+	(63, 1, 'C', 44, '', '2012-11-29 13:57:59', 'N', 'N', 'Certification-Study-Guide-MCD-v16.pdf'),
+	(64, 1, 'C', 44, '', '2012-11-29 13:58:31', 'N', 'N', 'Certification-Study-Guide-MCD-v17.pdf'),
+	(65, 1, 'C', 44, 'this is an example', '2012-11-30 14:21:11', 'N', 'N', ''),
+	(66, 1, 'C', 44, 'this is an example', '2012-11-30 14:21:16', 'N', 'N', ''),
+	(67, 1, 'C', 44, 'sadfghjk', '2012-11-30 14:21:36', 'N', 'N', 'Logic_Design_feedback1.docx'),
+	(68, 2, 'C', 60, 'This is a new comment', '2012-12-02 15:59:13', 'N', 'N', ''),
+	(69, 2, 'C', 60, 'This is a new comment', '2012-12-02 15:59:26', 'N', 'N', ''),
+	(70, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:04:54', 'N', 'N', ''),
+	(71, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:08:28', 'N', 'N', ''),
+	(72, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:10:40', 'N', 'N', ''),
+	(73, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:11:56', 'N', 'N', ''),
+	(74, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:12:20', 'N', 'N', ''),
+	(75, 2, 'C', 60, 'This is a new comment', '2012-12-02 16:12:29', 'N', 'N', ''),
 	(76, 3, 'C', 60, 'new comment ', '2012-12-02 16:13:21', 'Y', 'N', ''),
-	(77, 3, 'C', 60, 'new comment ', '2012-12-02 16:13:54', 'Y', 'N', '');
+	(77, 3, 'C', 60, 'new comment ', '2012-12-02 16:13:54', 'Y', 'N', ''),
+	(78, 3, 'C', 44, 'This is a new comment please check it out', '2012-12-03 22:38:01', 'Y', 'N', ''),
+	(79, 3, 'A', 1, 'This is an example coming from me if i am honest', '2012-12-03 22:40:17', 'N', 'Y', ''),
+	(80, 3, 'A', 1, 'This is what i want to see in my designs', '2012-12-03 22:40:41', 'N', 'Y', 'sqicon5.jpg');
 /*!40000 ALTER TABLE `concept_comments` ENABLE KEYS */;
 
 
@@ -432,16 +435,16 @@ CREATE TABLE IF NOT EXISTS `documents` (
   PRIMARY KEY (`document_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table my.company.documents: ~4 rows (approximately)
+-- Dumping data for table my.company.documents: ~6 rows (approximately)
 DELETE FROM `documents`;
 /*!40000 ALTER TABLE `documents` DISABLE KEYS */;
 INSERT INTO `documents` (`document_id`, `file_name`, `image`, `description`, `title`, `is_live`) VALUES
-	(1, 'Programming_in_Objective-C_3rd_Edition_Developers_Library3.pdf', 'simonfletcherlogo2.jpg', 'This is the description for document one, check them out', 'Document 1', 'Y'),
+	(1, 'Programming_in_Objective-C_3rd_Edition_Developers_Library3.pdf', '', 'This is the description for document one, check them out', 'Document 1', 'Y'),
 	(2, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 2', 'Y'),
 	(3, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 3', 'Y'),
 	(4, 'Certification-Study-Guide-MCD-v1.pdf', '300x200.gif', 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.', 'Document 4', 'Y'),
-	(5, 'Programming_in_Objective-C_(3rd_Edition)_(Developers_Library)3.pdf', 'sqicon57.jpg', 'gffdgfdgfdgdfg', 'This is an example', 'Y'),
-	(6, 'Programming_in_Objective-C_(3rd_Edition)_(Developers_Library)4.pdf', 'Penguins.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Document 21', 'Y');
+	(5, 'Programming_in_Objective-C_(3rd_Edition)_(Developers_Library)3.pdf', '', 'gffdgfdgfdgdfg', 'This is an example', 'Y'),
+	(6, 'Programming_in_Objective-C_(3rd_Edition)_(Developers_Library)4.pdf', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Document 21', 'Y');
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
 
 
@@ -726,11 +729,11 @@ CREATE TABLE IF NOT EXISTS `people` (
   PRIMARY KEY (`people_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
--- Dumping data for table my.company.people: ~13 rows (approximately)
+-- Dumping data for table my.company.people: ~14 rows (approximately)
 DELETE FROM `people`;
 /*!40000 ALTER TABLE `people` DISABLE KEYS */;
 INSERT INTO `people` (`people_id`, `name`, `role`, `email`, `phone`, `is_primary_contact`, `notes`, `disabled`, `password`, `has_login_access`, `is_logged_in`) VALUES
-	(44, 'Simon Fletcher', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'N', '041529ab9a34a072fe9ac57db4e088ff2602a83d', 'Y', 'N'),
+	(44, 'Simon Mulley', 'Website Developer', 'simon@logicdesign.co.uk', '10', 'N', 'sdfsgdhg', 'N', '041529ab9a34a072fe9ac57db4e088ff2602a83d', 'Y', 'Y'),
 	(48, 'Charlie Robinson', 'Website Developer', 'david@williams.co.uk', '01284 345345', 'N', '', 'Y', NULL, '', ''),
 	(49, 'Finn Johnson', 'Website Designer / Studio Manager', 'finn@logicdesign.co.uk', '', 'N', 'Finn is the senior designer and studio manager', 'Y', NULL, '', ''),
 	(50, 'Keith Bradley', 'Website Developer', 'keith@logicdesign.co.uk', '', 'N', 'Keith is the senior web developer and Managing Director at logic design you are looking here ', 'Y', NULL, '', ''),
@@ -1122,7 +1125,7 @@ CREATE TABLE IF NOT EXISTS `support_packs` (
   `is_live` enum('Y','N') DEFAULT 'Y',
   `client_description` text,
   PRIMARY KEY (`support_packs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table my.company.support_packs: ~3 rows (approximately)
 DELETE FROM `support_packs`;
@@ -1130,7 +1133,8 @@ DELETE FROM `support_packs`;
 INSERT INTO `support_packs` (`support_packs_id`, `name`, `price`, `description`, `includes`, `time_allowed_pm`, `is_live`, `client_description`) VALUES
 	(5, 'Support Pack 2', 10, 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'Lorem ipsum dolor sit amet, consectetur', 2700, 'Y', 'Free setup|1 Website|2 Projects|1GB Storage|$15 Google Adwords Credit'),
 	(6, 'Support Task Level 1', 150, 'This is a basic level task', 'dffdgijidfsg', 3600, 'Y', 'Free setup|1 Website|2 Projects|1GB Storage|$15 Google Adwords Credit'),
-	(7, 'Another Support Pack', 60, 'Lorem ipsum dolor sit amet, consectetur adipisicin', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 36000, 'Y', 'Free setup|1 Website|2 Projects|1GB Storage|$15 Google Adwords Credit|8 Hour Support');
+	(7, 'Another Support Pack', 60, 'Lorem ipsum dolor sit amet, consectetur adipisicin', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 36000, 'Y', 'Free setup|1 Website|2 Projects|1GB Storage|$15 Google Adwords Credit|8 Hour Support'),
+	(8, 'Support Pack 3', 154, 'lorm', 'example 1|example 2|example 3|example 4|example 5', 36000, 'Y', 'This is the description');
 /*!40000 ALTER TABLE `support_packs` ENABLE KEYS */;
 
 
@@ -1731,23 +1735,24 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_logged_in` enum('Y','N') DEFAULT 'N',
   `privilage` int(10) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table my.company.users: ~10 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`user_id`, `name`, `email`, `display_name`, `password`, `phone`, `bio`, `twitter`, `is_logged_in`, `privilage`, `color`) VALUES
-	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'SFletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, NULL, NULL, 'Y', 4, '#000'),
-	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'KBradley', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'N', 5, '#FFF'),
-	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'HConnelberry', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, NULL, NULL, 'Y', 5, '#a5a5a5'),
-	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'SHunt', 'b12a426afd2940f0b5020f2784a0a186de7e0069', NULL, NULL, NULL, 'N', 1, '#a5a5a5'),
-	(5, 'Darren Smith', 'darren@logicdesign.co.uk', 'D.Smith', NULL, NULL, NULL, NULL, 'N', 2, '#rrr'),
-	(6, 'Finn Johnston', 'finn@logicdesign.co.uk', 'F.Johnston', NULL, NULL, NULL, NULL, 'N', 3, '#a5a5a5'),
-	(7, 'Adam Howson', 'adam@logicdesign.co.uk', 'A.Howson', NULL, NULL, NULL, NULL, 'N', 5, '#d5d5d5'),
-	(8, 'Charlie Robinson', 'charlie@logicdesign.co.uk', 'charlRob', 'logicdesign123', NULL, NULL, NULL, 'N', NULL, '#a7a7a7'),
-	(9, 'Shaun Palfrey', 'shaun@logicdesign.co.uk', 'shaunpalfrey', 'logicdesign.co.uk', NULL, NULL, NULL, 'N', NULL, '#f2f2f2'),
-	(10, 's Fletcher', 'simon@logicdesign.co.uk', 'sfletcher', '7d91b5a937dd80bd82cabd4db77d6f0c0fe4a82a', NULL, NULL, NULL, 'N', NULL, 'red');
+INSERT INTO `users` (`user_id`, `name`, `email`, `display_name`, `password`, `phone`, `bio`, `twitter`, `is_logged_in`, `privilage`, `color`, `image`) VALUES
+	(1, 'Simon Fletcher', 'simon@logicdesign.co.uk', 'SFletcher', '041529ab9a34a072fe9ac57db4e088ff2602a83d', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'Y', 4, '#000', '300x200.gif'),
+	(2, 'Keith Bradley', 'keith@logicdesign.co.uk', 'KBradley', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', 5, '#FFF', '300x200.gif'),
+	(3, 'Howie Connelberry', 'howie@logicdesign.co.uk', 'HConnelberry', 'a5feda985b8fafe7fad17aca9c4265a9bab6113d', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'Y', 5, '#a5a5a5', '300x200.gif'),
+	(4, 'Sam Hunt', 'sam@logicdesign.co.uk', 'SHunt', 'b12a426afd2940f0b5020f2784a0a186de7e0069', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', 1, '#a5a5a5', ''),
+	(5, 'Darren Smith', 'darren@logicdesign.co.uk', 'D.Smith', NULL, NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', 2, '#rrr', ''),
+	(6, 'Finn Johnston', 'finn@logicdesign.co.uk', 'F.Johnston', NULL, NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', 3, '#a5a5a5', ''),
+	(7, 'Adam Howson', 'adam@logicdesign.co.uk', 'A.Howson', NULL, NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', 5, '#d5d5d5', '300x200.gif'),
+	(8, 'Charlie Robinson', 'charlie@logicdesign.co.uk', 'charlRob', 'logicdesign123', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', NULL, '#a7a7a7', '300x200.gif'),
+	(9, 'Shaun Palfrey', 'shaun@logicdesign.co.uk', 'shaunpalfrey', 'logicdesign.co.uk', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', NULL, '#f2f2f2', '300x200.gif'),
+	(10, 's Fletcher', 'simon@logicdesign.co.uk', 'sfletcher', '7d91b5a937dd80bd82cabd4db77d6f0c0fe4a82a', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'N', NULL, 'red', '300x200.gif');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 

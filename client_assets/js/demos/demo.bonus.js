@@ -55,7 +55,7 @@ $(function () {
 
 	});
 
-	$('.conceptList').bind('click', function(e){
+	$('.conceptList.client').bind('click', function(e){
 		$.ajax({
 			url: '/concepts/client_seen/' + $(this).attr('data-concept'),
 			type: 'POST',

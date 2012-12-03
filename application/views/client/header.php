@@ -14,7 +14,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800">
+	<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800"> -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>client_assets/css/font-awesome.css">
 	
 	<link rel="stylesheet" href="<?php echo base_url(); ?>client_assets/css/bootstrap.css">
@@ -47,8 +47,8 @@
 		<div id="top-nav">
 			
 			<ul class="pull-right">
-				<li class="grey"><i class="icon-user"></i> Logged in as <?php echo $user_data['name']; ?></li>
-				<?php if($comment_full_count['c'] > 0){ ?><li class="grey"><span class="badge badge-primary"><?php echo $comment_full_count['c']; ?></span> New Comments</li><?php } ?>
+				<li class="grey"><i class="icon-user"></i> Logged in as <?php if($this->session->userdata('is_admin')){ echo 'Admin'; }else{ echo $user_data['name']; } ?></li>
+				<?php if($comment_full_count['c'] > 0 && $this->session->userdata('is_admin') != true){ ?><li class="grey"><span class="badge badge-primary"><?php echo $comment_full_count['c']; ?></span> New Comments</li><?php } ?>
 				<li><a href="<?php echo site_url('client/logout'); ?>">Logout</a></li>
 			</ul>
 			
@@ -89,7 +89,7 @@
 				
 					<ul class="dropdown-menu">
 						<?php foreach($projects as $project){ ?>
-							<li><a href="<?php echo site_url('client/project/' . $project['project_id']); ?>"><?php echo $project['project_name']; ?><?php if($project['comment_count'] > 0) { echo ' <span class="badge badge-primary">' . $project['comment_count'] . '</span>'; } ?></a></li>
+							<li><a href="<?php echo site_url('client/project/' . $project['project_id']); ?>"><?php echo $project['project_name']; ?><?php if($project['comment_count'] > 0 && $this->session->userdata('is_admin') != true) { echo ' <span class="badge badge-primary">' . $project['comment_count'] . '</span>'; } ?></a></li>
 						<?php } ?>
 					</ul>    				
 				</li>
@@ -120,7 +120,8 @@
 						<li><a href="<?php echo site_url('client/faq'); ?>">FAQ</a></li>
 						<li><a href="<?php echo site_url('client/support'); ?>">Support Packs</a></li>
 						<li><a href="<?php echo site_url('client/documents'); ?>">Documents</a></li>
-						<li><a target="_blank" href="http://www.logicdesign.co.uk">Plugins</a></li>
+						<li><a href="<?php echo site_url('client/team'); ?>">Meet the team</a></li>
+						<!-- <li><a target="_blank" href="http://www.logicdesign.co.uk">Plugins</a></li> -->
 					</ul>    				
 				</li>
 			</ul>
@@ -141,11 +142,15 @@
 		<div class="masthead-pad">
 			
 			<div class="masthead-text">
-				<h2>Hello <?php echo $user_data['name']; ?></h2>
-				<?php if($comment_full_count['c'] > 0) { ?>
-					<p>You are currently have <?php echo $comment_full_count['c']; ?> comments against your concepts.</p>
+				<?php if($this->session->userdata('is_admin')){ ?>
+					<h2>Hello Admin</h2>
 				<?php } else { ?>
-					<p>You don't have any comments against your concepts</p>
+					<h2>Hello <?php echo $user_data['name']; ?></h2>
+					<?php if($comment_full_count['c'] > 0) { ?>
+						<p>You are currently have <?php echo $comment_full_count['c']; ?> comments against your concepts.</p>
+					<?php } else { ?>
+						<p>You don't have any comments against your concepts</p>
+					<?php } ?>
 				<?php } ?>
 			</div> <!-- /.masthead-text -->
 			

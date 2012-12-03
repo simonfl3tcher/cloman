@@ -3,7 +3,11 @@
     <?php foreach($documents as $doc){ ?>
     <li class="span3">
       <div class="thumbnail">
-        <img alt="" src="<?php echo site_url('uploads/documents/images/' . $doc['image']); ?>" />
+        <?php if(!empty($doc['image'])){ ?>
+          <img alt="" src="<?php echo site_url('uploads/documents/images/' . $doc['image']); ?>" />
+        <?php } else { ?>
+          <img alt="" src="<?php echo site_url('uploads/documents/images/300x200.gif'); ?>" />
+        <?php } ?>
         <div class="caption">
           <h3><?php echo $doc['title']; ?></h3>
           <p><?php echo $doc['description']; ?></p>

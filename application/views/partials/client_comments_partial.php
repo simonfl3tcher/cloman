@@ -1,6 +1,16 @@
 <?php foreach($comms as $comments) { ?>
 	<li>
-		<strong><?php if($comments['who'] == 'C'){ echo 'You: '; } else { echo $comments['name'] . ': '; } ?> </strong><?php echo $comments['comment']; ?> - <small><?php echo mdate('%d/%m/%Y - %h:%i %a', strtotime($comments['date'])); ?></small>
+			<?php 
+			if($comments['who'] == 'C' && $this->session->userdata('is_admin') != true){ 
+				echo '<span class="black">You: </span>'; 
+			} else if($comments['who'] == 'C' && $this->session->userdata('is_admin') == true){ 
+				echo '<span class="black">' . $comments['cus_name'] . ': </span>'; 
+			} else if($comments['who'] == 'A' && $this->session->userdata('is_admin') == true){
+				echo '<span class="orange">You: </span>';
+			} else if($comments['who'] == 'A' && $this->session->userdata('is_admin') != true){
+				echo '<span class="orange">' . $comments['admin_name'] . '</span>';
+			} ?> 
+		<?php echo $comments['comment']; ?> - <small><?php echo mdate('%d/%m/%Y - %h:%i %a', strtotime($comments['date'])); ?></small>
 		<?php $images = explode('|', $comments['files']); ?>
 		<?php foreach($images as $img){ 
 			$ext = strtolower(pathinfo($img, PATHINFO_EXTENSION));

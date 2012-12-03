@@ -15,6 +15,7 @@
 					$this->login_model->set_client_login($results->people_id);
 					$this->session->set_userdata('Client_Logged_In', true);
 					$this->session->set_userdata('people_id', $results->people_id);
+					$this->session->set_userdata('is_admin', false);
 					redirect('/client', 'refresh');
 				} else {
 					$data['error'] = 'Your username / password do not match. please try again';

@@ -32,7 +32,8 @@
 					foreach($_FILES as $key => $value){
 						if(!empty($value['name'])){
 							if($this->upload->do_upload($key)){
-								$files[] = $this->upload->data()['file_name'];
+								$d = $this->upload->data();
+								$files[] = $d['file_name'];
 							} else {
 								var_dump('There seems to have been an error uploading some of the images, please try again');
 							}

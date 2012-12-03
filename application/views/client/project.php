@@ -23,10 +23,10 @@
 
 				<?php $counter = 1;
 				foreach($concepts as $con) { ?>
-				<li class="conceptList <?php if($counter == $tab) { echo "active"; } ?>" data-concept="<?php echo $con['concept_id']; ?>">
+				<li class="conceptList <?php if($this->session->userdata('is_admin') != true){ echo 'client'; } ?> <?php if($counter == $tab) { echo "active"; } ?>" data-concept="<?php echo $con['concept_id']; ?>">
 					<a href="#tab<?php echo $counter; ?>" data-toggle="tab">
 						<i class="icon-tasks"></i>
-						<?php echo $con['name']; ?><?php if($con['commentCount'] != 0){ echo '<span class="comCount"> (' . $con['commentCount'] . ')</span>'; } ?>
+						<?php echo $con['name']; ?><?php if($con['commentCount'] != 0 && $this->session->userdata('is_admin') != true){ echo '<span class="comCount"> (' . $con['commentCount'] . ')</span>'; } ?>
 						<i class="icon-chevron-right"></i>
 					</a>              			              	
 				</li>

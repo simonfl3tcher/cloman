@@ -6,6 +6,7 @@
     <li class="active"><a href="#taskstatuses" data-toggle="tab">Task Statuses</a></li>
     <li><a href="#employees" data-toggle="tab">Employees</a></li>
     <li><a href="#timetracking" data-toggle="tab">Track Time</a></li>
+    <li><a href="#me" data-toggle="tab">Me</a></li>
     </ul>
  
 	<div class="tab-content">
@@ -49,6 +50,9 @@
 			</div>
 		</div>
 		<div class="tab-pane" id="timetracking">
-			ewdgrjyk
+			Send an email at 5 with a reminder to do timesheets ?
+		</div>
+		<div class="tab-pane" id="me">
+			Send an email at 5 with a reminder to do timesheets ?
 		</div>
 	</div>

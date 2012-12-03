@@ -12,6 +12,11 @@
 			// You need to update the user to logged out at this point as well.
 			$this->login_model->set_logout($this->session->userdata('people_id'));
 			$this->session->unset_userdata('Client_Logged_In');
+			
+			if($this->session->userdata('is_admin')){
+				$this->session->unset_userdata('is_admin');
+			}
+
 			redirect('/client', 'refresh');
 		}
 	}

@@ -31,6 +31,7 @@
 			$data['user_data'] = $this->people_model->get($this->session->userdata('people_id'));
 			$data['comment_full_count'] = $this->projects_model->customer_full_count();
 			$data['faqs'] = $this->people_model->get_faqs();
+			$data['admin'] = $this->session->userdata('is_admin');
 			$this->render_client_view('faq', $data);
 		}
 

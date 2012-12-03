@@ -60,7 +60,7 @@
 					foreach($users as $u){
 						// THis needs fixing
 						$message = 'You have recieved a new message against  no.' .$_POST['concept'] .' <br />The message is as follows:- ' . $_POST['comment'];
-						$this->email->do_email($u['email'], 'hello@logicdesign.co.uk', 'Logic Design', 'New Comment against concept no.' .$_POST['concept'] .' | Logic Design', $message);
+						//$this->email->do_email($u['email'], 'hello@logicdesign.co.uk', 'Logic Design', 'New Comment against concept no.' .$_POST['concept'] .' | Logic Design', $message);
 					}
 				}
 			}

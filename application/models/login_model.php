@@ -42,11 +42,25 @@
 			// log in here.
 		}
 
+		public function get_client_login_against_project($projectId){
+			$sql = "SELECT p.* from people as p
+inner join business_to_people as btp on btp.people_id = p.people_id
+inner join projects as pro on pro.business_id = btp.business_id
+where p.has_login_access = 'Y' and p.password is not null and pro.project_id = ?
+limit 1";
+			$query = $this->db->query($sql, $projectId);
+			return $query->row();
+		}
+
 		public function set_client_logout($id){
 			$data = array('is_logged_in' => 'N');
 			$this->db->where('people_id', $id);
 			$this->db->update('people', $data);
 			return true;
+		}
+
+		public function set_client_login_for_admin($id){
+
 		}
 
 	}

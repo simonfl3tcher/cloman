@@ -408,7 +408,7 @@ where c.project_id = ?";
 				'files' => $images
 			);
 
-			if($this->session->userdata('Client_Logged_In') == true){
+			if($this->session->userdata('Client_Logged_In') == true && $this->session->userdata('is_admin') != true){
 				$data['who'] = 'C';
 				$data['who_id'] = $this->session->userdata('people_id');
 				$data['customer_seen'] = 'Y';
@@ -421,9 +421,10 @@ where c.project_id = ?";
 		}
 
 		public function get_comments($id){
-			$this->db->select('*');
+			$this->db->select('concept_comments.*, concepts.*, users.name as admin_name, people.name as cus_name');
 			$this->db->from('concept_comments');
 			$this->db->join('users', 'users.user_id = concept_comments.who_id', 'left');
+			$this->db->join('people', 'people.people_id = concept_comments.who_id', 'left');
 			$this->db->join('concepts', 'concepts.concept_id = concept_comments.concept_id');
 			$this->db->where('concept_comments.concept_id', $id);
 			$query = $this->db->get();

@@ -95,5 +95,15 @@
 			$this->db->where('people_id', $id);
 			$this->db->update('people', $data);
 		}
+
+		public function get_team_info(){
+			$this->db->select('name, email, bio, twitter, image, user_groups.group_name as `group`');
+			$this->db->from('users');
+			$this->db->join('users_to_group', 'users_to_group.user_id = users.user_id');
+			$this->db->join('user_groups', 'user_groups.group_id = users_to_group.group_id');
+			$this->db->order_by('name', 'asc');
+			$query = $this->db->get();
+			return $query->result_array();
+		}
 	}
 ?>
